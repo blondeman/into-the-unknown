@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cp1sbn41tnp2"]
+
+[ext_resource type="PackedScene" uid="uid://dpace2y8j8db5" path="res://tiles/template-floor.glb" id="1_vdvuu"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_q1i47"]
+data = PackedVector3Array(-2, 0, -2, 2, 0, -2, 2, 0, 2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2, -2, 0, -2, 2, 0, 2, -2, 0, 2, 2, 0, 2, -2, 0, -2)
+
+[node name="template-floor2" unique_id=1283347032 instance=ExtResource("1_vdvuu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1616440379]
+shape = SubResource("ConcavePolygonShape3D_q1i47")
