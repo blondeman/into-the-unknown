@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://cxct66ptfk4yj"]
+
+[ext_resource type="PackedScene" uid="uid://coghhk70586l8" path="res://tiles/corridor_2.tscn" id="2_0udux"]
+[ext_resource type="PackedScene" uid="uid://cfffmehayvgkq" path="res://tiles/corridor_corner_2.tscn" id="3_hokrh"]
+[ext_resource type="PackedScene" uid="uid://bmnp6hafh2jgo" path="res://tiles/corridor_end_2.tscn" id="4_dktlp"]
+[ext_resource type="PackedScene" uid="uid://bght5t07irj0q" path="res://tiles/corridor_intersection_2.tscn" id="5_e0ep4"]
+[ext_resource type="PackedScene" uid="uid://dbagl7r5a0yjo" path="res://tiles/corridor_junction_2.tscn" id="6_nvmse"]
+[ext_resource type="PackedScene" uid="uid://ds0nw5h5o4gu" path="res://tiles/corridor_transition_2.tscn" id="7_suwhv"]
+[ext_resource type="PackedScene" uid="uid://cflj0a8u3n1fb" path="res://tiles/corridor_wide_2.tscn" id="8_uwsfh"]
+[ext_resource type="PackedScene" uid="uid://tni4vjlm23g4" path="res://tiles/corridor_wide_corner_2.tscn" id="9_v7klw"]
+[ext_resource type="PackedScene" uid="uid://crmsfxbjeugj4" path="res://tiles/corridor_wide_end_2.tscn" id="10_dmppv"]
+[ext_resource type="PackedScene" uid="uid://b4jiorwcwp6ay" path="res://tiles/corridor_wide_intersection_2.tscn" id="11_qlqdi"]
+[ext_resource type="PackedScene" uid="uid://djnhjg05fao4w" path="res://tiles/corridor_wide_junction_2.tscn" id="12_nynw1"]
+[ext_resource type="PackedScene" uid="uid://ctf4v38jcdhd" path="res://tiles/gate_2.tscn" id="13_w57ve"]
+[ext_resource type="PackedScene" uid="uid://cbk5jndhdef35" path="res://tiles/gate_door_2.tscn" id="14_tdkrq"]
+[ext_resource type="PackedScene" uid="uid://chfl3uprkd6wj" path="res://tiles/gate_door_window_2.tscn" id="15_6fdpx"]
+[ext_resource type="PackedScene" uid="uid://rdyn2jbgligy" path="res://tiles/gate_metal_bars_2.tscn" id="16_j7oxi"]
+[ext_resource type="PackedScene" uid="uid://4vpwmtgx62q1" path="res://tiles/room_corner_2.tscn" id="17_0hvaj"]
+[ext_resource type="PackedScene" uid="uid://huix18hwwlrn" path="res://tiles/room_large_2.tscn" id="18_sxj74"]
+[ext_resource type="PackedScene" uid="uid://b73fr3mrreb61" path="res://tiles/room_large_variation_2.tscn" id="19_6ltj5"]
+[ext_resource type="PackedScene" uid="uid://bnedr55nfd6nm" path="res://tiles/room_small_variation_2.tscn" id="20_q0om3"]
+[ext_resource type="PackedScene" uid="uid://bcksu75ky5ba6" path="res://tiles/room_wide_2.tscn" id="21_rmqj7"]
+[ext_resource type="PackedScene" uid="uid://5q8wdt3vna83" path="res://tiles/room_wide_variation_2.tscn" id="22_vgw3i"]
+[ext_resource type="PackedScene" uid="uid://dy0elwpjhqjv" path="res://tiles/stairs_2.tscn" id="23_rvp5i"]
+[ext_resource type="PackedScene" uid="uid://blpcsa2wdm7rr" path="res://tiles/stairs_wide_2.tscn" id="24_nshy0"]
+[ext_resource type="PackedScene" uid="uid://3ej4aica6ydl" path="res://tiles/template_corner_2.tscn" id="25_tnnmc"]
+[ext_resource type="PackedScene" uid="uid://bwujmdmpmyw4t" path="res://tiles/template_detail_2.tscn" id="26_644rn"]
+[ext_resource type="PackedScene" uid="uid://cp1sbn41tnp2" path="res://tiles/template_floor_2.tscn" id="27_kmty6"]
+[ext_resource type="PackedScene" uid="uid://c7jlwocsoyb85" path="res://tiles/template_floor_big_2.tscn" id="28_4lkjn"]
+[ext_resource type="PackedScene" uid="uid://cv60akgicwaiq" path="res://tiles/template_floor_detail_2.tscn" id="29_o8w8w"]
+[ext_resource type="PackedScene" uid="uid://tv8jiulqp6mk" path="res://tiles/template_floor_detail_a_2.tscn" id="30_vh2sb"]
+[ext_resource type="PackedScene" uid="uid://dcb38h78vjv57" path="res://tiles/template_floor_layer_2.tscn" id="31_1s8qu"]
+[ext_resource type="PackedScene" uid="uid://ce8aem2qdp2ll" path="res://tiles/template_floor_layer_hole_2.tscn" id="32_fwcaj"]
+[ext_resource type="PackedScene" uid="uid://dhcideb3l047a" path="res://tiles/template_floor_layer_raised_2.tscn" id="33_gk586"]
+[ext_resource type="PackedScene" uid="uid://4hgk8yr4tbkh" path="res://tiles/template_wall_2.tscn" id="34_tumfp"]
+[ext_resource type="PackedScene" uid="uid://d4i1sogr5f05d" path="res://tiles/template_wall_corner_2.tscn" id="35_yprb4"]
+[ext_resource type="PackedScene" uid="uid://luxlyurtowjk" path="res://tiles/template_wall_detail_a_2.tscn" id="36_wjywq"]
+[ext_resource type="PackedScene" uid="uid://cgv4g31najyxq" path="res://tiles/template_wall_half_2.tscn" id="37_7358t"]
+[ext_resource type="PackedScene" uid="uid://cbku8thp7qiba" path="res://tiles/template_wall_stairs_2.tscn" id="38_nxxyk"]
+[ext_resource type="PackedScene" uid="uid://yelg0mdhym3i" path="res://tiles/template_wall_top_2.tscn" id="39_x7cki"]
+
+[node name="Node3D" type="Node3D" unique_id=1057154339]
+
+[node name="corridor2" parent="." unique_id=2036709800 instance=ExtResource("2_0udux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 44)
+
+[node name="corridor-corner2" parent="." unique_id=1347519269 instance=ExtResource("3_hokrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 44)
+
+[node name="corridor-end2" parent="." unique_id=1400800859 instance=ExtResource("4_dktlp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+
+[node name="corridor-intersection2" parent="." unique_id=1568480996 instance=ExtResource("5_e0ep4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 36)
+
+[node name="corridor-junction2" parent="." unique_id=69290467 instance=ExtResource("6_nvmse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 52)
+
+[node name="corridor-transition2" parent="." unique_id=1289062354 instance=ExtResource("7_suwhv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, 26)
+
+[node name="corridor-wide2" parent="." unique_id=1861885849 instance=ExtResource("8_uwsfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 2)
+
+[node name="corridor-wide-corner2" parent="." unique_id=22534532 instance=ExtResource("9_v7klw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 26)
+
+[node name="corridor-wide-end2" parent="." unique_id=276173282 instance=ExtResource("10_dmppv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 2)
+
+[node name="corridor-wide-intersection2" parent="." unique_id=501468274 instance=ExtResource("11_qlqdi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 9)
+
+[node name="corridor-wide-junction2" parent="." unique_id=1363985487 instance=ExtResource("12_nynw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 60)
+
+[node name="gate2" parent="." unique_id=511440124 instance=ExtResource("13_w57ve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 1)
+
+[node name="gate-door2" parent="." unique_id=388855181 instance=ExtResource("14_tdkrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
+
+[node name="gate-door-window2" parent="." unique_id=800088054 instance=ExtResource("15_6fdpx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 4)
+
+[node name="gate-metal-bars2" parent="." unique_id=1613717188 instance=ExtResource("16_j7oxi")]
+transform = Transform3D(0.9999533, -0.0039230734, -0.008827629, 0.0038810123, 0.99998105, -0.004775716, 0.008846201, 0.0047412245, 0.9999497, 6, 0, 14)
+
+[node name="room-corner2" parent="." unique_id=1609652549 instance=ExtResource("17_0hvaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, 16)
+
+[node name="room-large2" parent="." unique_id=115500399 instance=ExtResource("18_sxj74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36)
+
+[node name="room-large-variation2" parent="." unique_id=1500916536 instance=ExtResource("19_6ltj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 56)
+
+[node name="room-small-variation2" parent="." unique_id=252116343 instance=ExtResource("20_q0om3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 16)
+
+[node name="room-wide2" parent="." unique_id=1786533878 instance=ExtResource("21_rmqj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 34)
+
+[node name="room-wide-variation2" parent="." unique_id=1214892057 instance=ExtResource("22_vgw3i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 56)
+
+[node name="stairs2" parent="." unique_id=1726538258 instance=ExtResource("23_rvp5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 6)
+
+[node name="stairs-wide2" parent="." unique_id=1339824468 instance=ExtResource("24_nshy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 41)
+
+[node name="template-corner2" parent="." unique_id=1986616181 instance=ExtResource("25_tnnmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 7)
+
+[node name="template-detail2" parent="." unique_id=266547553 instance=ExtResource("26_644rn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 30)
+
+[node name="template-floor2" parent="." unique_id=1283347032 instance=ExtResource("27_kmty6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 19)
+
+[node name="template-floor-big2" parent="." unique_id=2056365684 instance=ExtResource("28_4lkjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 9)
+
+[node name="template-floor-detail2" parent="." unique_id=1887616007 instance=ExtResource("29_o8w8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 12)
+
+[node name="template-floor-detail-a2" parent="." unique_id=602653064 instance=ExtResource("30_vh2sb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 51)
+
+[node name="template-floor-layer2" parent="." unique_id=403327009 instance=ExtResource("31_1s8qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 17)
+
+[node name="template-floor-layer-hole2" parent="." unique_id=1273152363 instance=ExtResource("32_fwcaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 23)
+
+[node name="template-floor-layer-raised2" parent="." unique_id=1357862103 instance=ExtResource("33_gk586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 14)
+
+[node name="template-wall2" parent="." unique_id=911925572 instance=ExtResource("34_tumfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 16)
+
+[node name="template-wall-corner2" parent="." unique_id=708984501 instance=ExtResource("35_yprb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 14)
+
+[node name="template-wall-detail-a2" parent="." unique_id=1197797920 instance=ExtResource("36_wjywq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0, 16)
+
+[node name="template-wall-half2" parent="." unique_id=2066570986 instance=ExtResource("37_7358t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 16)
+
+[node name="template-wall-stairs2" parent="." unique_id=719785603 instance=ExtResource("38_nxxyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, 18)
+
+[node name="template-wall-top2" parent="." unique_id=1695950987 instance=ExtResource("39_x7cki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 18)
