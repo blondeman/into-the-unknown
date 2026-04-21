@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b5wrh3lc37w15"]
+
+[ext_resource type="MeshLibrary" uid="uid://b7h5sk0tcy8gi" path="res://dungeon_tiles.meshlib" id="1_y57rc"]
+
+[node name="TileTest" type="GridMap" unique_id=344600319]
+mesh_library = ExtResource("1_y57rc")
+cell_size = Vector3(4, 4, 4)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(1, 1, 2, 3, 1, 4, 4, 1, 655366, 0, 1, 655370, 65535, 1, 1, 1, 2, 1048577, 1, 0, 1441793)
+}
