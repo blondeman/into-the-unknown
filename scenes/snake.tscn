@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ce6prb0bxp0vp"]
+
+[ext_resource type="PackedScene" uid="uid://yvfsi2utt0wc" path="res://models/snake/snake.glb" id="1_yc36x"]
+[ext_resource type="Texture2D" uid="uid://dtmxvtnsaynro" path="res://models/snake/snake_snake_albedo.png" id="2_yc36x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_auphx"]
+albedo_texture = ExtResource("2_yc36x")
+metallic_specular = 0.0
+rim = 0.15
+
+[node name="snake" unique_id=445147379 instance=ExtResource("1_yc36x")]
+
+[node name="Armature" parent="." index="0" unique_id=661790500]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 6.1855946)
+
+[node name="Plane" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1048981166) index="0" unique_id=1644613876]
+surface_material_override/0 = SubResource("StandardMaterial3D_auphx")
