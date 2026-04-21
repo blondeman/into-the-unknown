@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="oroborous"
+run/main_scene="uid://b5wrh3lc37w15"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
 
 [physics]
 
