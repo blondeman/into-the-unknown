@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://duxctwibru8kq" path="res://scripts/Controller.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/Snake.gd" id="1_qhqgy"]
+[ext_resource type="Material" uid="uid://bil5bvlsyd7ji" path="res://textures/empty_tex.tres" id="3_qhqgy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
@@ -31,10 +32,12 @@ snake = NodePath("..")
 shape = SubResource("SphereShape3D_g2els")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="head" unique_id=1418909816]
+material_override = ExtResource("3_qhqgy")
 mesh = SubResource("SphereMesh_3vyb7")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="head" unique_id=902598156]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
+material_override = ExtResource("3_qhqgy")
 mesh = SubResource("BoxMesh_g2els")
 
 [node name="body" type="AnimatableBody3D" parent="." unique_id=328893431]
@@ -46,8 +49,10 @@ sync_to_physics = false
 shape = SubResource("SphereShape3D_g2els")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="body" unique_id=909225243]
+material_override = ExtResource("3_qhqgy")
 mesh = SubResource("SphereMesh_3vyb7")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="body" unique_id=1884981587]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.5)
+material_override = ExtResource("3_qhqgy")
 mesh = SubResource("CylinderMesh_g2els")

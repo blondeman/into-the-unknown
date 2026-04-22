@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://d1obfvt1rg8cb" path="res://scripts/CameraController.gd" id="2_b3mux"]
 [ext_resource type="Material" uid="uid://bycwbl88xnji4" path="res://textures/checkerboard.tres" id="2_frvy6"]
 [ext_resource type="Texture2D" uid="uid://o2au3q3pb5p7" path="res://textures/checkerboard.png" id="3_b2arr"]
+[ext_resource type="Shader" uid="uid://bwe0naawgu6ei" path="res://shaders/Toon.gdshader" id="4_b2arr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i8xb"]
 size = Vector3(100, 1, 100)
@@ -21,9 +22,21 @@ size = Vector3(10, 10, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_b3mux"]
 size = Vector3(3, 10, 20)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_810np"]
-albedo_texture = ExtResource("3_b2arr")
-uv1_scale = Vector3(1, 8, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_frvy6"]
+render_priority = 0
+shader = ExtResource("4_b2arr")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/tex = ExtResource("3_b2arr")
+shader_parameter/color_strength = 0.6
+shader_parameter/texture_scale = Vector2(1, 8)
+shader_parameter/shadow = 0.5
+shader_parameter/shadow_width = 0.0
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 0.5
+shader_parameter/_rim_smoothness = 0.01
 
 [sub_resource type="BoxMesh" id="BoxMesh_nbain"]
 size = Vector3(3, 10, 20)
@@ -69,7 +82,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9676872, -0.2521538, 0, 0.2521538, 0.96768
 shape = SubResource("BoxShape3D_b3mux")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="environment/StaticBody3D5" unique_id=1401165595]
-material_override = SubResource("StandardMaterial3D_810np")
+material_override = SubResource("ShaderMaterial_frvy6")
 mesh = SubResource("BoxMesh_nbain")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="environment" unique_id=1234717873]

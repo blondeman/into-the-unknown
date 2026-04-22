@@ -3,14 +3,28 @@
 [ext_resource type="PackedScene" uid="uid://yvfsi2utt0wc" path="res://models/snake/snake.glb" id="1_yc36x"]
 [ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/Snake.gd" id="2_auphx"]
 [ext_resource type="Texture2D" uid="uid://dtmxvtnsaynro" path="res://models/snake/snake_snake_albedo.png" id="2_l4b1q"]
+[ext_resource type="Shader" uid="uid://bwe0naawgu6ei" path="res://shaders/Toon.gdshader" id="3_l4b1q"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4j5f3"]
-albedo_texture = ExtResource("2_l4b1q")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4j5f3"]
+render_priority = 0
+shader = ExtResource("3_l4b1q")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/tex = ExtResource("2_l4b1q")
+shader_parameter/color_strength = 0.6000000285
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/shadow = 0.5
+shader_parameter/shadow_width = 0.0010000000475
+shader_parameter/shadow_color = Color(0.4628746, 0.39070696, 0.3649842, 1)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 0.5
+shader_parameter/_rim_smoothness = 0.01
 
 [node name="snake" unique_id=1839224438 instance=ExtResource("1_yc36x")]
 script = ExtResource("2_auphx")
 
-[node name="Skeleton3D" parent="." index="0" unique_id=435613461]
+[node name="Skeleton3D" parent="." index="0" unique_id=966163667]
 bones/1/rest = Transform3D(1, 1.854903e-16, 2.370468e-18, 2.370435e-18, -0.025554657, 0.9996735, 1.8549032e-16, -0.9996735, -0.025554657, -3.4673317e-17, 0.15615474, -10.977953)
 bones/2/rest = Transform3D(1, -1.7763568e-15, -2.3841855e-07, -1.9711457e-08, 0.9965765, -0.08267587, 2.3760234e-07, 0.08267587, 0.9965765, -3.130312e-16, 1.7380965, -0.31946114)
 bones/3/rest = Transform3D(1, -2.1272646e-16, 2.8625823e-17, 2.1458476e-16, 0.9876645, -0.15658447, 5.03695e-18, 0.15658446, 0.9876646, -1.0513431e-16, 1.7020795, 0.094131395)
@@ -18,5 +32,5 @@ bones/4/rest = Transform3D(1, -1.7389581e-16, 1.1469774e-17, 1.7426439e-16, 0.99
 bones/7/rest = Transform3D(1, 1.4665105e-17, 5.4757944e-15, 5.4757944e-15, -0.0053561926, -0.9999857, 1.466447e-17, 0.9999857, -0.0053561926, -3.4673317e-17, 0.15615474, -10.977953)
 bones/13/rest = Transform3D(1, 4.1058416e-32, -7.7037088e-34, -4.105842e-32, 0.99999994, 4.610047e-08, 7.703728e-34, -4.610047e-08, 0.99999994, 0, 2.3644273, -3.7252903e-09)
 
-[node name="Plane" parent="Skeleton3D" index="0" unique_id=742612706]
-surface_material_override/0 = SubResource("StandardMaterial3D_4j5f3")
+[node name="Plane" parent="Skeleton3D" index="0" unique_id=1116010534]
+surface_material_override/0 = SubResource("ShaderMaterial_4j5f3")

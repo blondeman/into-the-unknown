@@ -8,6 +8,7 @@ shader_type spatial;
 render_mode ambient_light_disabled;
 uniform vec4 color : source_color = vec4(1.0);
 uniform sampler2D tex : source_color, hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform float color_strength : hint_range(0.0,2.0) = 0.6;
 uniform vec2 texture_scale = vec2(1.0, 1.0);
 uniform float shadow : hint_range(0.0, 1.0) = 0.5;
 uniform float shadow_width : hint_range(0.001, 0.5) = 0.0;
@@ -19,7 +20,7 @@ uniform float _rim_size : hint_range(0,1) = 0.5;
 uniform float _rim_smoothness : hint_range(0.0,0.5) = 0.01;
 void fragment() {
 	vec2 tiled_uv = UV * texture_scale;
-	ALBEDO = pow(texture(tex, tiled_uv).rgb, vec3(1.0)) * color.rgb;
+	ALBEDO = pow(texture(tex, tiled_uv).rgb, vec3(color_strength)) * color.rgb;
 }
 void light() {
 	float NdotL = dot(NORMAL, LIGHT) * ATTENUATION;

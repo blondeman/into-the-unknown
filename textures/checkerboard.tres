@@ -1,7 +1,19 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bycwbl88xnji4"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bycwbl88xnji4"]
 
 [ext_resource type="Texture2D" uid="uid://o2au3q3pb5p7" path="res://textures/checkerboard.png" id="1_52atw"]
+[ext_resource type="Shader" uid="uid://bwe0naawgu6ei" path="res://shaders/Toon.gdshader" id="1_kmxox"]
 
 [resource]
-albedo_texture = ExtResource("1_52atw")
-uv1_scale = Vector3(6, 4, 6)
+render_priority = 0
+shader = ExtResource("1_kmxox")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/tex = ExtResource("1_52atw")
+shader_parameter/texture_scale = Vector2(6, 4)
+shader_parameter/shadow = 0.5
+shader_parameter/shadow_width = 0.0
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 0.5
+shader_parameter/_rim_smoothness = 0.01
