@@ -1,14 +1,36 @@
 [gd_scene format=3 uid="uid://8qs4lkeubudv"]
 
-[ext_resource type="PackedScene" uid="uid://ce6prb0bxp0vp" path="res://scenes/snake.tscn" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://duxctwibru8kq" path="res://scripts/Controller.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/Snake.gd" id="1_qhqgy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
-[node name="player" type="CharacterBody3D" unique_id=93949505]
+[sub_resource type="SphereMesh" id="SphereMesh_3vyb7"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=183396357]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="player" type="Node3D" unique_id=1262716053 node_paths=PackedStringArray("head", "body")]
+script = ExtResource("1_qhqgy")
+speed = 15.0
+head = NodePath("head")
+body = NodePath("body")
+segments = 7
+
+[node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("snake")]
+collision_layer = 2
+script = ExtResource("1_g2els")
+snake = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head" unique_id=183396357]
 shape = SubResource("SphereShape3D_g2els")
 
-[node name="snake" parent="." unique_id=445147379 instance=ExtResource("1_3vyb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head" unique_id=1418909816]
+mesh = SubResource("SphereMesh_3vyb7")
+
+[node name="body" type="RigidBody3D" parent="." unique_id=1536843245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, 0)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body" unique_id=1581126777]
+shape = SubResource("SphereShape3D_g2els")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="body" unique_id=909225243]
+mesh = SubResource("SphereMesh_3vyb7")
