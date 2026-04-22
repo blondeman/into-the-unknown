@@ -112,16 +112,5 @@ target = NodePath("../player")
 transform = Transform3D(0.69234467, 0.45621732, -0.55903894, 0, 0.7747569, 0.6322592, 0.7215669, -0.43774128, 0.5363988, 0, 0, 0)
 shadow_enabled = true
 
-[node name="enemies" type="Node3D" parent="." unique_id=1621181414]
-
-[node name="enemy" parent="enemies" unique_id=227389902 instance=ExtResource("7_b2arr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.481918, 1.0000001, -17.352224)
-
-[node name="enemy2" parent="enemies" unique_id=381285580 instance=ExtResource("7_b2arr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.340443, 1.0000001, -20.702478)
-
-[node name="enemy3" parent="enemies" unique_id=1185027110 instance=ExtResource("7_b2arr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.464563, 1.0000001, -17.60384)
-
-[node name="enemy4" parent="enemies" unique_id=666382727 instance=ExtResource("7_b2arr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.007677, 1.0000001, -18.746952)
+[node name="enemy" parent="." unique_id=227389902 instance=ExtResource("7_b2arr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0598316, 1.0000001, -3.291504)

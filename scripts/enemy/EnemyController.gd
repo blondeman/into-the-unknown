@@ -1,0 +1,22 @@
+class_name EnemyController
+extends CharacterBody3D
+
+@export var speed = 5.0
+var direction: Vector2 = Vector2.ZERO
+
+func set_direction(_direction: Vector2):
+	direction = _direction
+
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	if direction:
+		velocity.x = direction.x * speed
+		velocity.z = direction.y * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
+
+	move_and_slide()

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8qs4lkeubudv"]
 
-[ext_resource type="Script" uid="uid://duxctwibru8kq" path="res://scripts/Controller.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/Snake.gd" id="1_qhqgy"]
+[ext_resource type="Script" uid="uid://duxctwibru8kq" path="res://scripts/PlayerHead.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/PlayerController.gd" id="1_qhqgy"]
 [ext_resource type="Material" uid="uid://bil5bvlsyd7ji" path="res://textures/empty_tex.tres" id="3_qhqgy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
@@ -23,10 +23,10 @@ head = NodePath("head")
 body = NodePath("body")
 segments = 7
 
-[node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("snake")]
+[node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("player_controller")]
 collision_layer = 2
 script = ExtResource("1_g2els")
-snake = NodePath("..")
+player_controller = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head" unique_id=183396357]
 shape = SubResource("SphereShape3D_g2els")

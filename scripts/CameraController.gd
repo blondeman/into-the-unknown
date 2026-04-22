@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 	if !target:
 		return
 	
-	if target is Snake:
+	if target is PlayerController:
 		global_position = target.head.global_position + offset
 	else:
 		global_position = target.global_position + offset

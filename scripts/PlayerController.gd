@@ -1,4 +1,4 @@
-class_name Snake
+class_name PlayerController
 extends Node3D
 
 @export var speed = 5.0
