@@ -10,11 +10,6 @@
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 size = Vector3(0.1, 0.1, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_g2els"]
-top_radius = 0.25
-bottom_radius = 0.25
-height = 1.0
-
 [node name="player" type="Node3D" unique_id=1262716053 node_paths=PackedStringArray("head", "body")]
 script = ExtResource("1_qhqgy")
 speed = 15.0
@@ -34,13 +29,12 @@ shape = SubResource("SphereShape3D_g2els")
 mesh = SubResource("SphereMesh_3vyb7")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="head" unique_id=902598156]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
 mesh = SubResource("BoxMesh_g2els")
 
-[node name="body" type="AnimatableBody3D" parent="." unique_id=328893431]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
+[node name="body" type="RigidBody3D" parent="." unique_id=1536843245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2)
 collision_layer = 2
-sync_to_physics = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body" unique_id=1581126777]
 shape = SubResource("SphereShape3D_g2els")
@@ -49,5 +43,5 @@ shape = SubResource("SphereShape3D_g2els")
 mesh = SubResource("SphereMesh_3vyb7")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="body" unique_id=1884981587]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.5)
-mesh = SubResource("CylinderMesh_g2els")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+mesh = SubResource("BoxMesh_g2els")

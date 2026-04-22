@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cf2ga03gsrupt"]
 
+[ext_resource type="Material" uid="uid://b2ginmgn8p1r6" path="res://textures/grass.tres" id="1_5qein"]
 [ext_resource type="PackedScene" uid="uid://8qs4lkeubudv" path="res://scenes/player.tscn" id="1_uhjjb"]
+[ext_resource type="Script" uid="uid://d1obfvt1rg8cb" path="res://scripts/CameraController.gd" id="2_b3mux"]
+[ext_resource type="Material" uid="uid://bycwbl88xnji4" path="res://textures/checkerboard.tres" id="2_frvy6"]
+[ext_resource type="Texture2D" uid="uid://o2au3q3pb5p7" path="res://textures/checkerboard.png" id="3_b2arr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i8xb"]
 size = Vector3(100, 1, 100)
@@ -14,44 +18,81 @@ size = Vector3(10, 10, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_b3mux"]
 size = Vector3(10, 10, 10)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_b3mux"]
+size = Vector3(3, 10, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_810np"]
+albedo_texture = ExtResource("3_b2arr")
+uv1_scale = Vector3(1, 8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nbain"]
+size = Vector3(3, 10, 20)
+
 [node name="test" type="Node3D" unique_id=2017559847]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=468172730]
+[node name="environment" type="Node3D" parent="." unique_id=1107612541]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1687032017]
+[node name="StaticBody3D" type="StaticBody3D" parent="environment" unique_id=468172730]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/StaticBody3D" unique_id=1687032017]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_0i8xb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=802228835]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="environment/StaticBody3D" unique_id=802228835]
+material_override = ExtResource("1_5qein")
 mesh = SubResource("PlaneMesh_uhjjb")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=585799164]
+[node name="StaticBody3D3" type="StaticBody3D" parent="environment" unique_id=585799164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.179337, -2.946073, 5.4342604)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=756297617]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/StaticBody3D3" unique_id=756297617]
 shape = SubResource("BoxShape3D_uhjjb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=505591945]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="environment/StaticBody3D3" unique_id=505591945]
+material_override = ExtResource("2_frvy6")
 mesh = SubResource("BoxMesh_b3mux")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1234717873]
+[node name="StaticBody3D4" type="StaticBody3D" parent="environment" unique_id=642610947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.179337, 0.84832335, -18.936745)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/StaticBody3D4" unique_id=2141412723]
+shape = SubResource("BoxShape3D_uhjjb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="environment/StaticBody3D4" unique_id=203190373]
+material_override = ExtResource("2_frvy6")
+mesh = SubResource("BoxMesh_b3mux")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="environment" unique_id=1158924079]
+transform = Transform3D(1, 0, 0, 0, 0.9676872, -0.2521538, 0, 0.2521538, 0.9676872, -8.179338, -1.5378251, -5.4921865)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/StaticBody3D5" unique_id=715604613]
+shape = SubResource("BoxShape3D_b3mux")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="environment/StaticBody3D5" unique_id=1401165595]
+material_override = SubResource("StandardMaterial3D_810np")
+mesh = SubResource("BoxMesh_nbain")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="environment" unique_id=1234717873]
 transform = Transform3D(1, 0, 0, 0, 0.9566511, 0.29123652, 0, -0.29123652, 0.9566511, 0, 0, 3.435557)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1270163858]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/StaticBody3D2" unique_id=1270163858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_0i8xb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=482347128]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="environment/StaticBody3D2" unique_id=482347128]
+material_override = ExtResource("1_5qein")
 mesh = SubResource("PlaneMesh_uhjjb")
 
 [node name="player" parent="." unique_id=93949505 node_paths=PackedStringArray("camera") instance=ExtResource("1_uhjjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 camera = NodePath("../Camera3D")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2106376270]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2106376270 node_paths=PackedStringArray("target")]
 transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 12.5, 20, 12.5)
 projection = 1
-size = 15.0
+size = 20.0
+script = ExtResource("2_b3mux")
+target = NodePath("../player")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1599767343]
 transform = Transform3D(0.69234467, 0.45621732, -0.55903894, 0, 0.7747569, 0.6322592, 0.7215669, -0.43774128, 0.5363988, 0, 0, 0)

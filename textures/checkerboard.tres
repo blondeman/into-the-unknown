@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bycwbl88xnji4"]
+
+[ext_resource type="Texture2D" uid="uid://o2au3q3pb5p7" path="res://textures/checkerboard.png" id="1_52atw"]
+
+[resource]
+albedo_texture = ExtResource("1_52atw")
+uv1_scale = Vector3(6, 4, 6)
