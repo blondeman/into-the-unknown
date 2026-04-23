@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3uv7phx0cfy1"]
 
-[ext_resource type="Script" uid="uid://tjy4hk2vptn1" path="res://Break.gd" id="1_lpkfg"]
+[ext_resource type="Script" uid="uid://tjy4hk2vptn1" path="res://scripts/Break.gd" id="1_lpkfg"]
 [ext_resource type="Material" uid="uid://ctpp21eg50paa" path="res://textures/empty_tex_blue.tres" id="2_owvb4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lpkfg"]

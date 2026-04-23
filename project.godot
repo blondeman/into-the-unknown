@@ -15,6 +15,10 @@ run/main_scene="uid://cf2ga03gsrupt"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CameraEffects="*uid://cmw68o05w75l6"
+
 [input]
 
 up={
