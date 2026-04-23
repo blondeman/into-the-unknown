@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://y0x6i32rpn5n"]
+
+[ext_resource type="Script" uid="uid://cdhyc2ejbkdew" path="res://scripts/Destructable.gd" id="1_4idp4"]
+[ext_resource type="Material" uid="uid://ctpp21eg50paa" path="res://textures/empty_tex_blue.tres" id="1_m0oli"]
+[ext_resource type="PackedScene" uid="uid://3uv7phx0cfy1" path="res://scenes/destroyed_object.tscn" id="2_1fq6y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hi3tm"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m0oli"]
+size = Vector3(2, 2, 2)
+
+[node name="destructable" type="StaticBody3D" unique_id=1230826532]
+collision_layer = 5
+script = ExtResource("1_4idp4")
+destroyed_object = ExtResource("2_1fq6y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1023285417]
+material_override = ExtResource("1_m0oli")
+mesh = SubResource("BoxMesh_hi3tm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1789857566]
+shape = SubResource("BoxShape3D_m0oli")

@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://8qs4lkeubudv"]
 
-[ext_resource type="Script" uid="uid://duxctwibru8kq" path="res://scripts/PlayerHead.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/PlayerController.gd" id="1_qhqgy"]
+[ext_resource type="Script" uid="uid://duxctwibru8kq" path="res://scripts/player/PlayerHead.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/player/PlayerController.gd" id="1_qhqgy"]
 [ext_resource type="Material" uid="uid://bil5bvlsyd7ji" path="res://textures/empty_tex.tres" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://2s52dssufyjb" path="res://scripts/player/Mouth.gd" id="4_dqkch"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3vyb7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
-size = Vector3(0.1, 0.1, 1)
+size = Vector3(0.4, 0.1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qhqgy"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_g2els"]
 top_radius = 0.25
@@ -39,6 +42,14 @@ mesh = SubResource("SphereMesh_3vyb7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
 material_override = ExtResource("3_qhqgy")
 mesh = SubResource("BoxMesh_g2els")
+
+[node name="mouth" type="Area3D" parent="head" unique_id=861753068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
+collision_mask = 4
+script = ExtResource("4_dqkch")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/mouth" unique_id=1090413210]
+shape = SubResource("SphereShape3D_qhqgy")
 
 [node name="body" type="AnimatableBody3D" parent="." unique_id=328893431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)

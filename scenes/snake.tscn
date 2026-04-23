@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ce6prb0bxp0vp"]
 
 [ext_resource type="PackedScene" uid="uid://yvfsi2utt0wc" path="res://models/snake/snake.glb" id="1_yc36x"]
-[ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/PlayerController.gd" id="2_auphx"]
+[ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/player/PlayerController.gd" id="2_auphx"]
 [ext_resource type="Texture2D" uid="uid://dtmxvtnsaynro" path="res://models/snake/snake_snake_albedo.png" id="2_l4b1q"]
 [ext_resource type="Shader" uid="uid://bwe0naawgu6ei" path="res://shaders/Toon.gdshader" id="3_l4b1q"]
 
