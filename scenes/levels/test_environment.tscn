@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://o2au3q3pb5p7" path="res://textures/checkerboard.png" id="4_v3sb5"]
 [ext_resource type="PackedScene" uid="uid://8qs4lkeubudv" path="res://scenes/player.tscn" id="5_ip6g7"]
 [ext_resource type="Script" uid="uid://d1obfvt1rg8cb" path="res://scripts/CameraController.gd" id="6_ho41w"]
-[ext_resource type="PackedScene" uid="uid://b1ppt68n8nf7s" path="res://scenes/enemy.tscn" id="7_wlo4t"]
-[ext_resource type="PackedScene" uid="uid://y0x6i32rpn5n" path="res://scenes/destructable.tscn" id="8_51h5h"]
+[ext_resource type="PackedScene" uid="uid://uoe7qncejrap" path="res://scenes/environment/buildings/house.tscn" id="9_ho41w"]
+[ext_resource type="PackedScene" uid="uid://dcrf8g8u3lvwv" path="res://scenes/environment/buildings/mansion.tscn" id="10_wlo4t"]
+[ext_resource type="PackedScene" uid="uid://dg8enoglxyw35" path="res://scenes/environment/buildings/mill.tscn" id="11_51h5h"]
+[ext_resource type="PackedScene" uid="uid://bju2m76tc8sqw" path="res://scenes/environment/buildings/tower.tscn" id="12_e0r3o"]
+[ext_resource type="PackedScene" uid="uid://bhuvjqhckwj2b" path="res://scenes/environment/buildings/wall_tower.tscn" id="13_271xl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i8xb"]
 size = Vector3(100, 1, 100)
@@ -115,34 +118,55 @@ shadow_enabled = true
 
 [node name="enemies" type="Node3D" parent="." unique_id=1621181414]
 
-[node name="enemy" parent="enemies" unique_id=227389902 instance=ExtResource("7_wlo4t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.481918, 1.0000001, -17.352224)
-
-[node name="enemy2" parent="enemies" unique_id=381285580 instance=ExtResource("7_wlo4t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.340443, 1.0000001, -20.702478)
-
-[node name="enemy3" parent="enemies" unique_id=1185027110 instance=ExtResource("7_wlo4t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.464563, 1.0000001, -17.60384)
-
-[node name="enemy4" parent="enemies" unique_id=666382727 instance=ExtResource("7_wlo4t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.007677, 1.0000001, -18.746952)
-
 [node name="destructables" type="Node3D" parent="." unique_id=1353618012]
 
-[node name="destructable" parent="destructables" unique_id=1230826532 instance=ExtResource("8_51h5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.276743, 1, -8.217296)
+[node name="house" parent="destructables" unique_id=2009847552 instance=ExtResource("9_ho41w")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 20.706444, 1.9073486e-06, -19.983145)
 
-[node name="destructable2" parent="destructables" unique_id=1263568646 instance=ExtResource("8_51h5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.516379, 1, 0.49233127)
+[node name="house2" parent="destructables" unique_id=2045888926 instance=ExtResource("9_ho41w")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 21.183338, 1.9073486e-06, -23.243177)
 
-[node name="destructable3" parent="destructables" unique_id=35009259 instance=ExtResource("8_51h5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.534195, 1, -8.222578)
+[node name="house3" parent="destructables" unique_id=1300060110 instance=ExtResource("9_ho41w")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 18.879349, 1.9073486e-06, -26.311363)
 
-[node name="destructable4" parent="destructables" unique_id=1680150004 instance=ExtResource("8_51h5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.735947, 1, -8.851366)
+[node name="house4" parent="destructables" unique_id=885646414 instance=ExtResource("9_ho41w")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 14.984006, 1.9073486e-06, -27.857294)
 
-[node name="destructable5" parent="destructables" unique_id=639874714 instance=ExtResource("8_51h5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.807127, 1, 0.8288822)
+[node name="house5" parent="destructables" unique_id=503967211 instance=ExtResource("9_ho41w")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 10.919994, 1.9073486e-06, -29.15898)
 
-[node name="destructable6" parent="destructables" unique_id=228678039 instance=ExtResource("8_51h5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6018677, 6.848324, -15.220362)
+[node name="house6" parent="destructables" unique_id=1191456956 instance=ExtResource("9_ho41w")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 7.785676, 1.9073486e-06, -30.005941)
+
+[node name="mansion" parent="destructables" unique_id=1978101706 instance=ExtResource("10_wlo4t")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 20.064774, 3.8146973e-06, -15.997872)
+
+[node name="mill" parent="destructables" unique_id=1593901384 instance=ExtResource("11_51h5h")]
+transform = Transform3D(-0.30168784, 0, 0.9534069, 0, 1, 0, -0.9534069, 0, -0.30168784, 19.026428, 1.9073486e-06, -12.004253)
+
+[node name="mill2" parent="destructables" unique_id=292249292 instance=ExtResource("11_51h5h")]
+transform = Transform3D(-0.71890324, 0, 0.6951102, 0, 1, 0, -0.6951102, 0, -0.71890324, 15.412855, 1.9073486e-06, -9.232924)
+
+[node name="mill3" parent="destructables" unique_id=186151849 instance=ExtResource("11_51h5h")]
+transform = Transform3D(-0.9324248, 0, 0.36136407, 0, 1, 0, -0.36136407, 0, -0.9324248, 12.412855, 1.9073486e-06, -5.2329245)
+
+[node name="tower" parent="destructables" unique_id=263835124 instance=ExtResource("12_e0r3o")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 12.121547, 1.9073486e-06, -21.16343)
+
+[node name="tower2" parent="destructables" unique_id=1334575672 instance=ExtResource("12_e0r3o")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 8.760702, 2.861023e-06, -23.310026)
+
+[node name="tower4" parent="destructables" unique_id=1436066886 instance=ExtResource("12_e0r3o")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 6.270258, 1.9073486e-06, -12.565929)
+
+[node name="tower5" parent="destructables" unique_id=1442149643 instance=ExtResource("12_e0r3o")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 5.296645, 1.9073486e-06, -8.444318)
+
+[node name="tower6" parent="destructables" unique_id=1731727223 instance=ExtResource("12_e0r3o")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 4.534464, 9.536743e-07, -4.3881435)
+
+[node name="tower3" parent="destructables" unique_id=1990725755 instance=ExtResource("12_e0r3o")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 5.825432, 2.3841858e-06, -24.26473)
+
+[node name="wall_tower" parent="destructables" unique_id=296218813 instance=ExtResource("13_271xl")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 11.460799, 1.9073486e-06, -17.843048)

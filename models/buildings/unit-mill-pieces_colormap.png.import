@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfor0p188rvu0"
-path.s3tc="res://.godot/imported/grass.jpg-7c31b068203bf1d53a3db469e9ee2f5d.s3tc.ctex"
+uid="uid://cwy8231s0jifg"
+path.s3tc="res://.godot/imported/unit-mill-pieces_colormap.png-dab84665af791be92f3e3b53428f542a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "4b96ead31ce06689fa5393a01c3beae8"
+}
 
 [deps]
 
-source_file="res://textures/grass.jpg"
-dest_files=["res://.godot/imported/grass.jpg-7c31b068203bf1d53a3db469e9ee2f5d.s3tc.ctex"]
+source_file="res://models/buildings/unit-mill-pieces_colormap.png"
+dest_files=["res://.godot/imported/unit-mill-pieces_colormap.png-dab84665af791be92f3e3b53428f542a.s3tc.ctex"]
 
 [params]
 

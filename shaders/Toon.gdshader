@@ -18,10 +18,12 @@ uniform float _specular_strength : hint_range(0.0,0.25) = 0.075;
 uniform float _glossiness : hint_range(0.0,0.5) = 0.1;
 uniform float _rim_size : hint_range(0,1) = 0.5;
 uniform float _rim_smoothness : hint_range(0.0,0.5) = 0.01;
+
 void fragment() {
 	vec2 tiled_uv = UV * texture_scale;
 	ALBEDO = pow(texture(tex, tiled_uv).rgb, vec3(color_strength)) * color.rgb;
 }
+
 void light() {
 	float NdotL = dot(NORMAL, LIGHT) * ATTENUATION;
 	NdotL = smoothstep(shadow - shadow_width, shadow + shadow_width, NdotL);

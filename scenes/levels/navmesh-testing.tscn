@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cw1fm1hl8w8jq"]
+[gd_scene format=3 uid="uid://b5isv1fir36mv"]
 
 [ext_resource type="MeshLibrary" uid="uid://b7h5sk0tcy8gi" path="res://resources/dungeon_tiles.meshlib" id="1_7pbra"]
 [ext_resource type="PackedScene" uid="uid://8qs4lkeubudv" path="res://scenes/player.tscn" id="2_gexeo"]
