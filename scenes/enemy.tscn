@@ -11,6 +11,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4ra3w"]
 
 [node name="enemy" type="CharacterBody3D" unique_id=227389902]
+collision_layer = 2
 script = ExtResource("1_7p1mj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=430020898]
@@ -26,5 +27,6 @@ script = ExtResource("2_5uy6h")
 [node name="attack" type="Node" parent="." unique_id=2126601451]
 script = ExtResource("3_c4w8v")
 
-[node name="navigation" type="Node" parent="." unique_id=1742602446]
+[node name="navigation" type="NavigationAgent3D" parent="." unique_id=565755091 node_paths=PackedStringArray("enemy_controller")]
 script = ExtResource("4_xwavj")
+enemy_controller = NodePath("..")

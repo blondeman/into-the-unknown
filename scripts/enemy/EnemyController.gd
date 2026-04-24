@@ -2,7 +2,13 @@ class_name EnemyController
 extends CharacterBody3D
 
 @export var speed = 5.0
+@export var target: Node3D
 var direction: Vector2 = Vector2.ZERO
+
+func _ready() -> void:
+	if !target:
+		target = get_tree().get_first_node_in_group("player")
+
 
 func set_direction(_direction: Vector2):
 	direction = _direction

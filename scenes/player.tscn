@@ -19,7 +19,7 @@ top_radius = 0.25
 bottom_radius = 0.25
 height = 1.0
 
-[node name="player" type="Node3D" unique_id=1262716053 node_paths=PackedStringArray("head", "body")]
+[node name="player" type="Node3D" unique_id=1262716053 node_paths=PackedStringArray("head", "body") groups=["player"]]
 script = ExtResource("1_qhqgy")
 speed = 15.0
 head = NodePath("head")
