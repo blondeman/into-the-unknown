@@ -9,7 +9,7 @@
 size = Vector3(1.75, 2.25, 3.25)
 
 [node name="mansion" type="StaticBody3D" unique_id=2009847552]
-collision_layer = 5
+collision_layer = 4
 script = ExtResource("1_1u7at")
 destroyed_object = ExtResource("2_xk5hk")
 
@@ -20,7 +20,13 @@ shape = SubResource("BoxShape3D_335w6")
 [node name="unit-mansion2" parent="." unique_id=324181886 instance=ExtResource("2_335w6")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
-[node name="unit-mansion" parent="unit-mansion2" index="0" unique_id=157516578]
+[node name="unit-mansion" parent="unit-mansion2" index="0" unique_id=1688226205]
 material_override = ExtResource("3_csiic")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1287714278]
+height = 2.0
+vertices = PackedVector3Array(1.25, 0, 1.25, 1, 0, 1.25, 1, 0, 2, -1, 0, 2, -1, 0, 1.25, -1.25, 0, 1.25, -1.25, 0, -1.25, -1, 0, -1.25, -1, 0, -2, 1, 0, -2, 1, 0, -1.25, 1.25, 0, -1.25)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
 
 [editable path="unit-mansion2"]

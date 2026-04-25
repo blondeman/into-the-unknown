@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dpwfxtrpahjnt" path="res://scripts/player/PlayerController.gd" id="1_qhqgy"]
 [ext_resource type="Material" uid="uid://bil5bvlsyd7ji" path="res://textures/empty_tex.tres" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://2s52dssufyjb" path="res://scripts/player/Mouth.gd" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://cr0urxtlsv4iy" path="res://scripts/player/PlayerSegment.gd" id="5_qlg0r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
@@ -23,8 +24,8 @@ height = 1.0
 script = ExtResource("1_qhqgy")
 speed = 15.0
 head = NodePath("head")
-body = NodePath("body")
-segments = 7
+body = NodePath("body_segment")
+segment_count = 7
 
 [node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("player_controller")]
 collision_layer = 2
@@ -51,19 +52,20 @@ script = ExtResource("4_dqkch")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head/mouth" unique_id=1090413210]
 shape = SubResource("SphereShape3D_qhqgy")
 
-[node name="body" type="AnimatableBody3D" parent="." unique_id=328893431]
+[node name="body_segment" type="AnimatableBody3D" parent="." unique_id=328893431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
 collision_layer = 2
 sync_to_physics = false
+script = ExtResource("5_qlg0r")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body" unique_id=1581126777]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body_segment" unique_id=1581126777]
 shape = SubResource("SphereShape3D_g2els")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="body" unique_id=909225243]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="body_segment" unique_id=909225243]
 material_override = ExtResource("3_qhqgy")
 mesh = SubResource("SphereMesh_3vyb7")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="body" unique_id=1884981587]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="body_segment" unique_id=1884981587]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.5)
 material_override = ExtResource("3_qhqgy")
 mesh = SubResource("CylinderMesh_g2els")

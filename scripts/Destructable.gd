@@ -11,3 +11,5 @@ func destroy():
 		get_parent().add_child(new_destroyed_object)
 		new_destroyed_object.transform = transform
 	queue_free()
+	await tree_exited
+	GameManager.on_rebake.emit()

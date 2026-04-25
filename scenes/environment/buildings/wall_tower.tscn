@@ -9,7 +9,7 @@
 size = Vector3(1.5, 2, 1.5)
 
 [node name="wall_tower" type="StaticBody3D" unique_id=2009847552]
-collision_layer = 5
+collision_layer = 4
 script = ExtResource("1_jcunf")
 destroyed_object = ExtResource("2_gdm54")
 
@@ -20,7 +20,13 @@ shape = SubResource("BoxShape3D_jcunf")
 [node name="unit-wall-tower2" parent="." unique_id=1380153809 instance=ExtResource("2_oebx1")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
-[node name="unit-wall-tower" parent="unit-wall-tower2" index="0" unique_id=991335852]
+[node name="unit-wall-tower" parent="unit-wall-tower2" index="0" unique_id=1687562915]
 material_override = ExtResource("3_oebx1")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1656144926]
+height = 2.0
+vertices = PackedVector3Array(1.25, 0, 1.25, -1.25, 0, 1.25, -1.25, 0, -1.25, 1.25, 0, -1.25)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
 
 [editable path="unit-wall-tower2"]

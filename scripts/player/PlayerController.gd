@@ -8,10 +8,10 @@ extends Node3D
 @export var head: CharacterBody3D
 @export var body: PhysicsBody3D
 
-@export var segments: int = 4
+@export var segment_count: int = 4
 @export var segment_length: float = 1.2
 
-var body_nodes: Array[PhysicsBody3D]
+var segments: Array[PlayerSegment]
 var _saved_positions: Array[Vector3]
 
 func _ready() -> void:
@@ -19,27 +19,34 @@ func _ready() -> void:
 
 
 func create_body():
-	for i in range(segments):
+	for i in range(segment_count):
 		var segment: PhysicsBody3D = body.duplicate()
 		segment.name = "BodySegment_%d" % i
 		add_child(segment)
 		segment.global_position = head.global_position - head.transform.basis.z * segment_length * (i + 1)
-		body_nodes.append(segment)
+		segments.append(segment)
 		_saved_positions.append(segment.global_position)
 	body.queue_free()
 
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	_follow(0, head.global_position)
-	for i in range(1, body_nodes.size()):
-		_follow(i, body_nodes[i - 1].global_position)
+	for i in range(1, segments.size()):
+		_follow(i, segments[i - 1].global_position)
 
 
 func _follow(i: int, target: Vector3):
-	var segment := body_nodes[i]
+	var segment := segments[i]
 	var diff := segment.global_position - target
 	if diff.length() > segment_length:
 		_saved_positions[i] = target + diff.normalized() * segment_length
 	segment.global_position = _saved_positions[i]
 	
 	segment.look_at(target)
+
+
+func get_head_and_segments() -> Array[Node3D]:
+	var list: Array[Node3D] = []
+	list.append(head)
+	list.append_array(segments)
+	return list

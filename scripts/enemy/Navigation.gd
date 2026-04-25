@@ -1,27 +1,35 @@
 extends NavigationAgent3D
 
 @export var enemy_controller: EnemyController
+@export var probability_curve: Curve
+
+var current_target: Node3D = null
 
 func _ready() -> void:
 	await get_tree().process_frame
 	await get_tree().physics_frame
 	
-	var timer := Timer.new()
-	add_child(timer)
-	timer.wait_time = 0.2
-	timer.timeout.connect(_update_path)
-	timer.start()
+	_get_follow_target()
+	
+	var target_timer := Timer.new()
+	add_child(target_timer)
+	target_timer.wait_time = 5
+	target_timer.timeout.connect(_get_follow_target)
+	target_timer.start()
+	
+	var path_timer := Timer.new()
+	add_child(path_timer)
+	path_timer.wait_time = 0.2
+	path_timer.timeout.connect(_update_path)
+	path_timer.start()
+
 
 
 func _update_path() -> void:
-	if !enemy_controller.target:
+	if !current_target:
 		return
 	
-	if enemy_controller.target is PlayerController:
-		target_position = enemy_controller.target.head.global_position
-	else:
-		target_position = enemy_controller.target.global_position
-
+	target_position = current_target.global_position
 
 func _process(delta: float) -> void:
 	if is_navigation_finished():
@@ -31,3 +39,43 @@ func _process(delta: float) -> void:
 	var next_pos: Vector3 = get_next_path_position()
 	var direction: Vector3 = (next_pos - enemy_controller.global_position)
 	enemy_controller.set_direction(Vector2(direction.x, direction.z).normalized())
+
+
+func _get_follow_target():
+	if !enemy_controller.target:
+		return null
+	
+	if enemy_controller.target is not PlayerController:
+		current_target = enemy_controller.target
+	else:
+		var segments: Array[Node3D] = enemy_controller.target.get_head_and_segments()
+		current_target = pick_target_segment(segments)
+
+
+func pick_target_segment(segments: Array[Node3D]) -> Node3D:
+	if segments.is_empty():
+		return null
+
+	var weights: Array[float] = []
+	var total_weight := 0.0
+	var distances: Array[float] = []
+
+	for seg in segments:
+		distances.append(enemy_controller.global_position.distance_to(seg.global_position))
+
+	var max_dist: float = distances.max()
+
+	for d in distances:
+		var t: float = d / max(max_dist, 0.001)
+		var w: float = probability_curve.sample_baked(t)
+		weights.append(max(w, 0.0))
+		total_weight += max(w, 0.0)
+
+	var roll := randf() * total_weight
+	var cumulative := 0.0
+	for i in weights.size():
+		cumulative += weights[i]
+		if roll <= cumulative:
+			return segments[i]
+
+	return segments[-1]

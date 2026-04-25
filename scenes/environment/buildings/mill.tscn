@@ -9,7 +9,7 @@
 size = Vector3(1.75, 4, 1.75)
 
 [node name="mill" type="StaticBody3D" unique_id=2009847552]
-collision_layer = 5
+collision_layer = 4
 script = ExtResource("1_f6iyp")
 destroyed_object = ExtResource("2_gje84")
 
@@ -26,5 +26,11 @@ material_override = ExtResource("4_gje84")
 [node name="rotate-x" parent="unit-mill2/unit-mill" index="0" unique_id=444618088]
 transform = Transform3D(1, 0, 0, 0, -0.24974303, 0.96831214, 0, -0.96831214, -0.24974303, -0.1718075, 0.42499998, 1.0065387e-09)
 material_override = ExtResource("4_gje84")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=711091940]
+height = 2.0
+vertices = PackedVector3Array(1.25, 0, 1.25, -1.25, 0, 1.25, -1.25, 0, -1.25, 1.25, 0, -1.25)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
 
 [editable path="unit-mill2"]

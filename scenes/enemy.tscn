@@ -10,6 +10,10 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4ra3w"]
 
+[sub_resource type="Curve" id="Curve_c4w8v"]
+_data = [Vector2(0.0031152666, 1), 0.0, 0.0, 0, 0, Vector2(0.5046729, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="enemy" type="CharacterBody3D" unique_id=227389902]
 collision_layer = 2
 script = ExtResource("1_7p1mj")
@@ -28,5 +32,12 @@ script = ExtResource("2_5uy6h")
 script = ExtResource("3_c4w8v")
 
 [node name="navigation" type="NavigationAgent3D" parent="." unique_id=565755091 node_paths=PackedStringArray("enemy_controller")]
+avoidance_enabled = true
+use_3d_avoidance = true
+avoidance_layers = 8
+avoidance_mask = 8
+avoidance_priority = 0.5
+debug_enabled = true
 script = ExtResource("4_xwavj")
 enemy_controller = NodePath("..")
+probability_curve = SubResource("Curve_c4w8v")

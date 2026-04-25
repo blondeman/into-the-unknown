@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://skfb6kiybidb"]
+
+[ext_resource type="Script" uid="uid://d1obfvt1rg8cb" path="res://scripts/CameraController.gd" id="1_cvpoc"]
+
+[node name="camera" type="Camera3D" unique_id=608748979 node_paths=PackedStringArray("target")]
+transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
+projection = 1
+size = 20.0
+script = ExtResource("1_cvpoc")
+target = NodePath("")
