@@ -15,4 +15,13 @@ func _ready() -> void:
 	dissolve()
 
 func dissolve():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	
+	for piece: RigidBody3D in get_children():
+		for child in piece.get_children():
+			if child is MeshInstance3D:
+				tween.tween_property(child, "scale", Vector3.ZERO, dissolve_duration)
+	
+	await tween.finished
 	queue_free()

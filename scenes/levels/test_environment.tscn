@@ -162,6 +162,15 @@ transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98
 [node name="mansion" parent="destructables" unique_id=1978101706 instance=ExtResource("10_wlo4t")]
 transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 20.064774, 3.8146973e-06, -15.997872)
 
+[node name="mansion2" parent="destructables" unique_id=435565831 instance=ExtResource("10_wlo4t")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 25.252129, 3.8146973e-06, -16.349289)
+
+[node name="mansion3" parent="destructables" unique_id=837231516 instance=ExtResource("10_wlo4t")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 29.929716, 3.8146973e-06, -20.223991)
+
+[node name="mansion4" parent="destructables" unique_id=130527096 instance=ExtResource("10_wlo4t")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 31.003412, 1.9073486e-06, -26.292524)
+
 [node name="mill" parent="destructables" unique_id=1593901384 instance=ExtResource("11_51h5h")]
 transform = Transform3D(-0.30168784, 0, 0.9534069, 0, 1, 0, -0.9534069, 0, -0.30168784, 19.026428, 1.9073486e-06, -12.004253)
 
@@ -191,3 +200,12 @@ transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98
 
 [node name="wall_tower" parent="destructables" unique_id=296218813 instance=ExtResource("13_271xl")]
 transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 11.460799, 1.9073486e-06, -17.843048)
+
+[node name="wall_tower2" parent="destructables" unique_id=629864946 instance=ExtResource("13_271xl")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 18.623447, 1.9073486e-06, -5.0522003)
+
+[node name="wall_tower3" parent="destructables" unique_id=754778340 instance=ExtResource("13_271xl")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 24.182041, 1.9073486e-06, -5.086469)
+
+[node name="wall_tower4" parent="destructables" unique_id=399825809 instance=ExtResource("13_271xl")]
+transform = Transform3D(-0.98699355, 0, 0.1607597, 0, 1, 0, -0.1607597, 0, -0.98699355, 23.829082, 1.9073486e-06, -1.0240011)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdhyc2ejbkdew" path="res://scripts/Destructable.gd" id="1_1u7at"]
 [ext_resource type="PackedScene" uid="uid://c0iqdkailbmwx" path="res://models/buildings/unit-mansion.glb" id="2_335w6"]
-[ext_resource type="PackedScene" uid="uid://4vfnyql76paj" path="res://scenes/environment/buildings/house_pieces.tscn" id="2_xk5hk"]
+[ext_resource type="PackedScene" uid="uid://badsh51cfv55q" path="res://scenes/environment/buildings/mansion_pieces.tscn" id="2_xk5hk"]
 [ext_resource type="Material" uid="uid://xs0m2qy5fjud" path="res://textures/color_map.tres" id="3_csiic"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_335w6"]
@@ -20,7 +20,7 @@ shape = SubResource("BoxShape3D_335w6")
 [node name="unit-mansion2" parent="." unique_id=324181886 instance=ExtResource("2_335w6")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
-[node name="unit-mansion" parent="unit-mansion2" index="0" unique_id=1688226205]
+[node name="unit-mansion" parent="unit-mansion2" index="0" unique_id=157516578]
 material_override = ExtResource("3_csiic")
 
 [editable path="unit-mansion2"]

@@ -3,11 +3,6 @@
 [ext_resource type="Shader" uid="uid://bwe0naawgu6ei" path="res://shaders/Toon.gdshader" id="1_n7msr"]
 [ext_resource type="Texture2D" uid="uid://bnajqgw78sud2" path="res://models/buildings/Textures/colormap.png" id="2_sfom6"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_sfom6"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0f8xn"]
-noise = SubResource("FastNoiseLite_sfom6")
-
 [resource]
 render_priority = 0
 shader = ExtResource("1_n7msr")
@@ -23,7 +18,3 @@ shader_parameter/_specular_strength = 0.075
 shader_parameter/_glossiness = 0.1
 shader_parameter/_rim_size = 0.5
 shader_parameter/_rim_smoothness = 0.01
-shader_parameter/dissolve = 0.0
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_0f8xn")
-shader_parameter/dissolve_edge = 0.05
-shader_parameter/dissolve_color = Color(1, 0.4, 0, 1)
