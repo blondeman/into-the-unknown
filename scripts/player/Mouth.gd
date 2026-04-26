@@ -6,5 +6,5 @@ func _ready() -> void:
 
 
 func _on_area_entered(body: Node3D):
-	if body is Destructable:
+	if body is Destructible:
 		body.destroy()

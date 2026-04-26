@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://du1myhychiku"]
+
+[ext_resource type="PackedScene" uid="uid://ctynmma6s25av" path="res://scenes/environment/buildings/destructible.tscn" id="1_48jh0"]
+[ext_resource type="PackedScene" uid="uid://ci5vg0yvtjmmk" path="res://scenes/environment/buildings/destructible/house_pieces.tscn" id="2_7ebv8"]
+[ext_resource type="PackedScene" uid="uid://4d3bkmhowndq" path="res://models/buildings/unit-house.glb" id="2_krgo7"]
+[ext_resource type="Material" uid="uid://xs0m2qy5fjud" path="res://textures/color_map.tres" id="3_7ebv8"]
+
+[node name="house" unique_id=1305035996 instance=ExtResource("1_48jh0")]
+destroyed_object = ExtResource("2_7ebv8")
+
+[node name="unit-house2" parent="." index="2" unique_id=264610348 instance=ExtResource("2_krgo7")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="unit-house" parent="unit-house2" index="0" unique_id=1768530203]
+material_override = ExtResource("3_7ebv8")
+
+[editable path="unit-house2"]

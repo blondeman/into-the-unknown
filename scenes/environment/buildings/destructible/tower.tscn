@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://br1eosyim750j"]
+
+[ext_resource type="PackedScene" uid="uid://ctynmma6s25av" path="res://scenes/environment/buildings/destructible.tscn" id="1_l07ur"]
+[ext_resource type="PackedScene" uid="uid://3uvng7je1pu3" path="res://scenes/environment/buildings/destructible/tower_pieces.tscn" id="2_24y3y"]
+[ext_resource type="PackedScene" uid="uid://dhiki4rivk1i4" path="res://models/buildings/unit-tower.glb" id="2_fpwh0"]
+[ext_resource type="Material" uid="uid://xs0m2qy5fjud" path="res://textures/color_map.tres" id="3_24y3y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_47fh2"]
+size = Vector3(1.75, 4, 1.75)
+
+[node name="tower" unique_id=1305035996 instance=ExtResource("1_l07ur")]
+destroyed_object = ExtResource("2_24y3y")
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=677202240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_47fh2")
+
+[node name="unit-tower2" parent="." index="2" unique_id=1710120773 instance=ExtResource("2_fpwh0")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="unit-tower" parent="unit-tower2" index="0" unique_id=1193744630]
+material_override = ExtResource("3_24y3y")
+
+[editable path="unit-tower2"]

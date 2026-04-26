@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://bil5bvlsyd7ji" path="res://textures/empty_tex.tres" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://2s52dssufyjb" path="res://scripts/player/Mouth.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cr0urxtlsv4iy" path="res://scripts/player/PlayerSegment.gd" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://ngawy1oun44j" path="res://audio/slither.wav" id="5_tuyoq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
@@ -27,10 +28,12 @@ head = NodePath("head")
 body = NodePath("body_segment")
 segment_count = 7
 
-[node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("player_controller")]
+[node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("player_controller", "audio_stream_player")]
 collision_layer = 2
 script = ExtResource("1_g2els")
 player_controller = NodePath("..")
+audio_stream_player = NodePath("AudioStreamPlayer3D")
+fade_speed = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head" unique_id=183396357]
 shape = SubResource("SphereShape3D_g2els")
@@ -51,6 +54,10 @@ script = ExtResource("4_dqkch")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head/mouth" unique_id=1090413210]
 shape = SubResource("SphereShape3D_qhqgy")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="head" unique_id=1670438795]
+stream = ExtResource("5_tuyoq")
+volume_db = 5.0
 
 [node name="body_segment" type="AnimatableBody3D" parent="." unique_id=328893431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)

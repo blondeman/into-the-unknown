@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dssiq2s2rnyl8"]
+
+[ext_resource type="Script" uid="uid://tjy4hk2vptn1" path="res://scripts/Break.gd" id="1_eiviq"]
+[ext_resource type="AudioStream" uid="uid://e05pquqp18" path="res://audio/blow_up_1.wav" id="2_fs4lo"]
+[ext_resource type="AudioStream" uid="uid://ojffb4sntwsr" path="res://audio/blow_up_2.wav" id="3_ee4pd"]
+[ext_resource type="AudioStream" uid="uid://dsam4lxgpyav5" path="res://audio/rock_break_1.wav" id="4_8lo5a"]
+[ext_resource type="AudioStream" uid="uid://dtj02bwmowria" path="res://audio/rock_break_2.wav" id="5_vivgn"]
+[ext_resource type="AudioStream" uid="uid://cuduiafwbxdq0" path="res://audio/rock_break_3.wav" id="6_5myp8"]
+[ext_resource type="AudioStream" uid="uid://b6yogphhcf12t" path="res://audio/glass_break_1.wav" id="7_jfijl"]
+[ext_resource type="AudioStream" uid="uid://drrk5kkf6h3o0" path="res://audio/glass_break_2.wav" id="8_yobdt"]
+[ext_resource type="AudioStream" uid="uid://dciefj4d2h2vh" path="res://audio/wood_break_1.wav" id="9_w4aeu"]
+[ext_resource type="AudioStream" uid="uid://bphoctpg2xe8q" path="res://audio/wood_break_2.wav" id="10_onf7l"]
+
+[node name="destructible_pieces" type="Node3D" unique_id=205665437]
+script = ExtResource("1_eiviq")
+sound_list_1 = Array[AudioStream]([ExtResource("2_fs4lo"), ExtResource("3_ee4pd"), ExtResource("4_8lo5a"), ExtResource("5_vivgn"), ExtResource("6_5myp8")])
+sound_list_2 = Array[AudioStream]([ExtResource("7_jfijl"), ExtResource("8_yobdt"), ExtResource("9_w4aeu"), ExtResource("10_onf7l")])

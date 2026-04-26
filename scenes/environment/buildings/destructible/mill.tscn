@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cf1ybf1nj32j"]
+
+[ext_resource type="PackedScene" uid="uid://ctynmma6s25av" path="res://scenes/environment/buildings/destructible.tscn" id="1_y83u3"]
+[ext_resource type="PackedScene" uid="uid://m4i0p6r8fa8c" path="res://scenes/environment/buildings/destructible/mill_pieces.tscn" id="2_57app"]
+[ext_resource type="PackedScene" uid="uid://bg4awcvttw8m5" path="res://models/buildings/unit-mill.glb" id="2_ykond"]
+[ext_resource type="Material" uid="uid://xs0m2qy5fjud" path="res://textures/color_map.tres" id="3_57app"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gke8s"]
+size = Vector3(1.75, 4, 1.75)
+
+[node name="mill" unique_id=1305035996 instance=ExtResource("1_y83u3")]
+destroyed_object = ExtResource("2_57app")
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=677202240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_gke8s")
+
+[node name="unit-mill2" parent="." index="2" unique_id=74521237 instance=ExtResource("2_ykond")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="unit-mill" parent="unit-mill2" index="0" unique_id=1911436849]
+material_override = ExtResource("3_57app")
+
+[node name="rotate-x" parent="unit-mill2/unit-mill" index="0" unique_id=182285724]
+transform = Transform3D(1, 0, 0, 0, -0.24974303, 0.96831214, 0, -0.96831214, -0.24974303, -0.1718075, 0.42499998, 1.0065387e-09)
+material_override = ExtResource("3_57app")
+
+[editable path="unit-mill2"]

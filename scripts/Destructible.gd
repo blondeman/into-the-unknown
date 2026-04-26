@@ -1,4 +1,4 @@
-class_name Destructable
+class_name Destructible
 extends StaticBody3D
 
 @export var destroyed_object: PackedScene

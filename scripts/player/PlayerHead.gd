@@ -1,6 +1,23 @@
 extends CharacterBody3D
 
 @export var player_controller: PlayerController
+@export var audio_stream_player: AudioStreamPlayer3D
+@export var fade_speed = 0.1
+
+var _target_volume: float = 0.0
+var _quiet_volume: float = -40.0
+var _set_volume: float = 0.0
+var _fade_speed: float = 0.0
+
+func _ready() -> void:
+	if audio_stream_player:
+		if !audio_stream_player.playing:
+			_set_volume = audio_stream_player.volume_db
+			_target_volume = _quiet_volume
+			_fade_speed = abs(_quiet_volume / fade_speed)
+			
+			audio_stream_player.volume_db = _quiet_volume
+			audio_stream_player.play()
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -27,3 +44,12 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, player_controller.speed)
 
 	move_and_slide()
+
+
+func _process(delta: float) -> void:
+	if audio_stream_player:
+		if Vector2(velocity.x, velocity.z).length() > 0.01:
+			_target_volume = _set_volume
+		else:
+			_target_volume = _quiet_volume
+		audio_stream_player.volume_db = move_toward(audio_stream_player.volume_db, _target_volume, _fade_speed * delta)
