@@ -15,6 +15,10 @@ run/main_scene="uid://dlmefbon2fp6n"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
+
 [autoload]
 
 CameraEffects="*uid://cmw68o05w75l6"

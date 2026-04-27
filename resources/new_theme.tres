@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://bixddxke4q20w"]
+
+[ext_resource type="FontFile" uid="uid://blunf5n532u3y" path="res://resources/Bocklin.ttf" id="1_2a54a"]
+
+[resource]
+default_font = ExtResource("1_2a54a")
+default_font_size = 32

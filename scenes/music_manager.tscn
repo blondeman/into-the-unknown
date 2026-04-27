@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7dc1na8sh2vg"]
 
-[ext_resource type="Script" uid="uid://o65f085pinrb" path="res://scenes/MusicManager.gd" id="1_hu6vc"]
+[ext_resource type="Script" uid="uid://o65f085pinrb" path="res://scripts/MusicManager.gd" id="1_hu6vc"]
 [ext_resource type="AudioStream" uid="uid://c8davtp4eh4et" path="res://audio/music/Ourobotomy_strings.wav" id="1_jbem4"]
 [ext_resource type="AudioStream" uid="uid://dej3s37aq3p5c" path="res://audio/music/Ourobotomy_flute.wav" id="2_hu6vc"]
 [ext_resource type="AudioStream" uid="uid://bejiwv070pfm" path="res://audio/music/Ourobotomy_lead.wav" id="3_p07gy"]

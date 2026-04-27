@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://ctynmma6s25av"]
 
-[ext_resource type="Script" uid="uid://cdhyc2ejbkdew" path="res://scripts/Destructible.gd" id="1_mwrlv"]
+[ext_resource type="Script" path="res://scripts/Destructible.gd" id="1_ycjyg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mwrlv"]
 size = Vector3(1.75, 2, 1.75)
 
 [node name="Destructible" type="StaticBody3D" unique_id=1305035996]
 collision_layer = 4
-script = ExtResource("1_mwrlv")
+script = ExtResource("1_ycjyg")
 metadata/_custom_type_script = "uid://cdhyc2ejbkdew"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=677202240]

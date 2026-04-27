@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://eln8k524s0xn"]
 
-[ext_resource type="Script" uid="uid://v57h5e6f0p3m" path="res://tools/PerformanceMonitor.gd" id="1_n8am2"]
+[ext_resource type="Script" path="res://tools/PerformanceMonitor.gd" id="1_n8am2"]
 
 [node name="performance_monitor" type="Control" unique_id=108062019]
 layout_mode = 3

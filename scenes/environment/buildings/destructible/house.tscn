@@ -11,7 +11,7 @@ destroyed_object = ExtResource("2_7ebv8")
 [node name="unit-house2" parent="." index="2" unique_id=264610348 instance=ExtResource("2_krgo7")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
-[node name="unit-house" parent="unit-house2" index="0" unique_id=1768530203]
+[node name="unit-house" parent="unit-house2" index="0" unique_id=618186345]
 material_override = ExtResource("3_7ebv8")
 
 [editable path="unit-house2"]

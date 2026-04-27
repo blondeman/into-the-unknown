@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://dlmefbon2fp6n"]
 
-[ext_resource type="Script" uid="uid://c6cbe2a6g63gp" path="res://scripts/Menu.gd" id="1_g3w80"]
+[ext_resource type="Script" path="res://scripts/Menu.gd" id="1_g3w80"]
+[ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="2_k3l6u"]
+[ext_resource type="Texture2D" uid="uid://c4gvigt3hr3l7" path="res://textures/menu.svg" id="2_tmk6g"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_k3l6u"]
+color = Color(1, 1, 1, 1)
+thickness = 2
 
 [node name="Menu" type="Node" unique_id=325200933]
 script = ExtResource("1_g3w80")
@@ -22,6 +28,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.05042799, 0.29408222, 0.23197764, 1)
 
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=360014507]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tmk6g")
+expand_mode = 3
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1705180789]
 layout_mode = 1
 anchors_preset = 8
@@ -38,16 +54,24 @@ grow_vertical = 2
 
 [node name="title" type="Label" parent="Control/VBoxContainer" unique_id=931978415]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("2_k3l6u")
+theme_override_font_sizes/font_size = 64
 text = "Ouroboros"
 horizontal_alignment = 1
 
+[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer" unique_id=994764926]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_k3l6u")
+
 [node name="start" type="Button" parent="Control/VBoxContainer" unique_id=770227961]
 layout_mode = 2
+theme = ExtResource("2_k3l6u")
 text = "Start Game"
 
 [node name="level select" type="Label" parent="Control/VBoxContainer" unique_id=1741747145]
 layout_mode = 2
+theme = ExtResource("2_k3l6u")
 text = "Level"
 horizontal_alignment = 1
 
@@ -57,20 +81,24 @@ layout_mode = 2
 [node name="level 0" type="Button" parent="Control/VBoxContainer/HBoxContainer" unique_id=150336700]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_k3l6u")
 text = "1"
 
 [node name="level 1" type="Button" parent="Control/VBoxContainer/HBoxContainer" unique_id=1532456900]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_k3l6u")
 text = "2"
 
 [node name="level 2" type="Button" parent="Control/VBoxContainer/HBoxContainer" unique_id=1502426347]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_k3l6u")
 text = "3"
 
 [node name="quit" type="Button" parent="Control/VBoxContainer" unique_id=69253265]
 layout_mode = 2
+theme = ExtResource("2_k3l6u")
 text = "Quit Game"
 
 [connection signal="pressed" from="Control/VBoxContainer/start" to="." method="_on_start_button_pressed"]

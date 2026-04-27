@@ -12,6 +12,7 @@ func _ready() -> void:
 		audio_stream_players[id].play()
 	
 	audio_stream_players[0].volume_linear = 1
+	audio_stream_players[1].volume_linear = 1
 
 func _fade_track(id: int, target_volume: float):
 	if id >= 0 and id < audio_stream_players.size():
