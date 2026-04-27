@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://2s52dssufyjb" path="res://scripts/player/Mouth.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cr0urxtlsv4iy" path="res://scripts/player/PlayerSegment.gd" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://ngawy1oun44j" path="res://audio/slither.wav" id="5_tuyoq"]
+[ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="7_fjrip"]
+[ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/death_particles.tscn" id="8_smehm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
@@ -49,7 +51,7 @@ mesh = SubResource("BoxMesh_g2els")
 
 [node name="mouth" type="Area3D" parent="head" unique_id=861753068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("4_dqkch")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head/mouth" unique_id=1090413210]
@@ -76,3 +78,8 @@ mesh = SubResource("SphereMesh_3vyb7")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.5)
 material_override = ExtResource("3_qhqgy")
 mesh = SubResource("CylinderMesh_g2els")
+
+[node name="Health" type="Node" parent="." unique_id=136181096]
+script = ExtResource("7_fjrip")
+on_death_scene = ExtResource("8_smehm")
+metadata/_custom_type_script = "uid://chc3odh7c2i86"

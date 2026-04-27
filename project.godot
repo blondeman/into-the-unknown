@@ -45,8 +45,9 @@ right={
 
 [layer_names]
 
-3d_physics/layer_2="entity"
+3d_physics/layer_2="player"
 3d_physics/layer_3="destructible"
+3d_physics/layer_4="enemy"
 avoidance/layer_4="avoidance"
 
 [physics]

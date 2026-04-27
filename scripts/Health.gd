@@ -1,11 +1,31 @@
+class_name Health
 extends Node
 
+@export var on_death_scene: PackedScene
+@export var max_health: int = 100
+var current_health: int
 
-# Called when the node enters the scene tree for the first time.
+signal on_take_damage(amount: int, health: int, total: int)
+signal on_die()
+
 func _ready() -> void:
-	pass # Replace with function body.
+	current_health = max_health
 
+func take_damage(amount: int):
+	current_health -= amount
+	on_take_damage.emit(amount, current_health, max_health)
+	
+	if current_health <= 0:
+		die()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func die():
+	on_die.emit()
+	
+	var parent = get_parent()
+	var new_on_death_scene = on_death_scene.instantiate()
+	parent.get_parent().add_child(new_on_death_scene)
+	new_on_death_scene.transform = parent.transform
+	if new_on_death_scene.has_method("start"):
+		new_on_death_scene.start()
+	
+	parent.queue_free()

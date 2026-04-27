@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="2_5uy6h"]
 [ext_resource type="Material" uid="uid://ccpq75kdakmpb" path="res://textures/empty_tex_red.tres" id="2_c4w8v"]
 [ext_resource type="Script" uid="uid://dr50wsci1wxj5" path="res://scripts/enemy/Attack.gd" id="3_c4w8v"]
+[ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/death_particles.tscn" id="4_nenq2"]
 [ext_resource type="Script" uid="uid://bqwnmnppokto6" path="res://scripts/enemy/Navigation.gd" id="4_xwavj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
@@ -15,7 +16,7 @@ _data = [Vector2(0.0031152666, 1), 0.0, 0.0, 0, 0, Vector2(0.5046729, 1), 0.0, 0
 point_count = 3
 
 [node name="enemy" type="CharacterBody3D" unique_id=227389902]
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("1_7p1mj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=430020898]
@@ -27,6 +28,7 @@ mesh = SubResource("CapsuleMesh_4ra3w")
 
 [node name="health" type="Node" parent="." unique_id=2106537601]
 script = ExtResource("2_5uy6h")
+on_death_scene = ExtResource("4_nenq2")
 
 [node name="attack" type="Node" parent="." unique_id=2126601451]
 script = ExtResource("3_c4w8v")
