@@ -39,7 +39,6 @@ use_3d_avoidance = true
 avoidance_layers = 8
 avoidance_mask = 8
 avoidance_priority = 0.5
-debug_enabled = true
 script = ExtResource("4_xwavj")
 enemy_controller = NodePath("..")
 probability_curve = SubResource("Curve_c4w8v")

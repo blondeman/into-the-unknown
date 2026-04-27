@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b63w54pay36o7"]
+
+[ext_resource type="Script" uid="uid://bdqdu1ecjqctd" path="res://scripts/Transition.gd" id="1_wrinr"]
+
+[node name="Transition" type="Node" unique_id=118443507 node_paths=PackedStringArray("background")]
+script = ExtResource("1_wrinr")
+background = NodePath("Control/ColorRect")
+
+[node name="Control" type="Control" parent="." unique_id=338718478]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=629762700]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

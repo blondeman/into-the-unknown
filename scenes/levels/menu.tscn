@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://dlmefbon2fp6n"]
+
+[ext_resource type="Script" uid="uid://c6cbe2a6g63gp" path="res://scripts/Menu.gd" id="1_g3w80"]
+
+[node name="Menu" type="Node" unique_id=325200933]
+script = ExtResource("1_g3w80")
+
+[node name="Control" type="Control" parent="." unique_id=2025969798]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=573549097]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05042799, 0.29408222, 0.23197764, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1705180789]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="Control/VBoxContainer" unique_id=931978415]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Ouroboros"
+horizontal_alignment = 1
+
+[node name="start" type="Button" parent="Control/VBoxContainer" unique_id=770227961]
+layout_mode = 2
+text = "Start Game"
+
+[node name="level select" type="Label" parent="Control/VBoxContainer" unique_id=1741747145]
+layout_mode = 2
+text = "Level"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=1014735007]
+layout_mode = 2
+
+[node name="level 0" type="Button" parent="Control/VBoxContainer/HBoxContainer" unique_id=150336700]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+
+[node name="level 1" type="Button" parent="Control/VBoxContainer/HBoxContainer" unique_id=1532456900]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2"
+
+[node name="level 2" type="Button" parent="Control/VBoxContainer/HBoxContainer" unique_id=1502426347]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+
+[node name="quit" type="Button" parent="Control/VBoxContainer" unique_id=69253265]
+layout_mode = 2
+text = "Quit Game"
+
+[connection signal="pressed" from="Control/VBoxContainer/start" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/level 0" to="." method="_on_level_button_pressed" binds= [0]]
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/level 1" to="." method="_on_level_button_pressed" binds= [1]]
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/level 2" to="." method="_on_level_button_pressed" binds= [2]]
+[connection signal="pressed" from="Control/VBoxContainer/quit" to="." method="_on_quit_button_pressed"]

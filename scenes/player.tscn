@@ -35,7 +35,7 @@ collision_layer = 2
 script = ExtResource("1_g2els")
 player_controller = NodePath("..")
 audio_stream_player = NodePath("AudioStreamPlayer3D")
-fade_speed = 0.5
+fade_speed = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head" unique_id=183396357]
 shape = SubResource("SphereShape3D_g2els")

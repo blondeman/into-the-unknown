@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b7dc1na8sh2vg"]
+
+[ext_resource type="Script" uid="uid://o65f085pinrb" path="res://scenes/MusicManager.gd" id="1_hu6vc"]
+[ext_resource type="AudioStream" uid="uid://c8davtp4eh4et" path="res://audio/music/Ourobotomy_strings.wav" id="1_jbem4"]
+[ext_resource type="AudioStream" uid="uid://dej3s37aq3p5c" path="res://audio/music/Ourobotomy_flute.wav" id="2_hu6vc"]
+[ext_resource type="AudioStream" uid="uid://bejiwv070pfm" path="res://audio/music/Ourobotomy_lead.wav" id="3_p07gy"]
+[ext_resource type="AudioStream" uid="uid://dgudvtpv0b06" path="res://audio/music/Ourobotomy_bass.wav" id="4_fb0y8"]
+[ext_resource type="AudioStream" uid="uid://duxfxbrje2fxh" path="res://audio/music/Ourobotomy_drums.wav" id="5_fkbch"]
+[ext_resource type="AudioStream" uid="uid://ee8cmkesemdx" path="res://audio/music/Ourobotomy_keys.wav" id="6_r6agn"]
+
+[node name="music_manager" type="Node" unique_id=1571051791 node_paths=PackedStringArray("audio_stream_players")]
+script = ExtResource("1_hu6vc")
+audio_stream_players = [NodePath("strings"), NodePath("flute"), NodePath("lead"), NodePath("bass"), NodePath("drums"), NodePath("keys")]
+fade_speed = 1.0
+
+[node name="strings" type="AudioStreamPlayer" parent="." unique_id=948564526]
+stream = ExtResource("1_jbem4")
+bus = &"Music"
+
+[node name="flute" type="AudioStreamPlayer" parent="." unique_id=618530068]
+stream = ExtResource("2_hu6vc")
+bus = &"Music"
+
+[node name="lead" type="AudioStreamPlayer" parent="." unique_id=439876150]
+stream = ExtResource("3_p07gy")
+bus = &"Music"
+
+[node name="bass" type="AudioStreamPlayer" parent="." unique_id=740379197]
+stream = ExtResource("4_fb0y8")
+bus = &"Music"
+
+[node name="drums" type="AudioStreamPlayer" parent="." unique_id=2079202429]
+stream = ExtResource("5_fkbch")
+bus = &"Music"
+
+[node name="keys" type="AudioStreamPlayer" parent="." unique_id=820311565]
+stream = ExtResource("6_r6agn")
+bus = &"Music"

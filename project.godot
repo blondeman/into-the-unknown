@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="oroborous"
-run/main_scene="uid://cf2ga03gsrupt"
+run/main_scene="uid://dlmefbon2fp6n"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
