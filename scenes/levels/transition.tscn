@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b63w54pay36o7"]
 
-[ext_resource type="Script" uid="uid://bdqdu1ecjqctd" path="res://scripts/Transition.gd" id="1_wrinr"]
+[ext_resource type="Script" path="res://scripts/Transition.gd" id="1_wrinr"]
 
 [node name="Transition" type="Node" unique_id=118443507 node_paths=PackedStringArray("background")]
 script = ExtResource("1_wrinr")

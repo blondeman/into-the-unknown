@@ -1,18 +1,23 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://ccpq75kdakmpb"]
 
-[ext_resource type="Shader" uid="uid://bwe0naawgu6ei" path="res://shaders/Toon.gdshader" id="1_avm8v"]
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="1_avm8v"]
+[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="1_lnttm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0apg0"]
+render_priority = 0
+shader = ExtResource("1_lnttm")
 
 [resource]
 render_priority = 0
+next_pass = SubResource("ShaderMaterial_0apg0")
 shader = ExtResource("1_avm8v")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
 shader_parameter/color = Color(1, 0, 0, 1)
-shader_parameter/color_strength = 0.6
-shader_parameter/texture_scale = Vector2(1, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_color = Color(0.777235, 0.68239087, 0.65763354, 0.7058824)
-shader_parameter/_specular_smoothness = 0.01
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)

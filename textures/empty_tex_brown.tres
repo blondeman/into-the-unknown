@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b6fxnkd40n15p"]
+
+[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="1_bpala"]
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="1_ekmsr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4dls"]
+render_priority = 0
+shader = ExtResource("1_bpala")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_s4dls")
+shader = ExtResource("1_ekmsr")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.60578835, 0.2380862, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)

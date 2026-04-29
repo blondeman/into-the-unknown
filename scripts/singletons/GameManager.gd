@@ -16,25 +16,29 @@ var levels: Array[PackedScene] = [
 
 signal on_rebake()
 
-var _current_scene: Node = null
+var current_scene: Node = null
+var current_level_id: int = -1
 var _transition_instance: Node = null
+
 
 func _ready() -> void:
 	for scene in global_scenes:
 		var new_scene = scene.instantiate()
 		get_tree().root.add_child.call_deferred(new_scene)
-	_current_scene = get_tree().current_scene
+	current_scene = get_tree().current_scene
+
 
 func load_level(level: int) -> void:
+	current_level_id = level
 	var level_to_load: PackedScene
-	if level == -1:
+	
+	if current_level_id == -1:
 		level_to_load = menu
-	elif level >= 0 and level < levels.size():
-		level_to_load = levels[level]
+	elif current_level_id >= 0 and current_level_id < levels.size():
+		level_to_load = levels[current_level_id]
 	else:
 		return
 
-	# Abort any in-progress transition before starting a new one
 	_abort_transition()
 
 	_transition_instance = transition.instantiate()
@@ -44,10 +48,15 @@ func load_level(level: int) -> void:
 	)
 	_transition_instance.fade_in()
 
+
+func reload_level():
+	load_level(current_level_id)
+
+
 func _abort_transition() -> void:
 	if not _transition_instance:
 		return
-	# Disconnect any signals still connected to this instance
+
 	if _transition_instance.on_fade_in_finished.is_connected(_on_fade_in_finished):
 		_transition_instance.on_fade_in_finished.disconnect(_on_fade_in_finished)
 	if _transition_instance.on_fade_out_finished.is_connected(_on_fade_out_finished):
@@ -55,15 +64,17 @@ func _abort_transition() -> void:
 	_transition_instance.queue_free()
 	_transition_instance = null
 
+
 func _on_fade_in_finished(level_to_load: PackedScene) -> void:
-	if _current_scene:
-		_current_scene.queue_free()
-	_current_scene = level_to_load.instantiate()
-	get_tree().root.add_child(_current_scene)
+	if current_scene:
+		current_scene.queue_free()
+	current_scene = level_to_load.instantiate()
+	get_tree().root.add_child(current_scene)
 	_transition_instance.on_fade_out_finished.connect(
 		_on_fade_out_finished, CONNECT_ONE_SHOT
 	)
 	_transition_instance.fade_out()
+
 
 func _on_fade_out_finished() -> void:
 	_transition_instance.queue_free()

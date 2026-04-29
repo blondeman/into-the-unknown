@@ -1,13 +1,22 @@
 [gd_scene format=3 uid="uid://bhpgqsyfr0v3j"]
 
-[ext_resource type="Material" uid="uid://ccpq75kdakmpb" path="res://textures/empty_tex_red.tres" id="1_j5v76"]
+[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="1_ab78l"]
 [ext_resource type="Script" uid="uid://b1mqf0tqk55h8" path="res://scripts/OneShot.gd" id="2_u27mo"]
 [ext_resource type="AudioStream" uid="uid://bsr3v868otre8" path="res://audio/enemy_death_1.wav" id="3_r62r7"]
 [ext_resource type="AudioStream" uid="uid://d28c5aq68m3h" path="res://audio/enemy_death_2.wav" id="4_ab78l"]
 [ext_resource type="AudioStream" uid="uid://bs5335y4pp2xr" path="res://audio/enemy_death_3.wav" id="5_gphrw"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gphrw"]
+render_priority = 0
+shader = ExtResource("1_ab78l")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jl6ud"]
+next_pass = SubResource("ShaderMaterial_gphrw")
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_u27mo"]
-material = ExtResource("1_j5v76")
+material = SubResource("StandardMaterial3D_jl6ud")
 size = Vector3(0.3, 0.3, 0.3)
 
 [node name="CPUParticles3D" type="CPUParticles3D" unique_id=2052747345 node_paths=PackedStringArray("audio_stream_player")]

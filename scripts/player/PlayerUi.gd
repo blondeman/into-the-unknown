@@ -3,9 +3,16 @@ extends Control
 @export var health_fill_left: TextureProgressBar
 @export var smooth_time: float = 1.0
 
+@export var death_screen: CanvasItem
+@export var death_timer: float = 1.0
+@export var fade_duration: float = 1.0
+@export var restart_timer: float = 3.0
+
 func _ready() -> void:
 	health_fill_right.value = 0
 	health_fill_left.value = 0
+	
+	death_screen.hide()
 
 func _set_health(amount: int, health: int, total: int):
 	health_fill_right.max_value = total
@@ -19,3 +26,18 @@ func _set_health(amount: int, health: int, total: int):
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(health_fill_right, "value", health, scaled_smooth_time)
 	tween.tween_property(health_fill_left, "value", health * (left_degrees / right_degrees), scaled_smooth_time)
+
+
+func _on_die():
+	reparent(GameManager.current_scene)
+	
+	await get_tree().create_timer(death_timer).timeout
+	
+	death_screen.modulate.a = 0.0
+	death_screen.show()
+	var tween := create_tween()
+	tween.tween_property(death_screen, "modulate:a", 1.0, fade_duration)
+	
+	await get_tree().create_timer(restart_timer).timeout
+	
+	GameManager.reload_level()

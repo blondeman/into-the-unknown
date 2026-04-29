@@ -1,18 +1,12 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://b2ginmgn8p1r6"]
 
-[ext_resource type="Shader" uid="uid://bwe0naawgu6ei" path="res://shaders/Toon.gdshader" id="1_hjwfv"]
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="1_iv7v6"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_hjwfv")
+shader = ExtResource("1_iv7v6")
 shader_parameter/color = Color(0.14117648, 0.62352943, 0.5019608, 1)
-shader_parameter/color_strength = 0.6
-shader_parameter/texture_scale = Vector2(4, 4)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
-shader_parameter/_specular_smoothness = 0.01
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)

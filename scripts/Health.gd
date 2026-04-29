@@ -20,6 +20,13 @@ func take_damage(amount: int):
 	if current_health <= 0:
 		die()
 
+func take_healing(amount: int):
+	take_damage(-amount)
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		take_damage(100)
+
 func die():
 	on_die.emit()
 	

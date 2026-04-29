@@ -2,8 +2,7 @@
 
 [ext_resource type="Material" uid="uid://b2ginmgn8p1r6" path="res://textures/grass.tres" id="1_hdgqt"]
 [ext_resource type="Script" uid="uid://q050ymwkjbq5" path="res://scripts/NavmeshUpdater.gd" id="1_ho41w"]
-[ext_resource type="Material" uid="uid://bycwbl88xnji4" path="res://textures/checkerboard.tres" id="2_87fbe"]
-[ext_resource type="Shader" uid="uid://bwe0naawgu6ei" path="res://shaders/Toon.gdshader" id="3_h4xyh"]
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="3_ui4v7"]
 [ext_resource type="Texture2D" uid="uid://o2au3q3pb5p7" path="res://textures/checkerboard.png" id="4_v3sb5"]
 [ext_resource type="PackedScene" uid="uid://8qs4lkeubudv" path="res://scenes/player.tscn" id="5_ip6g7"]
 [ext_resource type="PackedScene" uid="uid://c5pxqmewnd6xq" path="res://scenes/environment/buildings/destructible/mansion.tscn" id="6_ho41w"]
@@ -13,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b70i3d84m8lny" path="res://scenes/environment/buildings/destructible/wall_tower.tscn" id="9_271xl"]
 [ext_resource type="PackedScene" uid="uid://du1myhychiku" path="res://scenes/environment/buildings/destructible/house.tscn" id="10_d3r22"]
 [ext_resource type="PackedScene" uid="uid://skfb6kiybidb" path="res://scenes/camera.tscn" id="11_ip6g7"]
+[ext_resource type="PackedScene" uid="uid://bykmvbovspso1" path="res://scenes/environment/firepit.tscn" id="14_ui4v7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ip6g7"]
 vertices = PackedVector3Array(-13.5, 0.48152256, -24.5, -11.5, 0.48152256, -24.5, -11.5, 0.48152256, -49.5, -13.75, 0.48152256, -22.75, -49.5, 0.48152256, -49.5, -49.5, 0.48152256, -23, -4.75, 0.48152256, -24.5, -4.75, 0.48152256, -49.5, 5.5, 0.48152256, -19, 7.75, 0.48152256, -19, 9.25, 0.48152256, -22.25, 9.25, 0.48152256, -26, 11.75, 0.48152256, -26.25, 13.5, 0.48152256, -29.75, 13.5, 0.48152256, -31.75, 14, 0.48152256, -32, 14, 0.48152256, -49.5, -2.5, 0.48152256, -24.25, -2.5, 0.48152256, -17.5, 5.25, 0.48152256, -17.25, 16, 0.48152256, -32, 16.25, 0.48152256, -31.5, 18.25, 0.48152256, -31.75, 18.5, 0.48152256, -32.5, 21, 0.48152256, -33.25, 22.5, 0.48152256, -33.25, 22.25, 0.48152256, -49.5, 20.75, 0.48152256, -32.5, 24.5, 0.48152256, -33.25, 24.75, 0.48152256, -49.5, 26, 0.48152256, -33.25, 26.25, 0.48152256, -32, 49.5, 0.48152256, -32, 49.5, 0.48152256, -49.5, -10.25, -2.2684774, -5.5, -10.25, -4.5184774, -13.25, -13.75, -4.7684774, -13.5, -49.5, -2.2684774, -5.5, -13.75, -5.5184774, -16, -12, -5.5184774, -16.25, -12.25, -14.018477, -44, -49.5, -14.018477, -44, -4.25, -5.5184774, -16.25, -4, -14.018477, -44, -2.5, -4.7684774, -13.5, -6, -4.5184774, -13.25, -6, -2.2684774, -5.5, 49.5, -2.2684774, -5.5, -2.5, -5.5184774, -16, 49.5, -14.018477, -44, 21.75, 2.4815226, -32.25, 21.75, 2.4815226, -31.5, 22.5, 2.4815226, -31.5, 22.5, 2.4815226, -32.25, 24.5, 2.4815226, -32.25, 24.5, 2.4815226, -31.5, 25.25, 2.4815226, -31.5, 25.25, 2.4815226, -32.25, 23, 0.48152256, -30.5, 22.75, 0.48152256, -26.25, 24.5, 0.48152256, -26, 26, 0.48152256, -30.5, 24.5, 0.48152256, -23.75, 49.5, 0.48152256, -23.75, 19.25, 2.4815226, -31.5, 19.25, 2.4815226, -30.75, 20, 2.4815226, -30.75, 20, 2.4815226, -31.5, 14.5, 2.4815226, -31, 14.5, 2.4815226, -30.25, 15.25, 2.4815226, -30.25, 15.25, 2.4815226, -31, 17.25, 2.4815226, -30.75, 17.25, 2.4815226, -30, 18, 2.4815226, -30, 18, 2.4815226, -30.75, 20.75, 0.48152256, -29.75, 19, 0.48152256, -29.75, 18.75, 0.48152256, -29, 21.5, 0.48152256, -23.75, 21.5, 0.48152256, -26, 21, 0.48152256, -30.5, 13.75, 0.48152256, -29.25, 12.25, 0.48152256, -26, 12.25, 0.48152256, -22.25, 15.75, 0.48152256, -21, 13.75, 0.48152256, -21, 10.25, 2.4815226, -25.25, 10.25, 2.4815226, -22.75, 11.25, 2.4815226, -22.75, 11.25, 2.4815226, -25.25, 22.5, 4.4815226, -25.25, 22.5, 4.4815226, -24.25, 23.5, 4.4815226, -24.25, 23.5, 4.4815226, -25.25, 16.25, 0.48152256, -20.75, 16, 0.48152256, -18, 18, 0.48152256, -17.75, 17.75, 0.48152256, -15, 19, 0.48152256, -14, 22, 0.48152256, -14, 22, 0.48152256, -16.5, 23.25, 0.48152256, -16.75, 23.25, 0.48152256, -23.25, 21.75, 0.48152256, -23.25, 24.25, 0.48152256, -23.25, 24.75, 0.48152256, -16.75, 25, 0.48152256, -15.25, 49.5, 0.48152256, -15.25, -9.25, 5.7315226, -12.25, -7, 5.7315226, -12.25, -6.75, 6.2315226, -14.25, -9.5, 6.2315226, -14.25, -3.5, 6.2315226, -23.5, -12.75, 6.2315226, -23.5, -3.5, 6.2315226, -14.25, -12.75, 6.2315226, -14.25, -12.5, 0.48152256, -14.5, -10.25, 0.48152256, -14.5, -10, 0.48152256, -16, -12.5, 0.48152256, -23.25, -6.25, 0.48152256, -16, -6, 0.48152256, -14.5, -3.75, 0.48152256, -14.5, -3.75, 0.48152256, -23.25, -49.5, 0.48152256, -14.75, -13.75, 0.48152256, -15, 13.25, 0.48152256, -20.75, 12, 0.48152256, -21.75, 6.5, 0.48152256, -14.5, 6.5, 0.48152256, -9.5, 7.75, 0.48152256, -9.5, 12.5, 0.48152256, -12.5, 8.25, 0.48152256, -14.75, 12.75, 0.48152256, -15.25, 11.75, 0.48152256, -15.5, 11.75, 0.48152256, -18, 13.25, 0.48152256, -18.25, 9.5, 0.48152256, -21.75, 8.25, 0.48152256, -18.75, 8, 0.48152256, -9, 13, 0.48152256, -12.25, 14.25, 2.4815226, -20, 14.25, 2.4815226, -19, 15.25, 2.4815226, -19, 15.25, 2.4815226, -20, 6.25, 2.4815226, -18, 6.25, 2.4815226, -15.5, 7.25, 2.4815226, -15.5, 7.25, 2.4815226, -18, 14.5, 0.48152256, -15.5, 15, 0.48152256, -15.25, 15.25, 0.48152256, -17.75, 14.75, 0.48152256, -18, 5.25, 0.48152256, -9.5, 5.25, 0.48152256, -14.75, -2.5, 0.48152256, -13.5, -3, 0.48152256, -13.25, 12.75, 2.4815226, -17.25, 12.75, 2.4815226, -16.25, 13.75, 2.4815226, -16.25, 13.75, 2.4815226, -17.25, 16, 2.4815226, -17, 16, 2.4815226, -16, 17, 2.4815226, -16, 17, 2.4815226, -17, 23, 4.4815226, -15.75, 23, 4.4815226, -14.75, 24, 4.4815226, -14.75, 24, 4.4815226, -15.75, 24.75, 0.48152256, -13.75, 22, 0.48152256, -11.5, 21.5, 0.48152256, -11.25, 21.75, 0.48152256, -6.25, 23.75, 0.48152256, -6.25, 24, 0.48152256, -4.75, 49.5, 0.48152256, -4.75, -13.5, 0.48152256, -0.25, -10.25, 0.48152256, -0.25, -10.25, 0.48152256, -13.25, -13.5, 0.48152256, -13.25, -13.75, 0.48152256, 1.5, -49.5, 0.48152256, 1.25, 18.5, 0.48152256, -4.25, 18.75, 0.48152256, -3.5, 21, 0.48152256, -4, 21, 0.48152256, -6, 19, 0.48152256, -11.5, 15.5, 0.48152256, -15, 15.5, 0.48152256, -12.5, 15, 0.48152256, -12.25, 16, 0.48152256, -4.25, 13.5, 2.4815226, -14.25, 13.5, 2.4815226, -13.25, 14.5, 2.4815226, -13.25, 14.5, 2.4815226, -14.25, -9, 0.48152256, -13.25, -9, 0.48152256, -0.25, -7.25, 0.48152256, -0.25, -7.25, 0.48152256, -13.25, -2.5, 0.48152256, 0.25, 5.5, 0.48152256, -5, 5, 0.48152256, -5.25, -2.75, 0.48152256, -0.25, -6, 0.48152256, -13.25, -6, 0.48152256, -0.25, 20, 4.4815226, -13.25, 20, 4.4815226, -12.25, 21, 4.4815226, -12.25, 21, 4.4815226, -13.25, -9, -4.2684774, -12.75, -9, -2.2684774, -5.5, -7.25, -2.2684774, -5.5, -7.25, -4.2684774, -12.75, -12.75, 2.4815226, 7.5, -3.5, 2.4815226, 7.5, -3.5, 2.4815226, 0.75, -7, 2.4815226, 0.5, -9.25, 2.4815226, 0.5, -12.75, 2.4815226, 0.75, 8, 0.48152256, -5.25, 15.75, 0.48152256, -3.75, 7.5, 0.48152256, -5, 6, 2.4815226, -8.5, 6, 2.4815226, -6, 7, 2.4815226, -6, 7, 2.4815226, -8.5, 22, 4.4815226, -5.25, 22, 4.4815226, -4.25, 23, 4.4815226, -4.25, 23, 4.4815226, -5.25, 15.75, 0.48152256, -1.5, -2.5, 2.2315226, 9.25, 7.2333336, 0.48152256, 3.5166664, -2.5, 0.48152256, 2.8214302, -3, 2.4815226, 9.25, -3, 14.981523, 51, 17, 0.48152256, -1.25, 17.25, 14.981523, 51, 17.024193, 0.48152256, 3.80645, 21.25, 0.48152256, -3.25, 18.75, 0.48152256, -1.5, 49.5, 14.981523, 51, 49.5, 0.73152256, 4.2419357, 23.75, 0.48152256, -3.25, 16.75, 4.4815226, -3.25, 16.75, 4.4815226, -2.25, 17.75, 4.4815226, -2.25, 17.75, 4.4815226, -3.25, -12.5, 0.48152256, 1, -12.5, 0.73152256, 4.5, -10.25, 0.73152256, 4.5, -10.25, 0.48152256, 1, -6, 0.48152256, 1, -6, 0.73152256, 4.5, -3.75, 0.73152256, 4.5, -3.75, 0.48152256, 1, -49.5, 1.7315226, 8, -13.75, 1.7315226, 7.75, -49.5, 0.48152256, 3.9500008, -15.494179, 0.98152256, 5.5221214, -3.5, 2.4815226, 9.25, -12.75, 2.4815226, 9.25, -13.25, 14.981523, 51, -12.767857, 2.4815226, 10.74107, -3.4821434, 2.4815226, 10.74107, -10.999939, 3.4815226, 12.979935, -13.25, 2.4815226, 9.25, -13.25, 2.4815226, 10.74107, -13.75, 2.2315226, 9.25, -49.5, 14.981523, 51, -49.5, 0.48152256, 13.25, -49.5, 0.48152256, 49.5, 49.5, 0.48152256, 49.5, 49.5, 0.48152256, 13.25)
@@ -29,27 +29,56 @@ size = Vector2(100, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uhjjb"]
 size = Vector3(10, 10, 10)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_af2c3"]
+render_priority = 0
+shader = ExtResource("3_ui4v7")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/base_texture = ExtResource("4_v3sb5")
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(6, 4)
+shader_parameter/uv_offset = Vector2(0, 0)
+
 [sub_resource type="BoxMesh" id="BoxMesh_b3mux"]
 size = Vector3(10, 10, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8q6ej"]
+render_priority = 0
+shader = ExtResource("3_ui4v7")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/base_texture = ExtResource("4_v3sb5")
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(6, 4)
+shader_parameter/uv_offset = Vector2(0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b3mux"]
 size = Vector3(3, 10, 20)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_frvy6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7g5k"]
 render_priority = 0
-shader = ExtResource("3_h4xyh")
+shader = ExtResource("3_ui4v7")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
 shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/tex = ExtResource("4_v3sb5")
-shader_parameter/color_strength = 0.6
-shader_parameter/texture_scale = Vector2(1, 8)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
-shader_parameter/_specular_smoothness = 0.01
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
+shader_parameter/base_texture = ExtResource("4_v3sb5")
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 8)
+shader_parameter/uv_offset = Vector2(0, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nbain"]
 size = Vector3(3, 10, 20)
@@ -79,7 +108,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.179337, -2.946073, 5.43426
 shape = SubResource("BoxShape3D_uhjjb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="navmesh/static/StaticBody3D3" unique_id=505591945]
-material_override = ExtResource("2_87fbe")
+material_override = SubResource("ShaderMaterial_af2c3")
 mesh = SubResource("BoxMesh_b3mux")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="navmesh/static" unique_id=642610947]
@@ -89,7 +118,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.179337, 0.84832335, -18.93
 shape = SubResource("BoxShape3D_uhjjb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="navmesh/static/StaticBody3D4" unique_id=203190373]
-material_override = ExtResource("2_87fbe")
+material_override = SubResource("ShaderMaterial_8q6ej")
 mesh = SubResource("BoxMesh_b3mux")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="navmesh/static" unique_id=1158924079]
@@ -99,7 +128,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9676872, -0.2521538, 0, 0.2521538, 0.96768
 shape = SubResource("BoxShape3D_b3mux")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="navmesh/static/StaticBody3D5" unique_id=1401165595]
-material_override = SubResource("ShaderMaterial_frvy6")
+material_override = SubResource("ShaderMaterial_l7g5k")
 mesh = SubResource("BoxMesh_nbain")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="navmesh/static" unique_id=1234717873]
@@ -165,6 +194,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.499569, 1.9073486e-06, -16
 
 [node name="house4" parent="navmesh/destructibles" unique_id=442833502 instance=ExtResource("10_d3r22")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.821091, 0, -19.455555)
+
+[node name="firepit" parent="navmesh/destructibles" unique_id=1480347018 instance=ExtResource("14_ui4v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.892449, 0.12860703, 0.10629952)
 
 [node name="player" parent="." unique_id=93949505 node_paths=PackedStringArray("camera") instance=ExtResource("5_ip6g7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

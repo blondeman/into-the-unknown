@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ofgdpnkk2l7v" path="res://ui/health_overlay.png" id="4_wsb5h"]
 [ext_resource type="Texture2D" uid="uid://hj54m774iobk" path="res://ui/health_fill_left.png" id="5_g4s8q"]
 
-[node name="ui" type="Control" unique_id=546971784 node_paths=PackedStringArray("health_fill_right", "health_fill_left")]
+[node name="ui" type="Control" unique_id=546971784 node_paths=PackedStringArray("health_fill_right", "health_fill_left", "death_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_bkx2g")
 health_fill_right = NodePath("HBoxContainer/health/health_right")
 health_fill_left = NodePath("HBoxContainer/health/health_left")
+death_screen = NodePath("ColorRect")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1658265780]
 layout_mode = 0
@@ -63,3 +64,32 @@ theme_override_colors/font_outline_color = Color(0.27058825, 0.15686275, 0.23529
 theme_override_constants/outline_size = 6
 text = "LIFE"
 horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=62778449]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27058825, 0.15686275, 0.23529412, 1)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1370862093]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -45.5
+offset_right = 218.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7ctsh")
+theme_override_colors/font_color = Color(0.6745098, 0.19607843, 0.19607843, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 90
+text = "YOU DIED"

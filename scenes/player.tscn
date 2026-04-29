@@ -50,10 +50,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
 material_override = ExtResource("3_qhqgy")
 mesh = SubResource("BoxMesh_g2els")
 
-[node name="mouth" type="Area3D" parent="head" unique_id=861753068]
+[node name="mouth" type="Area3D" parent="head" unique_id=861753068 node_paths=PackedStringArray("health")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 collision_mask = 12
 script = ExtResource("4_dqkch")
+health = NodePath("../../Health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head/mouth" unique_id=1090413210]
 shape = SubResource("SphereShape3D_qhqgy")
@@ -86,5 +87,9 @@ on_death_scene = ExtResource("8_smehm")
 metadata/_custom_type_script = "uid://chc3odh7c2i86"
 
 [node name="ui" parent="." unique_id=546971784 instance=ExtResource("9_ur7pv")]
+death_timer = 0.5
+fade_duration = 2.0
+restart_timer = 4.0
 
+[connection signal="on_die" from="Health" to="ui" method="_on_die"]
 [connection signal="on_health_changed" from="Health" to="ui" method="_set_health"]
