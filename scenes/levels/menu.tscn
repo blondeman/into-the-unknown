@@ -4,10 +4,6 @@
 [ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="2_k3l6u"]
 [ext_resource type="Texture2D" uid="uid://c4gvigt3hr3l7" path="res://ui/menu.svg" id="2_tmk6g"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_k3l6u"]
-color = Color(1, 1, 1, 1)
-thickness = 2
-
 [node name="Menu" type="Node" unique_id=325200933]
 script = ExtResource("1_g3w80")
 
@@ -45,24 +41,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -92.0
+offset_top = -54.0
+offset_right = 92.0
+offset_bottom = 114.00018
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="title" type="Label" parent="Control/VBoxContainer" unique_id=931978415]
-layout_mode = 2
-theme = ExtResource("2_k3l6u")
-theme_override_font_sizes/font_size = 64
-text = "Ouroboros"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer" unique_id=994764926]
-layout_mode = 2
-theme_override_constants/separation = 10
-theme_override_styles/separator = SubResource("StyleBoxLine_k3l6u")
 
 [node name="start" type="Button" parent="Control/VBoxContainer" unique_id=770227961]
 layout_mode = 2
@@ -100,6 +84,21 @@ text = "3"
 layout_mode = 2
 theme = ExtResource("2_k3l6u")
 text = "Quit Game"
+
+[node name="title" type="Label" parent="Control" unique_id=931978415]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -162.0
+offset_top = 25.0
+offset_right = 162.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme = ExtResource("2_k3l6u")
+theme_override_font_sizes/font_size = 90
+text = "Ouroboros"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Control/VBoxContainer/start" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/level 0" to="." method="_on_level_button_pressed" binds= [0]]
