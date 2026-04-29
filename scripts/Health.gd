@@ -5,15 +5,17 @@ extends Node
 @export var max_health: int = 100
 var current_health: int
 
-signal on_take_damage(amount: int, health: int, total: int)
+signal on_health_changed(amount: int, health: int, total: int)
 signal on_die()
 
 func _ready() -> void:
 	current_health = max_health
+	await get_tree().process_frame
+	on_health_changed.emit(current_health, current_health, max_health)
 
 func take_damage(amount: int):
 	current_health -= amount
-	on_take_damage.emit(amount, current_health, max_health)
+	on_health_changed.emit(amount, current_health, max_health)
 	
 	if current_health <= 0:
 		die()
@@ -24,7 +26,10 @@ func die():
 	var parent = get_parent()
 	var new_on_death_scene = on_death_scene.instantiate()
 	parent.get_parent().add_child(new_on_death_scene)
-	new_on_death_scene.transform = parent.transform
+	if parent is PlayerController:
+		new_on_death_scene.transform = parent.head.transform
+	else:
+		new_on_death_scene.transform = parent.transform
 	if new_on_death_scene.has_method("start"):
 		new_on_death_scene.start()
 	

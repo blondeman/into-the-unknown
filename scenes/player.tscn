@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ngawy1oun44j" path="res://audio/slither.wav" id="5_tuyoq"]
 [ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="7_fjrip"]
 [ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/death_particles.tscn" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://ccwg31v8swgfd" path="res://scenes/player_ui.tscn" id="9_ur7pv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
@@ -83,3 +84,7 @@ mesh = SubResource("CylinderMesh_g2els")
 script = ExtResource("7_fjrip")
 on_death_scene = ExtResource("8_smehm")
 metadata/_custom_type_script = "uid://chc3odh7c2i86"
+
+[node name="ui" parent="." unique_id=546971784 instance=ExtResource("9_ur7pv")]
+
+[connection signal="on_health_changed" from="Health" to="ui" method="_set_health"]

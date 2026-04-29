@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Menu.gd" id="1_g3w80"]
 [ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="2_k3l6u"]
-[ext_resource type="Texture2D" uid="uid://c4gvigt3hr3l7" path="res://textures/menu.svg" id="2_tmk6g"]
+[ext_resource type="Texture2D" uid="uid://c4gvigt3hr3l7" path="res://ui/menu.svg" id="2_tmk6g"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_k3l6u"]
 color = Color(1, 1, 1, 1)

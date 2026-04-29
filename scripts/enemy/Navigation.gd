@@ -1,11 +1,24 @@
+@tool
 extends NavigationAgent3D
 
-@export var enemy_controller: EnemyController
+var enemy_controller: EnemyController
 @export var probability_curve: Curve
 
 var current_target: Node3D = null
 
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings = PackedStringArray()
+	if not get_parent() is EnemyController:
+		warnings.append("This node must be a child of EnemyController")
+	return warnings
+
+
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
+	enemy_controller = get_parent()
+	
 	await get_tree().process_frame
 	await get_tree().physics_frame
 	
@@ -24,14 +37,17 @@ func _ready() -> void:
 	path_timer.start()
 
 
-
 func _update_path() -> void:
 	if !current_target:
 		return
 	
 	target_position = current_target.global_position
 
+
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	if is_navigation_finished():
 		enemy_controller.set_direction(Vector2.ZERO)
 		return

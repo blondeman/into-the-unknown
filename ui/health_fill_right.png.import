@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4gvigt3hr3l7"
-path="res://.godot/imported/menu.svg-d7999ab7f6b6972d9a021c09dfd3f191.ctex"
+uid="uid://4pbngtc1egn1"
+path="res://.godot/imported/health_fill_right.png-b2b3d451bdabfc7f3a7ebc4b2382b820.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu.svg"
-dest_files=["res://.godot/imported/menu.svg-d7999ab7f6b6972d9a021c09dfd3f191.ctex"]
+source_file="res://ui/health_fill_right.png"
+dest_files=["res://.godot/imported/health_fill_right.png-b2b3d451bdabfc7f3a7ebc4b2382b820.ctex"]
 
 [params]
 
@@ -37,7 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
+detect_3d/compress_to=0

@@ -23,13 +23,10 @@ func _ready() -> void:
 	for scene in global_scenes:
 		var new_scene = scene.instantiate()
 		get_tree().root.add_child.call_deferred(new_scene)
-	
 	_current_scene = get_tree().current_scene
-
 
 func load_level(level: int) -> void:
 	var level_to_load: PackedScene
-
 	if level == -1:
 		level_to_load = menu
 	elif level >= 0 and level < levels.size():
@@ -37,29 +34,36 @@ func load_level(level: int) -> void:
 	else:
 		return
 
-	# Spawn transition and fade in
+	# Abort any in-progress transition before starting a new one
+	_abort_transition()
+
 	_transition_instance = transition.instantiate()
 	get_tree().root.add_child(_transition_instance)
-
 	_transition_instance.on_fade_in_finished.connect(
 		_on_fade_in_finished.bind(level_to_load), CONNECT_ONE_SHOT
 	)
 	_transition_instance.fade_in()
 
+func _abort_transition() -> void:
+	if not _transition_instance:
+		return
+	# Disconnect any signals still connected to this instance
+	if _transition_instance.on_fade_in_finished.is_connected(_on_fade_in_finished):
+		_transition_instance.on_fade_in_finished.disconnect(_on_fade_in_finished)
+	if _transition_instance.on_fade_out_finished.is_connected(_on_fade_out_finished):
+		_transition_instance.on_fade_out_finished.disconnect(_on_fade_out_finished)
+	_transition_instance.queue_free()
+	_transition_instance = null
 
 func _on_fade_in_finished(level_to_load: PackedScene) -> void:
-	# Swap the scene
 	if _current_scene:
 		_current_scene.queue_free()
-
 	_current_scene = level_to_load.instantiate()
 	get_tree().root.add_child(_current_scene)
-
 	_transition_instance.on_fade_out_finished.connect(
 		_on_fade_out_finished, CONNECT_ONE_SHOT
 	)
 	_transition_instance.fade_out()
-
 
 func _on_fade_out_finished() -> void:
 	_transition_instance.queue_free()

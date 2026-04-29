@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://ccwg31v8swgfd"]
+
+[ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="1_7ctsh"]
+[ext_resource type="Script" uid="uid://dr8vru2vqrtsw" path="res://scripts/player/PlayerUi.gd" id="1_bkx2g"]
+[ext_resource type="Texture2D" uid="uid://djt6vxmx0rbyh" path="res://ui/health_background.png" id="2_bkx2g"]
+[ext_resource type="Texture2D" uid="uid://4pbngtc1egn1" path="res://ui/health_fill_right.png" id="3_n31oh"]
+[ext_resource type="Texture2D" uid="uid://ofgdpnkk2l7v" path="res://ui/health_overlay.png" id="4_wsb5h"]
+[ext_resource type="Texture2D" uid="uid://hj54m774iobk" path="res://ui/health_fill_left.png" id="5_g4s8q"]
+
+[node name="ui" type="Control" unique_id=546971784 node_paths=PackedStringArray("health_fill_right", "health_fill_left")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bkx2g")
+health_fill_right = NodePath("HBoxContainer/health/health_right")
+health_fill_left = NodePath("HBoxContainer/health/health_left")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1658265780]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+
+[node name="health" type="MarginContainer" parent="HBoxContainer" unique_id=2065149663]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="health_right" type="TextureProgressBar" parent="HBoxContainer/health" unique_id=194877999]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("1_7ctsh")
+step = 0.0
+value = 100.0
+fill_mode = 5
+radial_initial_angle = 320.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_bkx2g")
+texture_progress = ExtResource("3_n31oh")
+
+[node name="health_left" type="TextureProgressBar" parent="HBoxContainer/health" unique_id=1077860442]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("1_7ctsh")
+step = 0.0
+value = 100.0
+fill_mode = 5
+radial_initial_angle = 350.0
+nine_patch_stretch = true
+texture_over = ExtResource("4_wsb5h")
+texture_progress = ExtResource("5_g4s8q")
+
+[node name="health_label" type="Label" parent="HBoxContainer/health" unique_id=990073448]
+layout_mode = 2
+theme = ExtResource("1_7ctsh")
+theme_override_colors/font_color = Color(0.6745098, 0.19607843, 0.19607843, 1)
+theme_override_colors/font_outline_color = Color(0.27058825, 0.15686275, 0.23529412, 1)
+theme_override_constants/outline_size = 6
+text = "LIFE"
+horizontal_alignment = 1
