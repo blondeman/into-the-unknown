@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cnfai0wsm7aqt"]
+
+[ext_resource type="PackedScene" uid="uid://b1ppt68n8nf7s" path="res://scenes/enemy/enemy.tscn" id="1_c4fut"]
+[ext_resource type="Material" uid="uid://c5lxnr11ac71n" path="res://textures/empty_tex_yellow.tres" id="2_5l6pi"]
+[ext_resource type="Script" uid="uid://c6k1uyvgy2ihg" path="res://scripts/enemy/AttackRanged.gd" id="2_awgho"]
+[ext_resource type="PackedScene" uid="uid://duqrkwmcwhfb" path="res://scenes/enemy/arrow.tscn" id="3_w87q7"]
+
+[node name="enemy_ranged" unique_id=227389902 instance=ExtResource("1_c4fut")]
+
+[node name="MeshInstance3D" parent="." index="1" unique_id=1107697941]
+material_override = ExtResource("2_5l6pi")
+
+[node name="attack" parent="." index="3" unique_id=2126601451]
+script = ExtResource("2_awgho")
+arrow = ExtResource("3_w87q7")
+velocity = 20.0
+range = 20.0

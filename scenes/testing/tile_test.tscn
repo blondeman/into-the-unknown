@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b5wrh3lc37w15"]
 
 [ext_resource type="MeshLibrary" uid="uid://b7h5sk0tcy8gi" path="res://resources/dungeon_tiles.meshlib" id="1_y57rc"]
-[ext_resource type="PackedScene" uid="uid://8qs4lkeubudv" path="res://scenes/player.tscn" id="2_uk0mg"]
+[ext_resource type="PackedScene" uid="uid://8qs4lkeubudv" path="res://scenes/player/player.tscn" id="2_uk0mg"]
 [ext_resource type="Script" uid="uid://d1obfvt1rg8cb" path="res://scripts/CameraController.gd" id="3_4dgvg"]
 
 [node name="TileTest" type="GridMap" unique_id=344600319]

@@ -1,10 +1,13 @@
 @tool
+@abstract
+class_name Attack
 extends Node
 
 @export var damage: int = 5
-@export var range: float = 1.0
 @export var attack_rate: float = 1.0
+@export var range: float = 1.0
 
+var cooldown: float = 0.0
 var enemy_controller: EnemyController
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -20,17 +23,15 @@ func _ready() -> void:
 	enemy_controller = get_parent()
 
 
-var cooldown: float = 0.0
-
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	
 	cooldown -= delta
 	if cooldown <= 0.0:
-		_attack()
+		_on_attack()
 
-func _attack():
+func _on_attack():
 	if !enemy_controller.target:
 		return
 	
@@ -40,12 +41,16 @@ func _attack():
 		if closest_segment == null:
 			return
 		if enemy_controller.global_position.distance_to(closest_segment.global_position) < range:
-			deal_damage(enemy_controller.target)
+			_attack(closest_segment)
 			cooldown = attack_rate
 
 
+@abstract func _attack(target: Node3D)
+
+## target should be a collider of player
+## it will check its sibilings for the health node
 func deal_damage(target: Node3D):
-	for child in target.get_children():
+	for child in target.get_parent().get_children():
 		if child is Health:
 			child.take_damage(damage)
 			break

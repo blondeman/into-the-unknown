@@ -7,8 +7,16 @@ extends Node3D
 @export var sound_list_1: Array[AudioStream]
 @export var sound_list_2: Array[AudioStream]
 
+var rigidbody_pieces: Array[RigidBody3D]
+
 func _ready() -> void:
-	for piece: RigidBody3D in get_children():
+	for piece in get_children():
+		if piece is RigidBody3D:
+			rigidbody_pieces.append(piece as RigidBody3D)
+		if piece is CPUParticles3D:
+			piece.emitting = true
+	
+	for piece: RigidBody3D in rigidbody_pieces:
 		piece.angular_damp = 3
 		var random_offset = Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1)).normalized() * random_intensity
 		piece.apply_impulse(piece.get_child(0).position.normalized() * intensity + random_offset, global_position)
@@ -24,7 +32,7 @@ func dissolve():
 	var tween = create_tween()
 	tween.set_parallel(true)
 	
-	for piece: RigidBody3D in get_children():
+	for piece: RigidBody3D in rigidbody_pieces:
 		for child in piece.get_children():
 			if child is MeshInstance3D:
 				tween.tween_property(child, "scale", Vector3.ZERO, dissolve_duration)

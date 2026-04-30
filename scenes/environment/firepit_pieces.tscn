@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://3kl54fm4l250"]
+
+[ext_resource type="PackedScene" uid="uid://dssiq2s2rnyl8" path="res://scenes/environment/buildings/destructible_pieces.tscn" id="1_w8yxt"]
+[ext_resource type="Material" uid="uid://b6fxnkd40n15p" path="res://textures/empty_tex_brown.tres" id="2_gktwc"]
+[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="3_w0o84"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w0o84"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.0
+radial_segments = 5
+rings = 1
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gktwc"]
+points = PackedVector3Array(-0.1902113, -0.5, 0.06177382, -0.11756011, -0.5, -0.16180341, 1.4901161e-08, -0.5, 0.20000003, -0.1902113, 0.5, 0.06177382, 0.117522895, -0.5, -0.16180341, -0.11756011, 0.5, -0.16180341, 0.19021133, -0.5, 0.06177382, 1.4901161e-08, 0.5, 0.20000003, 0.117522895, 0.5, -0.16180341, 0.19021133, 0.5, 0.06177382)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w0o84"]
+points = PackedVector3Array(-0.1902113, -0.5, 0.06177382, -0.11756011, -0.5, -0.16180341, 1.4901161e-08, -0.5, 0.20000003, -0.1902113, 0.5, 0.06177382, 0.117522895, -0.5, -0.16180341, -0.11756011, 0.5, -0.16180341, 0.19021133, -0.5, 0.06177382, 1.4901161e-08, 0.5, 0.20000003, 0.117522895, 0.5, -0.16180341, 0.19021133, 0.5, 0.06177382)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2mqgf"]
+points = PackedVector3Array(-0.1902113, -0.5, 0.06177382, -0.11756011, -0.5, -0.16180341, 1.4901161e-08, -0.5, 0.20000003, -0.1902113, 0.5, 0.06177382, 0.117522895, -0.5, -0.16180341, -0.11756011, 0.5, -0.16180341, 0.19021133, -0.5, 0.06177382, 1.4901161e-08, 0.5, 0.20000003, 0.117522895, 0.5, -0.16180341, 0.19021133, 0.5, 0.06177382)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mqgf"]
+render_priority = 0
+shader = ExtResource("3_w0o84")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flio7"]
+next_pass = SubResource("ShaderMaterial_2mqgf")
+shading_mode = 0
+vertex_color_use_as_albedo = true
+point_size = 32.5
+z_clip_scale = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_eqqew"]
+material = SubResource("StandardMaterial3D_flio7")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_7o0cp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bxqkp"]
+offsets = PackedFloat32Array(0, 0.1492248, 0.2848837, 0.7887597)
+colors = PackedColorArray(1, 0, 0, 1, 0.26120466, 0.13693506, 0.022959571, 1, 0.17785347, 0.17785347, 0.17785347, 1, 0.88453114, 0.88453114, 0.88453114, 1)
+
+[node name="destructible_pieces" unique_id=205665437 instance=ExtResource("1_w8yxt")]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." index="0" unique_id=1584862989]
+collision_layer = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" index="0" unique_id=1867960868]
+transform = Transform3D(0.42457804, -0.264071, 0, 0.264071, 0.42457804, 0, 0, 0, 0.5, -0.063361794, 0.6719422, 0)
+material_override = ExtResource("2_gktwc")
+mesh = SubResource("CylinderMesh_w0o84")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" index="1" unique_id=1338076951]
+transform = Transform3D(0.42457804, -0.264071, 0, 0.264071, 0.42457804, 0, 0, 0, 0.5, -0.063361794, 0.6719422, 0)
+shape = SubResource("ConvexPolygonShape3D_gktwc")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="." index="1" unique_id=2109586595]
+collision_layer = 0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D2" index="0" unique_id=1946301555]
+transform = Transform3D(-0.22901237, 0.14243677, 0.42102855, 0.264071, 0.42457804, 0, -0.35751897, 0.22236285, -0.2696941, 0.06635837, 0.76787007, 0.10359428)
+material_override = ExtResource("2_gktwc")
+mesh = SubResource("CylinderMesh_w0o84")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2" index="1" unique_id=82817435]
+transform = Transform3D(-0.22901237, 0.14243677, 0.42102855, 0.264071, 0.42457804, 0, -0.35751897, 0.22236285, -0.2696941, 0.06635837, 0.76787007, 0.10359428)
+shape = SubResource("ConvexPolygonShape3D_w0o84")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="." index="2" unique_id=1412242659]
+collision_layer = 0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RigidBody3D3" index="0" unique_id=502192633]
+transform = Transform3D(-0.20396382, 0.12685755, -0.43852693, 0.264071, 0.42457804, 0, 0.3723778, -0.23160447, -0.2401959, 0.045478776, 0.72228026, -0.08303082)
+material_override = ExtResource("2_gktwc")
+mesh = SubResource("CylinderMesh_w0o84")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3" index="1" unique_id=2006929076]
+transform = Transform3D(-0.20396382, 0.12685755, -0.43852693, 0.264071, 0.42457804, 0, 0.3723778, -0.23160447, -0.2401959, 0.045478776, 0.72228026, -0.08303082)
+shape = SubResource("ConvexPolygonShape3D_2mqgf")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="." index="3" unique_id=976629689]
+collision_layer = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D4" index="0" unique_id=1401668655]
+transform = Transform3D(0.42457804, -0.264071, 0, 0.264071, 0.42457804, 0, 0, 0, 0.5, 0.21481961, 0.22467718, 0)
+material_override = ExtResource("2_gktwc")
+mesh = SubResource("CylinderMesh_w0o84")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4" index="1" unique_id=2006992156]
+transform = Transform3D(0.42457804, -0.264071, 0, 0.264071, 0.42457804, 0, 0, 0, 0.5, 0.21481961, 0.22467718, 0)
+shape = SubResource("ConvexPolygonShape3D_gktwc")
+
+[node name="RigidBody3D5" type="RigidBody3D" parent="." index="4" unique_id=1252371001]
+collision_layer = 0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D5" index="0" unique_id=1591590158]
+transform = Transform3D(-0.22901237, 0.14243677, 0.42102855, 0.264071, 0.42457804, 0, -0.35751897, 0.22236285, -0.2696941, -0.09354992, 0.29121265, -0.1460439)
+material_override = ExtResource("2_gktwc")
+mesh = SubResource("CylinderMesh_w0o84")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D5" index="1" unique_id=565923491]
+transform = Transform3D(-0.22901237, 0.14243677, 0.42102855, 0.264071, 0.42457804, 0, -0.35751897, 0.22236285, -0.2696941, -0.09354992, 0.29121265, -0.1460439)
+shape = SubResource("ConvexPolygonShape3D_w0o84")
+
+[node name="RigidBody3D6" type="RigidBody3D" parent="." index="5" unique_id=1604917649]
+collision_layer = 0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RigidBody3D6" index="0" unique_id=1556705084]
+transform = Transform3D(-0.20396382, 0.12685755, -0.43852693, 0.264071, 0.42457804, 0, 0.3723778, -0.23160447, -0.2401959, -0.09016961, 0.26828027, 0.16462314)
+material_override = ExtResource("2_gktwc")
+mesh = SubResource("CylinderMesh_w0o84")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D6" index="1" unique_id=1976492338]
+transform = Transform3D(-0.20396382, 0.12685755, -0.43852693, 0.264071, 0.42457804, 0, 0.3723778, -0.23160447, -0.2401959, -0.09016961, 0.26828027, 0.16462314)
+shape = SubResource("ConvexPolygonShape3D_2mqgf")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." index="6" unique_id=1355348344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7591871, 0)
+emitting = false
+amount = 40
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("BoxMesh_eqqew")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.3
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 10.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+damping_min = 5.0
+damping_max = 10.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_max = 1.8
+scale_amount_curve = SubResource("Curve_7o0cp")
+color_ramp = SubResource("Gradient_bxqkp")

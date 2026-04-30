@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://cr0urxtlsv4iy" path="res://scripts/player/PlayerSegment.gd" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://ngawy1oun44j" path="res://audio/slither.wav" id="5_tuyoq"]
 [ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="7_fjrip"]
-[ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/death_particles.tscn" id="8_smehm"]
-[ext_resource type="PackedScene" uid="uid://ccwg31v8swgfd" path="res://scenes/player_ui.tscn" id="9_ur7pv"]
+[ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/enemy/death_particles.tscn" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://ccwg31v8swgfd" path="res://scenes/player/player_ui.tscn" id="9_ur7pv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 

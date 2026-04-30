@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bykmvbovspso1"]
 
 [ext_resource type="PackedScene" uid="uid://ctynmma6s25av" path="res://scenes/environment/buildings/destructible.tscn" id="1_ffr5b"]
+[ext_resource type="PackedScene" uid="uid://3kl54fm4l250" path="res://scenes/environment/firepit_pieces.tscn" id="2_8yyfq"]
 [ext_resource type="Material" uid="uid://b6fxnkd40n15p" path="res://textures/empty_tex_brown.tres" id="2_n3lpe"]
-[ext_resource type="Material" uid="uid://bil5bvlsyd7ji" path="res://textures/empty_tex.tres" id="3_flio7"]
 [ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="4_8yyfq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ffr5b"]
@@ -14,35 +14,31 @@ bottom_radius = 0.2
 radial_segments = 5
 rings = 1
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_n3lpe"]
-top_radius = 1.0
-bottom_radius = 1.0
-height = 0.1
-radial_segments = 7
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p20e6"]
 render_priority = 0
 shader = ExtResource("4_8yyfq")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flio7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p20e6"]
 next_pass = SubResource("ShaderMaterial_p20e6")
-transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
+point_size = 32.5
+z_clip_scale = 0.01
 
 [sub_resource type="BoxMesh" id="BoxMesh_8yyfq"]
-material = SubResource("StandardMaterial3D_flio7")
+material = SubResource("StandardMaterial3D_p20e6")
 size = Vector3(0.3, 0.3, 0.3)
 
 [sub_resource type="Curve" id="Curve_flio7"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.49224186), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7525774, 0.49224186), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_p20e6"]
-offsets = PackedFloat32Array(0, 0.09883721, 0.2771318, 0.56782943, 0.79651165, 1)
-colors = PackedColorArray(1, 0, 0, 0, 1, 0.04485609, 0, 1, 1, 0.08627451, 0, 1, 1, 0.5176471, 0, 1, 0, 0, 0, 0.78431374, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.09883721, 0.2771318, 0.56782943, 0.746124, 0.87015504, 0.98255813)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.04485609, 0, 1, 1, 0.08627451, 0, 1, 1, 0.5176471, 0, 1, 0.31735232, 0.18212608, 0.020455305, 1, 1, 1, 1, 1, 0.17785347, 0.17785347, 0.17785347, 1)
 
 [node name="firepit" unique_id=1305035996 node_paths=PackedStringArray("particle_system") groups=["fire"] instance=ExtResource("1_ffr5b")]
+destroyed_object = ExtResource("2_8yyfq")
 particle_system = NodePath("CPUParticles3D")
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=677202240]
@@ -52,26 +48,21 @@ shape = SubResource("BoxShape3D_ffr5b")
 vertices = PackedVector3Array(0.7, 0, 0.7, -0.7, 0, 0.7, -0.7, 0, -0.7, 0.7, 0, -0.7)
 
 [node name="visuals" type="Node3D" parent="." index="2" unique_id=19376795]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="visuals" index="0" unique_id=1643573151]
-transform = Transform3D(0.8491561, -0.528142, 0, 0.528142, 0.8491561, 0, 0, 0, 1, 0.19848534, 0.8210076, 0)
+transform = Transform3D(0.42457804, -0.264071, 0, 0.264071, 0.42457804, 0, 0, 0, 0.5, 0.09924267, 0.4105038, 0)
 material_override = ExtResource("2_n3lpe")
 mesh = SubResource("CylinderMesh_ffr5b")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="visuals" index="1" unique_id=305577700]
-transform = Transform3D(-0.45802474, 0.28487355, 0.8420571, 0.528142, 0.8491561, 0, -0.71503794, 0.4447257, -0.5393882, -0.10706065, 0.8210076, -0.167136)
+transform = Transform3D(-0.22901237, 0.14243677, 0.42102855, 0.264071, 0.42457804, 0, -0.35751897, 0.22236285, -0.2696941, -0.053530324, 0.4105038, -0.083568)
 material_override = ExtResource("2_n3lpe")
 mesh = SubResource("CylinderMesh_ffr5b")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="visuals" index="2" unique_id=405621968]
-transform = Transform3D(-0.40792763, 0.2537151, -0.87705386, 0.528142, 0.8491561, 0, 0.7447556, -0.46320894, -0.4803918, -0.09535073, 0.8210076, 0.17408234)
+transform = Transform3D(-0.20396382, 0.12685755, -0.43852693, 0.264071, 0.42457804, 0, 0.3723778, -0.23160447, -0.2401959, -0.047675364, 0.4105038, 0.08704117)
 material_override = ExtResource("2_n3lpe")
 mesh = SubResource("CylinderMesh_ffr5b")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="visuals" index="3" unique_id=842210078]
-material_override = ExtResource("3_flio7")
-mesh = SubResource("CylinderMesh_n3lpe")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=1077447911]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3817234, 0)
@@ -80,7 +71,7 @@ light_color = Color(1.789, 1.076, 0.565, 1)
 [node name="CPUParticles3D" type="CPUParticles3D" parent="." index="4" unique_id=2009233665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7591871, 0)
 amount = 40
-lifetime = 1.2
+lifetime = 1.5
 preprocess = 2.0
 mesh = SubResource("BoxMesh_8yyfq")
 emission_shape = 1
@@ -97,7 +88,6 @@ linear_accel_min = -3.0
 linear_accel_max = -2.0
 angle_min = -720.0
 angle_max = 720.0
-scale_amount_min = 0.8
-scale_amount_max = 1.4
+scale_amount_max = 1.8
 scale_amount_curve = SubResource("Curve_flio7")
 color_ramp = SubResource("Gradient_p20e6")

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://duqrkwmcwhfb"]
+
+[ext_resource type="Material" uid="uid://b6fxnkd40n15p" path="res://textures/empty_tex_brown.tres" id="1_umosx"]
+[ext_resource type="Script" uid="uid://begqfqibl1jy5" path="res://scripts/enemy/Arrow.gd" id="1_w4wcf"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wyax8"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.2
+radial_segments = 5
+rings = 2
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w4wcf"]
+points = PackedVector3Array(-0.047552824, -0.6, 0.015443455, -0.029390028, -0.6, -0.040450852, 3.7252903e-09, -0.6, 0.05000001, -0.047552824, 0.6, 0.015443455, 0.029380724, -0.6, -0.040450852, -0.029390028, 0.6, -0.040450852, 0.04755283, -0.6, 0.015443455, 3.7252903e-09, 0.6, 0.05000001, 0.029380724, 0.6, -0.040450852, 0.04755283, 0.6, 0.015443455)
+
+[node name="arrow" type="RigidBody3D" unique_id=1994847708]
+collision_layer = 0
+collision_mask = 3
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_w4wcf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=585776480]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = ExtResource("1_umosx")
+mesh = SubResource("CylinderMesh_wyax8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1336781739]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_w4wcf")

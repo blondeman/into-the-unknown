@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://b1dnvl2mowrgq" path="res://scripts/enemy/EnemyController.gd" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="2_5uy6h"]
 [ext_resource type="Material" uid="uid://ccpq75kdakmpb" path="res://textures/empty_tex_red.tres" id="2_c4w8v"]
-[ext_resource type="Script" uid="uid://dr50wsci1wxj5" path="res://scripts/enemy/Attack.gd" id="3_c4w8v"]
-[ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/death_particles.tscn" id="4_nenq2"]
+[ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/enemy/death_particles.tscn" id="4_nenq2"]
 [ext_resource type="Script" uid="uid://bqwnmnppokto6" path="res://scripts/enemy/Navigation.gd" id="4_xwavj"]
+[ext_resource type="Script" uid="uid://drvu2ohlt1kr" path="res://scripts/enemy/AttackMelee.gd" id="5_xwavj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
 
@@ -31,7 +31,7 @@ script = ExtResource("2_5uy6h")
 on_death_scene = ExtResource("4_nenq2")
 
 [node name="attack" type="Node" parent="." unique_id=2126601451]
-script = ExtResource("3_c4w8v")
+script = ExtResource("5_xwavj")
 
 [node name="navigation" type="NavigationAgent3D" parent="." unique_id=565755091]
 avoidance_enabled = true
