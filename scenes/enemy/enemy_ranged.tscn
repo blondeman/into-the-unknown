@@ -4,6 +4,7 @@
 [ext_resource type="Material" uid="uid://c5lxnr11ac71n" path="res://textures/empty_tex_yellow.tres" id="2_5l6pi"]
 [ext_resource type="Script" uid="uid://c6k1uyvgy2ihg" path="res://scripts/enemy/AttackRanged.gd" id="2_awgho"]
 [ext_resource type="PackedScene" uid="uid://duqrkwmcwhfb" path="res://scenes/enemy/arrow.tscn" id="3_w87q7"]
+[ext_resource type="AudioStream" uid="uid://ur4wv0fiooep" path="res://audio/enemy/enemy_attack_2.wav" id="6_npp3m"]
 
 [node name="enemy_ranged" unique_id=227389902 instance=ExtResource("1_c4fut")]
 
@@ -14,4 +15,5 @@ material_override = ExtResource("2_5l6pi")
 script = ExtResource("2_awgho")
 arrow = ExtResource("3_w87q7")
 velocity = 20.0
-range = 20.0
+range = 15.0
+attack_sounds = Array[AudioStream]([ExtResource("6_npp3m")])

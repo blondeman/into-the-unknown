@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ngawy1oun44j"
-path="res://.godot/imported/slither.wav-4003392d2b72abe008271cc417fc997c.sample"
+path="res://.godot/imported/slither.wav-153b59c1a9230eb5a8fe6f5d07caa12a.sample"
 
 [deps]
 
-source_file="res://audio/slither.wav"
-dest_files=["res://.godot/imported/slither.wav-4003392d2b72abe008271cc417fc997c.sample"]
+source_file="res://audio/player/slither.wav"
+dest_files=["res://.godot/imported/slither.wav-153b59c1a9230eb5a8fe6f5d07caa12a.sample"]
 
 [params]
 

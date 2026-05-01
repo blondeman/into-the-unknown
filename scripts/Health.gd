@@ -5,6 +5,8 @@ extends Node
 @export var max_health: int = 100
 var current_health: int
 
+@export var hit_sounds: Array[AudioStream]
+
 signal on_health_changed(amount: int, health: int, total: int)
 signal on_die()
 
@@ -16,6 +18,7 @@ func _ready() -> void:
 func take_damage(amount: int):
 	current_health -= amount
 	on_health_changed.emit(amount, current_health, max_health)
+	_play_sound()
 	
 	if current_health <= 0:
 		die()
@@ -41,3 +44,13 @@ func die():
 		new_on_death_scene.start()
 	
 	parent.queue_free()
+
+func _play_sound():
+	if hit_sounds.size() == 0:
+		return
+	
+	var player = AudioStreamPlayer3D.new()
+	add_child(player)
+	player.stream = hit_sounds[randi() % hit_sounds.size()]
+	player.play()
+	player.finished.connect(player.queue_free)

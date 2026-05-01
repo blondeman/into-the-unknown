@@ -220,13 +220,13 @@ shadow_enabled = true
 [node name="enemies" type="Node3D" parent="." unique_id=1621181414]
 
 [node name="enemy" parent="enemies" unique_id=227389902 instance=ExtResource("13_l7g5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415761, 1, 2.4800804)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.435162, 1, -4.845783)
 
 [node name="enemy3" parent="enemies" unique_id=1294964539 instance=ExtResource("13_l7g5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.019402, 1, 0.17321277)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.038803, 1, -7.152651)
 
 [node name="enemy2" parent="enemies" unique_id=1829858656 instance=ExtResource("13_l7g5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.814831, 1, -3.2722397)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.834232, 1, -10.598104)
 
 [node name="enemy4" parent="enemies" unique_id=1879215041 instance=ExtResource("7_wlo4t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.939974, 1, -17.062248)

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://3kl54fm4l250"]
 
 [ext_resource type="PackedScene" uid="uid://dssiq2s2rnyl8" path="res://scenes/environment/buildings/destructible_pieces.tscn" id="1_w8yxt"]
+[ext_resource type="AudioStream" uid="uid://cbij6mgjj7a1j" path="res://audio/effects/fire_break_1.wav" id="2_bxqkp"]
 [ext_resource type="Material" uid="uid://b6fxnkd40n15p" path="res://textures/empty_tex_brown.tres" id="2_gktwc"]
+[ext_resource type="AudioStream" uid="uid://levd25o02akp" path="res://audio/effects/fire_break_2.wav" id="3_2vkw3"]
 [ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="3_w0o84"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_w0o84"]
@@ -44,6 +46,8 @@ offsets = PackedFloat32Array(0, 0.1492248, 0.2848837, 0.7887597)
 colors = PackedColorArray(1, 0, 0, 1, 0.26120466, 0.13693506, 0.022959571, 1, 0.17785347, 0.17785347, 0.17785347, 1, 0.88453114, 0.88453114, 0.88453114, 1)
 
 [node name="destructible_pieces" unique_id=205665437 instance=ExtResource("1_w8yxt")]
+sound_list_1 = Array[AudioStream]([ExtResource("2_bxqkp")])
+sound_list_2 = Array[AudioStream]([ExtResource("3_2vkw3")])
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." index="0" unique_id=1584862989]
 collision_layer = 0

@@ -7,6 +7,8 @@ extends Node
 @export var attack_rate: float = 1.0
 @export var range: float = 1.0
 
+@export var attack_sounds: Array[AudioStream]
+
 var cooldown: float = 0.0
 var enemy_controller: EnemyController
 
@@ -42,10 +44,19 @@ func _on_attack():
 			return
 		if enemy_controller.global_position.distance_to(closest_segment.global_position) < range:
 			_attack(closest_segment)
+			_play_sound()
 			cooldown = attack_rate
 
 
 @abstract func _attack(target: Node3D)
+
+
+func _play_sound():
+	var player = AudioStreamPlayer3D.new()
+	add_child(player)
+	player.stream = attack_sounds[randi() % attack_sounds.size()]
+	player.play()
+	player.finished.connect(player.queue_free)
 
 ## target should be a collider of player
 ## it will check its sibilings for the health node

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b6yogphhcf12t"
-path="res://.godot/imported/glass_break_1.wav-66c961b244ff8112211964be9b173f81.sample"
+path="res://.godot/imported/glass_break_1.wav-fac4b9538c9e111709221fca6a0a6a0e.sample"
 
 [deps]
 
-source_file="res://audio/glass_break_1.wav"
-dest_files=["res://.godot/imported/glass_break_1.wav-66c961b244ff8112211964be9b173f81.sample"]
+source_file="res://audio/effects/glass_break_1.wav"
+dest_files=["res://.godot/imported/glass_break_1.wav-fac4b9538c9e111709221fca6a0a6a0e.sample"]
 
 [params]
 

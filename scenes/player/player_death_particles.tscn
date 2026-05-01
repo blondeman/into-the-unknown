@@ -1,19 +1,17 @@
-[gd_scene format=3 uid="uid://bhpgqsyfr0v3j"]
+[gd_scene format=3 uid="uid://cv0q154yx02mk"]
 
-[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="1_ab78l"]
-[ext_resource type="Script" uid="uid://b1mqf0tqk55h8" path="res://scripts/OneShot.gd" id="2_u27mo"]
-[ext_resource type="AudioStream" uid="uid://bsr3v868otre8" path="res://audio/enemy/enemy_death_1.wav" id="3_r62r7"]
-[ext_resource type="AudioStream" uid="uid://d28c5aq68m3h" path="res://audio/enemy/enemy_death_2.wav" id="4_ab78l"]
-[ext_resource type="AudioStream" uid="uid://bs5335y4pp2xr" path="res://audio/enemy/enemy_death_3.wav" id="5_gphrw"]
+[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="1_rvhd8"]
+[ext_resource type="Script" uid="uid://b1mqf0tqk55h8" path="res://scripts/OneShot.gd" id="2_1oqi4"]
+[ext_resource type="AudioStream" uid="uid://b3kopmorwlkal" path="res://audio/player/player_death.wav" id="3_jb5s5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gphrw"]
 render_priority = 0
-shader = ExtResource("1_ab78l")
+shader = ExtResource("1_rvhd8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jl6ud"]
 next_pass = SubResource("ShaderMaterial_gphrw")
 shading_mode = 0
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(1, 0.7176471, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_u27mo"]
 material = SubResource("StandardMaterial3D_jl6ud")
@@ -21,7 +19,7 @@ size = Vector3(0.3, 0.3, 0.3)
 
 [node name="CPUParticles3D" type="CPUParticles3D" unique_id=2052747345 node_paths=PackedStringArray("audio_stream_player")]
 emitting = false
-amount = 30
+amount = 50
 one_shot = true
 explosiveness = 1.0
 mesh = SubResource("BoxMesh_u27mo")
@@ -29,16 +27,18 @@ particle_flag_align_y = true
 direction = Vector3(0, 1, 0)
 spread = 90.0
 gravity = Vector3(0, -20, 0)
-initial_velocity_min = 7.0
-initial_velocity_max = 10.0
+initial_velocity_min = 10.0
+initial_velocity_max = 13.0
 angular_velocity_min = 90.0
 angular_velocity_max = 90.0
 scale_amount_min = 0.5
 scale_amount_max = 1.5
-script = ExtResource("2_u27mo")
-sounds = Array[AudioStream]([ExtResource("3_r62r7"), ExtResource("4_ab78l"), ExtResource("5_gphrw")])
+script = ExtResource("2_1oqi4")
+timer = 5.0
+sounds = Array[AudioStream]([ExtResource("3_jb5s5")])
 audio_stream_player = NodePath("AudioStreamPlayer3D")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=836718245]
-stream = ExtResource("3_r62r7")
+stream = ExtResource("3_jb5s5")
+volume_db = 2.0
 autoplay = true

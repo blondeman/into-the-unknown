@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dciefj4d2h2vh"
-path="res://.godot/imported/wood_break_1.wav-db69c799264f8d109e31c01ce138be8c.sample"
+uid="uid://e05pquqp18"
+path="res://.godot/imported/blow_up_1.wav-c949d2d247d027c347678e2ef4066162.sample"
 
 [deps]
 
-source_file="res://audio/wood_break_1.wav"
-dest_files=["res://.godot/imported/wood_break_1.wav-db69c799264f8d109e31c01ce138be8c.sample"]
+source_file="res://audio/effects/blow_up_1.wav"
+dest_files=["res://.godot/imported/blow_up_1.wav-c949d2d247d027c347678e2ef4066162.sample"]
 
 [params]
 

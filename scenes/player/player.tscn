@@ -5,10 +5,12 @@
 [ext_resource type="Material" uid="uid://bil5bvlsyd7ji" path="res://textures/empty_tex.tres" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://2s52dssufyjb" path="res://scripts/player/Mouth.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cr0urxtlsv4iy" path="res://scripts/player/PlayerSegment.gd" id="5_qlg0r"]
-[ext_resource type="AudioStream" uid="uid://ngawy1oun44j" path="res://audio/slither.wav" id="5_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://ngawy1oun44j" path="res://audio/player/slither.wav" id="5_tuyoq"]
 [ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="7_fjrip"]
-[ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/enemy/death_particles.tscn" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://cv0q154yx02mk" path="res://scenes/player/player_death_particles.tscn" id="8_5gtgg"]
+[ext_resource type="AudioStream" uid="uid://bepo3igugslpc" path="res://audio/player/player_hit_1.wav" id="9_je7p5"]
 [ext_resource type="PackedScene" uid="uid://ccwg31v8swgfd" path="res://scenes/player/player_ui.tscn" id="9_ur7pv"]
+[ext_resource type="AudioStream" uid="uid://bqsoofh078m3r" path="res://audio/player/player_hit_2.wav" id="10_fm80t"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
@@ -83,7 +85,8 @@ mesh = SubResource("CylinderMesh_g2els")
 
 [node name="Health" type="Node" parent="." unique_id=136181096]
 script = ExtResource("7_fjrip")
-on_death_scene = ExtResource("8_smehm")
+on_death_scene = ExtResource("8_5gtgg")
+hit_sounds = Array[AudioStream]([ExtResource("9_je7p5"), ExtResource("10_fm80t")])
 metadata/_custom_type_script = "uid://chc3odh7c2i86"
 
 [node name="ui" parent="." unique_id=546971784 instance=ExtResource("9_ur7pv")]

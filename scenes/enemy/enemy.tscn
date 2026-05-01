@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/enemy/death_particles.tscn" id="4_nenq2"]
 [ext_resource type="Script" uid="uid://bqwnmnppokto6" path="res://scripts/enemy/Navigation.gd" id="4_xwavj"]
 [ext_resource type="Script" uid="uid://drvu2ohlt1kr" path="res://scripts/enemy/AttackMelee.gd" id="5_xwavj"]
+[ext_resource type="AudioStream" uid="uid://dv0nixil5f0yy" path="res://audio/enemy/enemy_attack_1.wav" id="6_13gj6"]
+[ext_resource type="AudioStream" uid="uid://ur4wv0fiooep" path="res://audio/enemy/enemy_attack_2.wav" id="7_4efjx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
 
@@ -32,6 +34,7 @@ on_death_scene = ExtResource("4_nenq2")
 
 [node name="attack" type="Node" parent="." unique_id=2126601451]
 script = ExtResource("5_xwavj")
+attack_sounds = Array[AudioStream]([ExtResource("6_13gj6"), ExtResource("7_4efjx")])
 
 [node name="navigation" type="NavigationAgent3D" parent="." unique_id=565755091]
 avoidance_enabled = true
