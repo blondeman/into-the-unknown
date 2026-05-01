@@ -3,6 +3,7 @@ extends Control
 @export_file("*.txt") var text_path: String
 @export var label: RichTextLabel
 @export var level_to_load: int = 0
+@export var audio_stream_player: AudioStreamPlayer
 
 var _lines: PackedStringArray = []
 var _current_line: int = 0
@@ -38,6 +39,7 @@ func _display_text() -> void:
 		_text_finished()
 		return
 	
+	audio_stream_player.play()
 	label.text = _lines[_current_line]
 	label.visible_characters = 0
 	_is_typing = true
