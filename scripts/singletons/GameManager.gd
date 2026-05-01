@@ -20,18 +20,26 @@ var levels: Array[PackedScene] = [
 	preload("res://scenes/testing/tile_test.tscn"),
 ]
 
+@warning_ignore("unused_signal")
 signal on_rebake()
+signal on_score_changed(amount: int, score: int, total: int)
+signal on_max_score()
 
 var current_scene: Node = null
 var current_level_id: int = LEVEL_ID_MENU
 var _transition_instance: Node = null
 
+var enemy_count: int = 0
+var building_count: int = 0
+var score: int = 0
 
 func _ready() -> void:
 	for scene in global_scenes:
 		var new_scene = scene.instantiate()
 		get_tree().root.add_child.call_deferred(new_scene)
 	current_scene = get_tree().current_scene
+	
+	_level_loaded()
 
 
 func load_intro():
@@ -88,8 +96,33 @@ func _on_fade_in_finished(level_to_load: PackedScene) -> void:
 		_on_fade_out_finished, CONNECT_ONE_SHOT
 	)
 	_transition_instance.fade_out()
+	
+	_level_loaded()
 
 
 func _on_fade_out_finished() -> void:
 	_transition_instance.queue_free()
 	_transition_instance = null
+
+
+func _level_loaded():
+	await get_tree().process_frame
+	score = 0
+	_set_score_total()
+
+
+func _set_score_total():
+	enemy_count = get_tree().get_nodes_in_group("enemy").size()
+	building_count = get_tree().get_nodes_in_group("destructible").size()
+	on_score_changed.emit(0, score, _max_score())
+
+
+func add_score():
+	score += 1
+	on_score_changed.emit(1, score, _max_score())
+	if score >= _max_score():
+		on_max_score.emit()
+
+
+func _max_score() -> int:
+	return building_count + enemy_count

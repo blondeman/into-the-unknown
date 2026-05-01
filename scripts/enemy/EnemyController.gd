@@ -26,3 +26,6 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
+
+func _exit_tree() -> void:
+	GameManager.add_score()

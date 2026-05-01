@@ -17,7 +17,7 @@
 _data = [Vector2(0.0031152666, 1), 0.0, 0.0, 0, 0, Vector2(0.5046729, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="enemy" type="CharacterBody3D" unique_id=227389902]
+[node name="enemy" type="CharacterBody3D" unique_id=227389902 groups=["enemy"]]
 collision_layer = 8
 script = ExtResource("1_7p1mj")
 

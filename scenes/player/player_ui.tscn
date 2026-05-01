@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://4pbngtc1egn1" path="res://ui/health_fill_right.png" id="3_n31oh"]
 [ext_resource type="Texture2D" uid="uid://ofgdpnkk2l7v" path="res://ui/health_overlay.png" id="4_wsb5h"]
 [ext_resource type="Texture2D" uid="uid://hj54m774iobk" path="res://ui/health_fill_left.png" id="5_g4s8q"]
+[ext_resource type="Texture2D" uid="uid://dfe4w4ehoto40" path="res://ui/score_fill_right.png" id="7_d61dg"]
+[ext_resource type="Texture2D" uid="uid://cgb76is0evp52" path="res://ui/score_fill_left.png" id="8_g18nd"]
 
-[node name="ui" type="Control" unique_id=546971784 node_paths=PackedStringArray("health_fill_right", "health_fill_left", "death_screen")]
+[node name="ui" type="Control" unique_id=546971784 node_paths=PackedStringArray("health_fill_right", "health_fill_left", "death_screen", "score_fill_right", "score_fill_left")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,55 +17,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bkx2g")
-health_fill_right = NodePath("HBoxContainer/health/health_right")
-health_fill_left = NodePath("HBoxContainer/health/health_left")
+health_fill_right = NodePath("health/health_right")
+health_fill_left = NodePath("health/health_left")
 death_screen = NodePath("ColorRect")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1658265780]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 200.0
-
-[node name="health" type="MarginContainer" parent="HBoxContainer" unique_id=2065149663]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="health_right" type="TextureProgressBar" parent="HBoxContainer/health" unique_id=194877999]
-texture_filter = 1
-layout_mode = 2
-theme = ExtResource("1_7ctsh")
-step = 0.0
-value = 100.0
-fill_mode = 5
-radial_initial_angle = 320.0
-nine_patch_stretch = true
-texture_under = ExtResource("2_bkx2g")
-texture_progress = ExtResource("3_n31oh")
-
-[node name="health_left" type="TextureProgressBar" parent="HBoxContainer/health" unique_id=1077860442]
-texture_filter = 1
-layout_mode = 2
-theme = ExtResource("1_7ctsh")
-step = 0.0
-value = 100.0
-fill_mode = 5
-radial_initial_angle = 350.0
-nine_patch_stretch = true
-texture_over = ExtResource("4_wsb5h")
-texture_progress = ExtResource("5_g4s8q")
-
-[node name="health_label" type="Label" parent="HBoxContainer/health" unique_id=990073448]
-layout_mode = 2
-theme = ExtResource("1_7ctsh")
-theme_override_colors/font_color = Color(0.6745098, 0.19607843, 0.19607843, 1)
-theme_override_colors/font_outline_color = Color(0.27058825, 0.15686275, 0.23529412, 1)
-theme_override_constants/outline_size = 6
-text = "LIFE"
-horizontal_alignment = 1
+score_fill_right = NodePath("destruction/score_right")
+score_fill_left = NodePath("destruction/score_left")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=62778449]
 visible = false
@@ -93,3 +51,97 @@ theme_override_colors/font_color = Color(0.6745098, 0.19607843, 0.19607843, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 90
 text = "YOU DIED"
+
+[node name="health" type="MarginContainer" parent="." unique_id=2065149663]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+offset_right = 200.0
+offset_bottom = 200.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="health_right" type="TextureProgressBar" parent="health" unique_id=194877999]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("1_7ctsh")
+step = 0.0
+value = 100.0
+fill_mode = 5
+radial_initial_angle = 320.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_bkx2g")
+texture_progress = ExtResource("3_n31oh")
+
+[node name="health_left" type="TextureProgressBar" parent="health" unique_id=1077860442]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("1_7ctsh")
+step = 0.0
+value = 100.0
+fill_mode = 5
+radial_initial_angle = 350.0
+nine_patch_stretch = true
+texture_over = ExtResource("4_wsb5h")
+texture_progress = ExtResource("5_g4s8q")
+
+[node name="health_label" type="Label" parent="health" unique_id=990073448]
+layout_mode = 2
+theme = ExtResource("1_7ctsh")
+theme_override_colors/font_color = Color(0.9490196, 0.11372549, 0.18431373, 1)
+theme_override_colors/font_outline_color = Color(0.27058825, 0.15686275, 0.23529412, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "LIFE"
+horizontal_alignment = 1
+
+[node name="destruction" type="MarginContainer" parent="." unique_id=1250731206]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="score_right" type="TextureProgressBar" parent="destruction" unique_id=714721653]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("1_7ctsh")
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 5
+radial_initial_angle = 320.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_bkx2g")
+texture_progress = ExtResource("7_d61dg")
+
+[node name="score_left" type="TextureProgressBar" parent="destruction" unique_id=1265769098]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("1_7ctsh")
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 5
+radial_initial_angle = 350.0
+nine_patch_stretch = true
+texture_over = ExtResource("4_wsb5h")
+texture_progress = ExtResource("8_g18nd")
+
+[node name="score_label" type="Label" parent="destruction" unique_id=815057147]
+layout_mode = 2
+theme = ExtResource("1_7ctsh")
+theme_override_colors/font_color = Color(0.22745098, 0.4117647, 1, 1)
+theme_override_colors/font_outline_color = Color(0.27058825, 0.15686275, 0.23529412, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "DESTROY"
+horizontal_alignment = 1

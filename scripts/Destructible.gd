@@ -25,3 +25,7 @@ func _cleanup_particles() -> void:
 	particle_system.emitting = false
 	await get_tree().create_timer(particle_system.lifetime).timeout
 	particle_system.queue_free()
+
+
+func _exit_tree() -> void:
+	GameManager.add_score()
