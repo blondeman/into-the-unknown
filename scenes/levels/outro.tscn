@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://1xf64kit0ymy"]
+
+[ext_resource type="PackedScene" uid="uid://bwudrtvg3tavl" path="res://scenes/levels/intro.tscn" id="1_shfdd"]
+
+[node name="outro" unique_id=1780997 instance=ExtResource("1_shfdd")]
+
+[node name="Control" parent="." index="0" unique_id=1733599035]
+text_path = "res://resources/outro.txt"
+level_to_load = -1

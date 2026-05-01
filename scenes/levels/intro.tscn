@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bwudrtvg3tavl"]
+
+[ext_resource type="Script" uid="uid://dctdgpuves4kd" path="res://scripts/StoryBoard.gd" id="1_gs2wg"]
+[ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="2_6csdh"]
+
+[node name="intro" type="Node3D" unique_id=1780997]
+
+[node name="Control" type="Control" parent="." unique_id=1733599035 node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gs2wg")
+text_path = "res://resources/intro.txt"
+label = NodePath("ColorRect/Label")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=2053027060]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27058825, 0.15686275, 0.23529412, 1)
+
+[node name="Label" type="RichTextLabel" parent="Control/ColorRect" unique_id=1938147610]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -49.0
+offset_right = 300.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6csdh")
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Legends told of a [color=#fc0339]Wyrm[/color] that [wave]forever ate its tail.[/wave]
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1

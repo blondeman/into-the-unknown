@@ -206,7 +206,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.716368, 0, -9.843681)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.646206, 9.536743e-07, -28.569378)
 
 [node name="player" parent="." unique_id=93949505 node_paths=PackedStringArray("camera") instance=ExtResource("5_ip6g7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.750992, 0.5, -13.31076)
 camera = NodePath("../camera")
 
 [node name="camera" parent="." unique_id=608748979 node_paths=PackedStringArray("target") instance=ExtResource("11_ip6g7")]

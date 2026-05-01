@@ -1,13 +1,19 @@
 extends Node
 
+const LEVEL_ID_MENU: int = -1
+const LEVEL_ID_INTRO: int = -2
+const LEVEL_ID_OUTRO: int = -3
+
 var global_scenes: Array[PackedScene] = [
 	preload("res://scenes/performance_monitor.tscn"),
 	preload("res://scenes/music_manager.tscn"),
 ]
 
-
 var transition: PackedScene = preload("res://scenes/levels/transition.tscn")
 var menu: PackedScene = preload("res://scenes/levels/menu.tscn")
+var intro: PackedScene = preload("res://scenes/levels/intro.tscn")
+var outro: PackedScene = preload("res://scenes/levels/outro.tscn")
+
 var levels: Array[PackedScene] = [
 	preload("res://scenes/testing/test_environment.tscn"),
 	preload("res://scenes/testing/navmesh-testing.tscn"),
@@ -17,7 +23,7 @@ var levels: Array[PackedScene] = [
 signal on_rebake()
 
 var current_scene: Node = null
-var current_level_id: int = -1
+var current_level_id: int = LEVEL_ID_MENU
 var _transition_instance: Node = null
 
 
@@ -28,12 +34,20 @@ func _ready() -> void:
 	current_scene = get_tree().current_scene
 
 
+func load_intro():
+	load_level(LEVEL_ID_INTRO)
+
+
 func load_level(level: int) -> void:
 	current_level_id = level
 	var level_to_load: PackedScene
 	
-	if current_level_id == -1:
+	if current_level_id == LEVEL_ID_MENU:
 		level_to_load = menu
+	elif current_level_id == LEVEL_ID_INTRO:
+		level_to_load = intro
+	elif current_level_id == LEVEL_ID_OUTRO:
+		level_to_load = outro
 	elif current_level_id >= 0 and current_level_id < levels.size():
 		level_to_load = levels[current_level_id]
 	else:
