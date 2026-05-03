@@ -2,16 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b1dnvl2mowrgq" path="res://scripts/enemy/EnemyController.gd" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="2_5uy6h"]
-[ext_resource type="Material" uid="uid://ccpq75kdakmpb" path="res://textures/empty_tex_red.tres" id="2_c4w8v"]
 [ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/enemy/death_particles.tscn" id="4_nenq2"]
 [ext_resource type="Script" uid="uid://bqwnmnppokto6" path="res://scripts/enemy/Navigation.gd" id="4_xwavj"]
 [ext_resource type="Script" uid="uid://drvu2ohlt1kr" path="res://scripts/enemy/AttackMelee.gd" id="5_xwavj"]
 [ext_resource type="AudioStream" uid="uid://dv0nixil5f0yy" path="res://audio/enemy/enemy_attack_1.wav" id="6_13gj6"]
 [ext_resource type="AudioStream" uid="uid://ur4wv0fiooep" path="res://audio/enemy/enemy_attack_2.wav" id="7_4efjx"]
+[ext_resource type="PackedScene" uid="uid://3aq2jiaar1t0" path="res://models/enemies/RedTeam_SwordsMen_Unit.fbx" id="8_13gj6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4ra3w"]
 
 [sub_resource type="Curve" id="Curve_c4w8v"]
 _data = [Vector2(0.0031152666, 1), 0.0, 0.0, 0, 0, Vector2(0.5046729, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -23,10 +21,6 @@ script = ExtResource("1_7p1mj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=430020898]
 shape = SubResource("CapsuleShape3D_md0e3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1107697941]
-material_override = ExtResource("2_c4w8v")
-mesh = SubResource("CapsuleMesh_4ra3w")
 
 [node name="health" type="Node" parent="." unique_id=2106537601]
 script = ExtResource("2_5uy6h")
@@ -44,3 +38,6 @@ avoidance_mask = 8
 avoidance_priority = 0.5
 script = ExtResource("4_xwavj")
 probability_curve = SubResource("Curve_c4w8v")
+
+[node name="Mesh" parent="." unique_id=1823075001 instance=ExtResource("8_13gj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7796048, 0)
