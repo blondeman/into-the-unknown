@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://b3oa6fu48ox4s"]
+
+[ext_resource type="MeshLibrary" uid="uid://b7h5sk0tcy8gi" path="res://resources/dungeon_tiles.meshlib" id="1_x6ivy"]
+[ext_resource type="PackedScene" uid="uid://8qs4lkeubudv" path="res://scenes/player/player.tscn" id="2_dd0lh"]
+[ext_resource type="PackedScene" uid="uid://skfb6kiybidb" path="res://scenes/camera.tscn" id="3_bfxgj"]
+[ext_resource type="PackedScene" uid="uid://bh1vdbfys1pv3" path="res://scenes/enemy/enemy_melee.tscn" id="4_bfxgj"]
+[ext_resource type="PackedScene" uid="uid://cnfai0wsm7aqt" path="res://scenes/enemy/enemy_ranged.tscn" id="5_dywbp"]
+[ext_resource type="PackedScene" uid="uid://bykmvbovspso1" path="res://scenes/environment/firepit.tscn" id="6_1seuy"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_bfxgj"]
+vertices = PackedVector3Array(-5, 0.5, -72.5, -5, 0.5, -75.5, -63.5, 0.5, -75.5, -63.5, 0.5, -72.5, 3, 0.5, -72.5, 5, 0.5, -72.5, 5, 0.5, -75.5, -3, 0.5, -72.5, -2.5, 0.5, -70.75, 2.5, 0.5, -70.75, 63.5, 0.5, -72.5, 63.5, 0.5, -75.5, -2.5, 0.5, -33.25, 2.5, 0.5, -33.25, -5.25, 0.5, -30.5, -5.25, 0.5, -25.5, -3.25, 0.5, -25.25, -3.25, 0.5, -30.75, 3.25, 0.5, -30.75, 2.75, 0.5, -31.25, -2.75, 0.5, -31.25, -2.75, 0.5, -24.75, -2.5, 0.5, -22.75, 2.5, 0.5, -22.75, 2.75, 0.5, -24.75, 3.25, 0.5, -25.25, 5.25, 0.5, -25.5, 5.25, 0.5, -30.5, -10.5, 0.5, -30.5, -10.75, 0.5, -29, -10.5, 0.5, -25.5, 10.5, 0.5, -25.5, 10.75, 0.5, -29, 10.5, 0.5, -30.5, -2.75, 0.5, 1, -2.5, 0.5, 2.5, -1, 0.5, 2.75, -2.75, 0.5, -19, -2.25, 0.5, -18.75, 2.5, 0.5, 2.5, 2.75, 0.5, 1, -2.25, 0.5, -5.25, -2.75, 0.5, -5, -2.25, 0.5, -6.75, -2.25, 0.5, -17.25, -2.75, 0.5, -17, -2.75, 0.5, -7)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(7, 0, 1), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 4), PackedInt32Array(7, 1, 4), PackedInt32Array(4, 1, 6), PackedInt32Array(6, 11, 5), PackedInt32Array(5, 11, 10), PackedInt32Array(8, 9, 12), PackedInt32Array(12, 9, 13), PackedInt32Array(14, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(18, 20, 19), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(20, 16, 17), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 18), PackedInt32Array(25, 24, 18), PackedInt32Array(18, 24, 21), PackedInt32Array(18, 21, 16), PackedInt32Array(18, 16, 20), PackedInt32Array(13, 19, 12), PackedInt32Array(12, 19, 20), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 14), PackedInt32Array(30, 14, 15), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 26), PackedInt32Array(33, 26, 27), PackedInt32Array(36, 35, 34), PackedInt32Array(37, 22, 38), PackedInt32Array(38, 22, 23), PackedInt32Array(39, 36, 40), PackedInt32Array(40, 36, 34), PackedInt32Array(40, 34, 42), PackedInt32Array(40, 42, 41), PackedInt32Array(40, 41, 43), PackedInt32Array(44, 23, 43), PackedInt32Array(43, 23, 40), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 43), PackedInt32Array(44, 38, 23)]
+
+[node name="Level1" type="Node3D" unique_id=1603174030]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2130425331]
+navigation_mesh = SubResource("NavigationMesh_bfxgj")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" unique_id=383536749]
+mesh_library = ExtResource("1_x6ivy")
+cell_size = Vector3(1, 1, 1)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+bake_navigation = true
+data = {
+"cells": PackedInt32Array(2, 2, 1048604, 2, 65534, 1048604, 65534, 65534, 1048604, 65534, 2, 1048604, 4, 65534, 1048610, 4, 2, 1048610, 65532, 2, 1441826, 65532, 65534, 1441826, 2, 4, 34, 65534, 4, 34, 65534, 65530, 28, 2, 65530, 28, 65534, 65526, 28, 2, 65526, 28, 65534, 65522, 28, 2, 65522, 28, 65534, 65518, 28, 2, 65518, 28, 2, 65514, 28, 65534, 65514, 28, 4, 65530, 1048610, 4, 65526, 1048610, 4, 65522, 1048610, 4, 65518, 1048610, 4, 65514, 1048610, 65532, 65530, 1441822, 65532, 65526, 1441826, 65532, 65522, 1441826, 65532, 65518, 1441822, 65532, 65514, 1441826, 65534, 65510, 1441820, 65534, 65506, 1441820, 2, 65502, 1441820, 65534, 65502, 1441820, 2, 65498, 1441820, 65534, 65498, 1441820, 2, 65494, 1441820, 65534, 65494, 1441820, 2, 65490, 1441820, 65534, 65490, 1441820, 2, 65486, 1310748, 65534, 65486, 1310748, 65534, 65482, 1310748, 2, 65482, 1310748, 2, 65478, 1310748, 65534, 65478, 1310748, 2, 65474, 1310748, 65534, 65474, 1310748, 65534, 65470, 1310748, 2, 65470, 1310748, 65534, 65466, 1310748, 2, 65466, 1310748, 4, 65502, 1048610, 4, 65498, 1048610, 4, 65494, 1048610, 4, 65490, 1048610, 4, 65486, 1048610, 4, 65482, 1048610, 4, 65478, 1048610, 4, 65474, 1048610, 4, 65470, 1048610, 4, 65466, 1048610, 65532, 65502, 1441826, 65532, 65498, 1441826, 65532, 65494, 1441822, 65532, 65490, 1441826, 65532, 65486, 1441826, 65532, 65482, 1441822, 65532, 65478, 1441826, 65532, 65474, 1441826, 65532, 65470, 1441822, 65532, 65466, 1441826, 65534, 65462, 1441820, 2, 65462, 1441820, 6, 65462, 1441820, 10, 65462, 1441820, 14, 65462, 1441820, 18, 65462, 1441820, 22, 65462, 1441820, 26, 65462, 1441820, 30, 65462, 1441820, 34, 65462, 1441820, 38, 65462, 1441820, 42, 65462, 1441820, 46, 65462, 1441820, 50, 65462, 1441820, 54, 65462, 1441820, 58, 65462, 1441820, 62, 65462, 1441820, 65530, 65462, 1441820, 65526, 65462, 1441820, 65522, 65462, 1441820, 65518, 65462, 1441820, 65514, 65462, 1441820, 65510, 65462, 1441820, 65506, 65462, 1441820, 65502, 65462, 1441820, 65498, 65462, 1441820, 65494, 65462, 1441820, 65490, 65462, 1441820, 65486, 65462, 1441820, 65482, 65462, 1441820, 65478, 65462, 1441820, 65474, 65462, 1441820, 6, 65510, 655388, 10, 65510, 655388, 6, 65506, 655388, 10, 65506, 655388, 65530, 65506, 655388, 65530, 65510, 655388, 65526, 65506, 655388, 65526, 65510, 655388, 2, 65506, 1048604, 2, 65510, 1048604, 6, 65504, 655394, 10, 65504, 655394, 6, 65512, 34, 10, 65512, 34, 12, 65506, 1048610, 12, 65510, 1048610, 65530, 65512, 34, 65526, 65512, 34, 65530, 65504, 655394, 65526, 65504, 655394, 65524, 65506, 1441826, 65524, 65510, 1441826, 65532, 65512, 1441821, 65532, 65504, 655389, 4, 65504, 1048605, 4, 65512, 29)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="player" parent="." unique_id=1262716053 node_paths=PackedStringArray("camera") instance=ExtResource("2_dd0lh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49099827, 1.6231126, -7.5461364)
+camera = NodePath("camera")
+
+[node name="camera" parent="player" unique_id=608748979 node_paths=PackedStringArray("target") instance=ExtResource("3_bfxgj")]
+transform = Transform3D(0.7071068, -0.5, 0.5, 0, 0.7071068, 0.7071068, -0.7071068, -0.5, 0.5, 14.025199, -1.2431821, 14.59671)
+target = NodePath("..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=547300262]
+transform = Transform3D(0.98417705, -0.14138368, 0.106799684, 0, 0.6027485, 0.7979312, -0.1771878, -0.78530556, 0.59321123, 0, 17.71576, 0)
+
+[node name="Enemies" type="Node3D" parent="." unique_id=425586258]
+
+[node name="enemy_melee" parent="Enemies" unique_id=227389902 instance=ExtResource("4_bfxgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12266159, 1.5851612, -24.41538)
+
+[node name="enemy_melee5" parent="Enemies" unique_id=67895603 instance=ExtResource("4_bfxgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.905116, 1.5851612, -29.609545)
+
+[node name="enemy_melee6" parent="Enemies" unique_id=2035994352 instance=ExtResource("4_bfxgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.905116, 1.5851612, -27.066162)
+
+[node name="enemy_melee7" parent="Enemies" unique_id=1939127422 instance=ExtResource("4_bfxgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.354125, 1.5851612, -29.402075)
+
+[node name="enemy_melee8" parent="Enemies" unique_id=1710113201 instance=ExtResource("4_bfxgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.354125, 1.5851612, -26.833897)
+
+[node name="enemy_melee2" parent="Enemies" unique_id=1584088273 instance=ExtResource("4_bfxgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9107785, 1.5851612, -30.107412)
+
+[node name="enemy_melee3" parent="Enemies" unique_id=1523645923 instance=ExtResource("4_bfxgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0504956, 1.5851612, -36.81096)
+
+[node name="enemy_melee4" parent="Enemies" unique_id=605741203 instance=ExtResource("4_bfxgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4476347, 1.5851612, -36.81096)
+
+[node name="enemy_ranged" parent="Enemies" unique_id=1524821297 instance=ExtResource("5_dywbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.721149, 1.612896, -27.764854)
+
+[node name="enemy_ranged2" parent="Enemies" unique_id=749315766 instance=ExtResource("5_dywbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93000364, 1.612896, -33.881973)
+
+[node name="firepit" parent="." unique_id=1305035996 instance=ExtResource("6_1seuy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8816869, 0.10684204, -45.080425)
+
+[node name="firepit3" parent="." unique_id=1153431537 instance=ExtResource("6_1seuy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8816869, 0.10684204, -61.965076)
+
+[node name="firepit2" parent="." unique_id=1417356720 instance=ExtResource("6_1seuy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2971377, 0.10684204, -47.921318)
