@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cnfai0wsm7aqt"]
 
 [ext_resource type="PackedScene" uid="uid://b1ppt68n8nf7s" path="res://scenes/enemy/enemy.tscn" id="1_c4fut"]
+[ext_resource type="Material" uid="uid://c5lxnr11ac71n" path="res://textures/empty_tex_blue.tres" id="2_5l6pi"]
 [ext_resource type="Script" uid="uid://c6k1uyvgy2ihg" path="res://scripts/enemy/AttackRanged.gd" id="2_awgho"]
 [ext_resource type="PackedScene" uid="uid://duqrkwmcwhfb" path="res://scenes/enemy/arrow.tscn" id="3_w87q7"]
 [ext_resource type="PackedScene" uid="uid://7r13c575lpt3" path="res://models/enemies/RedTeam_Archer_Unit.fbx" id="5_mvi7f"]

@@ -17,12 +17,17 @@ config/icon="uid://dltpr65n6i3xb"
 
 [audio]
 
-buses/default_bus_layout="res://resources/default_bus_layout.tres"
+buses/default_bus_layout="uid://cknc0xtd5drks"
 
 [autoload]
 
 CameraEffects="*uid://cmw68o05w75l6"
 GameManager="*uid://bpqnpka10lfep"
+
+[global_group]
+
+destructible=""
+enemy=""
 
 [input]
 

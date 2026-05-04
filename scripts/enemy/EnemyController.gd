@@ -36,3 +36,5 @@ func _rotate_mesh(delta: float) -> void:
 		return
 	var target_basis := Basis.looking_at(-move_dir.normalized(), Vector3.UP)
 	mesh.global_basis = mesh.global_basis.slerp(target_basis, delta * 10.0)
+func _exit_tree() -> void:
+	GameManager.add_score()

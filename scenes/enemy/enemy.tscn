@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1dnvl2mowrgq" path="res://scripts/enemy/EnemyController.gd" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="2_5uy6h"]
+[ext_resource type="Material" uid="uid://c14ies5ss31w7" path="res://textures/empty_tex_indigo.tres" id="2_13gj6"]
 [ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/enemy/death_particles.tscn" id="4_nenq2"]
 [ext_resource type="Script" uid="uid://bqwnmnppokto6" path="res://scripts/enemy/Navigation.gd" id="4_xwavj"]
 [ext_resource type="Script" uid="uid://drvu2ohlt1kr" path="res://scripts/enemy/AttackMelee.gd" id="5_xwavj"]
@@ -15,13 +16,17 @@
 _data = [Vector2(0.0031152666, 1), 0.0, 0.0, 0, 0, Vector2(0.5046729, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="enemy" type="CharacterBody3D" unique_id=227389902 node_paths=PackedStringArray("mesh")]
+[node name="enemy" type="CharacterBody3D" unique_id=227389902 groups=["enemy"]]
 collision_layer = 8
 script = ExtResource("1_7p1mj")
 mesh = NodePath("Knight_Mesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=430020898]
 shape = SubResource("CapsuleShape3D_md0e3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1107697941]
+material_override = ExtResource("2_13gj6")
+mesh = SubResource("CapsuleMesh_4ra3w")
 
 [node name="health" type="Node" parent="." unique_id=2106537601]
 script = ExtResource("2_5uy6h")

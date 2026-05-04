@@ -1,11 +1,22 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://ctpp21eg50paa"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c5lxnr11ac71n"]
 
-[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="1_untq2"]
+[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="1_cwska"]
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="2_e7bjt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0apg0"]
+render_priority = 0
+shader = ExtResource("1_cwska")
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_untq2")
-shader_parameter/color = Color(0, 0.9098039, 1, 1)
+next_pass = SubResource("ShaderMaterial_0apg0")
+shader = ExtResource("2_e7bjt")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.21376333, 0.5076903, 1, 1)
 shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
 shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
 shader_parameter/uv_scale = Vector2(1, 1)

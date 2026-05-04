@@ -1,12 +1,15 @@
 extends Camera3D
 
 @export var target: Node3D
-var offset: Vector3 = Vector3.ZERO
+@export var offset: Vector3 = Vector3.ZERO
 var shake_offset: Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
 	CameraEffects.on_shake.connect(shake)
+	
+	if offset != Vector3.ZERO:
+		return
 	
 	if !target:
 		offset = global_position
