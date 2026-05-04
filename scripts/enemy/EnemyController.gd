@@ -30,11 +30,14 @@ func _physics_process(delta: float) -> void:
 func _rotate_mesh(delta: float) -> void:
 	if not mesh:
 		return
-
 	var move_dir := Vector3(velocity.x, 0, velocity.z)
 	if move_dir.length_squared() < 0.001:
 		return
 	var target_basis := Basis.looking_at(-move_dir.normalized(), Vector3.UP)
-	mesh.global_basis = mesh.global_basis.slerp(target_basis, delta * 10.0)
+	var from_q := mesh.global_basis.get_rotation_quaternion()
+	var to_q := target_basis.get_rotation_quaternion()
+	mesh.global_basis = Basis(from_q.slerp(to_q, delta * 10.0))
+
+
 func _exit_tree() -> void:
 	GameManager.add_score()

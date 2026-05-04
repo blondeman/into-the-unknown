@@ -17,6 +17,7 @@ script = ExtResource("1_7p1mj")
 mesh = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=430020898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_md0e3")
 
 [node name="health" type="Node" parent="." unique_id=2106537601]

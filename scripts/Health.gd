@@ -26,19 +26,32 @@ func take_damage(amount: int):
 func take_healing(amount: int):
 	take_damage(-amount)
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		take_damage(current_health)
 
 func die():
 	on_die.emit()
 	
 	var parent = get_parent()
-	var new_on_death_scene = on_death_scene.instantiate()
-	parent.get_parent().add_child(new_on_death_scene)
 	if parent is PlayerController:
-		new_on_death_scene.transform = parent.head.transform
+		var played_sound: bool = false
+		for segment in parent.get_head_and_segments():
+			var new_on_death_scene = on_death_scene.instantiate()
+			parent.get_parent().add_child(new_on_death_scene)
+			new_on_death_scene.global_transform = segment.global_transform
+			if new_on_death_scene.has_method("start"):
+				if !played_sound:
+					new_on_death_scene.start()
+					played_sound = true
+				else:
+					new_on_death_scene.start_no_audio()
 	else:
+		var new_on_death_scene = on_death_scene.instantiate()
+		parent.get_parent().add_child(new_on_death_scene)
 		new_on_death_scene.transform = parent.transform
-	if new_on_death_scene.has_method("start"):
-		new_on_death_scene.start()
+		if new_on_death_scene.has_method("start"):
+			new_on_death_scene.start()
 	
 	parent.queue_free()
 

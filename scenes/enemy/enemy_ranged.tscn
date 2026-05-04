@@ -40,7 +40,7 @@ shader_parameter/emission_energy = 1.0
 shader_parameter/ao_light_affect = 0.0
 shader_parameter/backlight = Color(0, 0, 0, 1)
 shader_parameter/alpha_cutoff = 0.5
-shader_parameter/color = Color(0.76862746, 0, 0, 1)
+shader_parameter/color = Color(0, 0.354221, 0.88273007, 1)
 shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
 shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
 shader_parameter/uv_scale = Vector2(1, 1)
@@ -135,7 +135,7 @@ shader_parameter/emission_energy = 1.0
 shader_parameter/ao_light_affect = 0.0
 shader_parameter/backlight = Color(0, 0, 0, 1)
 shader_parameter/alpha_cutoff = 0.5
-shader_parameter/color = Color(0.76862746, 0, 0, 1)
+shader_parameter/color = Color(0, 0.354221, 0.88273007, 1)
 shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
 shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
 shader_parameter/uv_scale = Vector2(1, 1)
@@ -232,7 +232,6 @@ shader_parameter/uv_offset = Vector2(0, 0)
 mesh = NodePath("Archer_Mesh")
 
 [node name="Archer_Mesh" parent="." index="1" unique_id=888680400 instance=ExtResource("5_mvi7f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="Archer_Mesh/RedTeam_Archer_Armature" parent_id_path=PackedInt32Array(888680400, 10946215) index="0" unique_id=33257063]
 bones/1/position = Vector3(0, 0.002020106, 1.3552527e-20)
@@ -300,14 +299,18 @@ surface_material_override/0 = SubResource("ShaderMaterial_2q7dv")
 surface_material_override/1 = SubResource("ShaderMaterial_5r8gj")
 surface_material_override/2 = SubResource("ShaderMaterial_ppm16")
 
-[node name="attack" type="Node" parent="." index="2" unique_id=1972211976 node_paths=PackedStringArray("anim_player")]
+[node name="attack" type="Node" parent="." index="2" unique_id=1972211976 node_paths=PackedStringArray("arrow_spawn_point", "anim_player")]
 script = ExtResource("2_awgho")
 arrow = ExtResource("3_w87q7")
 velocity = 20.0
+arrow_spawn_point = NodePath("../arrow_spawn")
 range = 15.0
 attack_sounds = Array[AudioStream]([ExtResource("6_npp3m")])
 anim_player = NodePath("../Archer_Mesh/AnimationPlayer")
 attack_animation = "RedTeam_Archer_Armature|Atack_Archer"
 walk_animation = "RedTeam_Archer_Armature|Running_Archer"
+
+[node name="arrow_spawn" type="Node3D" parent="." index="5" unique_id=454039729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.1)
 
 [editable path="Archer_Mesh"]

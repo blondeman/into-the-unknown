@@ -19,7 +19,7 @@ size = Vector3(0.3, 0.3, 0.3)
 
 [node name="CPUParticles3D" type="CPUParticles3D" unique_id=2052747345 node_paths=PackedStringArray("audio_stream_player")]
 emitting = false
-amount = 50
+amount = 30
 one_shot = true
 explosiveness = 1.0
 mesh = SubResource("BoxMesh_u27mo")
@@ -40,5 +40,5 @@ audio_stream_player = NodePath("AudioStreamPlayer3D")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=836718245]
 stream = ExtResource("3_jb5s5")
-volume_db = 2.0
+volume_db = 5.0
 autoplay = true
