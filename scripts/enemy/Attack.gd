@@ -1,4 +1,3 @@
-@tool
 @abstract
 class_name Attack
 extends Node
@@ -9,26 +8,21 @@ extends Node
 
 @export var attack_sounds: Array[AudioStream]
 
+@export_group("Animation")
+@export var anim_player: AnimationPlayer = null
+@export var attack_animation: String = ""
+@export var walk_animation: String = ""
+
 var cooldown: float = 0.0
 var enemy_controller: EnemyController
 
-func _get_configuration_warnings() -> PackedStringArray:
-	var warnings = PackedStringArray()
-	if not get_parent() is EnemyController:
-		warnings.append("This node must be a child of EnemyController")
-	return warnings
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
-	
 	enemy_controller = get_parent()
+	anim_player.play(walk_animation)
 
 
 func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		return
-	
 	cooldown -= delta
 	if cooldown <= 0.0:
 		_on_attack()
@@ -46,7 +40,13 @@ func _on_attack():
 		if closest_segment == null:
 			return
 		if enemy_controller.global_position.distance_to(closest_segment.global_position) < range:
-			cooldown = attack_rate  # moved up here
+			cooldown = attack_rate
+			if anim_player.current_animation != attack_animation:
+				anim_player.play(attack_animation)
+				anim_player.animation_finished.connect(
+					func(_anim_name): anim_player.play(walk_animation),
+					CONNECT_ONE_SHOT
+				)
 			_attack(closest_segment)
 			_play_sound()
 

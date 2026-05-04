@@ -1,0 +1,377 @@
+[gd_scene format=3 uid="uid://bh1vdbfys1pv3"]
+
+[ext_resource type="PackedScene" uid="uid://b1ppt68n8nf7s" path="res://scenes/enemy/enemy.tscn" id="1_8divv"]
+[ext_resource type="Script" uid="uid://drvu2ohlt1kr" path="res://scripts/enemy/AttackMelee.gd" id="2_pwbyy"]
+[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="3_0slgx"]
+[ext_resource type="AudioStream" uid="uid://dv0nixil5f0yy" path="res://audio/enemy/enemy_attack_1.wav" id="3_kxn7g"]
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="4_6qjhf"]
+[ext_resource type="AudioStream" uid="uid://ur4wv0fiooep" path="res://audio/enemy/enemy_attack_2.wav" id="4_p0ehw"]
+[ext_resource type="PackedScene" uid="uid://3aq2jiaar1t0" path="res://models/enemies/RedTeam_SwordsMen_Unit.fbx" id="5_p0ehw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u67ol"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7awev"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_u67ol")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.36078432, 0.36078432, 0.36078432, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p78kn"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n14ib"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_p78kn")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.76862746, 0, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4qg1"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fyfq5"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_w4qg1")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.8420635, 0.7097837, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4d0xs"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yp45u"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_4d0xs")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.52588856, 0.525896, 0.5258943, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_buk7u"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqorf"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_buk7u")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.36078432, 0.36078432, 0.36078432, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_stwbc"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gblb6"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_stwbc")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.76862746, 0, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xah8"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlvwc"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_4xah8")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.52588856, 0.525896, 0.5258943, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8e4u"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dren7"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_a8e4u")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.36078432, 0.36078432, 0.36078432, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cb5tq"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8ioj"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_cb5tq")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.52588856, 0.525896, 0.5258943, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xotha"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nre5t"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_xotha")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.38, 0.15833335, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oi1f6"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0slgx"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_oi1f6")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.8420635, 0.7097837, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qjhf"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_oi1f6")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.38, 0.15833335, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mbnu"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_oi1f6")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.76155686, 0.7615625, 0.76156104, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ly1a4"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgr0f"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_ly1a4")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.38, 0.15833335, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bgljy"]
+render_priority = 0
+shader = ExtResource("3_0slgx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_503gv"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_bgljy")
+shader = ExtResource("4_6qjhf")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.36078432, 0.36078432, 0.36078432, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[node name="enemy_melee" unique_id=227389902 node_paths=PackedStringArray("mesh") instance=ExtResource("1_8divv")]
+mesh = NodePath("RedTeam_SwordsMen_Unit")
+
+[node name="RedTeam_SwordsMen_Unit" parent="." index="1" unique_id=1705595052 instance=ExtResource("5_p0ehw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Skeleton3D" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature" parent_id_path=PackedInt32Array(1705595052, 1957232082) index="0" unique_id=957397226]
+bones/1/position = Vector3(0, 0.002020106, 1.3552527e-20)
+bones/1/rotation = Quaternion(0, 1.1920929e-07, 0, 1)
+bones/2/position = Vector3(0, 0.005381884, -1.3552527e-20)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/4/position = Vector3(0.0031590685, 0.004357637, 7.5318063e-10)
+bones/4/rotation = Quaternion(-0.080233075, 0.08023351, -0.70254016, 0.7025401)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/position = Vector3(-7.446578e-12, 0.0019989207, 3.0342825e-11)
+bones/5/rotation = Quaternion(0.17145358, 1.2461501e-07, 1.3077033e-07, 0.98519224)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(-6.462287e-10, 0.0037542216, 0.0007358755)
+bones/6/rotation = Quaternion(0.3181861, 0.6314719, 0.31818587, 0.6314734)
+bones/6/scale = Vector3(1, 1, 1)
+bones/8/position = Vector3(2.1343621e-11, 0.0040612477, -2.4304534e-05)
+bones/8/rotation = Quaternion(-0.05855937, -4.1651668e-07, -2.699257e-08, 0.9982839)
+bones/8/scale = Vector3(1, 0.99999994, 0.9999998)
+bones/10/position = Vector3(2.9905556e-10, 0.004991905, 0.0005282353)
+bones/10/rotation = Quaternion(-1.544165e-07, -0.6644855, 0.74730116, -4.4623152e-07)
+bones/10/scale = Vector3(1, 0.9999998, 0.9999999)
+bones/12/position = Vector3(-0.0031590685, 0.004357637, -7.5318063e-10)
+bones/12/rotation = Quaternion(-0.08023324, -0.08023366, 0.70254, 0.70254016)
+bones/12/scale = Vector3(1, 0.99999994, 1)
+bones/13/position = Vector3(7.979728e-17, 0.001998921, 1.2911468e-10)
+bones/13/rotation = Quaternion(0.17145357, -1.2429568e-07, -1.2893527e-07, 0.98519224)
+bones/13/scale = Vector3(1, 0.99999994, 1)
+bones/14/position = Vector3(6.4622857e-10, 0.0037542211, 0.0007358755)
+bones/14/rotation = Quaternion(0.31818604, -0.63147193, -0.31818596, 0.6314733)
+bones/14/scale = Vector3(1, 1.0000001, 1)
+bones/16/position = Vector3(-2.1343627e-11, 0.0040612463, -2.4304485e-05)
+bones/16/rotation = Quaternion(-0.058559347, 4.1651663e-07, 2.6992579e-08, 0.9982839)
+bones/16/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/18/position = Vector3(-3.0540934e-10, 0.0049910517, 0.0005210002)
+bones/18/rotation = Quaternion(-0.7473011, 1.5842582e-07, 4.7809175e-07, 0.66448563)
+bones/18/scale = Vector3(1, 1.0000001, 0.99999994)
+bones/20/position = Vector3(0.0014999998, -9.579277e-06, 1.3552527e-20)
+bones/20/rotation = Quaternion(-0.7071067, 4.2089088e-08, 0.7071068, 0)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/position = Vector3(-5.96045e-12, 0.002503431, 4.1723253e-11)
+bones/21/rotation = Quaternion(-9.80632e-09, 6.31914e-08, 0.70710677, 0.70710677)
+bones/21/scale = Vector3(1, 1, 1)
+bones/23/position = Vector3(-0.0014999998, -9.579277e-06, 1.3552527e-20)
+bones/23/rotation = Quaternion(0.7071067, 4.2089088e-08, 0.7071068, 0)
+bones/23/scale = Vector3(1, 1, 1)
+bones/24/position = Vector3(5.96045e-12, 0.002503431, 4.1723253e-11)
+bones/24/rotation = Quaternion(-9.80632e-09, -6.31914e-08, -0.70710677, 0.70710677)
+bones/24/scale = Vector3(1, 1, 1)
+
+[node name="RedTeam_SwordsMen_Armor" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="0" unique_id=1559997982]
+surface_material_override/0 = SubResource("ShaderMaterial_7awev")
+surface_material_override/1 = SubResource("ShaderMaterial_n14ib")
+surface_material_override/2 = SubResource("ShaderMaterial_fyfq5")
+surface_material_override/3 = SubResource("ShaderMaterial_yp45u")
+surface_material_override/4 = SubResource("ShaderMaterial_iqorf")
+
+[node name="RedTeam_SwordsMen_Helmet" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="1" unique_id=953570278]
+surface_material_override/0 = SubResource("ShaderMaterial_gblb6")
+surface_material_override/1 = SubResource("ShaderMaterial_dlvwc")
+surface_material_override/2 = SubResource("ShaderMaterial_dren7")
+
+[node name="RedTeam_SwordsMen_Shoulders_R" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="2" unique_id=1301616880]
+surface_material_override/0 = SubResource("ShaderMaterial_r8ioj")
+
+[node name="RedTeam_SwordsMen_Belt" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="3" unique_id=1322963177]
+surface_material_override/0 = SubResource("ShaderMaterial_nre5t")
+
+[node name="OneHand_Sword_Iron" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="4" unique_id=649050502]
+surface_material_override/0 = SubResource("ShaderMaterial_0slgx")
+surface_material_override/1 = SubResource("ShaderMaterial_6qjhf")
+surface_material_override/2 = SubResource("ShaderMaterial_7mbnu")
+
+[node name="Shield01" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="5" unique_id=1222337281]
+surface_material_override/0 = SubResource("ShaderMaterial_rgr0f")
+surface_material_override/1 = SubResource("ShaderMaterial_503gv")
+
+[node name="attack" type="Node" parent="." index="3" unique_id=492877111 node_paths=PackedStringArray("anim_player")]
+script = ExtResource("2_pwbyy")
+range = 1.5
+attack_sounds = Array[AudioStream]([ExtResource("3_kxn7g"), ExtResource("4_p0ehw")])
+anim_player = NodePath("../RedTeam_SwordsMen_Unit/AnimationPlayer")
+attack_animation = "RedTeam_SwordsMen_Armature|Atack_SwordsMen"
+walk_animation = "RedTeam_SwordsMen_Armature|Running_SwordsMen"
+
+[editable path="RedTeam_SwordsMen_Unit"]

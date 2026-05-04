@@ -1,13 +1,9 @@
-@tool
 extends Attack
 
 @export var arrow: PackedScene
 @export var velocity: float = 10
-@onready var anim_player = $"../Archer_Mesh/AnimationPlayer"
 
 func _attack(target: Node3D) -> void:
-	if anim_player.current_animation != "RedTeam_Archer_Armature|Atack_Archer":
-		anim_player.play("RedTeam_Archer_Armature|Atack_Archer")
 	var arrow_instance = arrow.instantiate()
 	get_tree().root.add_child(arrow_instance)
 	arrow_instance.hit_player.connect(func(): deal_damage(target))
