@@ -15,9 +15,10 @@
 _data = [Vector2(0.0031152666, 1), 0.0, 0.0, 0, 0, Vector2(0.5046729, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="enemy" type="CharacterBody3D" unique_id=227389902]
+[node name="enemy" type="CharacterBody3D" unique_id=227389902 node_paths=PackedStringArray("mesh")]
 collision_layer = 8
 script = ExtResource("1_7p1mj")
+mesh = NodePath("Knight_Mesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=430020898]
 shape = SubResource("CapsuleShape3D_md0e3")
@@ -39,5 +40,5 @@ avoidance_priority = 0.5
 script = ExtResource("4_xwavj")
 probability_curve = SubResource("Curve_c4w8v")
 
-[node name="Mesh" parent="." unique_id=1823075001 instance=ExtResource("8_13gj6")]
+[node name="Knight_Mesh" parent="." unique_id=126273965 instance=ExtResource("8_13gj6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7796048, 0)

@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 @export var speed = 5.0
 @export var target: Node3D
-@onready var mesh: Node3D = $Mesh
+@export var mesh: Node3D
 var direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
