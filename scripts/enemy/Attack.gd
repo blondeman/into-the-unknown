@@ -34,18 +34,21 @@ func _process(delta: float) -> void:
 		_on_attack()
 
 func _on_attack():
+	if !enemy_controller:
+		enemy_controller = get_parent()
 	if !enemy_controller.target:
 		return
 	
 	if enemy_controller.target is PlayerController:
 		var segments: Array[Node3D] = enemy_controller.target.get_head_and_segments()
 		var closest_segment = get_closest_segment(segments)
+		
 		if closest_segment == null:
 			return
 		if enemy_controller.global_position.distance_to(closest_segment.global_position) < range:
+			cooldown = attack_rate  # moved up here
 			_attack(closest_segment)
 			_play_sound()
-			cooldown = attack_rate
 
 
 @abstract func _attack(target: Node3D)
