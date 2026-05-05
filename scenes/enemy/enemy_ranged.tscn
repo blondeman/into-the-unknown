@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://duqrkwmcwhfb" path="res://scenes/enemy/arrow.tscn" id="3_w87q7"]
 [ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="4_ypdm1"]
 [ext_resource type="PackedScene" uid="uid://7r13c575lpt3" path="res://models/enemies/RedTeam_Archer_Unit.fbx" id="5_mvi7f"]
-[ext_resource type="AudioStream" uid="uid://ur4wv0fiooep" path="res://audio/enemy/enemy_attack_2.wav" id="6_npp3m"]
+[ext_resource type="AudioStream" uid="uid://1snwy7wk7nxm" path="res://audio/enemy/enemy_attack_3.wav" id="7_ypdm1"]
+[ext_resource type="AudioStream" uid="uid://dnhe4x4trxo3v" path="res://audio/enemy/enemy_attack_4.wav" id="8_2jbxt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2jbxt"]
 render_priority = 0
@@ -233,7 +234,7 @@ mesh = NodePath("Archer_Mesh")
 
 [node name="Archer_Mesh" parent="." index="1" unique_id=888680400 instance=ExtResource("5_mvi7f")]
 
-[node name="Skeleton3D" parent="Archer_Mesh/RedTeam_Archer_Armature" parent_id_path=PackedInt32Array(888680400, 10946215) index="0" unique_id=33257063]
+[node name="Skeleton3D" parent="Archer_Mesh/RedTeam_Archer_Armature" parent_id_path=PackedInt32Array(888680400, 209414788) index="0" unique_id=1152465319]
 bones/1/position = Vector3(0, 0.002020106, 1.3552527e-20)
 bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/2/position = Vector3(0, 0.005381884, 1.3552527e-20)
@@ -274,27 +275,27 @@ bones/21/rotation = Quaternion(1, 5.9522964e-08, 7.54979e-08, 0)
 bones/22/position = Vector3(-1.0728838e-10, 0.002503431, -5.9604583e-12)
 bones/22/rotation = Quaternion(5.3385083e-08, 0.70710677, -0.70710677, 5.3385083e-08)
 
-[node name="RedTeam_Archer" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="0" unique_id=237649805]
+[node name="RedTeam_Archer" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="0" unique_id=1270926264]
 surface_material_override/0 = SubResource("ShaderMaterial_ptkbb")
 surface_material_override/1 = SubResource("ShaderMaterial_467a5")
 surface_material_override/2 = SubResource("ShaderMaterial_u4hjc")
 surface_material_override/3 = SubResource("ShaderMaterial_lcg8a")
 
-[node name="RedTeam_Archer_Shoulders_R" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="1" unique_id=1532344692]
+[node name="RedTeam_Archer_Shoulders_R" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="1" unique_id=199288262]
 surface_material_override/0 = SubResource("ShaderMaterial_svw0u")
 
-[node name="RedTeam_Acher_Helmet" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="2" unique_id=1198785765]
+[node name="RedTeam_Acher_Helmet" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="2" unique_id=1567908099]
 surface_material_override/0 = SubResource("ShaderMaterial_xw4u8")
 surface_material_override/1 = SubResource("ShaderMaterial_0gt2r")
 
-[node name="RedTeam_Quiver_Archer" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="3" unique_id=1887664798]
+[node name="RedTeam_Quiver_Archer" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="3" unique_id=1929406834]
 surface_material_override/0 = SubResource("ShaderMaterial_tdff2")
 surface_material_override/1 = SubResource("ShaderMaterial_tdff2")
 
-[node name="RedTeam_Archer_Shoulders_L" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="4" unique_id=224355091]
+[node name="RedTeam_Archer_Shoulders_L" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="4" unique_id=1003284738]
 surface_material_override/0 = SubResource("ShaderMaterial_qx7qt")
 
-[node name="CrossBow01" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="5" unique_id=1760745680]
+[node name="CrossBow01" parent="Archer_Mesh/RedTeam_Archer_Armature/Skeleton3D" index="5" unique_id=248869388]
 surface_material_override/0 = SubResource("ShaderMaterial_2q7dv")
 surface_material_override/1 = SubResource("ShaderMaterial_5r8gj")
 surface_material_override/2 = SubResource("ShaderMaterial_ppm16")
@@ -305,7 +306,7 @@ arrow = ExtResource("3_w87q7")
 velocity = 20.0
 arrow_spawn_point = NodePath("../arrow_spawn")
 range = 15.0
-attack_sounds = Array[AudioStream]([ExtResource("6_npp3m")])
+attack_sounds = Array[AudioStream]([ExtResource("7_ypdm1"), ExtResource("8_2jbxt")])
 anim_player = NodePath("../Archer_Mesh/AnimationPlayer")
 attack_animation = "RedTeam_Archer_Armature|Atack_Archer"
 walk_animation = "RedTeam_Archer_Armature|Running_Archer"

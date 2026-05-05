@@ -5,10 +5,14 @@
 [ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="3_h6wa2"]
 [ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="4_3muxg"]
 [ext_resource type="Script" uid="uid://drvu2ohlt1kr" path="res://scripts/enemy/AttackMelee.gd" id="5_el63h"]
+[ext_resource type="AudioStream" uid="uid://diy134nkdav7a" path="res://audio/enemy/enemy_hurt_1.wav" id="5_uqrm5"]
 [ext_resource type="AudioStream" uid="uid://dv0nixil5f0yy" path="res://audio/enemy/enemy_attack_1.wav" id="6_0ojeb"]
+[ext_resource type="AudioStream" uid="uid://pselv7m8ulae" path="res://audio/enemy/enemy_hurt_2.wav" id="6_em85b"]
+[ext_resource type="AudioStream" uid="uid://ka0plsje4d5e" path="res://audio/enemy/enemy_hurt_3.wav" id="7_ets23"]
 [ext_resource type="AudioStream" uid="uid://ur4wv0fiooep" path="res://audio/enemy/enemy_attack_2.wav" id="7_holm4"]
 [ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="8_6r6bn"]
 [ext_resource type="Script" uid="uid://b61nb4mgre2xe" path="res://scripts/enemy/BossHealthBar.gd" id="8_h6wa2"]
+[ext_resource type="AudioStream" uid="uid://2dqd4r3mh12i" path="res://audio/enemy/enemy_hurt_4.wav" id="8_jxwep"]
 [ext_resource type="Texture2D" uid="uid://b8sjknkvgu153" path="res://ui/boss_background.png" id="10_0ojeb"]
 [ext_resource type="Texture2D" uid="uid://cwat6di2hxjam" path="res://ui/boss_overlay.png" id="11_holm4"]
 [ext_resource type="Texture2D" uid="uid://dqjfvomag74hm" path="res://ui/boss_fill.png" id="12_xbc7n"]
@@ -297,7 +301,7 @@ mesh = NodePath("RedTeam_SwordsMen_Unit")
 [node name="RedTeam_SwordsMen_Unit" parent="." index="1" unique_id=1705595052 instance=ExtResource("2_6r6bn")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="Skeleton3D" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature" parent_id_path=PackedInt32Array(1705595052, 1957232082) index="0" unique_id=957397226]
+[node name="Skeleton3D" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature" parent_id_path=PackedInt32Array(1705595052, 1273266578) index="0" unique_id=1743472521]
 bones/1/position = Vector3(0, 0.002020106, 1.3552527e-20)
 bones/1/rotation = Quaternion(0, 1.1920929e-07, 0, 1)
 bones/2/position = Vector3(0, 0.005381884, -1.3552527e-20)
@@ -349,35 +353,37 @@ bones/26/rotation = Quaternion(1, -1.776357e-15, -6.715444e-07, 1.1297562e-14)
 bones/28/position = Vector3(-0.002950795, 0.002155195, 0.0025785277)
 bones/28/rotation = Quaternion(1, 1.776357e-15, 6.715444e-07, 1.1297562e-14)
 
-[node name="RedTeam_SwordsMen_Armor" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="0" unique_id=1559997982]
+[node name="RedTeam_SwordsMen_Armor" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="0" unique_id=364129735]
 surface_material_override/0 = SubResource("ShaderMaterial_7awev")
 surface_material_override/1 = SubResource("ShaderMaterial_n14ib")
 surface_material_override/2 = SubResource("ShaderMaterial_fyfq5")
 surface_material_override/3 = SubResource("ShaderMaterial_yp45u")
 surface_material_override/4 = SubResource("ShaderMaterial_iqorf")
 
-[node name="RedTeam_SwordsMen_Helmet" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="1" unique_id=953570278]
+[node name="RedTeam_SwordsMen_Helmet" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="1" unique_id=1987971970]
 surface_material_override/0 = SubResource("ShaderMaterial_gblb6")
 surface_material_override/1 = SubResource("ShaderMaterial_dlvwc")
 surface_material_override/2 = SubResource("ShaderMaterial_dren7")
 
-[node name="RedTeam_SwordsMen_Shoulders_R" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="2" unique_id=1301616880]
+[node name="RedTeam_SwordsMen_Shoulders_R" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="2" unique_id=2126399833]
 surface_material_override/0 = SubResource("ShaderMaterial_r8ioj")
 
-[node name="RedTeam_SwordsMen_Belt" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="3" unique_id=1322963177]
+[node name="RedTeam_SwordsMen_Belt" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="3" unique_id=668161498]
 surface_material_override/0 = SubResource("ShaderMaterial_nre5t")
 
-[node name="OneHand_Sword_Iron" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="4" unique_id=649050502]
+[node name="OneHand_Sword_Iron" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="4" unique_id=1133947617]
 surface_material_override/0 = SubResource("ShaderMaterial_0slgx")
 surface_material_override/1 = SubResource("ShaderMaterial_6qjhf")
 surface_material_override/2 = SubResource("ShaderMaterial_7mbnu")
 
-[node name="Shield01" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="5" unique_id=1222337281]
+[node name="Shield01" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="5" unique_id=2104382110]
 surface_material_override/0 = SubResource("ShaderMaterial_rgr0f")
 surface_material_override/1 = SubResource("ShaderMaterial_503gv")
 
 [node name="health" parent="." index="2" unique_id=2106537601]
 max_health = 1000
+hit_sounds = Array[AudioStream]([ExtResource("5_uqrm5"), ExtResource("6_em85b"), ExtResource("7_ets23"), ExtResource("8_jxwep")])
+boost = 10.0
 
 [node name="attack" type="Node" parent="." index="3" unique_id=492877111 node_paths=PackedStringArray("anim_player")]
 script = ExtResource("5_el63h")
