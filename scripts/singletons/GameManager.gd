@@ -15,7 +15,7 @@ var intro: PackedScene = preload("res://scenes/levels/intro.tscn")
 var outro: PackedScene = preload("res://scenes/levels/outro.tscn")
 
 var levels: Array[PackedScene] = [
-	preload("res://scenes/testing/test_environment.tscn"),
+	preload("res://scenes/levels/level1.tscn"),
 	preload("res://scenes/testing/navmesh-testing.tscn"),
 	preload("res://scenes/testing/tile_test.tscn"),
 ]

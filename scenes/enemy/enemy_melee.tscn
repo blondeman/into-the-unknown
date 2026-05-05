@@ -291,7 +291,7 @@ mesh = NodePath("RedTeam_SwordsMen_Unit")
 [node name="RedTeam_SwordsMen_Unit" parent="." index="1" unique_id=1705595052 instance=ExtResource("5_p0ehw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Skeleton3D" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature" parent_id_path=PackedInt32Array(1705595052, 1957232082) index="0" unique_id=957397226]
+[node name="Skeleton3D" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature" parent_id_path=PackedInt32Array(1705595052, 1678095389) index="0" unique_id=1549028689]
 bones/1/position = Vector3(0, 0.002020106, 1.3552527e-20)
 bones/1/rotation = Quaternion(0, 1.1920929e-07, 0, 1)
 bones/2/position = Vector3(0, 0.005381884, -1.3552527e-20)
@@ -339,30 +339,30 @@ bones/24/position = Vector3(5.96045e-12, 0.002503431, 4.1723253e-11)
 bones/24/rotation = Quaternion(-9.80632e-09, -6.31914e-08, -0.70710677, 0.70710677)
 bones/24/scale = Vector3(1, 1, 1)
 
-[node name="RedTeam_SwordsMen_Armor" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="0" unique_id=1559997982]
+[node name="RedTeam_SwordsMen_Armor" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="0" unique_id=1328431932]
 surface_material_override/0 = SubResource("ShaderMaterial_7awev")
 surface_material_override/1 = SubResource("ShaderMaterial_n14ib")
 surface_material_override/2 = SubResource("ShaderMaterial_fyfq5")
 surface_material_override/3 = SubResource("ShaderMaterial_yp45u")
 surface_material_override/4 = SubResource("ShaderMaterial_iqorf")
 
-[node name="RedTeam_SwordsMen_Helmet" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="1" unique_id=953570278]
+[node name="RedTeam_SwordsMen_Helmet" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="1" unique_id=1139375648]
 surface_material_override/0 = SubResource("ShaderMaterial_gblb6")
 surface_material_override/1 = SubResource("ShaderMaterial_dlvwc")
 surface_material_override/2 = SubResource("ShaderMaterial_dren7")
 
-[node name="RedTeam_SwordsMen_Shoulders_R" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="2" unique_id=1301616880]
+[node name="RedTeam_SwordsMen_Shoulders_R" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="2" unique_id=1954299543]
 surface_material_override/0 = SubResource("ShaderMaterial_r8ioj")
 
-[node name="RedTeam_SwordsMen_Belt" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="3" unique_id=1322963177]
+[node name="RedTeam_SwordsMen_Belt" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="3" unique_id=1149443640]
 surface_material_override/0 = SubResource("ShaderMaterial_nre5t")
 
-[node name="OneHand_Sword_Iron" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="4" unique_id=649050502]
+[node name="OneHand_Sword_Iron" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="4" unique_id=2097090495]
 surface_material_override/0 = SubResource("ShaderMaterial_0slgx")
 surface_material_override/1 = SubResource("ShaderMaterial_6qjhf")
 surface_material_override/2 = SubResource("ShaderMaterial_7mbnu")
 
-[node name="Shield01" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="5" unique_id=1222337281]
+[node name="Shield01" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="5" unique_id=1136453968]
 surface_material_override/0 = SubResource("ShaderMaterial_rgr0f")
 surface_material_override/1 = SubResource("ShaderMaterial_503gv")
 
