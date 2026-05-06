@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dvwk81wmkd482"]
+
+[ext_resource type="Script" uid="uid://q050ymwkjbq5" path="res://scripts/NavmeshUpdater.gd" id="1_tc3is"]
+[ext_resource type="PackedScene" uid="uid://8qs4lkeubudv" path="res://scenes/player/player.tscn" id="2_posob"]
+[ext_resource type="PackedScene" uid="uid://skfb6kiybidb" path="res://scenes/camera.tscn" id="3_8bln1"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_c6p1j"]
+resource_local_to_scene = true
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 4294901761
+
+[node name="level" type="Node3D" unique_id=221896957]
+
+[node name="navmesh" type="NavigationRegion3D" parent="." unique_id=1103308116]
+navigation_mesh = SubResource("NavigationMesh_c6p1j")
+script = ExtResource("1_tc3is")
+
+[node name="static" type="Node3D" parent="navmesh" unique_id=940021769]
+
+[node name="destructibles" type="Node3D" parent="navmesh" unique_id=1871847850]
+
+[node name="player" parent="." unique_id=1262716053 node_paths=PackedStringArray("camera") instance=ExtResource("2_posob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+camera = NodePath("../camera")
+
+[node name="camera" parent="." unique_id=608748979 node_paths=PackedStringArray("target") instance=ExtResource("3_8bln1")]
+transform = Transform3D(0.7071067, -0.49999997, 0.4999999, 0, 0.70710665, 0.70710677, -0.7071067, -0.49999997, 0.4999999, 12.5, 20, 12.5)
+target = NodePath("../player")
+
+[node name="light" type="DirectionalLight3D" parent="." unique_id=1050711607]
+transform = Transform3D(0.69234467, 0.45621732, -0.55903894, 0, 0.7747569, 0.6322592, 0.7215669, -0.43774128, 0.5363988, 0, 0, 0)
+shadow_enabled = true
+
+[node name="enemies" type="Node3D" parent="." unique_id=2012783538]

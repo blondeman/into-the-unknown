@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bffy4qlnhxtmv"]
+
+[ext_resource type="PackedScene" uid="uid://dvwk81wmkd482" path="res://scenes/levels/level_parent.tscn" id="1_ksju7"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ksju7"]
+resource_local_to_scene = true
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 4294901761
+
+[node name="level_1" unique_id=221896957 instance=ExtResource("1_ksju7")]
+
+[node name="navmesh" parent="." index="0" unique_id=1103308116]
+navigation_mesh = SubResource("NavigationMesh_ksju7")
