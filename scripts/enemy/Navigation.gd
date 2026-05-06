@@ -4,7 +4,7 @@ extends NavigationAgent3D
 var enemy_controller: EnemyController
 @export var probability_curve: Curve
 
-@export var follow_range: float = 50
+@export var follow_range: float = 40
 
 var current_target: Node3D = null
 

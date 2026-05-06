@@ -9,6 +9,18 @@ resource_local_to_scene = true
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 4294901761
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tc3is"]
+resource_local_to_scene = true
+
+[sub_resource type="Sky" id="Sky_posob"]
+resource_local_to_scene = true
+sky_material = SubResource("ProceduralSkyMaterial_tc3is")
+
+[sub_resource type="Environment" id="Environment_8bln1"]
+resource_local_to_scene = true
+background_mode = 2
+sky = SubResource("Sky_posob")
+
 [node name="level" type="Node3D" unique_id=221896957]
 
 [node name="navmesh" type="NavigationRegion3D" parent="." unique_id=1103308116]
@@ -32,3 +44,6 @@ transform = Transform3D(0.69234467, 0.45621732, -0.55903894, 0, 0.7747569, 0.632
 shadow_enabled = true
 
 [node name="enemies" type="Node3D" parent="." unique_id=2012783538]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2081714253]
+environment = SubResource("Environment_8bln1")
