@@ -7,14 +7,16 @@ var global_scene_paths: Array[String] = [
 	"res://scenes/performance_monitor.tscn",
 	"res://scenes/music_manager.tscn",
 ]
-var transition_path: String = "res://scenes/levels/transition.tscn"
-var menu_path: String = "res://scenes/levels/menu.tscn"
-var intro_path: String = "res://scenes/levels/intro.tscn"
-var outro_path: String = "res://scenes/levels/outro.tscn"
-var levels: Array[String] = [
-	"res://scenes/testing/test_environment.tscn",
-	"res://scenes/testing/test_environment.tscn",
-	"res://scenes/testing/test_environment.tscn",
+
+var transition: PackedScene = preload("res://scenes/levels/transition.tscn")
+var menu: PackedScene = preload("res://scenes/levels/menu.tscn")
+var intro: PackedScene = preload("res://scenes/levels/intro.tscn")
+var outro: PackedScene = preload("res://scenes/levels/outro.tscn")
+
+var levels: Array[PackedScene] = [
+	preload("res://scenes/levels/level1.tscn"),
+	preload("res://scenes/testing/test_environment.tscn"),
+	preload("res://scenes/testing/test_environment.tscn"),
 ]
 
 @warning_ignore("unused_signal")
