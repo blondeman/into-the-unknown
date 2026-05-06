@@ -34,7 +34,7 @@ func _set_health(amount: int, health: int, total: int):
 	var right_degrees := health_fill_right.radial_initial_angle - 180.0
 	var left_degrees  := health_fill_left.radial_initial_angle - 180.0
 	
-	var scaled_smooth_time = smooth_time * (float(amount) / float(total))
+	var scaled_smooth_time = smooth_time * (float(abs(amount)) / float(total))
 
 	if _health_tween:
 		_health_tween.kill()

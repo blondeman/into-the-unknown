@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://m3jl468c2n30"]
+
+[ext_resource type="PackedScene" uid="uid://cq6xxmeikmnnj" path="res://models/buildings/unit-tree.glb" id="1_4myh6"]
+[ext_resource type="Material" uid="uid://xs0m2qy5fjud" path="res://textures/color_map.tres" id="2_5qbtl"]
+
+[node name="tree" unique_id=2121955454 instance=ExtResource("1_4myh6")]
+
+[node name="unit-tree" parent="." index="0" unique_id=945986272]
+transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 0, 0, 0)
+material_override = ExtResource("2_5qbtl")

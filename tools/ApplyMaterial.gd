@@ -1,7 +1,7 @@
 @tool
 extends EditorScript
 
-const MATERIAL = preload("res://textures/color_map.tres")
+const MATERIAL = preload("res://textures/dungeon_color_map.tres")
 
 func _run() -> void:
 	var selected_nodes = get_editor_interface().get_selection().get_selected_nodes()

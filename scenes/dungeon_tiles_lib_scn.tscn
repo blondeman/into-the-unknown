@@ -41,69 +41,103 @@
 [node name="corridor-corner2" parent="." unique_id=608641695 instance=ExtResource("1_5xwup")]
 
 [node name="corridor-end2" parent="." unique_id=1656309961 instance=ExtResource("2_18xtt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 
 [node name="corridor-intersection2" parent="." unique_id=1423856976 instance=ExtResource("3_34euj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
 
 [node name="corridor-junction2" parent="." unique_id=654583052 instance=ExtResource("4_1enne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
 
 [node name="corridor-transition2" parent="." unique_id=849280877 instance=ExtResource("5_r46tv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 0)
 
 [node name="corridor-wide-corner2" parent="." unique_id=989429463 instance=ExtResource("6_i2r7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
 
 [node name="corridor-wide-end2" parent="." unique_id=1835177103 instance=ExtResource("7_5k6dm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 0)
 
 [node name="corridor-wide-intersection2" parent="." unique_id=2093601790 instance=ExtResource("8_dxrjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140, 0, 0)
 
 [node name="corridor-wide-junction2" parent="." unique_id=1509479617 instance=ExtResource("9_343cu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
 [node name="corridor-wide2" parent="." unique_id=1029026363 instance=ExtResource("10_utkg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 20)
 
 [node name="corridor2" parent="." unique_id=1201177288 instance=ExtResource("11_ev44h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 20)
 
 [node name="room-corner2" parent="." unique_id=1977171391 instance=ExtResource("12_gn14n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 20)
 
 [node name="room-large-variation2" parent="." unique_id=1831987434 instance=ExtResource("13_r28mb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 20)
 
 [node name="room-large2" parent="." unique_id=199063277 instance=ExtResource("14_2pj0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 20)
 
 [node name="room-small-variation2" parent="." unique_id=1219263256 instance=ExtResource("15_npq8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 20)
 
 [node name="room-small2" parent="." unique_id=1677734565 instance=ExtResource("16_76ybo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140, 0, 20)
 
 [node name="room-wide-variation2" parent="." unique_id=1355280715 instance=ExtResource("17_jdemv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 
 [node name="room-wide2" parent="." unique_id=729432585 instance=ExtResource("18_huw3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 40)
 
 [node name="stairs-wide2" parent="." unique_id=522840306 instance=ExtResource("19_hu3xn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
 
 [node name="stairs2" parent="." unique_id=481856863 instance=ExtResource("20_xqr5s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 40)
 
 [node name="template-corner2" parent="." unique_id=999708855 instance=ExtResource("21_mkbg2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 40)
 
 [node name="template-detail2" parent="." unique_id=1144947330 instance=ExtResource("22_3qanj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 40)
 
 [node name="template-floor-big2" parent="." unique_id=157520961 instance=ExtResource("23_0ie8c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 40)
 
 [node name="template-floor-detail-a2" parent="." unique_id=40341585 instance=ExtResource("24_k17l8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140, 0, 40)
 
 [node name="template-floor-detail2" parent="." unique_id=674394547 instance=ExtResource("25_u2dbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
 
 [node name="template-floor-layer-hole2" parent="." unique_id=2090426929 instance=ExtResource("26_40l7f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 60)
 
 [node name="template-floor-layer-raised2" parent="." unique_id=1413074990 instance=ExtResource("27_xnhba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 60)
 
 [node name="template-floor-layer2" parent="." unique_id=740356952 instance=ExtResource("28_x284i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 60)
 
 [node name="template-floor2" parent="." unique_id=1810624663 instance=ExtResource("29_54as0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 60)
 
 [node name="template-wall-corner2" parent="." unique_id=753454712 instance=ExtResource("30_838iq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 60)
 
 [node name="template-wall-detail-a2" parent="." unique_id=176180247 instance=ExtResource("31_6cmnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 60)
 
 [node name="template-wall-half2" parent="." unique_id=1994915268 instance=ExtResource("32_2raqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140, 0, 60)
 
 [node name="template-wall-stairs2" parent="." unique_id=779878746 instance=ExtResource("33_3p7eo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 80)
 
 [node name="template-wall-top2" parent="." unique_id=802689644 instance=ExtResource("34_6lpiu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 80)
 
 [node name="template-wall2" parent="." unique_id=1087920467 instance=ExtResource("35_4r0ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 80)

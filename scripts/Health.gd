@@ -17,6 +17,9 @@ func _ready() -> void:
 	on_health_changed.emit(current_health, current_health, max_health)
 
 func take_damage(amount: int):
+	if current_health - amount > max_health:
+		amount = current_health - max_health
+	
 	current_health -= amount
 	on_health_changed.emit(amount, current_health, max_health)
 	_play_sound()
