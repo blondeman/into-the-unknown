@@ -3,6 +3,7 @@
 [ext_resource type="MeshLibrary" uid="uid://b7h5sk0tcy8gi" path="res://resources/dungeon_tiles.meshlib" id="1_y57rc"]
 [ext_resource type="PackedScene" uid="uid://8qs4lkeubudv" path="res://scenes/player/player.tscn" id="2_uk0mg"]
 [ext_resource type="Script" uid="uid://d1obfvt1rg8cb" path="res://scripts/CameraController.gd" id="3_4dgvg"]
+[ext_resource type="PackedScene" uid="uid://bykmvbovspso1" path="res://scenes/environment/firepit.tscn" id="4_rrbhx"]
 
 [node name="TileTest" type="GridMap" unique_id=344600319]
 mesh_library = ExtResource("1_y57rc")
@@ -23,3 +24,6 @@ camera = NodePath("Camera3D")
 transform = Transform3D(-0.043108437, 0.86620003, -0.4978347, 0.07472615, 0.49969766, 0.86297065, 0.996272, 4.613645e-08, -0.08626897, -4.335927, 12.231677, -5.364418e-07)
 script = ExtResource("3_4dgvg")
 target = NodePath("..")
+
+[node name="firepit" parent="." unique_id=1305035996 instance=ExtResource("4_rrbhx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.175, 0, 5.965)

@@ -10,3 +10,9 @@ func start() -> void:
 	audio_stream_player.play()
 	await get_tree().create_timer(timer).timeout
 	queue_free()
+
+func start_no_audio() -> void:
+	emitting = true
+	audio_stream_player.stop()
+	await get_tree().create_timer(timer).timeout
+	queue_free()

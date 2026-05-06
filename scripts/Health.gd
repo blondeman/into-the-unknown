@@ -6,6 +6,7 @@ extends Node
 var current_health: int
 
 @export var hit_sounds: Array[AudioStream]
+@export var boost: float = 0
 
 signal on_health_changed(amount: int, health: int, total: int)
 signal on_die()
@@ -31,14 +32,24 @@ func die():
 	on_die.emit()
 	
 	var parent = get_parent()
-	var new_on_death_scene = on_death_scene.instantiate()
-	parent.get_parent().add_child(new_on_death_scene)
 	if parent is PlayerController:
-		new_on_death_scene.transform = parent.head.transform
+		var played_sound: bool = false
+		for segment in parent.get_head_and_segments():
+			var new_on_death_scene = on_death_scene.instantiate()
+			parent.get_parent().add_child(new_on_death_scene)
+			new_on_death_scene.global_transform = segment.global_transform
+			if new_on_death_scene.has_method("start"):
+				if !played_sound:
+					new_on_death_scene.start()
+					played_sound = true
+				else:
+					new_on_death_scene.start_no_audio()
 	else:
+		var new_on_death_scene = on_death_scene.instantiate()
+		parent.get_parent().add_child(new_on_death_scene)
 		new_on_death_scene.transform = parent.transform
-	if new_on_death_scene.has_method("start"):
-		new_on_death_scene.start()
+		if new_on_death_scene.has_method("start"):
+			new_on_death_scene.start()
 	
 	parent.queue_free()
 
@@ -47,6 +58,7 @@ func _play_sound():
 		return
 	
 	var player = AudioStreamPlayer3D.new()
+	player.volume_db = boost
 	add_child(player)
 	player.stream = hit_sounds[randi() % hit_sounds.size()]
 	player.play()

@@ -2,12 +2,13 @@ extends Attack
 
 @export var arrow: PackedScene
 @export var velocity: float = 10
+@export var arrow_spawn_point: Node3D
 
 func _attack(target: Node3D) -> void:
 	var arrow_instance = arrow.instantiate()
 	get_tree().root.add_child(arrow_instance)
 	arrow_instance.hit_player.connect(func(): deal_damage(target))
-	arrow_instance.global_position = enemy_controller.global_position
+	arrow_instance.global_position = arrow_spawn_point.global_position
 	
 	var angle = _solve_angle(target.global_position)
 	if is_nan(angle):
@@ -20,7 +21,7 @@ func _attack(target: Node3D) -> void:
 	arrow_instance.look_at(arrow_instance.global_position + arrow_instance.linear_velocity)
 
 func _solve_angle(target_pos: Vector3) -> float:
-	var to_target = target_pos - enemy_controller.global_position
+	var to_target = target_pos - arrow_spawn_point.global_position
 	var dx = Vector2(to_target.x, to_target.z).length() # horizontal distance
 	var dy = to_target.y                                 # vertical distance
 	var g = ProjectSettings.get_setting("physics/3d/default_gravity")
