@@ -4,6 +4,8 @@ extends NavigationAgent3D
 var enemy_controller: EnemyController
 @export var probability_curve: Curve
 
+@export var follow_range: float = 50
+
 var current_target: Node3D = null
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -48,7 +50,7 @@ func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	if is_navigation_finished():
+	if is_navigation_finished() or distance_to_target() > follow_range:
 		enemy_controller.set_direction(Vector2.ZERO)
 		return
 
