@@ -42,7 +42,8 @@ transform = Transform3D(0.7071068, -0.5, 0.5, 0, 0.7071068, 0.7071068, -0.707106
 target = NodePath("..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=547300262]
-transform = Transform3D(0.9841771, -0.1413837, 0.1067997, 0, 0.6027486, 0.79793125, -0.17718782, -0.7853056, 0.5932113, -0.00596714, 18.16011, -0.046500206)
+transform = Transform3D(0.8711157, -0.17003505, 0.46070114, -0.11612314, 0.84021336, 0.52967626, -0.47715074, -0.5149073, 0.712178, 7.8196282, 18.467773, -0.046500206)
+shadow_enabled = true
 
 [node name="Enemies" type="Node3D" parent="." unique_id=425586258]
 
@@ -241,7 +242,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5563054, 0.058406353, -128.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.838921, 0.058406353, -135.15082)
 
 [node name="firepit8" parent="Destructibles" unique_id=1918962105 instance=ExtResource("6_1seuy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.838921, 0.058406353, -123.156715)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4787722, 0.058406353, -148.33902)
 
 [node name="firepit9" parent="Destructibles" unique_id=1707625230 instance=ExtResource("6_1seuy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0761495, 0.058406353, -93.08266)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.838921, 0.058406353, -93.08266)
