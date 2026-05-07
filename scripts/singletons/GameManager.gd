@@ -11,6 +11,7 @@ var transition_path: String = "res://scenes/levels/transition.tscn"
 var menu_path: String = "res://scenes/levels/menu.tscn"
 var intro_path: String = "res://scenes/levels/intro.tscn"
 var outro_path: String = "res://scenes/levels/outro.tscn"
+
 var levels: Array[String] = [
 	"res://scenes/levels/level_1.tscn",
 	"res://scenes/testing/test_environment.tscn",
@@ -40,8 +41,14 @@ func _ready() -> void:
 func load_intro():
 	load_level(LEVEL_ID_INTRO)
 
+func load_outro():
+	load_level(LEVEL_ID_OUTRO)
+
 func load_next_level():
-	load_level(current_level_id + 1)
+	if current_level_id < levels.size():
+		load_level(current_level_id + 1)
+	else:
+		load_outro()
 
 func load_level(level: int) -> void:
 	if is_loading:

@@ -1,5 +1,5 @@
-[color=#ff0000]This needs to be updated and made to rhyme.[/color]
-the wyrm eats the king and takes back its tail
-the people regail stories of the monster that tore up their kingdom
-in time the story becomes a myth
-and the wyrm lives on forever eating its tail
+And so the [color=#fc0339]Wyrm[/color] regained its tail and left.
+With the [color=#0384fc]Kingdom[/color] destroyed, the [shake rate=20.0 level=10]land was in disarray[/shake].
+The people would tell of the monster that came.
+In time the [wave]stories became myth[/wave], but in a far off land,
+Legends told of a [color=#fc0339]Wyrm[/color] that [wave]forever ate its tail.[/wave]

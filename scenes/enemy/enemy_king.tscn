@@ -420,17 +420,17 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.8420635, 0.7097837, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 40
-text = "THE KING OF BLUEFORD VALLEY"
+theme_override_font_sizes/font_size = 32
+text = "KING BLUTARCH OF THE SAPPHIRE COURT"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer" index="1" unique_id=2049700306]
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="ProgressBar" type="TextureProgressBar" parent="Control/VBoxContainer/MarginContainer" index="0" unique_id=1841995008]
 texture_filter = 1
