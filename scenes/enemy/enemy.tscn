@@ -13,6 +13,8 @@ point_count = 3
 
 [node name="enemy" type="CharacterBody3D" unique_id=227389902 groups=["enemy"]]
 collision_layer = 8
+floor_constant_speed = true
+floor_snap_length = 1.0
 script = ExtResource("1_7p1mj")
 mesh = NodePath("")
 

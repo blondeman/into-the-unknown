@@ -359,6 +359,8 @@ body = NodePath("body_segment")
 
 [node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("player_controller", "audio_stream_player")]
 collision_layer = 2
+floor_constant_speed = true
+floor_snap_length = 1.0
 script = ExtResource("1_g2els")
 player_controller = NodePath("..")
 audio_stream_player = NodePath("AudioStreamPlayer3D")

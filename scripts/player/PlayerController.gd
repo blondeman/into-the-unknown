@@ -44,7 +44,20 @@ func _follow(i: int, target: Vector3):
 		_saved_positions[i] = segment.global_position
 
 	segment.global_position = _saved_positions[i]
-	segment.look_at(target)
+	_safe_look_at(segment, target)
+
+
+func _safe_look_at(node: Node3D, target: Vector3) -> void:
+	var direction = (target - node.global_position).normalized()
+	
+	if direction.length() < 0.001:
+		return  # target is too close or identical position
+	
+	var up = Vector3.UP
+	if abs(direction.dot(up)) > 0.999:
+		up = Vector3.FORWARD
+	
+	node.look_at(target, up)
 
 
 func get_head_and_segments() -> Array[Node3D]:
