@@ -24,6 +24,10 @@ buses/default_bus_layout="uid://cknc0xtd5drks"
 CameraEffects="*uid://cmw68o05w75l6"
 GameManager="*uid://bpqnpka10lfep"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [global_group]
 
 destructible=""

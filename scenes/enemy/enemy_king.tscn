@@ -301,16 +301,16 @@ mesh = NodePath("RedTeam_SwordsMen_Unit")
 [node name="RedTeam_SwordsMen_Unit" parent="." index="1" unique_id=1705595052 instance=ExtResource("2_6r6bn")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="Skeleton3D" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature" parent_id_path=PackedInt32Array(1705595052, 1957232082) index="0" unique_id=957397226]
+[node name="Skeleton3D" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature" parent_id_path=PackedInt32Array(1705595052, 1273266578) index="0" unique_id=1743472521]
 bones/1/position = Vector3(0, 0.002020106, 1.3552527e-20)
-bones/1/rotation = Quaternion(0, 1.1920929e-07, 0, 1)
+bones/1/rotation = Quaternion(0.083251804, 1.17316226e-07, -2.116031e-08, 0.99652857)
 bones/2/position = Vector3(0, 0.005381884, -1.3552527e-20)
-bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/rotation = Quaternion(-0.030091, -1.3334487e-15, -7.1742527e-09, 0.9995472)
 bones/4/position = Vector3(0.0031590685, 0.004357637, 7.5318063e-10)
-bones/4/rotation = Quaternion(-0.08023306, 0.08023351, -0.7025401, 0.70254016)
+bones/4/rotation = Quaternion(-0.104933426, -0.05317863, -0.9261057, 0.35845417)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/position = Vector3(-7.446578e-12, 0.0019989207, 3.0342825e-11)
-bones/5/rotation = Quaternion(0.1714536, 1.2461503e-07, 1.3077033e-07, 0.98519224)
+bones/5/rotation = Quaternion(0.6528585, 0.21911004, -0.45640624, 0.5634359)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/position = Vector3(-6.462287e-10, 0.0037542216, 0.0007358755)
 bones/6/rotation = Quaternion(0.3181861, 0.6314719, 0.31818587, 0.6314734)
@@ -319,64 +319,61 @@ bones/8/position = Vector3(2.1343621e-11, 0.0040612477, -2.4304534e-05)
 bones/8/rotation = Quaternion(-0.05855937, -4.1651668e-07, -2.699257e-08, 0.9982839)
 bones/8/scale = Vector3(1, 0.99999994, 0.9999998)
 bones/10/position = Vector3(2.9905556e-10, 0.004991905, 0.0005282353)
-bones/10/rotation = Quaternion(-2.1933914e-07, -0.6644856, 0.7473011, -3.732174e-07)
+bones/10/rotation = Quaternion(-2.1441733e-07, -0.6644856, 0.7473011, -3.6884097e-07)
 bones/10/scale = Vector3(1, 0.9999998, 0.9999999)
 bones/12/position = Vector3(-0.0031590685, 0.004357637, -7.5318063e-10)
-bones/12/rotation = Quaternion(-0.08023328, -0.08023368, 0.70254004, 0.7025401)
+bones/12/rotation = Quaternion(0.06633071, -0.7821417, 0.5717204, 0.23872666)
 bones/12/scale = Vector3(1, 0.99999994, 1)
 bones/13/position = Vector3(7.979728e-17, 0.001998921, 1.2911468e-10)
-bones/13/rotation = Quaternion(0.17145358, -1.242957e-07, -1.2893527e-07, 0.98519224)
+bones/13/rotation = Quaternion(0.71184456, 0.06816625, 0.105982214, 0.69094026)
 bones/13/scale = Vector3(1, 0.99999994, 1)
 bones/14/position = Vector3(6.4622857e-10, 0.0037542211, 0.0007358755)
 bones/14/rotation = Quaternion(0.31818604, -0.63147193, -0.31818596, 0.6314733)
 bones/14/scale = Vector3(1, 1.0000001, 1)
 bones/16/position = Vector3(-2.1343627e-11, 0.0040612463, -2.4304485e-05)
-bones/16/rotation = Quaternion(-0.058559347, 4.1651663e-07, 2.6992574e-08, 0.998284)
+bones/16/rotation = Quaternion(-0.05855935, 4.2168148e-07, 2.6121864e-08, 0.998284)
 bones/16/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/18/position = Vector3(-3.0540934e-10, 0.0049910517, 0.0005210002)
-bones/18/rotation = Quaternion(-0.74730116, 1.5842588e-07, 4.7809186e-07, 0.6644856)
 bones/18/scale = Vector3(1, 1.0000001, 0.99999994)
 bones/20/position = Vector3(0.0014999998, -9.579277e-06, 1.3552527e-20)
-bones/20/rotation = Quaternion(-0.7071068, 9.415697e-08, 0.7071067, 9.4156974e-08)
+bones/20/rotation = Quaternion(-0.5, -0.50000006, 0.5, 0.5)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(-5.96045e-12, 0.002503431, 4.1723253e-11)
 bones/21/rotation = Quaternion(-9.80632e-09, 6.31914e-08, 0.70710677, 0.70710677)
 bones/21/scale = Vector3(1, 1, 1)
 bones/23/position = Vector3(-0.0014999998, -9.579277e-06, 1.3552527e-20)
-bones/23/rotation = Quaternion(0.7071068, 9.415697e-08, 0.7071067, -9.4156974e-08)
+bones/23/rotation = Quaternion(0.6123724, 0.35355344, 0.6123725, 0.35355335)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/position = Vector3(5.96045e-12, 0.002503431, 4.1723253e-11)
 bones/24/rotation = Quaternion(-9.80632e-09, -6.31914e-08, -0.70710677, 0.70710677)
 bones/24/scale = Vector3(1, 1, 1)
-bones/26/position = Vector3(0.002950795, 0.002155195, 0.0025785277)
-bones/26/rotation = Quaternion(1, -1.776357e-15, -6.715444e-07, 1.1297562e-14)
-bones/28/position = Vector3(-0.002950795, 0.002155195, 0.0025785277)
-bones/28/rotation = Quaternion(1, 1.776357e-15, 6.715444e-07, 1.1297562e-14)
+bones/26/rotation = Quaternion(0.9999216, 8.412192e-09, -6.7149176e-07, -0.012526916)
+bones/28/rotation = Quaternion(0.9999216, -8.412192e-09, 6.7149176e-07, -0.012526916)
 
-[node name="RedTeam_SwordsMen_Armor" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="0" unique_id=1559997982]
+[node name="RedTeam_SwordsMen_Armor" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="0" unique_id=364129735]
 surface_material_override/0 = SubResource("ShaderMaterial_7awev")
 surface_material_override/1 = SubResource("ShaderMaterial_n14ib")
 surface_material_override/2 = SubResource("ShaderMaterial_fyfq5")
 surface_material_override/3 = SubResource("ShaderMaterial_yp45u")
 surface_material_override/4 = SubResource("ShaderMaterial_iqorf")
 
-[node name="RedTeam_SwordsMen_Helmet" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="1" unique_id=953570278]
+[node name="RedTeam_SwordsMen_Helmet" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="1" unique_id=1987971970]
 surface_material_override/0 = SubResource("ShaderMaterial_gblb6")
 surface_material_override/1 = SubResource("ShaderMaterial_dlvwc")
 surface_material_override/2 = SubResource("ShaderMaterial_dren7")
 
-[node name="RedTeam_SwordsMen_Shoulders_R" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="2" unique_id=1301616880]
+[node name="RedTeam_SwordsMen_Shoulders_R" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="2" unique_id=2126399833]
 surface_material_override/0 = SubResource("ShaderMaterial_r8ioj")
 
-[node name="RedTeam_SwordsMen_Belt" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="3" unique_id=1322963177]
+[node name="RedTeam_SwordsMen_Belt" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="3" unique_id=668161498]
 surface_material_override/0 = SubResource("ShaderMaterial_nre5t")
 
-[node name="OneHand_Sword_Iron" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="4" unique_id=649050502]
+[node name="OneHand_Sword_Iron" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="4" unique_id=1133947617]
 surface_material_override/0 = SubResource("ShaderMaterial_0slgx")
 surface_material_override/1 = SubResource("ShaderMaterial_6qjhf")
 surface_material_override/2 = SubResource("ShaderMaterial_7mbnu")
 
-[node name="Shield01" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="5" unique_id=1222337281]
+[node name="Shield01" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="5" unique_id=2104382110]
 surface_material_override/0 = SubResource("ShaderMaterial_rgr0f")
 surface_material_override/1 = SubResource("ShaderMaterial_503gv")
 
@@ -393,9 +390,6 @@ attack_sounds = Array[AudioStream]([ExtResource("6_0ojeb"), ExtResource("7_holm4
 anim_player = NodePath("../RedTeam_SwordsMen_Unit/AnimationPlayer")
 attack_animation = "RedTeam_SwordsMen_Armature|Atack_SwordsMen"
 walk_animation = "RedTeam_SwordsMen_Armature|Running_SwordsMen"
-
-[node name="navigation" parent="." index="4" unique_id=565755091]
-follow_range = null
 
 [node name="Control" type="Control" parent="." index="5" unique_id=904895124 node_paths=PackedStringArray("health_fill", "navigation")]
 layout_mode = 3

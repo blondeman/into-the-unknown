@@ -26,6 +26,12 @@ func _process(delta: float) -> void:
 	cooldown -= delta
 	if cooldown <= 0.0:
 		_on_attack()
+	
+	if anim_player.current_animation != attack_animation:
+		if enemy_controller.velocity.length() > 0.01:
+			anim_player.play(walk_animation)
+		else:
+			anim_player.stop()
 
 func _on_attack():
 	if !enemy_controller:
