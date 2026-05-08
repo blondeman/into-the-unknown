@@ -294,14 +294,14 @@ shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
 shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_offset = Vector2(0, 0)
 
-[node name="enemy_melee" unique_id=227389902 node_paths=PackedStringArray("mesh") instance=ExtResource("1_blm3s")]
+[node name="enemy_king" unique_id=227389902 node_paths=PackedStringArray("mesh") instance=ExtResource("1_blm3s")]
 speed = 7.0
 mesh = NodePath("RedTeam_SwordsMen_Unit")
 
 [node name="RedTeam_SwordsMen_Unit" parent="." index="1" unique_id=1705595052 instance=ExtResource("2_6r6bn")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="Skeleton3D" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature" parent_id_path=PackedInt32Array(1705595052, 1273266578) index="0" unique_id=1743472521]
+[node name="Skeleton3D" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature" parent_id_path=PackedInt32Array(1705595052, 1957232082) index="0" unique_id=957397226]
 bones/1/position = Vector3(0, 0.002020106, 1.3552527e-20)
 bones/1/rotation = Quaternion(0, 1.1920929e-07, 0, 1)
 bones/2/position = Vector3(0, 0.005381884, -1.3552527e-20)
@@ -353,30 +353,30 @@ bones/26/rotation = Quaternion(1, -1.776357e-15, -6.715444e-07, 1.1297562e-14)
 bones/28/position = Vector3(-0.002950795, 0.002155195, 0.0025785277)
 bones/28/rotation = Quaternion(1, 1.776357e-15, 6.715444e-07, 1.1297562e-14)
 
-[node name="RedTeam_SwordsMen_Armor" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="0" unique_id=364129735]
+[node name="RedTeam_SwordsMen_Armor" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="0" unique_id=1559997982]
 surface_material_override/0 = SubResource("ShaderMaterial_7awev")
 surface_material_override/1 = SubResource("ShaderMaterial_n14ib")
 surface_material_override/2 = SubResource("ShaderMaterial_fyfq5")
 surface_material_override/3 = SubResource("ShaderMaterial_yp45u")
 surface_material_override/4 = SubResource("ShaderMaterial_iqorf")
 
-[node name="RedTeam_SwordsMen_Helmet" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="1" unique_id=1987971970]
+[node name="RedTeam_SwordsMen_Helmet" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="1" unique_id=953570278]
 surface_material_override/0 = SubResource("ShaderMaterial_gblb6")
 surface_material_override/1 = SubResource("ShaderMaterial_dlvwc")
 surface_material_override/2 = SubResource("ShaderMaterial_dren7")
 
-[node name="RedTeam_SwordsMen_Shoulders_R" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="2" unique_id=2126399833]
+[node name="RedTeam_SwordsMen_Shoulders_R" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="2" unique_id=1301616880]
 surface_material_override/0 = SubResource("ShaderMaterial_r8ioj")
 
-[node name="RedTeam_SwordsMen_Belt" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="3" unique_id=668161498]
+[node name="RedTeam_SwordsMen_Belt" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="3" unique_id=1322963177]
 surface_material_override/0 = SubResource("ShaderMaterial_nre5t")
 
-[node name="OneHand_Sword_Iron" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="4" unique_id=1133947617]
+[node name="OneHand_Sword_Iron" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="4" unique_id=649050502]
 surface_material_override/0 = SubResource("ShaderMaterial_0slgx")
 surface_material_override/1 = SubResource("ShaderMaterial_6qjhf")
 surface_material_override/2 = SubResource("ShaderMaterial_7mbnu")
 
-[node name="Shield01" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="5" unique_id=2104382110]
+[node name="Shield01" parent="RedTeam_SwordsMen_Unit/RedTeam_SwordsMen_Armature/Skeleton3D" index="5" unique_id=1222337281]
 surface_material_override/0 = SubResource("ShaderMaterial_rgr0f")
 surface_material_override/1 = SubResource("ShaderMaterial_503gv")
 
@@ -394,7 +394,10 @@ anim_player = NodePath("../RedTeam_SwordsMen_Unit/AnimationPlayer")
 attack_animation = "RedTeam_SwordsMen_Armature|Atack_SwordsMen"
 walk_animation = "RedTeam_SwordsMen_Armature|Running_SwordsMen"
 
-[node name="Control" type="Control" parent="." index="5" unique_id=904895124 node_paths=PackedStringArray("health_fill")]
+[node name="navigation" parent="." index="4" unique_id=565755091]
+follow_range = null
+
+[node name="Control" type="Control" parent="." index="5" unique_id=904895124 node_paths=PackedStringArray("health_fill", "navigation")]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -404,6 +407,7 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("8_h6wa2")
 health_fill = NodePath("VBoxContainer/MarginContainer/ProgressBar")
+navigation = NodePath("../navigation")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control" index="0" unique_id=370539899]
 layout_mode = 1

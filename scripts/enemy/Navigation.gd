@@ -1,4 +1,5 @@
 @tool
+class_name Navigation
 extends NavigationAgent3D
 
 var enemy_controller: EnemyController
