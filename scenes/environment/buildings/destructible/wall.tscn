@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://cw8svgkcllext"]
+
+[ext_resource type="PackedScene" uid="uid://ctynmma6s25av" path="res://scenes/environment/buildings/destructible.tscn" id="1_n4h7i"]
+[ext_resource type="PackedScene" uid="uid://bn73pnuq21i3g" path="res://scenes/environment/buildings/destructible/wall_pieces.tscn" id="2_a4gfg"]
+[ext_resource type="PackedScene" uid="uid://7vp3qd5agddk" path="res://models/buildings/wall-pieces.glb" id="2_snsvi"]
+[ext_resource type="Material" uid="uid://vst7a72bgqpx" path="res://textures/color_map_2.tres" id="3_snsvi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a4gfg"]
+resource_local_to_scene = true
+size = Vector3(6, 5, 0.6)
+
+[node name="wall" unique_id=1305035996 instance=ExtResource("1_n4h7i")]
+destroyed_object = ExtResource("2_a4gfg")
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=677202240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_a4gfg")
+
+[node name="NavigationObstacle3D" parent="." index="1" unique_id=580396885]
+vertices = PackedVector3Array(3.6, 0, 0.35, -3.6, 0, 0.35, -3.6, 0, -0.35, 3.6, 0, -0.35)
+
+[node name="wall-pieces" parent="." index="2" unique_id=839195200 instance=ExtResource("2_snsvi")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="Cube" parent="wall-pieces" index="0" unique_id=41540217]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_001" parent="wall-pieces" index="1" unique_id=1771033700]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_002" parent="wall-pieces" index="2" unique_id=992295075]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_003" parent="wall-pieces" index="3" unique_id=838142502]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_004" parent="wall-pieces" index="4" unique_id=1587468171]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_005" parent="wall-pieces" index="5" unique_id=534041904]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_006" parent="wall-pieces" index="6" unique_id=959448204]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_007" parent="wall-pieces" index="7" unique_id=796442196]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_008" parent="wall-pieces" index="8" unique_id=2113540941]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_009" parent="wall-pieces" index="9" unique_id=1808968907]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_010" parent="wall-pieces" index="10" unique_id=255850251]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_011" parent="wall-pieces" index="11" unique_id=473000007]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_012" parent="wall-pieces" index="12" unique_id=1323508813]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_013" parent="wall-pieces" index="13" unique_id=2035356702]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_014" parent="wall-pieces" index="14" unique_id=1849299949]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_015" parent="wall-pieces" index="15" unique_id=1616774516]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_016" parent="wall-pieces" index="16" unique_id=43901103]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_017" parent="wall-pieces" index="17" unique_id=1634509875]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_018" parent="wall-pieces" index="18" unique_id=2116928330]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_019" parent="wall-pieces" index="19" unique_id=1022750249]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_020" parent="wall-pieces" index="20" unique_id=2085589423]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_021" parent="wall-pieces" index="21" unique_id=1750507238]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_022" parent="wall-pieces" index="22" unique_id=2091776972]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_023" parent="wall-pieces" index="23" unique_id=1124985887]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_024" parent="wall-pieces" index="24" unique_id=210030855]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_025" parent="wall-pieces" index="25" unique_id=359714617]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_026" parent="wall-pieces" index="26" unique_id=104446324]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_027" parent="wall-pieces" index="27" unique_id=847875793]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_028" parent="wall-pieces" index="28" unique_id=1464593289]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_029" parent="wall-pieces" index="29" unique_id=1784122024]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_030" parent="wall-pieces" index="30" unique_id=1746894536]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_031" parent="wall-pieces" index="31" unique_id=2113971529]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_032" parent="wall-pieces" index="32" unique_id=494678951]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_033" parent="wall-pieces" index="33" unique_id=1216831205]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_034" parent="wall-pieces" index="34" unique_id=132958954]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_035" parent="wall-pieces" index="35" unique_id=401513718]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_036" parent="wall-pieces" index="36" unique_id=1541462638]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_037" parent="wall-pieces" index="37" unique_id=777553059]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_038" parent="wall-pieces" index="38" unique_id=1806347363]
+material_override = ExtResource("3_snsvi")
+
+[node name="Cube_039" parent="wall-pieces" index="39" unique_id=1431959210]
+material_override = ExtResource("3_snsvi")
+
+[editable path="wall-pieces"]

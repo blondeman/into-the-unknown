@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cdhyc2ejbkdew" path="res://scripts/Destructible.gd" id="1_ycjyg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mwrlv"]
+resource_local_to_scene = true
 size = Vector3(1.75, 2, 1.75)
 
 [node name="Destructible" type="StaticBody3D" unique_id=1305035996 groups=["destructible"]]

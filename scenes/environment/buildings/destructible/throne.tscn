@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://lqp3dui3pau8"]
+
+[ext_resource type="PackedScene" uid="uid://ctynmma6s25av" path="res://scenes/environment/buildings/destructible.tscn" id="1_0gedq"]
+[ext_resource type="PackedScene" uid="uid://b1ewodb35glgy" path="res://scenes/environment/buildings/destructible/throne_pieces.tscn" id="2_8ohyj"]
+[ext_resource type="PackedScene" uid="uid://dpqfk8tkhmocw" path="res://models/buildings/throne.glb" id="2_e04jh"]
+[ext_resource type="Material" uid="uid://vst7a72bgqpx" path="res://textures/color_map_2.tres" id="3_e04jh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ohyj"]
+resource_local_to_scene = true
+size = Vector3(1.75, 2, 4)
+
+[node name="throne" unique_id=1305035996 instance=ExtResource("1_0gedq")]
+destroyed_object = ExtResource("2_8ohyj")
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=677202240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.125)
+shape = SubResource("BoxShape3D_8ohyj")
+
+[node name="NavigationObstacle3D" parent="." index="1" unique_id=580396885]
+vertices = PackedVector3Array(1.25, 0, 3, -1.25, 0, 3, -1.25, 0, -1.25, 1.25, 0, -1.25)
+
+[node name="throne" parent="." index="2" unique_id=1529885175 instance=ExtResource("2_e04jh")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="Cube" parent="throne" index="0" unique_id=1783773986]
+material_override = ExtResource("3_e04jh")
+
+[editable path="throne"]
