@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cr0urxtlsv4iy" path="res://scripts/player/PlayerSegment.gd" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://ngawy1oun44j" path="res://audio/player/slither.wav" id="5_tuyoq"]
 [ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="7_fjrip"]
+[ext_resource type="Material" uid="uid://cl6ddmj48s6nh" path="res://textures/empty_tex_dirt.tres" id="7_uf5tr"]
 [ext_resource type="PackedScene" uid="uid://cv0q154yx02mk" path="res://scenes/player/player_death_particles.tscn" id="8_5gtgg"]
 [ext_resource type="Script" uid="uid://cibkwcvb1qeka" path="res://scripts/player/ArmDrag.gd" id="8_gx1jg"]
 [ext_resource type="AudioStream" uid="uid://bepo3igugslpc" path="res://audio/player/player_hit_1.wav" id="9_je7p5"]
@@ -61,6 +62,14 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_k0oud")
+
+[sub_resource type="BoxMesh" id="BoxMesh_lgqa7"]
+material = ExtResource("7_uf5tr")
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Curve" id="Curve_8ydkj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6910796, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fwc14"]
 _surfaces = [{
@@ -353,11 +362,13 @@ shadow_mesh = SubResource("ArrayMesh_4ytqj")
 
 [node name="player" type="Node3D" unique_id=1262716053 node_paths=PackedStringArray("head", "body") groups=["player"]]
 script = ExtResource("1_qhqgy")
-speed = 15.0
+speed = 13.0
+dash_speed = 18.0
+dash_rotation_speed = 3.0
 head = NodePath("head")
 body = NodePath("body_segment")
 
-[node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("player_controller", "audio_stream_player")]
+[node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("player_controller", "audio_stream_player", "particles")]
 collision_layer = 2
 floor_constant_speed = true
 floor_snap_length = 1.0
@@ -365,6 +376,7 @@ script = ExtResource("1_g2els")
 player_controller = NodePath("..")
 audio_stream_player = NodePath("AudioStreamPlayer3D")
 fade_speed = 2.0
+particles = NodePath("CPUParticles3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head" unique_id=183396357]
 shape = SubResource("SphereShape3D_g2els")
@@ -386,6 +398,25 @@ volume_db = 7.0
 transform = Transform3D(-2.0544352e-08, 0, 0.47, 0, 0.47, 0, -0.47, 0, -2.0544352e-08, 0, 0, 4.6243353)
 material_override = ExtResource("5_fm80t")
 mesh = SubResource("ArrayMesh_begsv")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="head" unique_id=1099954094]
+emitting = false
+amount = 20
+mesh = SubResource("BoxMesh_lgqa7")
+emission_shape = 5
+emission_points = PackedVector3Array(-0.5, 0, 0, 0.5, 0, 0)
+emission_normals = PackedVector3Array(-0.1, 1, 1, 0.1, 1, 1)
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 0)
+spread = 10.0
+gravity = Vector3(0, -20, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 8.0
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_8ydkj")
 
 [node name="body_segment" type="AnimatableBody3D" parent="." unique_id=328893431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1569057)

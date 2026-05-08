@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkfsppx32xnxt"]
 
 [ext_resource type="PackedScene" uid="uid://dvwk81wmkd482" path="res://scenes/levels/level_parent.tscn" id="1_o8c3j"]
-[ext_resource type="PackedScene" uid="uid://ckk3p4s513685" path="res://scenes/levels/level_3_map.res" id="2_qi5uv"]
+[ext_resource type="PackedScene" uid="uid://ckk3p4s513685" path="res://resources/level_3_map.res" id="2_qi5uv"]
 [ext_resource type="PackedScene" uid="uid://lqp3dui3pau8" path="res://scenes/environment/buildings/destructible/throne.tscn" id="4_fmg3e"]
 [ext_resource type="PackedScene" uid="uid://cw8svgkcllext" path="res://scenes/environment/buildings/destructible/wall.tscn" id="5_f6egh"]
 [ext_resource type="PackedScene" uid="uid://evsr0fqjeq7m" path="res://scenes/enemy/enemy_king.tscn" id="5_ftfob"]
@@ -157,7 +157,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.140752, 1.0574808, 7.3102
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.473018, 1.0574808, 4.515725)
 
 [node name="player" parent="." index="1" unique_id=1262716053]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.058613, 1.5, 0.5217657)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 41.133297, 1.5, 4.2659435)
 
 [node name="enemy_melee" parent="enemies" parent_id_path=PackedInt32Array(2012783538) index="0" unique_id=2032291004 instance=ExtResource("6_fkk1g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.606455, 51.18917, 5.3029385)

@@ -224,7 +224,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.00448, 1.4305115e-06, -26
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.00448, 1.4305115e-06, -33.41996)
 
 [node name="player" parent="." unique_id=93949505 node_paths=PackedStringArray("camera") instance=ExtResource("5_ip6g7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.750992, 0.5, -13.31076)
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -28.012539, 0.5000019, -5.613901)
 camera = NodePath("../camera")
 
 [node name="camera" parent="." unique_id=608748979 node_paths=PackedStringArray("target") instance=ExtResource("11_ip6g7")]
