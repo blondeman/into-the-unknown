@@ -6,7 +6,7 @@ extends Node
 var current_health: int
 
 @export var hit_sounds: Array[AudioStream]
-@export var boost: float = 0
+@export var db_boost: float = 0
 
 signal on_health_changed(amount: int, health: int, total: int)
 signal on_die()
@@ -61,7 +61,7 @@ func _play_sound():
 		return
 	
 	var player = AudioStreamPlayer3D.new()
-	player.volume_db = boost
+	player.volume_db = db_boost
 	add_child(player)
 	player.stream = hit_sounds[randi() % hit_sounds.size()]
 	player.play()

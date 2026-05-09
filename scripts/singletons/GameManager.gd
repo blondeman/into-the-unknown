@@ -4,7 +4,7 @@ const LEVEL_ID_INTRO: int = -2
 const LEVEL_ID_OUTRO: int = -3
 
 var global_scene_paths: Array[String] = [
-	"res://scenes/performance_monitor.tscn",
+	#"res://scenes/performance_monitor.tscn",
 	"res://scenes/music_manager.tscn",
 ]
 var transition_path: String = "res://scenes/levels/transition.tscn"
