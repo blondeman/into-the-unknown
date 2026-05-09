@@ -380,7 +380,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_503gv")
 [node name="health" parent="." index="2" unique_id=2106537601]
 max_health = 1000
 hit_sounds = Array[AudioStream]([ExtResource("5_uqrm5"), ExtResource("6_em85b"), ExtResource("7_ets23"), ExtResource("8_jxwep")])
-boost = 10.0
+db_boost = 5.0
 
 [node name="attack" type="Node" parent="." index="3" unique_id=492877111 node_paths=PackedStringArray("anim_player")]
 script = ExtResource("5_el63h")

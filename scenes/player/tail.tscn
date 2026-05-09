@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://c8kckuqwy6lbo"]
 
+[ext_resource type="Script" uid="uid://bgic6j2p3b4mq" path="res://scripts/player/Tail.gd" id="1_v845d"]
 [ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="1_veik2"]
 [ext_resource type="PackedScene" uid="uid://cv0q154yx02mk" path="res://scenes/player/player_death_particles.tscn" id="2_veik2"]
 [ext_resource type="Script" uid="uid://di33u0x6r7p4e" path="res://scripts/player/PlayAnimation.gd" id="3_njam1"]
@@ -223,6 +224,7 @@ shadow_mesh = SubResource("ArrayMesh_7eb1s")
 
 [node name="tail" type="CharacterBody3D" unique_id=614946910 groups=["enemy"]]
 collision_layer = 8
+script = ExtResource("1_v845d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1193003080]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.368, 0.374, 0)
