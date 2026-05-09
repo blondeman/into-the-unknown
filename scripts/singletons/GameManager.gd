@@ -45,7 +45,7 @@ func load_outro():
 	load_level(LEVEL_ID_OUTRO)
 
 func load_next_level():
-	if current_level_id < levels.size():
+	if current_level_id + 1 < levels.size():
 		load_level(current_level_id + 1)
 	else:
 		load_outro()
