@@ -1,13 +1,201 @@
 [gd_scene format=3 uid="uid://xsh2jr12c4t2"]
 
 [ext_resource type="PackedScene" uid="uid://dvwk81wmkd482" path="res://scenes/levels/level_parent.tscn" id="1_j2425"]
+[ext_resource type="MeshLibrary" uid="uid://b7h5sk0tcy8gi" path="res://resources/dungeon_tiles.meshlib" id="2_g2h2n"]
+[ext_resource type="PackedScene" uid="uid://cw8svgkcllext" path="res://scenes/environment/buildings/destructible/wall.tscn" id="3_ra442"]
+[ext_resource type="PackedScene" uid="uid://bykmvbovspso1" path="res://scenes/environment/firepit.tscn" id="4_fiq81"]
+[ext_resource type="PackedScene" uid="uid://bh1vdbfys1pv3" path="res://scenes/enemy/enemy_melee.tscn" id="5_l37oo"]
+[ext_resource type="PackedScene" uid="uid://cnfai0wsm7aqt" path="res://scenes/enemy/enemy_ranged.tscn" id="6_qpwj6"]
+[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="7_8qukl"]
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="8_3p04p"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_g2h2n"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_ra442"]
 resource_local_to_scene = true
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 4294901761
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fiq81"]
+resource_local_to_scene = true
+
+[sub_resource type="Sky" id="Sky_l37oo"]
+resource_local_to_scene = true
+sky_material = SubResource("ProceduralSkyMaterial_fiq81")
+
+[sub_resource type="Environment" id="Environment_qpwj6"]
+resource_local_to_scene = true
+background_mode = 2
+sky = SubResource("Sky_l37oo")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g2h2n"]
+data = PackedVector3Array(0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4dls"]
+render_priority = 0
+shader = ExtResource("7_8qukl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsp8v"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_s4dls")
+shader = ExtResource("8_3p04p")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.2994623, 0.20275545, 0.12865123, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qpwj6"]
+
 [node name="level_2" unique_id=221896957 instance=ExtResource("1_j2425")]
 
 [node name="navmesh" parent="." index="0" unique_id=1103308116]
-navigation_mesh = SubResource("NavigationMesh_g2h2n")
+navigation_mesh = SubResource("NavigationMesh_ra442")
+
+[node name="GridMap" type="GridMap" parent="navmesh" index="2" unique_id=335424996]
+mesh_library = ExtResource("2_g2h2n")
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(65535, 2, 655373, 65535, 7, 34, 4, 2, 1048610, 65530, 2, 1441826, 65535, 65530, 1048580, 65535, 65527, 1048585, 65535, 65523, 1048585, 65535, 65519, 1048585, 65535, 65515, 1048583, 3, 65515, 9, 7, 65515, 9, 11, 65515, 1048584, 11, 65519, 1048585, 11, 65523, 1048585, 11, 65526, 1048580, 11, 65534, 1048588, 6, 65534, 1441826, 11, 3, 34, 19, 65534, 4, 22, 65534, 9, 26, 65534, 5, 26, 65530, 1441801, 26, 65526, 1441801, 26, 65522, 1441801, 11, 65510, 655378, 131083, 65506, 655378, 26, 65517, 655378, 131098, 65514, 1048585, 131098, 65510, 1048585, 131098, 65506, 1048585, 131098, 65502, 1048581, 131093, 65502, 1441810, 262162, 65502, 655369, 262159, 65501, 24, 262159, 65503, 24, 262157, 65503, 24, 262155, 65503, 24, 262157, 65501, 24, 262155, 65501, 24, 262156, 65504, 24, 262154, 65504, 24, 262159, 65504, 30, 262157, 65505, 1048606, 262158, 65504, 34, 262157, 65504, 29, 262154, 65502, 28, 262154, 65501, 28, 262155, 65498, 1441801, 262155, 65495, 1441796, 262155, 65487, 1441805, 65531, 65515, 655369, 65527, 65515, 655369, 65535, 65511, 1048585, 65535, 65507, 1048585, 65523, 65515, 1441797, 65535, 65503, 1048581, 65523, 65511, 1048585, 65531, 65503, 9, 65532, 65512, 655384, 65532, 65510, 655384, 65532, 65508, 655384, 65532, 65506, 655384, 65530, 65506, 655384, 65530, 65508, 655384, 65530, 65510, 655384, 65530, 65512, 655384, 65528, 65512, 655384, 65526, 65512, 655384, 65528, 65510, 655384, 65526, 65510, 655384, 65528, 65508, 655384, 65526, 65508, 655384, 65528, 65506, 655384, 65526, 65506, 655384, 65528, 65504, 655384, 65528, 65502, 655384, 65526, 65504, 655388, 65526, 65502, 655388, 65524, 65502, 655388, 65522, 65502, 655380, 65524, 65504, 655388, 65522, 65504, 655388, 65524, 65506, 655388, 65522, 65506, 655388, 65522, 65508, 655388, 65524, 65508, 655388, 65528, 65501, 655394, 65526, 65501, 655394, 65524, 65501, 655394, 65521, 65504, 1441826, 65521, 65506, 1441826, 65521, 65508, 1441826, 65529, 65505, 29, 65525, 65509, 29, 262153, 65504, 1441826, 262153, 65502, 1441826, 262153, 65501, 1441826, 262159, 65500, 655394, 262158, 65500, 655394, 262157, 65500, 1048605, 262157, 65484, 1048602, 262152, 65484, 1048597, 65530, 65509, 1048601, 65527, 65511, 1048597, 65526, 65503, 1048597, 65523, 65506, 1048597, 65534, 65515, 1048597, 262160, 65487, 1048610, 262150, 65487, 1441826, 262155, 65482, 655394)
+}
+metadata/_editor_floor_ = Vector3(0, 4, 0)
+
+[node name="light" parent="." index="3" unique_id=1050711607]
+light_color = Color(2.7434528e-06, 0.47819972, 0.47881842, 1)
+
+[node name="WorldEnvironment" parent="." index="5" unique_id=2081714253]
+environment = SubResource("Environment_qpwj6")
+
+[node name="extra_colliders" type="Node3D" parent="." index="6" unique_id=219335527]
+
+[node name="lowerstairs" type="StaticBody3D" parent="extra_colliders" index="0" unique_id=1407182496]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="extra_colliders/lowerstairs" index="0" unique_id=526679317]
+transform = Transform3D(-5.375538e-07, 0, 7.099134, 0, 7.3941283, 0, -12.297795, 0, -3.1031297e-07, 21.995834, 0.33718538, -47.076344)
+shape = SubResource("ConcavePolygonShape3D_g2h2n")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="extra_colliders/lowerstairs" index="1" unique_id=962125267]
+transform = Transform3D(-5.375538e-07, 0, 7.099134, 0, 7.3941283, 0, -12.297795, 0, -3.1031297e-07, 51.919792, 0.3433199, -33.12776)
+shape = SubResource("ConcavePolygonShape3D_g2h2n")
+
+[node name="upperstairs" type="StaticBody3D" parent="extra_colliders" index="1" unique_id=2118105799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0066032, -7.963727)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="extra_colliders/upperstairs" index="0" unique_id=1265269493]
+transform = Transform3D(-4.816924e-07, 0, 7.099134, 0, 7.3941283, 0, -11.019837, 0, -3.1031297e-07, 21.995834, 0.34774113, -47.792892)
+shape = SubResource("ConcavePolygonShape3D_g2h2n")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="extra_colliders/upperstairs" index="1" unique_id=1557202057]
+transform = Transform3D(-11.019837, 0, -6.20626e-07, 0, 7.3941283, 0, 9.633849e-07, 0, -7.099135, 46.20793, 0.34774113, -59.8967)
+shape = SubResource("ConcavePolygonShape3D_g2h2n")
+
+[node name="Enemies" type="Node3D" parent="." index="7" unique_id=2107241136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0066032, -7.963727)
+
+[node name="enemy_melee6" parent="Enemies" index="0" unique_id=752228277 instance=ExtResource("5_l37oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.39419, 4.59468, -83.15092)
+
+[node name="enemy_melee7" parent="Enemies" index="1" unique_id=1397687898 instance=ExtResource("5_l37oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.368353, 4.194893, -83.15092)
+
+[node name="enemy_melee8" parent="Enemies" index="2" unique_id=117937869 instance=ExtResource("5_l37oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.759151, 4.194893, -82.11779)
+
+[node name="enemy_melee9" parent="Enemies" index="3" unique_id=1233755300 instance=ExtResource("5_l37oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.759151, 4.194893, -85.70078)
+
+[node name="enemy_ranged4" parent="Enemies" index="4" unique_id=34223761 instance=ExtResource("6_qpwj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.21025, 3.9933949, -87.61412)
+
+[node name="enemy_ranged5" parent="Enemies" index="5" unique_id=8729877 instance=ExtResource("6_qpwj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.848, 3.9933949, -90.35963)
+
+[node name="enemy_ranged6" parent="Enemies" index="6" unique_id=1753544957 instance=ExtResource("6_qpwj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.724155, 3.9933949, -90.35963)
+
+[node name="enemy_melee" parent="Enemies" index="7" unique_id=227389902 instance=ExtResource("5_l37oo")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.6768875, -3.8318155, -32.624756)
+
+[node name="enemy_melee2" parent="Enemies" index="8" unique_id=1224129520 instance=ExtResource("5_l37oo")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16.020538, -3.8318155, -34.977226)
+
+[node name="enemy_ranged" parent="Enemies" index="9" unique_id=1878848187 instance=ExtResource("6_qpwj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4632297, -4.0066032, -50.98694)
+
+[node name="enemy_ranged2" parent="Enemies" index="10" unique_id=1836481621 instance=ExtResource("6_qpwj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5554192, -4.0066032, -45.540737)
+
+[node name="enemy_melee3" parent="Enemies" index="11" unique_id=947510593 instance=ExtResource("5_l37oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.284552, -3.4657876, -58.04092)
+
+[node name="enemy_ranged3" parent="Enemies" index="12" unique_id=1787898741 instance=ExtResource("6_qpwj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.942133, -4.006605, -17.785866)
+
+[node name="enemy_melee4" parent="Enemies" index="13" unique_id=876760730 instance=ExtResource("5_l37oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.397465, -3.7555122, -21.19038)
+
+[node name="enemy_melee5" parent="Enemies" index="14" unique_id=573872840 instance=ExtResource("5_l37oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.188211, -3.47021, -17.14209)
+
+[node name="enemy_ranged7" parent="Enemies" index="15" unique_id=218071306 instance=ExtResource("6_qpwj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.73877, 3.9933968, -54.832745)
+
+[node name="wall" parent="Enemies" index="16" unique_id=1305035996 instance=ExtResource("3_ra442")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.77351, -4.0066032, -38.284832)
+
+[node name="firepit" parent="Enemies" index="17" unique_id=87632607 instance=ExtResource("4_fiq81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.035946, -3.9698849, -3.357297)
+
+[node name="firepit2" parent="Enemies" index="18" unique_id=212203775 instance=ExtResource("4_fiq81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.973038, -3.9698849, -16.829056)
+
+[node name="firepit3" parent="Enemies" index="19" unique_id=826386282 instance=ExtResource("4_fiq81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.568794, -0.28736305, -60.175297)
+
+[node name="Destructibles" type="Node3D" parent="." index="8" unique_id=691232941]
+
+[node name="wall" parent="Destructibles" index="0" unique_id=447379716 instance=ExtResource("3_ra442")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1400516, 0, -11.053713)
+
+[node name="wall3" parent="Destructibles" index="1" unique_id=2091444543 instance=ExtResource("3_ra442")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1400516, 0, -37.728474)
+
+[node name="wall4" parent="Destructibles" index="2" unique_id=1290622751 instance=ExtResource("3_ra442")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.166662, 0, -62.17758)
+
+[node name="wall5" parent="Destructibles" index="3" unique_id=727838733 instance=ExtResource("3_ra442")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22.215101, 0, -58.184666)
+
+[node name="wall2" parent="Destructibles" index="4" unique_id=1504726792 instance=ExtResource("3_ra442")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1400516, 0, -5.0663958)
+
+[node name="firepit" parent="Destructibles" index="5" unique_id=566186324 instance=ExtResource("4_fiq81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.638159, -0.06443119, -49.30756)
+
+[node name="wall6" parent="Destructibles" index="6" unique_id=762855519 instance=ExtResource("3_ra442")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26.795048, 8.000002, -67.98983)
+
+[node name="wall7" parent="Destructibles" index="7" unique_id=243558208 instance=ExtResource("3_ra442")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 39.274628, 8.000002, -67.98983)
+
+[node name="wall8" parent="Destructibles" index="8" unique_id=1877762454 instance=ExtResource("3_ra442")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 48.451843, -9.536743e-07, -4.145277)
+
+[node name="firepit" parent="." index="9" unique_id=716181650 instance=ExtResource("4_fiq81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.673805, 0.036683083, -5.9189434)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="10" unique_id=58734486]
+transform = Transform3D(166.41832, 0, 0, 0, 1, 0, 0, 0, 181.92912, 26.898067, -1.5492096, -32.263367)
+material_override = SubResource("ShaderMaterial_qsp8v")
+mesh = SubResource("PlaneMesh_qpwj6")
+
+[node name="enemy_melee" parent="." index="11" unique_id=760250910 instance=ExtResource("5_l37oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.376274, 0.3045025, -4.7926383)
+
+[node name="enemy_melee2" parent="." index="12" unique_id=1201075587 instance=ExtResource("5_l37oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.926956, 0.3045025, -3.3094008)
