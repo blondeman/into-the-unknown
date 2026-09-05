@@ -37,7 +37,7 @@ func generate_room_bounds(_entrance_position: Vector3, _entrance_direction: Vect
 	entrance = Doorway.new(_entrance_position - global_position, _entrance_direction)
 	(test_bound.mesh as BoxMesh).size = size
 	
-	var directions: Array[Vector3i] = Doorway.cardinals
+	var directions: Array[Vector3i] = Doorway.cardinals.duplicate()
 	directions.remove_at(directions.find(_entrance_direction))
 
 	for i in randi_range(0,2):
