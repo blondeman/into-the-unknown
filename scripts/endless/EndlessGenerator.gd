@@ -4,12 +4,16 @@ extends Node3D
 var rooms: Array[Room]
 
 func _ready():
-	var exit1 = generate_room(Vector3.ZERO, Vector3i(1,0,0))
-	var exit2 = generate_room(exit1[0],-exit1[1])
-	var exit3 = generate_room(exit2[0],-exit2[1])
+	var exits = generate_room(Doorway.new())
+	for i in 3:
+		var new_exits: Array[Doorway]
+		for exit in exits:
+			new_exits.append_array(generate_room(exit))
+		exits = new_exits
 
 
-func generate_room(entrance_position: Vector3, entrance_direction: Vector3i) -> Array[Vector3]:
+func generate_room(entrance: Doorway) -> Array[Doorway]:
 	var new_room: Room = room_scene.instantiate()
 	add_child(new_room)
-	return new_room.generate_room_bounds(entrance_position, entrance_direction)
+	rooms.append(new_room)
+	return new_room.generate_room_bounds(entrance.position, entrance.direction)
