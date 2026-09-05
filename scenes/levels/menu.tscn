@@ -4,10 +4,11 @@
 [ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="2_k3l6u"]
 [ext_resource type="Texture2D" uid="uid://c4gvigt3hr3l7" path="res://ui/menu.svg" id="2_tmk6g"]
 
-[node name="Menu" type="Node" unique_id=325200933 node_paths=PackedStringArray("menu_container", "controls_container")]
+[node name="Menu" type="Node" unique_id=325200933 node_paths=PackedStringArray("menu_container", "controls_container", "levels_container")]
 script = ExtResource("1_g3w80")
 menu_container = NodePath("Control/menu")
 controls_container = NodePath("Control/controls")
+levels_container = NodePath("Control/level select")
 
 [node name="Control" type="Control" parent="." unique_id=2025969798]
 layout_mode = 3
@@ -44,43 +45,30 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -92.0
-offset_top = -54.0
-offset_right = 92.0
-offset_bottom = 114.00018
+offset_top = -57.99991
+offset_right = 91.99878
+offset_bottom = 118.00009
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="start" type="Button" parent="Control/menu" unique_id=770227961]
-layout_mode = 2
-theme = ExtResource("2_k3l6u")
-text = "Start Game"
-
-[node name="level select" type="Label" parent="Control/menu" unique_id=1741747145]
-layout_mode = 2
-theme = ExtResource("2_k3l6u")
-text = "Level"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/menu" unique_id=1014735007]
+[node name="story" type="HBoxContainer" parent="Control/menu" unique_id=1866028922]
 layout_mode = 2
 
-[node name="level 0" type="Button" parent="Control/menu/HBoxContainer" unique_id=150336700]
+[node name="start" type="Button" parent="Control/menu/story" unique_id=770227961]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_k3l6u")
-text = "1"
+text = "Story"
 
-[node name="level 1" type="Button" parent="Control/menu/HBoxContainer" unique_id=1532456900]
+[node name="levels" type="Button" parent="Control/menu/story" unique_id=1448991023]
 layout_mode = 2
-size_flags_horizontal = 3
 theme = ExtResource("2_k3l6u")
-text = "2"
+text = ">"
 
-[node name="level 2" type="Button" parent="Control/menu/HBoxContainer" unique_id=1502426347]
+[node name="endless" type="Button" parent="Control/menu" unique_id=964951566]
 layout_mode = 2
-size_flags_horizontal = 3
 theme = ExtResource("2_k3l6u")
-text = "3"
+text = "Endless"
 
 [node name="controls" type="Button" parent="Control/menu" unique_id=321943414]
 layout_mode = 2
@@ -142,6 +130,46 @@ layout_mode = 2
 theme = ExtResource("2_k3l6u")
 text = "Back"
 
+[node name="level select" type="VBoxContainer" parent="Control" unique_id=1514688752]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 98.0
+offset_top = -58.0
+offset_right = 282.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="level select" type="Label" parent="Control/level select" unique_id=1741747145]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("2_k3l6u")
+text = "Level"
+horizontal_alignment = 1
+
+[node name="level 0" type="Button" parent="Control/level select" unique_id=150336700]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_k3l6u")
+text = "Village"
+
+[node name="level 1" type="Button" parent="Control/level select" unique_id=1532456900]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_k3l6u")
+text = "Dungeon"
+
+[node name="level 2" type="Button" parent="Control/level select" unique_id=1502426347]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_k3l6u")
+text = "Castle"
+
 [node name="title" type="Label" parent="Control" unique_id=931978415]
 layout_mode = 1
 anchors_preset = 5
@@ -157,10 +185,12 @@ theme_override_font_sizes/font_size = 90
 text = "Ouroboros"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="Control/menu/start" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Control/menu/HBoxContainer/level 0" to="." method="_on_level_button_pressed" binds= [0]]
-[connection signal="pressed" from="Control/menu/HBoxContainer/level 1" to="." method="_on_level_button_pressed" binds= [1]]
-[connection signal="pressed" from="Control/menu/HBoxContainer/level 2" to="." method="_on_level_button_pressed" binds= [2]]
+[connection signal="pressed" from="Control/menu/story/start" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/menu/story/levels" to="." method="_on_levels_pressed"]
+[connection signal="pressed" from="Control/menu/endless" to="." method="_on_endless_pressed"]
 [connection signal="pressed" from="Control/menu/controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="Control/menu/quit" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Control/controls/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Control/level select/level 0" to="." method="_on_level_button_pressed" binds= [0]]
+[connection signal="pressed" from="Control/level select/level 1" to="." method="_on_level_button_pressed" binds= [1]]
+[connection signal="pressed" from="Control/level select/level 2" to="." method="_on_level_button_pressed" binds= [2]]

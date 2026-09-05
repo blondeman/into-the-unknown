@@ -2,6 +2,7 @@ extends Node
 const LEVEL_ID_MENU: int = -1
 const LEVEL_ID_INTRO: int = -2
 const LEVEL_ID_OUTRO: int = -3
+const LEVEL_ID_ENDLESS: int = -4
 
 var global_scene_paths: Array[String] = [
 	#"res://scenes/performance_monitor.tscn",
@@ -17,6 +18,8 @@ var levels: Array[String] = [
 	"res://scenes/levels/level_2.tscn",
 	"res://scenes/levels/level_3.tscn",
 ]
+
+var endless_path: String = "res://scenes/levels/endless.tscn"
 
 @warning_ignore("unused_signal")
 signal on_rebake()
@@ -44,6 +47,10 @@ func load_intro():
 func load_outro():
 	load_level(LEVEL_ID_OUTRO)
 
+func load_endless():
+	load_level(LEVEL_ID_ENDLESS)
+
+
 func load_next_level():
 	if current_level_id + 1 < levels.size():
 		load_level(current_level_id + 1)
@@ -67,6 +74,9 @@ func load_level(level: int) -> void:
 	elif current_level_id == LEVEL_ID_OUTRO:
 		print("Loading outro")
 		level_path = outro_path
+	elif current_level_id == LEVEL_ID_ENDLESS:
+		print("Loading endless")
+		level_path = endless_path
 	elif current_level_id >= 0 and current_level_id < levels.size():
 		print("Loading level " + str(level))
 		level_path = levels[current_level_id]

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bdfawudpao15i"]
+
+[ext_resource type="Script" uid="uid://bnekwpsf0w7xx" path="res://scripts/endless/Room.gd" id="1_vulxk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xums0"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_xums0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qu65"]
+albedo_color = Color(0.5126329, 0.42049152, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vulxk"]
+albedo_color = Color(0.9960672, 0, 0.15976125, 1)
+
+[node name="room" type="Node3D" unique_id=340158916 node_paths=PackedStringArray("test_bound", "test_entrance", "test_exit")]
+script = ExtResource("1_vulxk")
+test_bound = NodePath("test_bound")
+test_entrance = NodePath("test_doorway_entrance")
+test_exit = NodePath("test_doorway_exit")
+
+[node name="test_bound" type="MeshInstance3D" parent="." unique_id=1376126423]
+mesh = SubResource("BoxMesh_xums0")
+
+[node name="test_doorway_entrance" type="MeshInstance3D" parent="." unique_id=544041467]
+mesh = SubResource("SphereMesh_xums0")
+surface_material_override/0 = SubResource("StandardMaterial3D_2qu65")
+
+[node name="test_doorway_exit" type="MeshInstance3D" parent="." unique_id=196564879]
+mesh = SubResource("SphereMesh_xums0")
+surface_material_override/0 = SubResource("StandardMaterial3D_vulxk")
