@@ -16,8 +16,10 @@ resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("Sky_75hxl")
 
-[node name="endless_generator" type="Node3D" unique_id=859133285]
+[node name="endless_generator" type="Node3D" unique_id=859133285 node_paths=PackedStringArray("seed", "depth")]
 script = ExtResource("1_2qu65")
+seed = NodePath("test control/VBoxContainer/seed")
+depth = NodePath("test control/VBoxContainer/depth")
 room_scene = ExtResource("2_2qu65")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=937051661]
@@ -32,3 +34,33 @@ environment = SubResource("Environment_6jiww")
 [node name="light" type="DirectionalLight3D" parent="." unique_id=1802688771]
 transform = Transform3D(0.69234467, 0.45621732, -0.55903894, 0, 0.7747569, 0.6322592, 0.7215669, -0.43774128, 0.5363988, 0, 0, 0)
 shadow_enabled = true
+
+[node name="test control" type="Control" parent="." unique_id=224132447]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="test control" unique_id=367050989]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_right = 122.0
+offset_bottom = 99.0
+
+[node name="seed" type="TextEdit" parent="test control/VBoxContainer" unique_id=1646828478]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "seed"
+
+[node name="depth" type="TextEdit" parent="test control/VBoxContainer" unique_id=880190871]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "depth"
+
+[node name="generate" type="Button" parent="test control/VBoxContainer" unique_id=1099708501]
+layout_mode = 2
+text = "Generate Seed"
+
+[connection signal="pressed" from="test control/VBoxContainer/generate" to="." method="generate_maze"]

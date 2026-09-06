@@ -2,8 +2,21 @@
 
 [ext_resource type="Script" uid="uid://bnekwpsf0w7xx" path="res://scripts/endless/Room.gd" id="1_vulxk"]
 
+[sub_resource type="Curve" id="Curve_vulxk"]
+_data = [Vector2(0, 1), 0.0, 0.044136174, 0, 0, Vector2(1, 0), -0.08890198, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_75hxl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.3676279, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75hxl"]
+transparency = 1
+albedo_color = Color(0, 0.34773433, 0.0031121827, 0.4)
+
 [sub_resource type="BoxMesh" id="BoxMesh_xums0"]
 resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_75hxl")
 
 [sub_resource type="SphereMesh" id="SphereMesh_xums0"]
 
@@ -12,6 +25,8 @@ albedo_color = Color(0.5126329, 0.42049152, 1, 1)
 
 [node name="room" type="Node3D" unique_id=340158916 node_paths=PackedStringArray("test_bound", "test_entrance")]
 script = ExtResource("1_vulxk")
+direction_bias_curve = SubResource("Curve_vulxk")
+exit_count_curve = SubResource("Curve_75hxl")
 test_bound = NodePath("test_bound")
 test_entrance = NodePath("test_doorway_entrance")
 
