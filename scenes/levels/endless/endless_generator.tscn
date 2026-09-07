@@ -18,6 +18,7 @@ sky = SubResource("Sky_75hxl")
 
 [node name="endless_generator" type="Node3D" unique_id=859133285 node_paths=PackedStringArray("seed_edit", "depth_edit", "room_bound_check", "room_path_check")]
 script = ExtResource("1_2qu65")
+global_scale = 5.0
 seed_edit = NodePath("test control/VBoxContainer/seed")
 depth_edit = NodePath("test control/VBoxContainer/depth")
 room_bound_check = NodePath("test control/VBoxContainer/room bound")
@@ -59,6 +60,7 @@ placeholder_text = "seed"
 [node name="depth" type="TextEdit" parent="test control/VBoxContainer" unique_id=880190871]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+text = "3"
 placeholder_text = "depth"
 
 [node name="generate" type="Button" parent="test control/VBoxContainer" unique_id=1099708501]

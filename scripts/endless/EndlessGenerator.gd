@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var global_scale: float = 1.0
+
 @export var seed_edit: TextEdit
 var use_random_seed: bool = false
 var last_seed_value: int = 0
@@ -50,6 +52,7 @@ func generate_maze():
 func generate_room(entrance: Doorway = Doorway.new()) -> Array[Doorway]:
 	var new_room: Room = room_scene.instantiate()
 	new_room.set_rng(rng)
+	new_room.set_scale_factor(global_scale)
 	add_child(new_room)
 	var exits: Array[Doorway] = new_room.generate_room(entrance)
 	for room in rooms:

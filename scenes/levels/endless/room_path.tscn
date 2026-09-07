@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://bhac7i6gb7f8o"]
 
 [ext_resource type="Script" uid="uid://cjslsmvr5q1ft" path="res://scenes/levels/endless/RoomPath.gd" id="1_3odvi"]
+[ext_resource type="Texture2D" uid="uid://o2au3q3pb5p7" path="res://textures/checkerboard.png" id="2_rkm3a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3odvi"]
+albedo_texture = ExtResource("2_rkm3a")
 
 [node name="room_path" type="Node3D" unique_id=1795485572]
 script = ExtResource("1_3odvi")
+mesh_material = SubResource("StandardMaterial3D_3odvi")

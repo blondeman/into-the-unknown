@@ -11,6 +11,7 @@ var size: Vector3
 var entrance: Doorway
 var exits: Array[Doorway]
 var rng: RandomNumberGenerator
+var scale_factor: float = 1.0
 
 @export var direction_bias_curve: Curve
 @export var exit_count_curve: Curve
@@ -19,6 +20,13 @@ var rng: RandomNumberGenerator
 
 @export var debug_room_bound: MeshInstance3D
 @export var debug_room_entrance: MeshInstance3D
+
+
+func set_scale_factor(_scale: float) -> void:
+	scale_factor = _scale
+	if room_path:
+		room_path.cell_size = _scale
+
 
 func set_rng(_rng: RandomNumberGenerator) -> void:
 	rng = _rng
@@ -62,11 +70,11 @@ func generate_room_bounds(_entrance: Doorway):
 	size = Vector3(
 		rng.randi_range(MIN_ROOM_SIZE, MAX_ROOM_SIZE),
 		rng.randi_range(MIN_ROOM_SIZE, MAX_ROOM_HEIGHT),
-		rng.randi_range(MIN_ROOM_SIZE, MAX_ROOM_SIZE))
+		rng.randi_range(MIN_ROOM_SIZE, MAX_ROOM_SIZE)) * scale_factor
 	global_position = _entrance.position + ((_entrance.direction as Vector3) * size / 2)
 	entrance = Doorway.new(_entrance.position - global_position, _entrance.direction)
 	(debug_room_bound.mesh as BoxMesh).size = size
-	
+
 	debug_room_entrance.position = entrance.position
 
 
@@ -80,12 +88,16 @@ func generate_exits(_entrance: Doorway) -> Array[Doorway]:
 
 func create_exit(directions: Array[Vector3i]) -> Vector3i:
 	var exit_direction: Vector3i = pick_weighted_direction(directions)
-	var exit_position = ((exit_direction as Vector3) * size / 2) * -1
-	exit_position.y = rng.randi_range(-floor(size.y/2) + EXIT_PADDING, floor(size.y/2) - EXIT_PADDING)
+	var size_cells: Vector3 = size / scale_factor
+
+	var exit_position: Vector3 = ((exit_direction as Vector3) * size_cells / 2) * -1
+	exit_position.y = rng.randi_range(-floor(size_cells.y/2) + EXIT_PADDING, floor(size_cells.y/2) - EXIT_PADDING)
 	if abs(exit_direction.x) > 0:
-		exit_position.z = rng.randi_range(-floor(size.z/2) + EXIT_PADDING, floor(size.z/2) - EXIT_PADDING)
+		exit_position.z = rng.randi_range(-floor(size_cells.z/2) + EXIT_PADDING, floor(size_cells.z/2) - EXIT_PADDING)
 	else:
-		exit_position.x = rng.randi_range(-floor(size.x/2) + EXIT_PADDING, floor(size.x/2) - EXIT_PADDING)
+		exit_position.x = rng.randi_range(-floor(size_cells.x/2) + EXIT_PADDING, floor(size_cells.x/2) - EXIT_PADDING)
+
+	exit_position *= scale_factor
 	exits.append(Doorway.new(exit_position, exit_direction))
 	return exit_direction
 
@@ -174,16 +186,16 @@ func shrink_to_fit(other: Room, entrance_direction: Vector3i) -> bool:
 		else:
 			return false
 
-	if new_extent < MIN_ROOM_SIZE:
+	if new_extent < MIN_ROOM_SIZE * scale_factor:
 		return false
 
 	var new_size: Vector3 = size
 	new_size[axis] = new_extent
 
 	for exit in exits:
-		if axis == 0 and abs(exit.position.x) > new_extent / 2 - EXIT_PADDING:
+		if axis == 0 and abs(exit.position.x) > new_extent / 2 - EXIT_PADDING * scale_factor:
 			return false
-		if axis == 2 and abs(exit.position.z) > new_extent / 2 - EXIT_PADDING:
+		if axis == 2 and abs(exit.position.z) > new_extent / 2 - EXIT_PADDING * scale_factor:
 			return false
 
 	var old_center: Vector3 = global_position
