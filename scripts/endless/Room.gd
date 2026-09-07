@@ -15,8 +15,10 @@ var rng: RandomNumberGenerator
 @export var direction_bias_curve: Curve
 @export var exit_count_curve: Curve
 
-@export var test_bound: MeshInstance3D
-@export var test_entrance: MeshInstance3D
+@export var room_path: RoomPath
+
+@export var debug_room_bound: MeshInstance3D
+@export var debug_room_entrance: MeshInstance3D
 
 func set_rng(_rng: RandomNumberGenerator) -> void:
 	rng = _rng
@@ -27,10 +29,10 @@ func get_doorway_local_to_global(pos: Vector3) -> Vector3:
 
 
 func get_doorways_local_to_global(doorways: Array[Doorway]) -> Array[Doorway]:
-	var global_exits: Array[Doorway]
-	for exit in exits:
-		global_exits.append(Doorway.new(get_doorway_local_to_global(exit.position), exit.direction * -1))
-	return global_exits
+	var global_doorways: Array[Doorway]
+	for doorway in doorways:
+		global_doorways.append(Doorway.new(get_doorway_local_to_global(doorway.position), doorway.direction * -1))
+	return global_doorways
 
 
 func get_doorway_direction(pos: Vector3) -> Vector3i:
@@ -45,22 +47,34 @@ func get_doorway_direction(pos: Vector3) -> Vector3i:
 	return Vector3i.ZERO
 
 
-func generate_room_bounds(_entrance: Doorway) -> Array[Doorway]:
+func generate_room(_entrance: Doorway) -> Array[Doorway]:
+	generate_room_bounds(_entrance)
+	generate_exits(_entrance)
+	
+	room_path.set_rng(rng)
+	room_path.generate_path(self)
+	room_path.draw_path_debug()
+	
+	return get_doorways_local_to_global(exits)
+
+
+func generate_room_bounds(_entrance: Doorway):
 	size = Vector3(
 		rng.randi_range(MIN_ROOM_SIZE, MAX_ROOM_SIZE),
 		rng.randi_range(MIN_ROOM_SIZE, MAX_ROOM_HEIGHT),
 		rng.randi_range(MIN_ROOM_SIZE, MAX_ROOM_SIZE))
 	global_position = _entrance.position + ((_entrance.direction as Vector3) * size / 2)
 	entrance = Doorway.new(_entrance.position - global_position, _entrance.direction)
-	(test_bound.mesh as BoxMesh).size = size
+	(debug_room_bound.mesh as BoxMesh).size = size
+	
+	debug_room_entrance.position = entrance.position
 
+
+func generate_exits(_entrance: Doorway) -> Array[Doorway]:
 	var directions: Array[Vector3i] = Doorway.cardinals.duplicate()
 	directions.remove_at(directions.find(_entrance.direction))
 	for i in get_exit_count():
 		directions.remove_at(directions.find(create_exit(directions)))
-
-	test_entrance.position = entrance.position
-
 	return get_doorways_local_to_global(exits)
 
 
@@ -176,7 +190,7 @@ func shrink_to_fit(other: Room, entrance_direction: Vector3i) -> bool:
 	var shrink_amount: float = size[axis] - new_extent
 	size = new_size
 	global_position = old_center - (dir.normalized() * shrink_amount / 2.0)
-	(test_bound.mesh as BoxMesh).size = size
+	(debug_room_bound.mesh as BoxMesh).size = size
 
 	# verify — never trust the math blindly
 	var a2: AABB = AABB(global_position - size / 2.0, size)

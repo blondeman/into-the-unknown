@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bdfawudpao15i"]
 
 [ext_resource type="Script" uid="uid://bnekwpsf0w7xx" path="res://scripts/endless/Room.gd" id="1_vulxk"]
+[ext_resource type="PackedScene" uid="uid://bhac7i6gb7f8o" path="res://scenes/levels/endless/room_path.tscn" id="2_oldoa"]
 
 [sub_resource type="Curve" id="Curve_vulxk"]
 _data = [Vector2(0, 1), 0.0, 0.044136174, 0, 0, Vector2(1, 0), -0.08890198, 0.0, 0, 0]
@@ -23,12 +24,13 @@ material = SubResource("StandardMaterial3D_75hxl")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qu65"]
 albedo_color = Color(0.5126329, 0.42049152, 1, 1)
 
-[node name="room" type="Node3D" unique_id=340158916 node_paths=PackedStringArray("test_bound", "test_entrance")]
+[node name="room" type="Node3D" unique_id=340158916 node_paths=PackedStringArray("room_path", "debug_room_bound", "debug_room_entrance")]
 script = ExtResource("1_vulxk")
 direction_bias_curve = SubResource("Curve_vulxk")
 exit_count_curve = SubResource("Curve_75hxl")
-test_bound = NodePath("test_bound")
-test_entrance = NodePath("test_doorway_entrance")
+room_path = NodePath("room_path")
+debug_room_bound = NodePath("test_bound")
+debug_room_entrance = NodePath("test_doorway_entrance")
 
 [node name="test_bound" type="MeshInstance3D" parent="." unique_id=1376126423]
 mesh = SubResource("BoxMesh_xums0")
@@ -36,3 +38,5 @@ mesh = SubResource("BoxMesh_xums0")
 [node name="test_doorway_entrance" type="MeshInstance3D" parent="." unique_id=544041467]
 mesh = SubResource("SphereMesh_xums0")
 surface_material_override/0 = SubResource("StandardMaterial3D_2qu65")
+
+[node name="room_path" parent="." unique_id=1795485572 instance=ExtResource("2_oldoa")]

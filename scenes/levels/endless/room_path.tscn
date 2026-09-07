@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bhac7i6gb7f8o"]
+
+[ext_resource type="Script" uid="uid://cjslsmvr5q1ft" path="res://scenes/levels/endless/RoomPath.gd" id="1_3odvi"]
+
+[node name="room_path" type="Node3D" unique_id=1795485572]
+script = ExtResource("1_3odvi")

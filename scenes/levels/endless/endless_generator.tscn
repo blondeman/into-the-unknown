@@ -16,10 +16,12 @@ resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("Sky_75hxl")
 
-[node name="endless_generator" type="Node3D" unique_id=859133285 node_paths=PackedStringArray("seed", "depth")]
+[node name="endless_generator" type="Node3D" unique_id=859133285 node_paths=PackedStringArray("seed_edit", "depth_edit", "room_bound_check", "room_path_check")]
 script = ExtResource("1_2qu65")
-seed = NodePath("test control/VBoxContainer/seed")
-depth = NodePath("test control/VBoxContainer/depth")
+seed_edit = NodePath("test control/VBoxContainer/seed")
+depth_edit = NodePath("test control/VBoxContainer/depth")
+room_bound_check = NodePath("test control/VBoxContainer/room bound")
+room_path_check = NodePath("test control/VBoxContainer/room path")
 room_scene = ExtResource("2_2qu65")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=937051661]
@@ -63,4 +65,16 @@ placeholder_text = "depth"
 layout_mode = 2
 text = "Generate Seed"
 
+[node name="room bound" type="CheckBox" parent="test control/VBoxContainer" unique_id=851802005]
+layout_mode = 2
+button_pressed = true
+text = "Show Room Bounds"
+
+[node name="room path" type="CheckBox" parent="test control/VBoxContainer" unique_id=1346378509]
+layout_mode = 2
+button_pressed = true
+text = "Show Room Path"
+
 [connection signal="pressed" from="test control/VBoxContainer/generate" to="." method="generate_maze"]
+[connection signal="toggled" from="test control/VBoxContainer/room bound" to="." method="_on_room_bound_toggled"]
+[connection signal="toggled" from="test control/VBoxContainer/room path" to="." method="_on_room_path_toggled"]
