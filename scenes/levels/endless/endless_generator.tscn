@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bdympq5nulded" path="res://scripts/endless/EndlessGenerator.gd" id="1_2qu65"]
 [ext_resource type="PackedScene" uid="uid://bdfawudpao15i" path="res://scenes/levels/endless/room.tscn" id="2_2qu65"]
-[ext_resource type="Script" uid="uid://88e41uq775us" path="res://scenes/levels/endless/node_3d.gd" id="3_75hxl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2qu65"]
 resource_local_to_scene = true
@@ -18,18 +17,12 @@ sky = SubResource("Sky_75hxl")
 
 [node name="endless_generator" type="Node3D" unique_id=859133285 node_paths=PackedStringArray("seed_edit", "depth_edit", "room_bound_check", "room_path_check")]
 script = ExtResource("1_2qu65")
-global_scale = 5.0
+global_scale = 3.0
 seed_edit = NodePath("test control/VBoxContainer/seed")
 depth_edit = NodePath("test control/VBoxContainer/depth")
 room_bound_check = NodePath("test control/VBoxContainer/room bound")
 room_path_check = NodePath("test control/VBoxContainer/room path")
 room_scene = ExtResource("2_2qu65")
-
-[node name="Node3D" type="Node3D" parent="." unique_id=937051661]
-script = ExtResource("3_75hxl")
-
-[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1152132294]
-transform = Transform3D(-0.70710677, 0.5, -0.5, 0, 0.7071068, 0.70710677, 0.70710677, 0.5, -0.5, -20, 20, -20)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=804971832]
 environment = SubResource("Environment_6jiww")
@@ -68,13 +61,13 @@ layout_mode = 2
 text = "Generate Seed"
 
 [node name="room bound" type="CheckBox" parent="test control/VBoxContainer" unique_id=851802005]
+visible = false
 layout_mode = 2
-button_pressed = true
 text = "Show Room Bounds"
 
 [node name="room path" type="CheckBox" parent="test control/VBoxContainer" unique_id=1346378509]
+visible = false
 layout_mode = 2
-button_pressed = true
 text = "Show Room Path"
 
 [connection signal="pressed" from="test control/VBoxContainer/generate" to="." method="generate_maze"]

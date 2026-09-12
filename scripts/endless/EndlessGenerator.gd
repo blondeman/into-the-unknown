@@ -83,4 +83,5 @@ func _on_room_bound_toggled(toggled_on: bool) -> void:
 
 func _on_room_path_toggled(toggled_on: bool) -> void:
 	for room in rooms:
-		room.room_path._debug_mesh_instance.visible = toggled_on
+		if room.room_path:
+			room.room_path._debug_mesh_instance.visible = toggled_on

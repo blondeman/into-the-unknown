@@ -17,6 +17,7 @@ var scale_factor: float = 1.0
 @export var exit_count_curve: Curve
 
 @export var room_path: RoomPath
+@export var room_mesh: RoomMesh
 
 @export var debug_room_bound: MeshInstance3D
 @export var debug_room_entrance: MeshInstance3D
@@ -59,9 +60,12 @@ func generate_room(_entrance: Doorway) -> Array[Doorway]:
 	generate_room_bounds(_entrance)
 	generate_exits(_entrance)
 	
-	room_path.set_rng(rng)
-	room_path.generate_path(self)
-	room_path.draw_path_debug()
+	if room_path:
+		room_path.set_rng(rng)
+		room_path.generate_path(self)
+		room_path.draw_path_debug()
+	
+	room_mesh.set_room_mesh(self)
 	
 	return get_doorways_local_to_global(exits)
 

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://k8p1yxp0idun"]
+
+[ext_resource type="Script" uid="uid://dafxd7okhcqiq" path="res://scenes/levels/endless/RoomMesh.gd" id="1_0urp2"]
+[ext_resource type="Material" uid="uid://b2ginmgn8p1r6" path="res://textures/grass.tres" id="2_0urp2"]
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="2_gy8sa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_77rhs"]
+resource_local_to_scene = true
+material = ExtResource("2_0urp2")
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_42rsn"]
+resource_local_to_scene = true
+size = Vector3(10, 1, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0urp2"]
+render_priority = 0
+shader = ExtResource("2_gy8sa")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.82398456, 0, 0.17134202, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ppb3h"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_0urp2")
+left_to_right = 1.0
+size = Vector3(5, 3, 3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jkm68"]
+resource_local_to_scene = true
+
+[node name="room_mesh" type="Node3D" unique_id=1812462932 node_paths=PackedStringArray("floor_mesh", "floor_collision", "ramp_mesh", "ramp_collision")]
+script = ExtResource("1_0urp2")
+floor_mesh = NodePath("floor")
+floor_collision = NodePath("floor/StaticBody3D/CollisionShape3D")
+ramp_mesh = NodePath("ramp")
+ramp_collision = NodePath("ramp/StaticBody3D/CollisionShape3D")
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=856359914]
+mesh = SubResource("BoxMesh_77rhs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=1214581175]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=524405877]
+shape = SubResource("BoxShape3D_42rsn")
+
+[node name="ramp" type="MeshInstance3D" parent="." unique_id=1996365267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0077896, 0)
+mesh = SubResource("PrismMesh_ppb3h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ramp" unique_id=2130130276]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ramp/StaticBody3D" unique_id=2004155273]
+shape = SubResource("ConvexPolygonShape3D_jkm68")
