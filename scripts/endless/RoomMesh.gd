@@ -2,6 +2,8 @@ class_name RoomMesh
 extends Node3D
 
 const FLOOR_THICKNESS := 1.0
+const WALL_THICKNESS := 0.5
+const WALL_HEIGHT_SHRINK := 0.2
 const RAMP_XY_RATIO := 5.0 / 3.0
 const MIN_RAMP_HEIGHT := 0.1
 
@@ -11,19 +13,77 @@ const MIN_RAMP_HEIGHT := 0.1
 @export var ramp_mesh: MeshInstance3D
 @export var ramp_collision: CollisionShape3D
 
+@export var wall_meshes: Array[MeshInstance3D]
+@export var wall_collisions: Array[CollisionShape3D]
+
 var _ramp_instances: Array[MeshInstance3D] = []
 var _ramp_collision_instances: Array[CollisionShape3D] = []
 
 
 func set_room_mesh(room: Room):
+	var floor_top_y: float = room.entrance.position.y
+
+	_set_floor_mesh(room, floor_top_y)
+	_set_ramp_mesh(room, floor_top_y)
+	_set_wall_mesh(room, floor_top_y)
+
+
+func _set_wall_mesh(room: Room, floor_top_y: float):
+	var directions: Array[Vector3i] = Doorway.cardinals.duplicate()
+	if len(wall_meshes) != len(wall_collisions) || len(wall_meshes) != len(directions):
+		return
+
+	for i in range(len(directions)):
+		var direction = directions[i]
+		var wall_mesh = wall_meshes[i]
+		var wall_collision = wall_collisions[i]
+
+		if direction == room.entrance.direction:
+			wall_mesh.queue_free()
+			wall_collision.queue_free()
+			continue
+
+		var exit_id = room.exits.find_custom(func(e): return e.direction == direction)
+		var wall_height: float = 5.0
+		if exit_id != -1:
+			wall_height = room.exits[exit_id].position.y - floor_top_y
+			if abs(wall_height) < 0.1:
+				wall_mesh.queue_free()
+				wall_collision.queue_free()
+				continue
+
+		_place_wall(wall_mesh, wall_collision, -direction, room, wall_height, floor_top_y)
+
+
+func _place_wall(wall_mesh: MeshInstance3D, wall_collision: CollisionShape3D, direction: Vector3i, room: Room, wall_height: float, floor_top_y: float) -> void:
+	var wall_position_y = floor_top_y + wall_height / 2
+	var dir_vec = direction as Vector3
+
+	var box_size: Vector3
+	if abs(dir_vec.x) > 0.5:
+		box_size = Vector3(WALL_THICKNESS, abs(wall_height) - WALL_HEIGHT_SHRINK, room.size.z)
+	else:
+		box_size = Vector3(room.size.x, abs(wall_height) - WALL_HEIGHT_SHRINK, WALL_THICKNESS)
+
+	var position = dir_vec * (room.size / 2)
+	position.y = wall_position_y - WALL_HEIGHT_SHRINK / 2
+
+	wall_mesh.position = position
+	(wall_mesh.mesh as BoxMesh).size = box_size
+	(wall_collision.shape as BoxShape3D).size = box_size
+
+
+func _set_floor_mesh(room: Room, floor_top_y: float):
 	var size = room.size
 	size.y = FLOOR_THICKNESS
 	(floor_mesh.mesh as BoxMesh).size = size
 	(floor_collision.shape as BoxShape3D).size = size
-
-	var floor_top_y: float = room.entrance.position.y
+	
 	floor_mesh.position.y = floor_top_y - FLOOR_THICKNESS / 2.0
+	
 
+
+func _set_ramp_mesh(room: Room, floor_top_y: float):
 	_clear_extra_ramps()
 
 	var ramp_index: int = 0

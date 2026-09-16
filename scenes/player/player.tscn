@@ -363,6 +363,7 @@ shadow_mesh = SubResource("ArrayMesh_4ytqj")
 [node name="player" type="Node3D" unique_id=1262716053 node_paths=PackedStringArray("head", "body") groups=["player"]]
 script = ExtResource("1_qhqgy")
 speed = 13.0
+step_up_height = 0.5
 dash_speed = 18.0
 dash_rotation_speed = 3.0
 head = NodePath("head")

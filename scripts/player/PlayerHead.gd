@@ -19,6 +19,7 @@ func _ready() -> void:
 			audio_stream_player.volume_linear = 0.0
 			audio_stream_player.play()
 
+
 func _physics_process(delta: float) -> void:
 	var speed = player_controller.speed if not _dashing else player_controller.dash_speed
 	var rotation_speed = player_controller.rotation_speed if not _dashing else player_controller.dash_rotation_speed
@@ -43,7 +44,43 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, speed)
 		particles.emitting = false
 	
+	_step_up(delta)
 	move_and_slide()
+
+
+func _step_up(delta: float) -> void:
+	var motion = Vector3(velocity.x, 0, velocity.z) * delta
+	if motion.length_squared() == 0.0:
+		return
+	
+	# Not blocked at current height — no step needed.
+	if not test_move(global_transform, motion):
+		return
+	
+	var step_height = player_controller.step_up_height
+	
+	# Is there clear space directly above to lift into?
+	var raised_transform = global_transform
+	raised_transform.origin.y += step_height
+	if test_move(raised_transform, Vector3.ZERO):
+		return # something overhead, can't lift
+	
+	# From the raised position, is the forward path now clear?
+	var forward_transform = raised_transform
+	if test_move(forward_transform, motion):
+		return # still blocked — this is a wall, not a step
+	
+	forward_transform.origin += motion
+	
+	# Find the exact drop distance back down onto the step surface.
+	var collision := KinematicCollision3D.new()
+	var down_motion = Vector3(0, -step_height, 0)
+	var actual_step_height = step_height
+	if test_move(forward_transform, down_motion, collision):
+		actual_step_height = step_height - collision.get_travel().length()
+	
+	# Clear above and clear ahead — step up by the exact amount.
+	global_position.y += actual_step_height
 
 
 func _process(delta: float) -> void:

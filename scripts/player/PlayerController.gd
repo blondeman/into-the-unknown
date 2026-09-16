@@ -3,6 +3,7 @@ extends Node3D
 
 @export var speed = 5.0
 @export var rotation_speed = 10.0
+@export var step_up_height: float = 0.2
 
 @export var dash_speed = 10.0
 @export var dash_rotation_speed = 4.0
