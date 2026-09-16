@@ -14,8 +14,6 @@ extends Node3D
 @export var body: PhysicsBody3D
 
 var segments: Array[PlayerSegment]
-var _saved_positions: Array[Vector3]
-var segment_lengths: Array[float]
 
 func _ready() -> void:
 	create_body()
@@ -25,44 +23,24 @@ func create_body():
 	for child in get_children():
 		if child is PlayerSegment:
 			segments.append(child)
-			_saved_positions.append(child.global_position)
-	
-	segment_lengths.append(head.global_position.distance_to(segments[0].global_position))
-	for i in range(segments.size() - 1):
-		segment_lengths.append(segments[i].global_position.distance_to(segments[i + 1].global_position))
 
+	if segments.is_empty():
+		return
 
-func _process(_delta: float) -> void:
-	_follow(0, head.global_position)
+	_link_segment(segments[0], head)
 	for i in range(1, segments.size()):
-		_follow(i, segments[i - 1].global_position)
+		_link_segment(segments[i], segments[i - 1])
+
+	# Guarantee follow order within a frame: head must update before
+	# segment 0 reads it, segment 0 before segment 1, etc.
+	head.process_priority = 0
+	for i in range(segments.size()):
+		segments[i].process_priority = i + 1
 
 
-func _follow(i: int, target: Vector3):
-	var segment := segments[i]
-	var diff := segment.global_position - target
-	var length := segment_lengths[i]
-
-	if diff.length() > length:
-		_saved_positions[i] = target + diff.normalized() * length
-	else:
-		_saved_positions[i] = segment.global_position
-
-	segment.global_position = _saved_positions[i]
-	_safe_look_at(segment, target)
-
-
-func _safe_look_at(node: Node3D, target: Vector3) -> void:
-	var direction = (target - node.global_position).normalized()
-	
-	if direction.length() < 0.001:
-		return  # target is too close or identical position
-	
-	var up = Vector3.UP
-	if abs(direction.dot(up)) > 0.999:
-		up = Vector3.FORWARD
-	
-	node.look_at(target, up)
+func _link_segment(segment: PlayerSegment, target: Node3D) -> void:
+	segment.target = target
+	segment.follow_distance = segment.global_position.distance_to(target.global_position)
 
 
 func get_head_and_segments() -> Array[Node3D]:
