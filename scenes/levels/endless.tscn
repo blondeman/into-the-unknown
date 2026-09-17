@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dvwk81wmkd482" path="res://scenes/levels/level_parent.tscn" id="1_ywrxy"]
 [ext_resource type="PackedScene" uid="uid://ddmsyog03eynx" path="res://scenes/environment/endless/endless_generator.tscn" id="2_0kge5"]
-[ext_resource type="Script" uid="uid://bjy1wyh4x6e5w" path="res://scenes/environment/endless/GenerationTracker.gd" id="3_uergm"]
+[ext_resource type="Script" uid="uid://bjy1wyh4x6e5w" path="res://scripts/endless/GenerationTracker.gd" id="3_uergm"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qyjdh"]
 resource_local_to_scene = true
