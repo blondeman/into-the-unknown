@@ -1,14 +1,10 @@
+class_name EndlessGenerator
 extends Node3D
 
 @export var global_scale: float = 1.0
 
-@export var seed_edit: TextEdit
-var use_random_seed: bool = false
-var last_seed_value: int = 0
-
-@export var depth_edit: TextEdit
-@export var room_bound_check: CheckBox
-@export var room_path_check: CheckBox
+@export var seed: String
+var rng: RandomNumberGenerator
 
 @export var room_scene: PackedScene
 var rooms: Array[Room]
@@ -17,56 +13,41 @@ func _ready():
 	generate_maze()
 
 
-var rng: RandomNumberGenerator
+func random_seed():
+	rng = RandomNumberGenerator.new()
+	rng.randomize()
+	seed = str(rng.seed)
+	rng.seed = hash(seed)
+
 
 func generate_maze():
 	clear_rooms()
 
-	var _seed_text: String = seed_edit.text
+	rng = RandomNumberGenerator.new()
+	rng.seed = hash(seed)
 
-	if _seed_text.is_empty() or (use_random_seed and _seed_text.to_int() == last_seed_value):
-		rng = RandomNumberGenerator.new()
-		rng.randomize()
-		use_random_seed = true
-		last_seed_value = rng.seed
-		seed_edit.text = str(rng.seed)
-	else:
-		use_random_seed = false
-		rng = RandomNumberGenerator.new()
-		rng.seed = hash(_seed_text)
-		last_seed_value = rng.seed
-
-	var exits = generate_room()
-	var _depth = depth_edit.text.to_int()
-
-	for i in _depth:
-		var new_exits: Array[Doorway]
-		for exit in exits:
-			new_exits.append_array(generate_room(exit))
-		exits = new_exits
-	
-	_on_room_bound_toggled(room_bound_check.button_pressed)
-	_on_room_path_toggled(room_path_check.button_pressed)
+	branch_room(generate_room())
 
 
-func generate_room(entrance: Doorway = Doorway.new()) -> Array[Doorway]:
+func generate_room(entrance: Doorway = Doorway.new(), depth: int = 0) -> Room:
 	var new_room: Room = room_scene.instantiate()
 	new_room.set_rng(rng)
 	new_room.set_scale_factor(global_scale)
 	add_child(new_room)
-	var exits: Array[Doorway] = new_room.generate_room(entrance)
+	new_room.generate_room(entrance, depth)
+	
 	for room in rooms:
 		var pct: float = new_room.get_overlap_percent(room)
 		if pct > 0.0:
 			if pct < 0.10:
 				if not new_room.shrink_to_fit(room, entrance.direction):
 					new_room.queue_free()
-					return []
+					return null
 			else:
 				new_room.queue_free()
-				return []
+				return null
 	rooms.append(new_room)
-	return exits
+	return new_room
 
 
 func clear_rooms():
@@ -75,13 +56,14 @@ func clear_rooms():
 	rooms.clear()
 
 
-func _on_room_bound_toggled(toggled_on: bool) -> void:
-	for room in rooms:
-		room.debug_room_bound.visible = toggled_on
-		room.debug_room_entrance.visible = toggled_on
-
-
-func _on_room_path_toggled(toggled_on: bool) -> void:
-	for room in rooms:
-		if room.room_path:
-			room.room_path._debug_mesh_instance.visible = toggled_on
+func branch_room(room: Room):
+	if !room:
+		return
+	
+	for exit in room.exits:
+		var new_entrance: Doorway = Doorway.new(room.get_doorway_local_to_global(exit.position), exit.direction * -1)
+		var room_id = rooms.find_custom(func(r): return r.get_doorway_local_to_global(r.entrance.position) == new_entrance.position)
+		if room_id == -1:
+			generate_room(new_entrance, room.depth + 1)
+		else:
+			print("room already exists")

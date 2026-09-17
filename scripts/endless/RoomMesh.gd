@@ -2,6 +2,7 @@ class_name RoomMesh
 extends Node3D
 
 const FLOOR_THICKNESS := 1.0
+const WALL_HEIGHT := 10
 const WALL_THICKNESS := 0.5
 const WALL_HEIGHT_SHRINK := 0.2
 const RAMP_XY_RATIO := 5.0 / 3.0
@@ -44,7 +45,7 @@ func _set_wall_mesh(room: Room, floor_top_y: float):
 			continue
 
 		var exit_id = room.exits.find_custom(func(e): return e.direction == direction)
-		var wall_height: float = 5.0
+		var wall_height: float = WALL_HEIGHT
 		if exit_id != -1:
 			wall_height = room.exits[exit_id].position.y - floor_top_y
 			if abs(wall_height) < 0.1:
@@ -80,7 +81,6 @@ func _set_floor_mesh(room: Room, floor_top_y: float):
 	(floor_collision.shape as BoxShape3D).size = size
 	
 	floor_mesh.position.y = floor_top_y - FLOOR_THICKNESS / 2.0
-	
 
 
 func _set_ramp_mesh(room: Room, floor_top_y: float):

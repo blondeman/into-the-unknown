@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bdfawudpao15i"]
 
 [ext_resource type="Script" uid="uid://bnekwpsf0w7xx" path="res://scripts/endless/Room.gd" id="1_vulxk"]
-[ext_resource type="PackedScene" uid="uid://k8p1yxp0idun" path="res://scenes/levels/endless/room_mesh.tscn" id="2_oldoa"]
+[ext_resource type="PackedScene" uid="uid://k8p1yxp0idun" path="res://scenes/environment/endless/room_mesh.tscn" id="2_oldoa"]
 
 [sub_resource type="Curve" id="Curve_vulxk"]
 _data = [Vector2(0, 1), 0.0, 0.044136174, 0, 0, Vector2(1, 0), -0.08890198, 0.0, 0, 0]

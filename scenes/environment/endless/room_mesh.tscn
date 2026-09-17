@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://k8p1yxp0idun"]
 
-[ext_resource type="Script" uid="uid://dafxd7okhcqiq" path="res://scripts/endless/RoomMesh.gd" id="1_0urp2"]
-[ext_resource type="Material" uid="uid://b2ginmgn8p1r6" path="res://textures/grass.tres" id="2_0urp2"]
-[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="2_gy8sa"]
+[ext_resource type="Script" uid="uid://dafxd7okhcqiq" path="res://scripts/endless/RoomMesh.gd" id="1_jlxaa"]
+[ext_resource type="Material" uid="uid://b2ginmgn8p1r6" path="res://textures/grass.tres" id="2_cbcoc"]
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="3_gfdw3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_77rhs"]
 resource_local_to_scene = true
-material = ExtResource("2_0urp2")
+material = ExtResource("2_cbcoc")
 size = Vector3(10, 1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_42rsn"]
@@ -15,7 +15,7 @@ size = Vector3(10, 1, 10)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gy8sa"]
 render_priority = 0
-shader = ExtResource("2_gy8sa")
+shader = ExtResource("3_gfdw3")
 shader_parameter/emission = Color(0, 0, 0, 1)
 shader_parameter/emission_energy = 1.0
 shader_parameter/ao_light_affect = 0.0
@@ -65,7 +65,7 @@ size = Vector3(10, 5, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0urp2"]
 render_priority = 0
-shader = ExtResource("2_gy8sa")
+shader = ExtResource("3_gfdw3")
 shader_parameter/emission = Color(0, 0, 0, 1)
 shader_parameter/emission_energy = 1.0
 shader_parameter/ao_light_affect = 0.0
@@ -87,7 +87,7 @@ size = Vector3(5, 3, 3)
 resource_local_to_scene = true
 
 [node name="room_mesh" type="Node3D" unique_id=1812462932 node_paths=PackedStringArray("floor_mesh", "floor_collision", "ramp_mesh", "ramp_collision", "wall_meshes", "wall_collisions")]
-script = ExtResource("1_0urp2")
+script = ExtResource("1_jlxaa")
 floor_mesh = NodePath("floor")
 floor_collision = NodePath("floor/StaticBody3D/CollisionShape3D")
 ramp_mesh = NodePath("ramp")

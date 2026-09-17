@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ddmsyog03eynx"]
+
+[ext_resource type="Script" uid="uid://bdympq5nulded" path="res://scripts/endless/EndlessGenerator.gd" id="1_2qu65"]
+[ext_resource type="PackedScene" uid="uid://bdfawudpao15i" path="res://scenes/environment/endless/room.tscn" id="2_2qu65"]
+
+[node name="endless_generator" type="Node3D" unique_id=859133285 node_paths=PackedStringArray("generation_tracker")]
+script = ExtResource("1_2qu65")
+global_scale = 3.0
+seed = "test"
+room_scene = ExtResource("2_2qu65")
+generation_tracker = NodePath("")

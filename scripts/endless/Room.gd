@@ -7,6 +7,7 @@ const MAX_ROOM_SIZE = 20
 const MAX_ROOM_HEIGHT = 10
 const SHRINK_EPSILON := 0.05
 
+var depth: int
 var size: Vector3
 var entrance: Doorway
 var exits: Array[Doorway]
@@ -20,7 +21,6 @@ var scale_factor: float = 1.0
 @export var room_mesh: RoomMesh
 
 @export var debug_room_bound: MeshInstance3D
-@export var debug_room_entrance: MeshInstance3D
 
 
 func set_scale_factor(_scale: float) -> void:
@@ -56,7 +56,9 @@ func get_doorway_direction(pos: Vector3) -> Vector3i:
 	return Vector3i.ZERO
 
 
-func generate_room(_entrance: Doorway) -> Array[Doorway]:
+func generate_room(_entrance: Doorway, _depth: int):
+	depth = _depth
+	
 	generate_room_bounds(_entrance)
 	generate_exits(_entrance)
 	
@@ -66,8 +68,6 @@ func generate_room(_entrance: Doorway) -> Array[Doorway]:
 		room_path.draw_path_debug()
 	
 	room_mesh.set_room_mesh(self)
-	
-	return get_doorways_local_to_global(exits)
 
 
 func generate_room_bounds(_entrance: Doorway):
@@ -78,8 +78,6 @@ func generate_room_bounds(_entrance: Doorway):
 	global_position = _entrance.position + ((_entrance.direction as Vector3) * size / 2)
 	entrance = Doorway.new(_entrance.position - global_position, _entrance.direction)
 	(debug_room_bound.mesh as BoxMesh).size = size
-
-	debug_room_entrance.position = entrance.position
 
 
 func generate_exits(_entrance: Doorway) -> Array[Doorway]:
@@ -231,6 +229,11 @@ func sample_curve_x(curve: Curve2D, x: float) -> float:
 			var t: float = 0.0 if p1.x == p0.x else (x - p0.x) / (p1.x - p0.x)
 			return lerp(p0.y, p1.y, t)
 	return points[-1].y
+
+
+func is_in_bounds(pos: Vector3) -> bool:
+	var a: AABB = AABB(global_position - size / 2.0, size)
+	return a.has_point(pos)
 
 
 func _to_string() -> String:
