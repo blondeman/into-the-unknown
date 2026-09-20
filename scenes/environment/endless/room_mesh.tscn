@@ -1,35 +1,22 @@
 [gd_scene format=3 uid="uid://k8p1yxp0idun"]
 
 [ext_resource type="Script" uid="uid://dafxd7okhcqiq" path="res://scripts/endless/RoomMesh.gd" id="1_jlxaa"]
-[ext_resource type="Material" uid="uid://b2ginmgn8p1r6" path="res://textures/grass.tres" id="2_cbcoc"]
-[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="3_gfdw3"]
+[ext_resource type="Material" uid="uid://youjgt8kd7q2" path="res://textures/sand.tres" id="2_jlxaa"]
+[ext_resource type="Material" uid="uid://0ff1nyop50q5" path="res://textures/sandstone.tres" id="3_cbcoc"]
+[ext_resource type="Material" uid="uid://ci4u40qoib680" path="res://textures/stone.tres" id="4_cbcoc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_77rhs"]
 resource_local_to_scene = true
-material = ExtResource("2_cbcoc")
+material = ExtResource("2_jlxaa")
 size = Vector3(10, 1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_42rsn"]
 resource_local_to_scene = true
 size = Vector3(10, 1, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gy8sa"]
-render_priority = 0
-shader = ExtResource("3_gfdw3")
-shader_parameter/emission = Color(0, 0, 0, 1)
-shader_parameter/emission_energy = 1.0
-shader_parameter/ao_light_affect = 0.0
-shader_parameter/backlight = Color(0, 0, 0, 1)
-shader_parameter/alpha_cutoff = 0.5
-shader_parameter/color = Color(0.1607514, 0.57557446, 0.7953877, 1)
-shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
-shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_offset = Vector2(0, 0)
-
 [sub_resource type="BoxMesh" id="BoxMesh_yidr0"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_gy8sa")
+material = ExtResource("3_cbcoc")
 size = Vector3(1, 5, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fxxva"]
@@ -38,7 +25,7 @@ size = Vector3(1, 5, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dhih4"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_gy8sa")
+material = ExtResource("3_cbcoc")
 size = Vector3(1, 5, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s0lem"]
@@ -47,7 +34,7 @@ size = Vector3(1, 5, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tr37a"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_gy8sa")
+material = ExtResource("3_cbcoc")
 size = Vector3(10, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i32p8"]
@@ -56,30 +43,16 @@ size = Vector3(10, 5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3qqcm"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_gy8sa")
+material = ExtResource("3_cbcoc")
 size = Vector3(10, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7aaur"]
 resource_local_to_scene = true
 size = Vector3(10, 5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0urp2"]
-render_priority = 0
-shader = ExtResource("3_gfdw3")
-shader_parameter/emission = Color(0, 0, 0, 1)
-shader_parameter/emission_energy = 1.0
-shader_parameter/ao_light_affect = 0.0
-shader_parameter/backlight = Color(0, 0, 0, 1)
-shader_parameter/alpha_cutoff = 0.5
-shader_parameter/color = Color(0.82398456, 0, 0.17134202, 1)
-shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
-shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_offset = Vector2(0, 0)
-
 [sub_resource type="PrismMesh" id="PrismMesh_ppb3h"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_0urp2")
+material = ExtResource("4_cbcoc")
 left_to_right = 1.0
 size = Vector3(5, 3, 3)
 

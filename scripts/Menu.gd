@@ -3,6 +3,21 @@ extends Node
 @export var menu_container: Control
 @export var controls_container: Control
 @export var levels_container: Control
+@export var credits_container: Control
+
+func _get_containers() -> Array[Control]:
+	return [
+		menu_container,
+		controls_container,
+		levels_container,
+		credits_container
+	]
+
+
+func _hide_containers():
+	for container in _get_containers():
+		container.visible = false
+
 
 func _ready():
 	_on_back_pressed()
@@ -24,14 +39,18 @@ func _on_endless_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
+	_hide_containers()
 	menu_container.visible = true
-	controls_container.visible = false
 
 
 func _on_controls_pressed() -> void:
-	menu_container.visible = false
-	levels_container.visible = false
+	_hide_containers()
 	controls_container.visible = true
+
+
+func _on_credits_pressed() -> void:
+	_hide_containers()
+	credits_container.visible = true
 
 
 func _on_levels_pressed() -> void:

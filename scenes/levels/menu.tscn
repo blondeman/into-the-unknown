@@ -4,11 +4,12 @@
 [ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="2_k3l6u"]
 [ext_resource type="Texture2D" uid="uid://c4gvigt3hr3l7" path="res://ui/menu.svg" id="2_tmk6g"]
 
-[node name="Menu" type="Node" unique_id=325200933 node_paths=PackedStringArray("menu_container", "controls_container", "levels_container")]
+[node name="Menu" type="Node" unique_id=325200933 node_paths=PackedStringArray("menu_container", "controls_container", "levels_container", "credits_container")]
 script = ExtResource("1_g3w80")
 menu_container = NodePath("Control/menu")
 controls_container = NodePath("Control/controls")
 levels_container = NodePath("Control/level select")
+credits_container = NodePath("Control/credits")
 
 [node name="Control" type="Control" parent="." unique_id=2025969798]
 layout_mode = 3
@@ -36,6 +37,21 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_tmk6g")
 expand_mode = 3
+
+[node name="title" type="Label" parent="Control" unique_id=931978415]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.0
+offset_top = 25.0
+offset_right = 228.0
+offset_bottom = 116.0
+grow_horizontal = 2
+theme = ExtResource("2_k3l6u")
+theme_override_font_sizes/font_size = 90
+text = "Ouroboros"
+horizontal_alignment = 1
 
 [node name="menu" type="VBoxContainer" parent="Control" unique_id=1705180789]
 layout_mode = 1
@@ -74,6 +90,11 @@ text = "Endless"
 layout_mode = 2
 theme = ExtResource("2_k3l6u")
 text = "Controls"
+
+[node name="credits" type="Button" parent="Control/menu" unique_id=118401326]
+layout_mode = 2
+theme = ExtResource("2_k3l6u")
+text = "Credits"
 
 [node name="quit" type="Button" parent="Control/menu" unique_id=69253265]
 layout_mode = 2
@@ -130,6 +151,69 @@ layout_mode = 2
 theme = ExtResource("2_k3l6u")
 text = "Back"
 
+[node name="credits" type="VBoxContainer" parent="Control" unique_id=2005491718]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -54.0
+offset_right = 92.0
+offset_bottom = 114.00018
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="level select" type="Label" parent="Control/credits" unique_id=1384188940]
+layout_mode = 2
+theme = ExtResource("2_k3l6u")
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/credits" unique_id=1016720661]
+layout_mode = 2
+
+[node name="credits 1" type="Label" parent="Control/credits" unique_id=631989661]
+layout_mode = 2
+theme = ExtResource("2_k3l6u")
+text = "Dominik David"
+horizontal_alignment = 1
+
+[node name="credits 2" type="Label" parent="Control/credits" unique_id=1769284831]
+layout_mode = 2
+theme = ExtResource("2_k3l6u")
+text = "What did he do?
+What else did he do?
+What more has he done?"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Control/credits" unique_id=1202641643]
+layout_mode = 2
+
+[node name="credits 3" type="Label" parent="Control/credits" unique_id=51373356]
+layout_mode = 2
+theme = ExtResource("2_k3l6u")
+text = "Graham Crosbie"
+horizontal_alignment = 1
+
+[node name="credits 4" type="Label" parent="Control/credits" unique_id=677937075]
+layout_mode = 2
+theme = ExtResource("2_k3l6u")
+text = "What did he do?
+What else did he do?
+What more has he done?"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Control/credits" unique_id=1219400114]
+layout_mode = 2
+
+[node name="back" type="Button" parent="Control/credits" unique_id=1034473173]
+layout_mode = 2
+theme = ExtResource("2_k3l6u")
+text = "Back"
+
 [node name="level select" type="VBoxContainer" parent="Control" unique_id=1514688752]
 visible = false
 layout_mode = 1
@@ -170,27 +254,14 @@ size_flags_horizontal = 3
 theme = ExtResource("2_k3l6u")
 text = "Castle"
 
-[node name="title" type="Label" parent="Control" unique_id=931978415]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -162.0
-offset_top = 25.0
-offset_right = 162.0
-offset_bottom = 90.0
-grow_horizontal = 2
-theme = ExtResource("2_k3l6u")
-theme_override_font_sizes/font_size = 90
-text = "Ouroboros"
-horizontal_alignment = 1
-
 [connection signal="pressed" from="Control/menu/story/start" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/menu/story/levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="Control/menu/endless" to="." method="_on_endless_pressed"]
 [connection signal="pressed" from="Control/menu/controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Control/menu/credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Control/menu/quit" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Control/controls/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Control/credits/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Control/level select/level 0" to="." method="_on_level_button_pressed" binds= [0]]
 [connection signal="pressed" from="Control/level select/level 1" to="." method="_on_level_button_pressed" binds= [1]]
 [connection signal="pressed" from="Control/level select/level 2" to="." method="_on_level_button_pressed" binds= [2]]

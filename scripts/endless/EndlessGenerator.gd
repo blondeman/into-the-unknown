@@ -23,8 +23,11 @@ func random_seed():
 func generate_maze():
 	clear_rooms()
 
-	rng = RandomNumberGenerator.new()
-	rng.seed = hash(seed)
+	if seed == "":
+		random_seed()
+	else:
+		rng = RandomNumberGenerator.new()
+		rng.seed = hash(seed)
 
 	branch_room(generate_room())
 

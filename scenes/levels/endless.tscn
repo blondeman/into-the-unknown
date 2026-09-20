@@ -4,29 +4,30 @@
 [ext_resource type="PackedScene" uid="uid://ddmsyog03eynx" path="res://scenes/environment/endless/endless_generator.tscn" id="2_0kge5"]
 [ext_resource type="Script" uid="uid://bjy1wyh4x6e5w" path="res://scripts/endless/GenerationTracker.gd" id="3_uergm"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_qyjdh"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_uergm"]
 resource_local_to_scene = true
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 4294901761
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vuxau"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qyjdh"]
 resource_local_to_scene = true
 
-[sub_resource type="Sky" id="Sky_ku55h"]
+[sub_resource type="Sky" id="Sky_vuxau"]
 resource_local_to_scene = true
-sky_material = SubResource("ProceduralSkyMaterial_vuxau")
+sky_material = SubResource("ProceduralSkyMaterial_qyjdh")
 
-[sub_resource type="Environment" id="Environment_ifem6"]
+[sub_resource type="Environment" id="Environment_ku55h"]
 resource_local_to_scene = true
 background_mode = 2
-sky = SubResource("Sky_ku55h")
+sky = SubResource("Sky_vuxau")
 
 [node name="level" unique_id=221896957 instance=ExtResource("1_ywrxy")]
 
 [node name="navmesh" parent="." index="0" unique_id=1103308116]
-navigation_mesh = SubResource("NavigationMesh_qyjdh")
+navigation_mesh = SubResource("NavigationMesh_uergm")
 
 [node name="endless_generator" parent="navmesh" index="2" unique_id=859133285 instance=ExtResource("2_0kge5")]
+seed = ""
 
 [node name="generation_tracker" type="Node3D" parent="player" parent_id_path=PackedInt32Array(1262716053) index="11" unique_id=704269330 node_paths=PackedStringArray("generator", "target")]
 script = ExtResource("3_uergm")
@@ -34,4 +35,4 @@ generator = NodePath("../../navmesh/endless_generator")
 target = NodePath("..")
 
 [node name="WorldEnvironment" parent="." index="5" unique_id=2081714253]
-environment = SubResource("Environment_ifem6")
+environment = SubResource("Environment_ku55h")
