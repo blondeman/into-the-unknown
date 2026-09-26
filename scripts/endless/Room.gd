@@ -14,6 +14,8 @@ var exits: Array[Doorway]
 var rng: RandomNumberGenerator
 var scale_factor: float = 1.0
 
+var previous_room: Room
+
 @export var direction_bias_curve: Curve
 @export var exit_count_curve: Curve
 
@@ -56,17 +58,18 @@ func get_doorway_direction(pos: Vector3) -> Vector3i:
 	return Vector3i.ZERO
 
 
-func generate_room(_entrance: Doorway, _depth: int):
+func generate_room(_entrance: Doorway, _depth: int, _previous_room: Room = null):
 	depth = _depth
-	
+	previous_room = _previous_room
+
 	generate_room_bounds(_entrance)
 	generate_exits(_entrance)
-	
+
 	if room_path:
 		room_path.set_rng(rng)
 		room_path.generate_path(self)
 		room_path.draw_path_debug()
-	
+
 	room_mesh.set_room_mesh(self)
 
 
@@ -109,6 +112,18 @@ func get_exit_count() -> int:
 	var sampled: float = exit_count_curve.sample(t)
 	var mapped: float = lerp(1.0, 3.0, sampled)
 	return clampi(roundi(mapped), 1, 3)
+
+
+func remove_exit(exit: Doorway, rebuild_mesh: bool = true) -> void:
+	var idx: int = exits.find(exit)
+	if idx == -1:
+		push_warning("Room: remove_exit called with an exit not in this room's exits list")
+		return
+
+	exits.remove_at(idx)
+
+	if rebuild_mesh and room_mesh:
+		room_mesh.set_room_mesh(self)
 
 
 func pick_weighted_direction(directions: Array[Vector3i]) -> Vector3i:
@@ -210,6 +225,9 @@ func shrink_to_fit(other: Room, entrance_direction: Vector3i) -> bool:
 	var a2: AABB = AABB(global_position - size / 2.0, size)
 	if a2.intersects(b):
 		return false
+
+	if room_mesh:
+		room_mesh.set_room_mesh(self)
 
 	return true
 

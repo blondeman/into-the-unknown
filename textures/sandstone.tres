@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://csyeipva3kf74" path="res://textures/sandstone.png" id="2_oo6et"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_hl70p")
 shader_parameter/emission = Color(0, 0, 0, 1)

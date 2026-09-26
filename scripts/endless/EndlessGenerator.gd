@@ -32,13 +32,13 @@ func generate_maze():
 	branch_room(generate_room())
 
 
-func generate_room(entrance: Doorway = Doorway.new(), depth: int = 0) -> Room:
+func generate_room(entrance: Doorway = Doorway.new(), depth: int = 0, previous_room: Room = null) -> Room:
 	var new_room: Room = room_scene.instantiate()
 	new_room.set_rng(rng)
 	new_room.set_scale_factor(global_scale)
 	add_child(new_room)
-	new_room.generate_room(entrance, depth)
-	
+	new_room.generate_room(entrance, depth, previous_room)
+
 	for room in rooms:
 		var pct: float = new_room.get_overlap_percent(room)
 		if pct > 0.0:
@@ -59,14 +59,27 @@ func clear_rooms():
 	rooms.clear()
 
 
-func branch_room(room: Room):
+func branch_room(room: Room, iterations: int = 1):
 	if !room:
 		return
-	
+	if iterations <= 0:
+		return
+
+	var failed_exits: Array[Doorway] = []
+
 	for exit in room.exits:
 		var new_entrance: Doorway = Doorway.new(room.get_doorway_local_to_global(exit.position), exit.direction * -1)
 		var room_id = rooms.find_custom(func(r): return r.get_doorway_local_to_global(r.entrance.position) == new_entrance.position)
 		if room_id == -1:
-			generate_room(new_entrance, room.depth + 1)
+			if !generate_room(new_entrance, room.depth + 1, room):
+				failed_exits.append(exit)
+			elif iterations > 1:
+				var new_room_id = rooms.find_custom(func(r): return r.get_doorway_local_to_global(r.entrance.position) == new_entrance.position)
+				if new_room_id != -1:
+					branch_room(rooms[new_room_id], iterations - 1)
 		else:
-			print("room already exists")
+			#room already exists
+			pass
+
+	for exit in failed_exits:
+		room.remove_exit(exit)

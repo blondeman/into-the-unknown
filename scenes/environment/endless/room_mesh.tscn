@@ -14,42 +14,6 @@ size = Vector3(10, 1, 10)
 resource_local_to_scene = true
 size = Vector3(10, 1, 10)
 
-[sub_resource type="BoxMesh" id="BoxMesh_yidr0"]
-resource_local_to_scene = true
-material = ExtResource("3_cbcoc")
-size = Vector3(1, 5, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fxxva"]
-resource_local_to_scene = true
-size = Vector3(1, 5, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_dhih4"]
-resource_local_to_scene = true
-material = ExtResource("3_cbcoc")
-size = Vector3(1, 5, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_s0lem"]
-resource_local_to_scene = true
-size = Vector3(1, 5, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tr37a"]
-resource_local_to_scene = true
-material = ExtResource("3_cbcoc")
-size = Vector3(10, 5, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_i32p8"]
-resource_local_to_scene = true
-size = Vector3(10, 5, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3qqcm"]
-resource_local_to_scene = true
-material = ExtResource("3_cbcoc")
-size = Vector3(10, 5, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7aaur"]
-resource_local_to_scene = true
-size = Vector3(10, 5, 1)
-
 [sub_resource type="PrismMesh" id="PrismMesh_ppb3h"]
 resource_local_to_scene = true
 material = ExtResource("4_cbcoc")
@@ -59,14 +23,13 @@ size = Vector3(5, 3, 3)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jkm68"]
 resource_local_to_scene = true
 
-[node name="room_mesh" type="Node3D" unique_id=1812462932 node_paths=PackedStringArray("floor_mesh", "floor_collision", "ramp_mesh", "ramp_collision", "wall_meshes", "wall_collisions")]
+[node name="room_mesh" type="Node3D" unique_id=1812462932 node_paths=PackedStringArray("floor_mesh", "floor_collision", "ramp_mesh", "ramp_collision")]
 script = ExtResource("1_jlxaa")
 floor_mesh = NodePath("floor")
 floor_collision = NodePath("floor/StaticBody3D/CollisionShape3D")
 ramp_mesh = NodePath("ramp")
 ramp_collision = NodePath("ramp/StaticBody3D/CollisionShape3D")
-wall_meshes = [NodePath("wall"), NodePath("wall2"), NodePath("wall3"), NodePath("wall4")]
-wall_collisions = [NodePath("wall/StaticBody3D/CollisionShape3D"), NodePath("wall2/StaticBody3D/CollisionShape3D"), NodePath("wall3/StaticBody3D/CollisionShape3D"), NodePath("wall4/StaticBody3D/CollisionShape3D")]
+wall_material = ExtResource("3_cbcoc")
 
 [node name="floor" type="MeshInstance3D" parent="." unique_id=856359914]
 mesh = SubResource("BoxMesh_77rhs")
@@ -75,42 +38,6 @@ mesh = SubResource("BoxMesh_77rhs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=524405877]
 shape = SubResource("BoxShape3D_42rsn")
-
-[node name="wall" type="MeshInstance3D" parent="." unique_id=622593169]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 0)
-mesh = SubResource("BoxMesh_yidr0")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="wall" unique_id=170189689]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall/StaticBody3D" unique_id=219726713]
-shape = SubResource("BoxShape3D_fxxva")
-
-[node name="wall2" type="MeshInstance3D" parent="." unique_id=373760410]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 0)
-mesh = SubResource("BoxMesh_dhih4")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="wall2" unique_id=450491421]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall2/StaticBody3D" unique_id=1531230540]
-shape = SubResource("BoxShape3D_s0lem")
-
-[node name="wall3" type="MeshInstance3D" parent="." unique_id=1539925005]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
-mesh = SubResource("BoxMesh_tr37a")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="wall3" unique_id=883162957]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall3/StaticBody3D" unique_id=840919348]
-shape = SubResource("BoxShape3D_i32p8")
-
-[node name="wall4" type="MeshInstance3D" parent="." unique_id=1452844970]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5)
-mesh = SubResource("BoxMesh_3qqcm")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="wall4" unique_id=14606221]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall4/StaticBody3D" unique_id=1341915583]
-shape = SubResource("BoxShape3D_7aaur")
 
 [node name="ramp" type="MeshInstance3D" parent="." unique_id=1996365267]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0077896, 0)

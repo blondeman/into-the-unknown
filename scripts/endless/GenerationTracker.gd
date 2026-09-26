@@ -21,4 +21,4 @@ func _process(delta: float) -> void:
 	var _current_room: Room = get_current_room()
 	if _current_room != current_room:
 		current_room = _current_room
-		generator.branch_room(current_room)
+		generator.branch_room(current_room, 2)
