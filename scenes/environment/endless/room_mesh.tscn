@@ -7,7 +7,6 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_77rhs"]
 resource_local_to_scene = true
-material = ExtResource("2_jlxaa")
 size = Vector3(10, 1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_42rsn"]
@@ -16,7 +15,6 @@ size = Vector3(10, 1, 10)
 
 [sub_resource type="PrismMesh" id="PrismMesh_ppb3h"]
 resource_local_to_scene = true
-material = ExtResource("4_cbcoc")
 left_to_right = 1.0
 size = Vector3(5, 3, 3)
 
@@ -33,6 +31,7 @@ wall_material = ExtResource("3_cbcoc")
 
 [node name="floor" type="MeshInstance3D" parent="." unique_id=856359914]
 mesh = SubResource("BoxMesh_77rhs")
+surface_material_override/0 = ExtResource("2_jlxaa")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=1214581175]
 
@@ -42,6 +41,7 @@ shape = SubResource("BoxShape3D_42rsn")
 [node name="ramp" type="MeshInstance3D" parent="." unique_id=1996365267]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0077896, 0)
 mesh = SubResource("PrismMesh_ppb3h")
+surface_material_override/0 = ExtResource("4_cbcoc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ramp" unique_id=2130130276]
 

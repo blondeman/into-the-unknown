@@ -4,7 +4,6 @@ extends Camera3D
 @export var offset: Vector3 = Vector3.ZERO
 var shake_offset: Vector3 = Vector3.ZERO
 
-
 func _ready() -> void:
 	CameraEffects.on_shake.connect(shake)
 	
@@ -13,20 +12,30 @@ func _ready() -> void:
 	
 	if !target:
 		offset = global_position
-	elif target is PlayerController:
-		offset = global_position - target.head.global_position
-	else:
-		offset = global_position - target.global_position
+	offset = global_position - _get_target_position()
 
 
 func _process(_delta: float) -> void:
 	if !target:
 		return
+
+	global_position = _get_target_position() + offset + shake_offset
 	
+	set_occlusion_cutout()
+
+
+func set_occlusion_cutout():
+	if is_position_behind(_get_target_position()):
+		return
+	var screen_pos := unproject_position(_get_target_position())
+	
+	RenderingServer.global_shader_parameter_set("cutout_position", screen_pos)
+
+
+func _get_target_position() -> Vector3:
 	if target is PlayerController:
-		global_position = target.head.global_position + offset + shake_offset
-	else:
-		global_position = target.global_position + offset + shake_offset
+		return target.head.global_position
+	return target.global_position
 
 
 func shake(intensity: float, length: float):

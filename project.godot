@@ -105,3 +105,7 @@ outline_color={
 "type": "color",
 "value": Color(0, 0, 0, 1)
 }
+cutout_position={
+"type": "vec2",
+"value": Vector2(0, 0)
+}
