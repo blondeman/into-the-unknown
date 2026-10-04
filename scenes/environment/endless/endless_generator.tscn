@@ -3,8 +3,18 @@
 [ext_resource type="Script" uid="uid://bdympq5nulded" path="res://scripts/endless/EndlessGenerator.gd" id="1_2qu65"]
 [ext_resource type="PackedScene" uid="uid://bdfawudpao15i" path="res://scenes/environment/endless/room.tscn" id="2_2qu65"]
 
+[sub_resource type="Curve" id="Curve_72jur"]
+_data = [Vector2(0, 1), 0.0, 0.044136174, 0, 0, Vector2(1, 0), -0.08890198, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5r5rk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.3676279, 0.0, 0, 0]
+point_count = 2
+
 [node name="endless_generator" type="Node3D" unique_id=859133285]
 script = ExtResource("1_2qu65")
 global_scale = 3.0
 seed = "test"
 room_scene = ExtResource("2_2qu65")
+direction_bias_curve = SubResource("Curve_72jur")
+exit_count_curve = SubResource("Curve_5r5rk")

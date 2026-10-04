@@ -73,9 +73,12 @@ uniform vec2 uv_offset = vec2(0,0);
 group_uniforms;
 
 group_uniforms Cutout;
-global uniform vec2 cutout_position;
-uniform float CircleRadius = 100.0;                // pixels, like the original 2D version
-uniform float CircleBlur : hint_range(0.0, 1.0) = 0.05;
+global uniform vec3 cutout_target_view;
+uniform float StartRadius = 0.1;                   // world units - cone radius at the target end
+uniform float EndRadius = 2.0;                     // world units - cone radius at the camera end
+uniform float StartOffset = 0.0;                   // world units - shifts the cone's apex towards the camera by this much (e.g. 1.0 starts the cone 1 unit in front of the target)
+uniform float EdgeWidth = 0.15;                    // world units - thickness of the solid-color ring at the hole's edge
+uniform vec4 EdgeColor : source_color = vec4(0.0, 0.0, 0.0, 1.0);
 group_uniforms;
 
 void vertex() {
@@ -134,14 +137,33 @@ void fragment() {
 	BACKLIGHT = backlight_fragment(base_uv);
 #endif
 
-float circle_blur = clamp(CircleBlur, 0.0, 1.0);
-float circle_dist = distance(cutout_position, FRAGCOORD.xy);
+	float target_dist = length(cutout_target_view);
+	vec3 axis_dir = -cutout_target_view / target_dist; // points from target towards camera
 
-float inner_radius = CircleRadius * (1.0 - circle_blur);
-float circle_signal = 1.0 - smoothstep(inner_radius, CircleRadius, circle_dist);
+	// apex shifted towards the camera by StartOffset; segment_length is what's left to the camera
+	vec3 apex = cutout_target_view + axis_dir * StartOffset;
+	float segment_length = max(target_dist - StartOffset, 0.0001);
 
-ALBEDO = color.rgb * texture(base_texture, base_uv).rgb;
-ALPHA = 1.0 - circle_signal;
+	vec3 to_frag = VERTEX - apex;
+	float along_axis = dot(to_frag, axis_dir);          // 0.0 at apex, segment_length at camera
+
+	// only the segment strictly between the (offset) apex and the camera counts
+	float in_segment = step(0.0, along_axis) * step(along_axis, segment_length);
+
+	vec3 closest_point = axis_dir * along_axis;
+	float perp_dist = length(to_frag - closest_point);
+
+	// radius at this point along the cone, linearly interpolated between the two ends
+	float cone_radius = mix(StartRadius, EndRadius, clamp(along_axis / segment_length, 0.0, 1.0));
+	float inner_radius = max(cone_radius - EdgeWidth, 0.0);
+
+	// hole_mask: 1.0 fully inside the cutout (transparent), 0.0 elsewhere
+	float hole_mask = step(perp_dist, inner_radius) * in_segment;
+	// ring_mask: 1.0 in the band between inner_radius and cone_radius (solid colored edge), 0.0 elsewhere
+	float ring_mask = (step(perp_dist, cone_radius) - step(perp_dist, inner_radius)) * in_segment;
+
+	ALBEDO = mix(color.rgb * texture(base_texture, base_uv).rgb, EdgeColor.rgb, ring_mask);
+	ALPHA = 1.0 - hole_mask;
 }
 
 void light() {

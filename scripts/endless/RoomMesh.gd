@@ -30,7 +30,12 @@ var _ramp_collision_instances: Array[CollisionShape3D] = []
 var _wall_pieces: Array[StaticBody3D] = []
 
 
+func _ready():
+	visible = false
+
+
 func set_room_mesh(room: Room):
+	visible = true
 	var floor_top_y: float = room.entrance.position.y
 
 	_set_floor_mesh(room, floor_top_y)

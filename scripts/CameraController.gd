@@ -25,11 +25,8 @@ func _process(_delta: float) -> void:
 
 
 func set_occlusion_cutout():
-	if is_position_behind(_get_target_position()):
-		return
-	var screen_pos := unproject_position(_get_target_position())
-	
-	RenderingServer.global_shader_parameter_set("cutout_position", screen_pos)
+	var view_target: Vector3 = global_transform.affine_inverse() * _get_target_position()
+	RenderingServer.global_shader_parameter_set("cutout_target_view", view_target)
 
 
 func _get_target_position() -> Vector3:

@@ -33,6 +33,8 @@ seed = ""
 script = ExtResource("3_uergm")
 generator = NodePath("../../navmesh/endless_generator")
 target = NodePath("..")
+mesh_depth = 3
+structure_depth = 7
 
 [node name="WorldEnvironment" parent="." index="5" unique_id=2081714253]
 environment = SubResource("Environment_ku55h")
