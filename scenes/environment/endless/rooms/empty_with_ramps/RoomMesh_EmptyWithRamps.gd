@@ -1,9 +1,8 @@
-class_name RoomMesh
-extends Node3D
+class_name RoomMesh_EmptyWithRamps
+extends RoomMesh
+## Mesh for an empty box room: a floor, walls with doorways cut out, and ramps or connectors
+## between floors of different heights.
 
-const FLOOR_THICKNESS := 1.0
-const WALL_HEIGHT := 10
-const WALL_THICKNESS := 0.5
 const WALL_HEIGHT_SHRINK := 0.2
 const RAMP_XY_RATIO := 5.0 / 3.0
 const MIN_RAMP_HEIGHT := 0.1
@@ -30,28 +29,35 @@ var _ramp_collision_instances: Array[CollisionShape3D] = []
 var _wall_pieces: Array[StaticBody3D] = []
 
 
-func _ready():
-	visible = false
+func load_mesh(room: Room) -> void:
+	floor_mesh.visible = true
+	floor_collision.disabled = false
 
-
-func set_room_mesh(room: Room):
-	visible = true
-	var floor_top_y: float = room.entrance.position.y
+	var floor_top_y: float = room.get_floor_y()
 
 	_set_floor_mesh(room, floor_top_y)
 	_set_ramp_mesh(room, floor_top_y)
 	_set_wall_mesh(room, floor_top_y)
 
 
+func unload_mesh() -> void:
+	_clear_wall_pieces()
+	_clear_extra_ramps()
+	floor_mesh.visible = false
+	floor_collision.disabled = true
+	ramp_mesh.visible = false
+	ramp_collision.disabled = true
+
+
 func _set_wall_mesh(room: Room, floor_top_y: float):
 	_clear_wall_pieces()
 
 	var directions: Array[Vector3i] = Doorway.cardinals.duplicate()
-	
+
 	for i in range(len(directions)):
 		var direction = directions[i]
 
-		if direction == room.entrance.direction:
+		if room.entrance and direction == room.entrance.direction:
 			if not room.previous_room:
 				build_wall(direction, room)
 				continue
@@ -79,23 +85,23 @@ func _set_wall_mesh(room: Room, floor_top_y: float):
 
 
 func build_wall(direction: Vector3i, room: Room) -> void:
-	var floor_top_y: float = room.entrance.position.y
+	var floor_top_y: float = room.get_floor_y()
 	var place_dir: Vector3 = -(direction as Vector3)
- 
+
 	var box_size: Vector3
 	if abs(place_dir.x) > 0.5:
 		box_size = Vector3(WALL_THICKNESS, WALL_HEIGHT - WALL_HEIGHT_SHRINK, room.size.z)
 	else:
 		box_size = Vector3(room.size.x, WALL_HEIGHT - WALL_HEIGHT_SHRINK, WALL_THICKNESS)
- 
+
 	var position: Vector3 = place_dir * (room.size / 2)
 	position.y = floor_top_y + WALL_HEIGHT / 2.0 - WALL_HEIGHT_SHRINK / 2.0
- 
+
 	create_box(position, box_size)
 
 
 func build_connector(direction: Vector3i, room: Room, exit: Doorway) -> void:
-	var floor_top_y: float = room.entrance.position.y
+	var floor_top_y: float = room.get_floor_y()
 	var exit_y: float = exit.position.y
 	var place_dir: Vector3 = -(direction as Vector3)
 
@@ -115,21 +121,21 @@ func build_connector(direction: Vector3i, room: Room, exit: Doorway) -> void:
 	position.y = (y_bottom + y_top) / 2.0 - WALL_HEIGHT_SHRINK / 2.0
 
 	create_box(position, box_size)
- 
- 
+
+
 func build_doorway(direction: Vector3i, room: Room, exit: Doorway) -> void:
-	var floor_top_y: float = room.entrance.position.y
+	var floor_top_y: float = room.get_floor_y()
 	var place_dir: Vector3 = -(direction as Vector3)
 	var ceiling_y: float = floor_top_y + WALL_HEIGHT
- 
+
 	var lateral_center: float = exit.position.z if abs(place_dir.x) > 0.5 else exit.position.x
- 
+
 	var full_width: float = room.size.z if abs(place_dir.x) > 0.5 else room.size.x
 	var half_width: float = full_width / 2.0
 	var door_half: float = DOOR_WIDTH / 2.0
- 
+
 	var segments: Array = []
- 
+
 	var left_edge: float = lateral_center - door_half
 	var wall_left_edge: float = -half_width
 	if left_edge - wall_left_edge > 0.01:
@@ -139,7 +145,7 @@ func build_doorway(direction: Vector3i, room: Room, exit: Doorway) -> void:
 			"y_bottom": floor_top_y,
 			"y_top": ceiling_y,
 		})
- 
+
 	var right_edge: float = lateral_center + door_half
 	var wall_right_edge: float = half_width
 	if wall_right_edge - right_edge > 0.01:
@@ -149,7 +155,7 @@ func build_doorway(direction: Vector3i, room: Room, exit: Doorway) -> void:
 			"y_bottom": floor_top_y,
 			"y_top": ceiling_y,
 		})
- 
+
 	var door_top: float = floor_top_y + DOOR_HEIGHT
 	if ceiling_y - door_top > 0.01:
 		segments.append({
@@ -158,25 +164,24 @@ func build_doorway(direction: Vector3i, room: Room, exit: Doorway) -> void:
 			"y_bottom": door_top,
 			"y_top": ceiling_y,
 		})
- 
+
 	for seg in segments:
 		var height: float = seg.y_top - seg.y_bottom
- 
+
 		var box_size: Vector3
 		if abs(place_dir.x) > 0.5:
 			box_size = Vector3(WALL_THICKNESS, height - WALL_HEIGHT_SHRINK, seg.width)
 		else:
 			box_size = Vector3(seg.width, height - WALL_HEIGHT_SHRINK, WALL_THICKNESS)
- 
+
 		var position: Vector3 = place_dir * (room.size / 2)
 		if abs(place_dir.x) > 0.5:
 			position.z = seg.lateral_center
 		else:
 			position.x = seg.lateral_center
 		position.y = (seg.y_bottom + seg.y_top) / 2.0 - WALL_HEIGHT_SHRINK / 2.0
- 
-		create_box(position, box_size)
 
+		create_box(position, box_size)
 
 
 func create_box(position: Vector3, size: Vector3) -> void:
@@ -188,12 +193,12 @@ func create_box(position: Vector3, size: Vector3) -> void:
 	add_child(body)
 	body.position = position
 	_wall_pieces.append(body)
- 
+
 	var mesh_instance := MeshInstance3D.new()
 	var box_mesh := BoxMesh.new()
 	box_mesh.size = size
 	mesh_instance.mesh = box_mesh
- 
+
 	if wall_material is ShaderMaterial:
 		var box_material: ShaderMaterial = wall_material.duplicate()
 		var width: float = size.x if abs(size.x - WALL_THICKNESS) > 0.001 else size.z
@@ -203,21 +208,20 @@ func create_box(position: Vector3, size: Vector3) -> void:
 		mesh_instance.material_override = box_material
 	elif wall_material:
 		mesh_instance.material_override = wall_material
- 
+
 	body.add_child(mesh_instance)
- 
+
 	var collision_shape := CollisionShape3D.new()
 	var box_shape := BoxShape3D.new()
 	box_shape.size = size
 	collision_shape.shape = box_shape
 	body.add_child(collision_shape)
- 
- 
+
+
 func _clear_wall_pieces() -> void:
 	for piece in _wall_pieces:
 		piece.queue_free()
 	_wall_pieces.clear()
-
 
 
 func _set_floor_mesh(room: Room, floor_top_y: float):
@@ -225,7 +229,7 @@ func _set_floor_mesh(room: Room, floor_top_y: float):
 	size.y = FLOOR_THICKNESS
 	(floor_mesh.mesh as BoxMesh).size = size
 	(floor_collision.shape as BoxShape3D).size = size
-	
+
 	floor_mesh.position.y = floor_top_y - FLOOR_THICKNESS / 2.0
 
 
@@ -252,7 +256,7 @@ func _set_ramp_mesh(room: Room, floor_top_y: float):
 
 			var body_index: int = ramp_mesh.get_children().find(ramp_collision.get_parent())
 			if body_index == -1:
-				push_error("RoomMesh: ramp_collision's parent is not a child of ramp_mesh - check scene structure")
+				push_error("RoomMesh_EmptyWithRamps: ramp_collision's parent is not a child of ramp_mesh - check scene structure")
 				continue
 			var body_node: Node = mesh_node.get_child(body_index)
 

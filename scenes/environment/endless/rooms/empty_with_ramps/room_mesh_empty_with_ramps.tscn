@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://k8p1yxp0idun"]
+
+[ext_resource type="PackedScene" uid="uid://dgwfsxahxx6o3" path="res://scenes/environment/endless/rooms/room_mesh.tscn" id="1_2hxj5"]
+[ext_resource type="Script" uid="uid://cilknv3dr6o0r" path="res://scenes/environment/endless/rooms/empty_with_ramps/RoomMesh_EmptyWithRamps.gd" id="1_rawyh"]
+[ext_resource type="Material" uid="uid://0ff1nyop50q5" path="res://textures/sandstone.tres" id="2_5u7k8"]
+[ext_resource type="Material" uid="uid://youjgt8kd7q2" path="res://textures/sand.tres" id="3_5y2c0"]
+[ext_resource type="Material" uid="uid://ci4u40qoib680" path="res://textures/stone.tres" id="4_873pr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ixjxc"]
+resource_local_to_scene = true
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vmsee"]
+resource_local_to_scene = true
+size = Vector3(10, 1, 10)
+
+[sub_resource type="PrismMesh" id="PrismMesh_q5a5w"]
+resource_local_to_scene = true
+left_to_right = 1.0
+size = Vector3(5, 3, 3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rtqgu"]
+resource_local_to_scene = true
+
+[node name="room_mesh_empty_with_ramps" unique_id=867155719 node_paths=PackedStringArray("floor_mesh", "floor_collision", "ramp_mesh", "ramp_collision") instance=ExtResource("1_2hxj5")]
+script = ExtResource("1_rawyh")
+floor_mesh = NodePath("floor")
+floor_collision = NodePath("floor/StaticBody3D/CollisionShape3D")
+ramp_mesh = NodePath("ramp")
+ramp_collision = NodePath("ramp/StaticBody3D/CollisionShape3D")
+wall_material = ExtResource("2_5u7k8")
+
+[node name="floor" type="MeshInstance3D" parent="." index="0" unique_id=1926610706]
+mesh = SubResource("BoxMesh_ixjxc")
+surface_material_override/0 = ExtResource("3_5y2c0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" index="0" unique_id=1435536233]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" index="0" unique_id=42453123]
+shape = SubResource("BoxShape3D_vmsee")
+
+[node name="ramp" type="MeshInstance3D" parent="." index="1" unique_id=297090661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0077896, 0)
+mesh = SubResource("PrismMesh_q5a5w")
+surface_material_override/0 = ExtResource("4_873pr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ramp" index="0" unique_id=181749858]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ramp/StaticBody3D" index="0" unique_id=825035906]
+shape = SubResource("ConvexPolygonShape3D_rtqgu")

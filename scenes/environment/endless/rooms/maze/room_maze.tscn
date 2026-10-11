@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dwo3j6t2gwjeg"]
+
+[ext_resource type="PackedScene" uid="uid://pibnkpt7lysd" path="res://scenes/environment/endless/rooms/room.tscn" id="1_a10e8"]
+[ext_resource type="Script" uid="uid://cto7d7qyt57uy" path="res://scenes/environment/endless/rooms/maze/Room_Maze.gd" id="2_v7y4b"]
+[ext_resource type="PackedScene" uid="uid://dm3tdr4iskxmy" path="res://scenes/environment/endless/rooms/maze/room_mesh_maze.tscn" id="3_eejrs"]
+
+[sub_resource type="Curve" id="Curve_tljcb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="room_maze" unique_id=299536210 node_paths=PackedStringArray("room_mesh") instance=ExtResource("1_a10e8")]
+script = ExtResource("2_v7y4b")
+exit_count_curve = SubResource("Curve_tljcb")
+room_mesh = NodePath("room_mesh_maze")
+long_step_weight = 0.4
+slope_weight = 0.3
+
+[node name="room_mesh_maze" parent="." index="0" unique_id=867155719 instance=ExtResource("3_eejrs")]
+debug_path = true

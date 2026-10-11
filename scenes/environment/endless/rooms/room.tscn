@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://pibnkpt7lysd"]
+
+[ext_resource type="Script" uid="uid://bnekwpsf0w7xx" path="res://scenes/environment/endless/rooms/Room.gd" id="1_0s6nk"]
+
+[node name="room" type="Node3D" unique_id=299536210]
+script = ExtResource("1_0s6nk")
