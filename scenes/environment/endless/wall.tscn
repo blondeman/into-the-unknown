@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://lei6v2tjk1yh"]
+
+[ext_resource type="Shader" uid="uid://cdidk8h428sne" path="res://shaders/cel-shader-base.gdshader" id="1_hy4oc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cnegp"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_hy4oc")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.6784314, 0.48235294, 0.24705882, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/uv_scale = Vector2(3, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xums0"]
+size = Vector3(3, 3, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_31kp2"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_hy4oc")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.5255261, 0.3979131, 0.1042592, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/uv_scale = Vector2(3, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_77rhs"]
+size = Vector3(0.8, 0.4, 0.4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbnhc"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_hy4oc")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.5255261, 0.3979131, 0.1042592, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/uv_scale = Vector2(3, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ljb52"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_hy4oc")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/backlight = Color(0, 0, 0, 1)
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/color = Color(0.5255261, 0.3979131, 0.1042592, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/uv_scale = Vector2(3, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31kp2"]
+size = Vector3(3, 3, 0.2)
+
+[node name="wall" type="MeshInstance3D" unique_id=614597776]
+material_override = SubResource("ShaderMaterial_cnegp")
+mesh = SubResource("BoxMesh_xums0")
+
+[node name="brick" type="MeshInstance3D" parent="." unique_id=1945540298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8414475, -0.40292227, 0)
+material_override = SubResource("ShaderMaterial_31kp2")
+mesh = SubResource("BoxMesh_77rhs")
+
+[node name="brick2" type="MeshInstance3D" parent="." unique_id=980017664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037770092, 0.7770513, 0)
+material_override = SubResource("ShaderMaterial_rbnhc")
+mesh = SubResource("BoxMesh_77rhs")
+
+[node name="brick3" type="MeshInstance3D" parent="." unique_id=333959650]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85744613, 0.07044852, 0)
+material_override = SubResource("ShaderMaterial_ljb52")
+mesh = SubResource("BoxMesh_77rhs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1525059627]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=171074782]
+shape = SubResource("BoxShape3D_31kp2")

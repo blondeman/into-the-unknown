@@ -16,6 +16,9 @@ var rooms: Array[Room]
 func _ready():
 	generate_maze()
 	generate_enemies()
+	
+	await get_tree().create_timer(1).timeout
+	GameManager.on_rebake.emit()
 
 
 func random_seed():
@@ -31,7 +34,6 @@ func generate_enemies():
 		var room_id = randi_range(0,len(rooms) - 1)
 		var enemy_scene = enemies[enemy_id]
 		rooms[room_id].spawn_scene(enemy_scene)
-	GameManager.on_rebake.emit()
 
 
 ## Generates the whole maze up front. No meshes are built here - GenerationTracker loads and

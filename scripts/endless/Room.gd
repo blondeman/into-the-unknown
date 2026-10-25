@@ -305,13 +305,19 @@ func generate_hole() -> void:
 		var random_cell: Vector3i = _random_cell_in(random_chamber)
 		exit_hole.position = cell_to_local(random_cell)
 		exit_hole.visible = true
+		
 		var area: Area3D = exit_hole.find_child("Area3D") as Area3D
 		if area and not area.body_entered.is_connected(hole_entered):
 			area.body_entered.connect(hole_entered)
+			
+		# CALL ROOMMESH TO REMOVE THE FLOOR/COLLISION UNDER THIS CELL
+		if room_mesh:
+			room_mesh.carve_exit_hole(Vector2i(random_cell.x, random_cell.z))
 
 
 func hole_entered(body: Node3D) -> void:
 	if body.get_parent() is PlayerController:
+		await get_tree().create_timer(0.5).timeout
 		GameManager.load_endless()
 
 
