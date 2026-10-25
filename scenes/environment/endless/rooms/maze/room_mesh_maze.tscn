@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://dm3tdr4iskxmy"]
-
-[ext_resource type="PackedScene" uid="uid://dgwfsxahxx6o3" path="res://scenes/environment/endless/rooms/room_mesh.tscn" id="1_ygneq"]
-[ext_resource type="Script" uid="uid://fvbi2fasrml6" path="res://scenes/environment/endless/rooms/maze/RoomMesh_Maze.gd" id="2_37ag2"]
-
-[node name="room_mesh_maze" unique_id=867155719 instance=ExtResource("1_ygneq")]
-script = ExtResource("2_37ag2")
-debug_path = false

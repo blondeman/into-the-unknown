@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://ddmsyog03eynx"]
 
 [ext_resource type="Script" uid="uid://bdympq5nulded" path="res://scripts/endless/EndlessGenerator.gd" id="1_2qu65"]
-[ext_resource type="PackedScene" uid="uid://dwo3j6t2gwjeg" path="res://scenes/environment/endless/rooms/maze/room_maze.tscn" id="2_72jur"]
+[ext_resource type="PackedScene" uid="uid://bc0s1645rls46" path="res://scenes/environment/endless/room.tscn" id="2_72jur"]
+[ext_resource type="PackedScene" uid="uid://bh1vdbfys1pv3" path="res://scenes/enemy/enemy_melee.tscn" id="3_888cg"]
+[ext_resource type="PackedScene" uid="uid://cnfai0wsm7aqt" path="res://scenes/enemy/enemy_ranged.tscn" id="4_06ais"]
 
 [node name="endless_generator" type="Node3D" unique_id=859133285]
 script = ExtResource("1_2qu65")
 global_scale = 3.0
 max_depth = 1
-seed = "test"
 room_scene = ExtResource("2_72jur")
+enemies = Array[PackedScene]([ExtResource("3_888cg"), ExtResource("4_06ais")])

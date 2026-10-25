@@ -1,41 +1,26 @@
-class_name RoomMesh_Maze
-extends RoomMesh
-## Mesh for a Room_Maze: floors, ramps and walls built from the room's chambers and paths.
-##
-## The room's walkable area is turned into tiles, one per grid cell. A flat tile is a floor at one
-## level. A ramp tile is the cell a path steps into when it changes level: its floor rises or falls
-## one level across the cell (45 degrees). Every tile edge that doesn't meet a matching neighbour
-## (same floor height along the whole edge) gets a wall, except where a doorway is. All of it goes
-## into one mesh with a trimesh collider. Overlapping chambers are cut out of each other (the later
-## one wins). There's no ceiling and walls have no thickness.
+class_name RoomMesh
+extends Node3D
 
-const SIDES: Array[Vector2i] = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
 
-## Both materials are optional. A ShaderMaterial wall/floor material gets uv_scale reset to 1 and
-## uv_offset to 0, because UVs are generated in world units (u along the surface, v = height / 2
-## for walls), which matches what RoomMesh_EmptyWithRamps' boxes ended up with.
+@export var mesh_thickness: float = 0.1
+var sides: Array[Vector2i] = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+
+@export var wall_height: int = 1
 @export var floor_material: Material
 @export var wall_material: Material
 
 @export_flags_3d_physics var collision_layer: int = 1
 @export_flags_3d_physics var collision_mask: int = 1
-
-## Also draws each chamber as one blue plane and the paths as one orange 1x1 plane per cell,
-## tilted on up and down moves.
 @export var debug_path: bool = false
 
 
-## One grid cell of floor. `corners` holds the floor level at each corner, indexed x + 2 * z
-## (so 0 = low x/low z, 1 = high x/low z, 2 = low x/high z, 3 = high x/high z).
 class Tile extends RefCounted:
-	var cell: Vector2i # (x, z)
+	var cell: Vector2i
 	var corners: Array[int] = [0, 0, 0, 0]
 
 	func is_flat() -> bool:
 		return corners.min() == corners.max()
 
-	## Floor levels at the two ends of the given side's edge, ordered by increasing x or z.
-	## Two tiles that share an edge are connected when their values for it are equal.
 	func edge(side: Vector2i) -> Vector2i:
 		if side.x > 0:
 			return Vector2i(corners[1], corners[3])
@@ -54,9 +39,9 @@ func load_mesh(room: Room) -> void:
 	_clear_geometry()
 	_clear_debug_path()
 
-	var maze := room as Room_Maze
+	var maze := room as Room
 	if not maze:
-		push_error("RoomMesh_Maze can only build Room_Maze rooms")
+		push_error("RoomMesh can only build Room rooms")
 		return
 
 	_build_geometry(maze)
@@ -69,16 +54,12 @@ func unload_mesh() -> void:
 	_clear_debug_path()
 
 
-# --- Tiles ------------------------------------------------------------------------------
+# --- Tiles ---
 
-## Returns {Vector2i (x, z) -> Array[Tile]}. A column can hold several tiles at different heights.
-func _collect_tiles(maze: Room_Maze) -> Dictionary:
+func _collect_tiles(maze: Room) -> Dictionary:
 	var columns: Dictionary = {}
 
-	# Chambers can overlap. Each cell gets one chamber floor: where chambers overlap, the one
-	# generated later cuts the other out, so there's a single floor and no walls inside the overlap
-	# (a wall only appears where the two floors really do end at different heights).
-	var chamber_levels: Dictionary = {} # Vector2i (x, z) -> level
+	var chamber_levels: Dictionary = {}
 	for chamber in maze.chambers:
 		var fp: Rect2i = chamber.footprint
 		for x in range(fp.position.x, fp.end.x):
@@ -101,8 +82,6 @@ func _collect_tiles(maze: Room_Maze) -> Dictionary:
 				var dir := Vector2i(signi(to.x - from.x), signi(to.z - from.z))
 				_add_tile(columns, _make_ramp_tile(cell, from.y, to.y, dir))
 
-	# A ramp replaces any flat floor in its cell at either of its levels (e.g. the chamber floor
-	# where a path ramps into a chamber), so the ramp actually meets the floor around it.
 	for cell in columns:
 		var tiles: Array = columns[cell]
 		var ramp_levels: Array[int] = []
@@ -138,8 +117,6 @@ func _make_flat_tile(cell: Vector2i, level: int) -> Tile:
 	return tile
 
 
-## A ramp whose floor is at `entry` along the edge it's entered from and at `exit` along the
-## opposite edge. `dir` is the (x, z) direction of travel.
 func _make_ramp_tile(cell: Vector2i, entry: int, exit: int, dir: Vector2i) -> Tile:
 	var tile := Tile.new()
 	tile.cell = cell
@@ -155,9 +132,7 @@ func _make_ramp_tile(cell: Vector2i, entry: int, exit: int, dir: Vector2i) -> Ti
 	return tile
 
 
-## {Vector4i (x, z, side.x, side.y) -> level} for every doorway, so the wall on that side of that
-## cell is left open. A doorway's side is the one facing out of the room: opposite its direction.
-func _get_open_sides(maze: Room_Maze) -> Dictionary:
+func _get_open_sides(maze: Room) -> Dictionary:
 	var doorways: Array[Doorway] = []
 	doorways.append_array(maze.exits)
 	if maze.entrance:
@@ -185,9 +160,9 @@ func _is_connected(tile: Tile, side: Vector2i, columns: Dictionary, open_sides: 
 	return false
 
 
-# --- Geometry ---------------------------------------------------------------------------
+# --- Geometry ---
 
-func _build_geometry(maze: Room_Maze) -> void:
+func _build_geometry(maze: Room) -> void:
 	var columns: Dictionary = _collect_tiles(maze)
 	var open_sides: Dictionary = _get_open_sides(maze)
 
@@ -202,7 +177,7 @@ func _build_geometry(maze: Room_Maze) -> void:
 		for tile in column:
 			_add_floor(floor_st, maze, tile)
 			floor_count += 1
-			for side in SIDES:
+			for side in sides:
 				if _is_connected(tile, side, columns, open_sides):
 					continue
 				_add_wall(wall_st, maze, tile, side)
@@ -236,7 +211,7 @@ func _build_geometry(maze: Room_Maze) -> void:
 	body.add_child(collider)
 
 
-func _corner_position(maze: Room_Maze, cell: Vector2i, ix: int, iz: int, level: int) -> Vector3:
+func _corner_position(maze: Room, cell: Vector2i, ix: int, iz: int, level: int) -> Vector3:
 	var s: float = maze.scale_factor
 	return Vector3(
 		(cell.x + ix - maze.grid_size.x / 2.0) * s,
@@ -244,78 +219,121 @@ func _corner_position(maze: Room_Maze, cell: Vector2i, ix: int, iz: int, level: 
 		(cell.y + iz - maze.grid_size.z / 2.0) * s)
 
 
-func _add_floor(st: SurfaceTool, maze: Room_Maze, tile: Tile) -> void:
+func _add_floor(st: SurfaceTool, maze: Room, tile: Tile) -> void:
 	var p00: Vector3 = _corner_position(maze, tile.cell, 0, 0, tile.corners[0])
 	var p10: Vector3 = _corner_position(maze, tile.cell, 1, 0, tile.corners[1])
 	var p01: Vector3 = _corner_position(maze, tile.cell, 0, 1, tile.corners[2])
 	var p11: Vector3 = _corner_position(maze, tile.cell, 1, 1, tile.corners[3])
 
-	var verts: Array[Vector3] = [p00, p10, p11, p01]
-	var uvs: Array[Vector2] = []
-	for v in verts:
-		uvs.append(Vector2(v.x, v.z))
+	# Top face vertices
+	var t0 = p00
+	var t1 = p10
+	var t2 = p11
+	var t3 = p01
 
-	var normal: Vector3 = (p01 - p00).cross(p10 - p00).normalized()
-	_add_quad(st, verts, uvs, normal)
+	# Bottom face vertices (extruded downwards by mesh_thickness)
+	var drop = Vector3(0, mesh_thickness, 0)
+	var b0 = p00 - drop
+	var b1 = p10 - drop
+	var b2 = p11 - drop
+	var b3 = p01 - drop
+
+	# Top Face
+	var top_normal: Vector3 = (t3 - t0).cross(t1 - t0).normalized()
+	_add_quad(st, [t0, t1, t2, t3], [Vector2(t0.x, t0.z), Vector2(t1.x, t1.z), Vector2(t2.x, t2.z), Vector2(t3.x, t3.z)], top_normal, false)
+
+	# Bottom Face
+	var bot_normal = -top_normal
+	_add_quad(st, [b3, b2, b1, b0], [Vector2(b3.x, b3.z), Vector2(b2.x, b2.z), Vector2(b1.x, b1.z), Vector2(b0.x, b0.z)], bot_normal, false)
+
+	# Side Edge Faces connecting top and bottom
+	_add_quad(st, [t0, t1, b1, b0], [Vector2(0, 0), Vector2(1, 0), Vector2(1, mesh_thickness), Vector2(0, mesh_thickness)], (t1 - t0).cross(b0 - t0).normalized(), false)
+	_add_quad(st, [t1, t2, b2, b1], [Vector2(0, 0), Vector2(1, 0), Vector2(1, mesh_thickness), Vector2(0, mesh_thickness)], (t2 - t1).cross(b1 - t1).normalized(), false)
+	_add_quad(st, [t2, t3, b3, b2], [Vector2(0, 0), Vector2(1, 0), Vector2(1, mesh_thickness), Vector2(0, mesh_thickness)], (t3 - t2).cross(b2 - t2).normalized(), false)
+	_add_quad(st, [t3, t0, b0, b3], [Vector2(0, 0), Vector2(1, 0), Vector2(1, mesh_thickness), Vector2(0, mesh_thickness)], (t0 - t3).cross(b3 - t3).normalized(), false)
 
 
-## A wall along one edge of a tile, facing into the tile. Its bottom follows the floor along that
-## edge (so it's sloped along a ramp's sides) and its top is level, WALL_HEIGHT above the higher end.
-func _add_wall(st: SurfaceTool, maze: Room_Maze, tile: Tile, side: Vector2i) -> void:
-	pass
-	
+func _add_wall(st: SurfaceTool, maze: Room, tile: Tile, side: Vector2i) -> void:
 	var s: float = maze.scale_factor
 	var x0: float = (tile.cell.x - maze.grid_size.x / 2.0) * s
 	var z0: float = (tile.cell.y - maze.grid_size.z / 2.0) * s
 
 	var p0: Vector2
 	var p1: Vector2
-	var normal: Vector3
+	var outward_normal: Vector3
 	if side.x > 0:
 		p0 = Vector2(x0 + s, z0)
 		p1 = Vector2(x0 + s, z0 + s)
-		normal = Vector3.LEFT
+		outward_normal = Vector3.RIGHT
 	elif side.x < 0:
 		p0 = Vector2(x0, z0)
 		p1 = Vector2(x0, z0 + s)
-		normal = Vector3.RIGHT
+		outward_normal = Vector3.LEFT
 	elif side.y > 0:
 		p0 = Vector2(x0, z0 + s)
 		p1 = Vector2(x0 + s, z0 + s)
-		normal = Vector3.FORWARD
+		outward_normal = Vector3.BACK
 	else:
 		p0 = Vector2(x0, z0)
 		p1 = Vector2(x0 + s, z0)
-		normal = Vector3.BACK
+		outward_normal = Vector3.FORWARD
+
+	# Inward facing normal (pointing into the room/tile)
+	var inward_normal = -outward_normal
 
 	var edge: Vector2i = tile.edge(side)
 	var y0: float = (edge.x - maze.floor_level) * s
 	var y1: float = (edge.y - maze.floor_level) * s
-	var top: float = maxf(y0, y1) + wall_height
+	var top: float = maxf(y0, y1) + wall_height * s
 
-	var verts: Array[Vector3] = [
-		Vector3(p0.x, y0, p0.y), Vector3(p1.x, y1, p1.y),
-		Vector3(p1.x, top, p1.y), Vector3(p0.x, top, p0.y)]
+	# Inward-facing front vertices
+	var f_v0 = Vector3(p0.x, y0, p0.y)
+	var f_v1 = Vector3(p1.x, y1, p1.y)
+	var f_v2 = Vector3(p1.x, top, p1.y)
+	var f_v3 = Vector3(p0.x, top, p0.y)
+
+	# Extruded back vertices (outward direction)
+	var offset = outward_normal * mesh_thickness
+	var b_v0 = f_v0 + offset
+	var b_v1 = f_v1 + offset
+	var b_v2 = f_v2 + offset
+	var b_v3 = f_v3 + offset
 
 	var along0: float = p0.y if side.x != 0 else p0.x
 	var along1: float = p1.y if side.x != 0 else p1.x
-	var uvs: Array[Vector2] = [
+	var uv_front: Array[Vector2] = [
 		Vector2(along0, y0 / 2.0), Vector2(along1, y1 / 2.0),
 		Vector2(along1, top / 2.0), Vector2(along0, top / 2.0)]
 
-	_add_quad(st, verts, uvs, normal)
+	# 1. Inward Face (facing into the room)
+	_add_quad(st, [f_v3, f_v2, f_v1, f_v0], uv_front, inward_normal, false)
+
+	# 2. Outward Face (facing out of the room)
+	_add_quad(st, [b_v0, b_v1, b_v2, b_v3], uv_front, outward_normal, false)
+
+	# 3. Top Cap
+	_add_quad(st, [f_v3, f_v2, b_v2, b_v3], [Vector2(0, 0), Vector2(1, 0), Vector2(1, mesh_thickness), Vector2(0, mesh_thickness)], Vector3.UP, false)
+
+	# 4. Side Caps (Start and End)
+	_add_quad(st, [f_v0, f_v3, b_v3, b_v0], [Vector2(0, 0), Vector2(1, 0), Vector2(1, wall_height), Vector2(0, wall_height)], (f_v3 - f_v0).cross(b_v0 - f_v0).normalized(), false)
+	_add_quad(st, [f_v1, b_v1, b_v2, f_v2], [Vector2(0, 0), Vector2(1, 0), Vector2(1, wall_height), Vector2(0, wall_height)], (b_v1 - f_v1).cross(f_v2 - f_v1).normalized(), false)
 
 
-## Adds a quad (as two triangles) wound so it faces along `normal`. Godot treats clockwise as the
-## front face, so the order is flipped when it comes out counter-clockwise.
-func _add_quad(st: SurfaceTool, verts: Array[Vector3], uvs: Array[Vector2], normal: Vector3) -> void:
+func _add_quad(st: SurfaceTool, verts: Array[Vector3], uvs: Array[Vector2], normal: Vector3, invert: bool = false) -> void:
+	var final_normal: Vector3 = -normal if invert else normal
+	var v: Array[Vector3] = verts.duplicate()
+	var u: Array[Vector2] = uvs.duplicate()
+	if invert:
+		v.reverse()
+		u.reverse()
+
 	var order: Array[int] = [0, 1, 2, 0, 2, 3]
-	if (verts[1] - verts[0]).cross(verts[2] - verts[0]).dot(normal) > 0.0:
+	if (v[1] - v[0]).cross(v[2] - v[0]).dot(final_normal) > 0.0:
 		order = [0, 2, 1, 0, 3, 2]
 	for i in order:
-		st.set_normal(normal)
-		st.set_uv(uvs[i])
-		st.add_vertex(verts[i])
+		st.set_normal(final_normal)
+		st.set_uv(u[i])
+		st.add_vertex(v[i])
 
 
 func _prepare_material(material: Material) -> Material:
@@ -333,9 +351,9 @@ func _clear_geometry() -> void:
 	_geometry.clear()
 
 
-# --- Debug ------------------------------------------------------------------------------
+# --- Debug Path ---
 
-func _draw_debug_path(maze: Room_Maze) -> void:
+func _draw_debug_path(maze: Room) -> void:
 	var chamber_material := _make_debug_material(Color(0.2, 0.5, 1.0))
 	var path_material := _make_debug_material(Color(1.0, 0.6, 0.1))
 
@@ -343,7 +361,6 @@ func _draw_debug_path(maze: Room_Maze) -> void:
 		var plane := PlaneMesh.new()
 		plane.size = Vector2(chamber.footprint.size.x, chamber.footprint.size.y) * maze.scale_factor
 
-		# sit just under the path so the two don't fight when they share a level
 		var center: Vector3 = maze.chamber_center_local(chamber) - Vector3.UP * maze.scale_factor * 0.02
 		_add_debug_plane(plane, chamber_material, Transform3D(Basis.IDENTITY, center))
 
@@ -351,11 +368,9 @@ func _draw_debug_path(maze: Room_Maze) -> void:
 		var dir: Vector3i = tile.direction
 		var slope: float = tile.slope
 
-		# a plane that runs along `dir` and rises by `slope` per cell
 		var forward := Vector3(dir.x, slope, dir.z).normalized()
 		var normal := Vector3(-slope * dir.x, 1.0, -slope * dir.z).normalized()
 
-		# one cell wide; stretched along the slope so it still covers exactly one cell of floor
 		var plane := PlaneMesh.new()
 		plane.size = Vector2(maze.scale_factor, maze.scale_factor * sqrt(1.0 + slope * slope))
 

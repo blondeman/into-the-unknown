@@ -29,7 +29,6 @@ navigation_mesh = SubResource("NavigationMesh_uergm")
 
 [node name="endless_generator" parent="navmesh" index="2" unique_id=859133285 instance=ExtResource("2_0kge5")]
 max_depth = 3
-seed = ""
 
 [node name="generation_tracker" type="Node3D" parent="player" parent_id_path=PackedInt32Array(1262716053) index="11" unique_id=704269330 node_paths=PackedStringArray("generator", "target")]
 script = ExtResource("3_uergm")

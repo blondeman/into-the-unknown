@@ -10,8 +10,12 @@ var rng: RandomNumberGenerator
 @export var room_scene: PackedScene
 var rooms: Array[Room]
 
+@export var enemies: Array[PackedScene]
+@export var enemy_count: int = 20
+
 func _ready():
 	generate_maze()
+	generate_enemies()
 
 
 func random_seed():
@@ -19,6 +23,15 @@ func random_seed():
 	rng.randomize()
 	seed = str(rng.seed)
 	rng.seed = hash(seed)
+
+
+func generate_enemies():
+	for i in enemy_count:
+		var enemy_id = randi_range(0,len(enemies) - 1)
+		var room_id = randi_range(0,len(rooms) - 1)
+		var enemy_scene = enemies[enemy_id]
+		rooms[room_id].spawn_scene(enemy_scene)
+	GameManager.on_rebake.emit()
 
 
 ## Generates the whole maze up front. No meshes are built here - GenerationTracker loads and
@@ -37,7 +50,7 @@ func generate_maze():
 	while not queue.is_empty():
 		queue.append_array(branch_room(queue.pop_front()))
 	
-	rooms.get(len(rooms) - 1)._generate_hole()
+	rooms.get(len(rooms) - 1).generate_hole()
 
 
 func generate_room(entrance: Doorway = null, depth: int = 0, previous_room: Room = null) -> Room:

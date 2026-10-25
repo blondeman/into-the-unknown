@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://dgwfsxahxx6o3"]
-
-[ext_resource type="Script" uid="uid://dafxd7okhcqiq" path="res://scenes/environment/endless/rooms/RoomMesh.gd" id="1_fk2m3"]
-
-[node name="room_mesh" type="Node3D" unique_id=867155719]
-script = ExtResource("1_fk2m3")
-metadata/_custom_type_script = "uid://dafxd7okhcqiq"
