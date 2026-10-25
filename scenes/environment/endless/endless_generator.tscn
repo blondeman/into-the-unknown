@@ -6,6 +6,6 @@
 [node name="endless_generator" type="Node3D" unique_id=859133285]
 script = ExtResource("1_2qu65")
 global_scale = 3.0
-max_depth = 0
+max_depth = 1
 seed = "test"
 room_scene = ExtResource("2_72jur")

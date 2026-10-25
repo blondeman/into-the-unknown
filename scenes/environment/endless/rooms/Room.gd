@@ -28,6 +28,8 @@ var max_depth: int = 10
 
 var mesh_loaded: bool = false
 
+@export var exit_hole: Node3D
+
 ## Draws a transparent green box showing the room's bounds. The box is created on the fly.
 @export var debug_room_bound: bool = false
 
@@ -36,6 +38,7 @@ var _debug_bound_mesh: MeshInstance3D
 
 func _ready() -> void:
 	# every room starts with no mesh until load_mesh() is called
+	exit_hole.visible = false
 	_clear_mesh()
 
 
@@ -272,6 +275,9 @@ func shrink_to_fit(other: Room, entrance_direction: Vector3i) -> bool:
 	var shrink_amount: float = size[axis] - new_extent
 	size = new_size
 	global_position = old_center - (dir.normalized() * shrink_amount / 2.0)
+	if entrance:
+		# the entrance is stored room-local, so keep it at the same world position
+		entrance = Doorway.new(entrance.position + (old_center - global_position), entrance.direction)
 	_update_debug_bound()
 
 	# verify - never trust the math blindly
@@ -280,6 +286,22 @@ func shrink_to_fit(other: Room, entrance_direction: Vector3i) -> bool:
 		return false
 
 	return true
+
+
+func _generate_hole():
+	pass
+
+
+func generate_hole(hole_position: Vector3):
+	exit_hole.global_position = hole_position
+	exit_hole.visible = true
+	var area: Area3D = exit_hole.find_child("Area3D") as Area3D
+	area.body_entered.connect(hole_entered)
+
+
+func hole_entered(body: Node3D):
+	if body.get_parent() is PlayerController:
+		GameManager.load_endless()
 
 
 func _to_string() -> String:

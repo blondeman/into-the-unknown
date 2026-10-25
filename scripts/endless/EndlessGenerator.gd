@@ -36,6 +36,8 @@ func generate_maze():
 	var queue: Array[Room] = [generate_room()]
 	while not queue.is_empty():
 		queue.append_array(branch_room(queue.pop_front()))
+	
+	rooms.get(len(rooms) - 1)._generate_hole()
 
 
 func generate_room(entrance: Doorway = null, depth: int = 0, previous_room: Room = null) -> Room:

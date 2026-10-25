@@ -90,12 +90,12 @@ func build_wall(direction: Vector3i, room: Room) -> void:
 
 	var box_size: Vector3
 	if abs(place_dir.x) > 0.5:
-		box_size = Vector3(WALL_THICKNESS, WALL_HEIGHT - WALL_HEIGHT_SHRINK, room.size.z)
+		box_size = Vector3(WALL_THICKNESS, wall_height - WALL_HEIGHT_SHRINK, room.size.z)
 	else:
-		box_size = Vector3(room.size.x, WALL_HEIGHT - WALL_HEIGHT_SHRINK, WALL_THICKNESS)
+		box_size = Vector3(room.size.x, wall_height - WALL_HEIGHT_SHRINK, WALL_THICKNESS)
 
 	var position: Vector3 = place_dir * (room.size / 2)
-	position.y = floor_top_y + WALL_HEIGHT / 2.0 - WALL_HEIGHT_SHRINK / 2.0
+	position.y = floor_top_y + wall_height / 2.0 - WALL_HEIGHT_SHRINK / 2.0
 
 	create_box(position, box_size)
 
@@ -126,7 +126,7 @@ func build_connector(direction: Vector3i, room: Room, exit: Doorway) -> void:
 func build_doorway(direction: Vector3i, room: Room, exit: Doorway) -> void:
 	var floor_top_y: float = room.get_floor_y()
 	var place_dir: Vector3 = -(direction as Vector3)
-	var ceiling_y: float = floor_top_y + WALL_HEIGHT
+	var ceiling_y: float = floor_top_y + wall_height
 
 	var lateral_center: float = exit.position.z if abs(place_dir.x) > 0.5 else exit.position.x
 

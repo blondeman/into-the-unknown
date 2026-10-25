@@ -4,7 +4,7 @@ extends Node3D
 ## and unload it again; what the room looks like is up to the subclass.
 
 const FLOOR_THICKNESS := 1.0
-const WALL_HEIGHT := 10
+@export var wall_height := 1
 const WALL_THICKNESS := 0.5
 
 
