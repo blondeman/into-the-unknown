@@ -25,6 +25,7 @@ var endless_path: String = "res://scenes/levels/endless.tscn"
 signal on_rebake()
 signal on_score_changed(amount: int, score: int, total: int)
 signal on_max_score()
+signal on_endless_score_changed(score: int)
 
 var current_scene: Node = null
 var current_level_id: int = LEVEL_ID_MENU
@@ -33,6 +34,7 @@ var is_loading: bool = false
 var enemy_count: int = 0
 var building_count: int = 0
 var score: int = 0
+var endless_score: int = 0
 
 func _ready() -> void:
 	for path in global_scene_paths:
@@ -60,6 +62,9 @@ func load_next_level():
 func load_level(level: int) -> void:
 	if is_loading:
 		return
+
+	if current_level_id == LEVEL_ID_ENDLESS and level == LEVEL_ID_ENDLESS:
+		add_endless_score()
 
 	is_loading = true
 	current_level_id = level
@@ -122,19 +127,29 @@ func _on_fade_out_finished() -> void:
 	_transition_instance = null
 
 func _level_loaded():
+	if current_level_id != LEVEL_ID_ENDLESS:
+		endless_score = 0
 	score = 0
 	building_count = 0
 	enemy_count = 0
+	
 	is_loading = false
 	await get_tree().process_frame
 	_set_score_total()
 
 func _set_score_total():
+	if current_level_id == LEVEL_ID_ENDLESS:
+		on_endless_score_changed.emit(endless_score)
+		return
+	
 	enemy_count = get_tree().get_nodes_in_group("enemy").size()
 	building_count = get_tree().get_nodes_in_group("destructible").size()
 	on_score_changed.emit(0, score, _max_score())
 
+
 func add_score():
+	if current_level_id == LEVEL_ID_ENDLESS:
+		return
 	if is_loading or _max_score() == 0:
 		return
 	score += 1
@@ -143,5 +158,11 @@ func add_score():
 		on_max_score.emit()
 		load_next_level()
 
+
 func _max_score() -> int:
 	return building_count + enemy_count
+
+
+func add_endless_score():
+	endless_score += 1
+	on_endless_score_changed.emit(endless_score)

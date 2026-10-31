@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://c8kckuqwy6lbo"]
 
 [ext_resource type="Script" uid="uid://bgic6j2p3b4mq" path="res://scripts/player/Tail.gd" id="1_v845d"]
-[ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="1_veik2"]
+[ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/ui/Health.gd" id="1_veik2"]
 [ext_resource type="PackedScene" uid="uid://cv0q154yx02mk" path="res://scenes/player/player_death_particles.tscn" id="2_veik2"]
 [ext_resource type="Script" uid="uid://di33u0x6r7p4e" path="res://scripts/player/PlayAnimation.gd" id="3_njam1"]
 [ext_resource type="Material" uid="uid://bnk0l0wkcx7p1" path="res://textures/player.tres" id="3_v845d"]

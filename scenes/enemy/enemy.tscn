@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b1ppt68n8nf7s"]
 
 [ext_resource type="Script" uid="uid://b1dnvl2mowrgq" path="res://scripts/enemy/EnemyController.gd" id="1_7p1mj"]
-[ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="2_5uy6h"]
+[ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/ui/Health.gd" id="2_5uy6h"]
 [ext_resource type="PackedScene" uid="uid://bhpgqsyfr0v3j" path="res://scenes/enemy/death_particles.tscn" id="4_nenq2"]
 [ext_resource type="Script" uid="uid://bqwnmnppokto6" path="res://scripts/enemy/Navigation.gd" id="4_xwavj"]
 

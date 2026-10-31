@@ -21,6 +21,8 @@ resource_local_to_scene = true
 background_mode = 1
 background_color = Color(0.11415807, 0.11415809, 0.11415807, 1)
 sky = SubResource("Sky_vuxau")
+ambient_light_source = 2
+ambient_light_color = Color(0.39620692, 0.14151856, 4.813075e-08, 1)
 
 [node name="level" unique_id=221896957 instance=ExtResource("1_ywrxy")]
 

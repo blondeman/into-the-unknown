@@ -11,7 +11,6 @@ extends Node3D
 @export var camera: Camera3D
 
 @export var head: CharacterBody3D
-@export var body: PhysicsBody3D
 
 var segments: Array[PlayerSegment]
 

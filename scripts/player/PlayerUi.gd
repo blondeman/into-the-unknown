@@ -12,17 +12,29 @@ var _health_tween: Tween
 @export var restart_timer: float = 3.0
 
 @export_group("Stats")
+@export var stats_parent: Control
 @export var score_fill_right: TextureProgressBar
 @export var score_fill_left: TextureProgressBar
 var _score_tween: Tween
 
+@export_group("Endless")
+@export var endless_parent: Control
+const endless_score_label: String = "Depth: "
+@export var endless_score_text: Label
+
 func _ready() -> void:
+	stats_parent.visible = false
+	endless_parent.visible = false
+	
 	health_fill_right.value = 0
 	health_fill_left.value = 0
 	
 	score_fill_right.value = 0
 	score_fill_left.value = 0
 	GameManager.on_score_changed.connect(_set_score)
+	
+	endless_score_text.text = endless_score_label + "0"
+	GameManager.on_endless_score_changed.connect(_set_endless_score)
 	
 	death_screen.hide()
 
@@ -60,6 +72,9 @@ func _on_die():
 
 
 func _set_score(amount: int, score: int, total: int):
+	stats_parent.visible = true
+	endless_parent.visible = false
+	
 	score_fill_right.max_value = total
 	score_fill_left.max_value = total
 	
@@ -74,3 +89,12 @@ func _set_score(amount: int, score: int, total: int):
 	_score_tween = create_tween().set_parallel(true)
 	_score_tween.tween_property(score_fill_right, "value", score, scaled_smooth_time)
 	_score_tween.tween_property(score_fill_left, "value", score * (left_degrees / right_degrees), scaled_smooth_time)
+
+
+func _set_endless_score(score: int):
+	stats_parent.visible = false
+	endless_parent.visible = true
+	if score == 0:
+		endless_score_text.text = endless_score_label + str(score)
+	else:
+		endless_score_text.text = endless_score_label + "-" + str(score)

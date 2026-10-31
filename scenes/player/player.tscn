@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://chjkpwtl1g53f" path="res://models/snake2/snake2_albedo.png" id="5_je7p5"]
 [ext_resource type="Script" uid="uid://cr0urxtlsv4iy" path="res://scripts/player/PlayerSegment.gd" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://ngawy1oun44j" path="res://audio/player/slither.wav" id="5_tuyoq"]
-[ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/Health.gd" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://chc3odh7c2i86" path="res://scripts/ui/Health.gd" id="7_fjrip"]
 [ext_resource type="Material" uid="uid://cl6ddmj48s6nh" path="res://textures/empty_tex_dirt.tres" id="7_uf5tr"]
 [ext_resource type="PackedScene" uid="uid://cv0q154yx02mk" path="res://scenes/player/player_death_particles.tscn" id="8_5gtgg"]
 [ext_resource type="Script" uid="uid://cibkwcvb1qeka" path="res://scripts/player/ArmDrag.gd" id="8_gx1jg"]
@@ -360,14 +360,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4ytqj")
 
-[node name="player" type="Node3D" unique_id=1262716053 node_paths=PackedStringArray("head", "body") groups=["player"]]
+[node name="player" type="Node3D" unique_id=1262716053 node_paths=PackedStringArray("head") groups=["player"]]
 script = ExtResource("1_qhqgy")
 speed = 13.0
 step_up_height = 0.5
 dash_speed = 18.0
 dash_rotation_speed = 3.0
 head = NodePath("head")
-body = NodePath("body_segment")
 
 [node name="head" type="CharacterBody3D" parent="." unique_id=843379399 node_paths=PackedStringArray("player_controller", "audio_stream_player", "particles")]
 collision_layer = 2

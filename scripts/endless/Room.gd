@@ -37,9 +37,6 @@ var _debug_bound_mesh: MeshInstance3D
 @export var min_exit_count: int = 1
 @export var max_exit_count: int = 3
 
-@export_group("Height")
-@export var allow_slopes: bool = false
-
 
 class Chamber extends RefCounted:
 	var footprint: Rect2i
@@ -310,7 +307,6 @@ func generate_hole() -> void:
 		if area and not area.body_entered.is_connected(hole_entered):
 			area.body_entered.connect(hole_entered)
 			
-		# CALL ROOMMESH TO REMOVE THE FLOOR/COLLISION UNDER THIS CELL
 		if room_mesh:
 			room_mesh.carve_exit_hole(Vector2i(random_cell.x, random_cell.z))
 
@@ -358,43 +354,21 @@ func _generate_chambers() -> void:
 	var hi: int = maxi(min_chamber_count, max_chamber_count)
 	var count: int = rng.randi_range(maxi(lo, 1), maxi(hi, 1))
 
-	var levels: Dictionary = {}
-
 	for _i in count:
-		var chamber: Chamber = _place_chamber(levels)
+		var chamber: Chamber = _place_chamber()
 		chambers.append(chamber)
 
-		var fp: Rect2i = chamber.footprint
-		for x in range(fp.position.x, fp.end.x):
-			for z in range(fp.position.y, fp.end.y):
-				levels[Vector2i(x, z)] = chamber.level
 
-
-func _place_chamber(levels: Dictionary) -> Chamber:
+func _place_chamber() -> Chamber:
 	var chamber := Chamber.new()
-	for _attempt in chamber_placement_attempts:
-		var width: int = _random_chamber_length(grid_size.x)
-		var depth_cell: int = _random_chamber_length(grid_size.z)
-		chamber.footprint = Rect2i(
-			rng.randi_range(0, grid_size.x - width),
-			rng.randi_range(0, grid_size.z - depth_cell),
-			width, depth_cell)
-
-		var under: Array[int] = _levels_under(chamber.footprint, levels)
-		chamber.level = under[0] if not under.is_empty() else _random_level()
-		if under.size() <= 1:
-			break
+	var width: int = _random_chamber_length(grid_size.x)
+	var depth_cell: int = _random_chamber_length(grid_size.z)
+	chamber.footprint = Rect2i(
+		rng.randi_range(0, grid_size.x - width),
+		rng.randi_range(0, grid_size.z - depth_cell),
+		width, depth_cell)
+	chamber.level = floor_level
 	return chamber
-
-
-func _levels_under(footprint: Rect2i, levels: Dictionary) -> Array[int]:
-	var found: Array[int] = []
-	for x in range(footprint.position.x, footprint.end.x):
-		for z in range(footprint.position.y, footprint.end.y):
-			var level: int = levels.get(Vector2i(x, z), -1)
-			if level != -1 and not found.has(level):
-				found.append(level)
-	return found
 
 
 func _random_chamber_length(room_cells: int) -> int:
@@ -413,12 +387,7 @@ func _connect_chambers() -> void:
 	for chamber in chambers:
 		if has_anchor:
 			var target: Vector3i = _pick_target(anchor, chamber)
-			var reach: int = _max_rise(anchor, target)
-			if absi(target.y - anchor.y) > reach:
-				chamber.level = anchor.y + signi(target.y - anchor.y) * reach
-				target.y = chamber.level
-
-			paths.append(_make_path(anchor, target))
+			paths.append(_make_flat_path(anchor, target))
 
 		anchor = _random_cell_in(chamber)
 		has_anchor = true
@@ -426,16 +395,10 @@ func _connect_chambers() -> void:
 
 func _pick_target(from: Vector3i, chamber: Chamber) -> Vector3i:
 	var fp: Rect2i = chamber.footprint
-	var rise: int = absi(chamber.level - from.y)
-	var options: Array[Vector3i] = []
-	for x in range(fp.position.x, fp.end.x):
-		for z in range(fp.position.y, fp.end.y):
-			var cell := Vector3i(x, chamber.level, z)
-			if _max_rise(from, cell) >= rise:
-				options.append(cell)
-	if options.is_empty():
-		return _random_cell_in(chamber)
-	return options[rng.randi_range(0, options.size() - 1)]
+	return Vector3i(
+		clampi(from.x, fp.position.x, fp.end.x - 1),
+		chamber.level,
+		clampi(from.z, fp.position.y, fp.end.y - 1))
 
 
 func _generate_exits() -> void:
@@ -469,14 +432,11 @@ func _generate_exits() -> void:
 		var chamber: Chamber = _nearest_chamber(cell)
 		var target: Vector3i = _closest_cell_in(chamber, cell)
 
-		var reach: int = _max_rise(cell, target)
-		cell.y = clampi(cell.y, target.y - reach, target.y + reach)
-
-		paths.append(_make_path(cell, target))
+		paths.append(_make_flat_path(cell, target))
 		add_exit(_exit_position(cell, wall), wall)
 
 
-func _make_path(from: Vector3i, to: Vector3i) -> Array[Vector3i]:
+func _make_flat_path(from: Vector3i, to: Vector3i) -> Array[Vector3i]:
 	var dx: int = to.x - from.x
 	var dz: int = to.z - from.z
 	var x_step := Vector3i(signi(dx), 0, 0)
@@ -484,47 +444,19 @@ func _make_path(from: Vector3i, to: Vector3i) -> Array[Vector3i]:
 	var x_first: bool = rng.randf() < 0.5
 
 	var steps: Array[Vector3i] = []
-	var legs: Array[Vector2i] = []
 	for leg in 2:
 		var is_x: bool = (leg == 0) == x_first
 		var length: int = absi(dx) if is_x else absi(dz)
-		legs.append(Vector2i(steps.size(), steps.size() + length))
 		for _i in length:
 			steps.append(x_step if is_x else z_step)
 
-	var ramp_ranges: Array[Vector2i] = []
-	if absi(dx) > 0 and absi(dz) > 0:
-		ramp_ranges.append(Vector2i(legs[0].x, legs[0].y - 1))
-		ramp_ranges.append(Vector2i(legs[1].x + 1, legs[1].y))
-	else:
-		ramp_ranges.append(Vector2i(0, steps.size()))
-
-	var rise: int = mini(absi(to.y - from.y), _max_rise(from, to))
-	var rise_dir: int = signi(to.y - from.y)
-	var ramp_start: int = 0
-	if rise > 0:
-		var starts: Array[int] = []
-		for ramp_range in ramp_ranges:
-			for s in range(ramp_range.x, ramp_range.y - rise + 1):
-				starts.append(s)
-		ramp_start = starts[rng.randi_range(0, starts.size() - 1)]
-
-	var path: Array[Vector3i] = [from]
-	var cell: Vector3i = from
+	var path: Array[Vector3i] = [Vector3i(from.x, floor_level, from.z)]
+	var cell: Vector3i = Vector3i(from.x, floor_level, from.z)
 	for i in steps.size():
 		cell += steps[i]
-		if i >= ramp_start and i < ramp_start + rise:
-			cell.y += rise_dir
+		cell.y = floor_level
 		path.append(cell)
 	return path
-
-
-func _max_rise(from: Vector3i, to: Vector3i) -> int:
-	var run_x: int = absi(to.x - from.x)
-	var run_z: int = absi(to.z - from.z)
-	if run_x == 0 or run_z == 0:
-		return run_x + run_z
-	return maxi(run_x, run_z) - 1
 
 
 # --- Grid Helpers ---
@@ -533,12 +465,6 @@ func _compute_grid() -> void:
 	var cells: Vector3 = size / scale_factor
 	grid_size = Vector3i(_odd_floor(cells.x), maxi(floori(cells.y + 0.001), 1), _odd_floor(cells.z))
 	floor_level = floori(grid_size.y / 2.0)
-
-
-func _random_level() -> int:
-	if not allow_slopes:
-		return floor_level
-	return rng.randi_range(0, grid_size.y - 1)
 
 
 func _make_odd(n: int) -> int:
@@ -583,10 +509,12 @@ func _closest_cell_in(chamber: Chamber, cell: Vector3i) -> Vector3i:
 
 
 func _nearest_chamber(cell: Vector3i) -> Chamber:
+	if chambers.is_empty():
+		return null
 	var best: Chamber = chambers[0]
 	var best_dist: int = _horizontal_distance(cell, _closest_cell_in(best, cell))
 	for chamber in chambers:
-		var dist: int = _horizontal_distance(cell, _closest_cell_in(chamber, cell))
+		var dist: int = _horizontal_distance(cell, _closest_cell_in(best, cell))
 		if dist < best_dist:
 			best = chamber
 			best_dist = dist
@@ -596,7 +524,7 @@ func _nearest_chamber(cell: Vector3i) -> Chamber:
 func _random_wall_cell(wall: Vector3i) -> Vector3i:
 	var cell := Vector3i(
 		rng.randi_range(0, grid_size.x - 1),
-		_random_level(),
+		floor_level,
 		rng.randi_range(0, grid_size.z - 1))
 	if wall.x > 0:
 		cell.x = 0
@@ -610,6 +538,7 @@ func _random_wall_cell(wall: Vector3i) -> Vector3i:
 
 
 func cell_to_local(cell: Vector3i) -> Vector3:
+	# Using exact grid-index math mapped to local space to avoid floating point drift/rounding gaps
 	return Vector3(
 		(cell.x + 0.5 - grid_size.x / 2.0) * scale_factor,
 		(cell.y - floor_level) * scale_factor,
@@ -645,21 +574,15 @@ func _build_tiles() -> void:
 	var seen: Dictionary = {}
 
 	for path in paths:
-		var first: Vector3i = path[0]
-		_add_tile(cell_to_local(first), Vector3i(1, 0, 0), 0.0, seen)
-
-		for i in range(1, path.size()):
-			var from: Vector3i = path[i - 1]
-			var to: Vector3i = path[i]
-			var delta: Vector3i = to - from
-			var dir := Vector3i(signi(delta.x), 0, signi(delta.z))
-			_add_tile(cell_to_local(to), dir, float(delta.y), seen)
+		for cell in path:
+			_add_tile(cell_to_local(cell), Vector3i.ZERO, 0.0, seen)
 
 
 func _add_tile(pos: Vector3, dir: Vector3i, slope: float, seen: Dictionary) -> void:
-	var key_dir: Vector3i = dir if slope != 0.0 else Vector3i.ZERO
-	var key: String = "%s|%s|%s" % [pos.snapped(Vector3.ONE * 0.01), key_dir, snappedf(slope, 0.001)]
+	# Snapping position slightly to a clean tolerance bucket to prevent duplicate rounding slippage
+	var snapped_pos = pos.snapped(Vector3.ONE * 0.001)
+	var key: String = "%s|%s|%s" % [snapped_pos, dir, snappedf(slope, 0.001)]
 	if seen.has(key):
 		return
 	seen[key] = true
-	path_tiles.append({"position": pos, "direction": dir, "slope": slope})
+	path_tiles.append({"position": snapped_pos, "direction": dir, "slope": slope})
