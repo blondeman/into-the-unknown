@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dfe4w4ehoto40" path="res://ui/score_fill_right.png" id="7_d61dg"]
 [ext_resource type="Texture2D" uid="uid://cgb76is0evp52" path="res://ui/score_fill_left.png" id="8_g18nd"]
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xums0"]
+
 [node name="ui" type="Control" unique_id=546971784 node_paths=PackedStringArray("health_fill_right", "health_fill_left", "death_screen", "stats_parent", "score_fill_right", "score_fill_left", "endless_parent", "endless_score_text")]
 layout_mode = 3
 anchors_preset = 15
@@ -24,7 +26,7 @@ stats_parent = NodePath("destruction")
 score_fill_right = NodePath("destruction/score_right")
 score_fill_left = NodePath("destruction/score_left")
 endless_parent = NodePath("endless")
-endless_score_text = NodePath("endless/score_label")
+endless_score_text = NodePath("endless/VBoxContainer/score_label")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=62778449]
 visible = false
@@ -100,6 +102,7 @@ text = "LIFE"
 horizontal_alignment = 1
 
 [node name="destruction" type="MarginContainer" parent="." unique_id=1250731206]
+visible = false
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 1
@@ -150,6 +153,8 @@ text = "DESTROY"
 horizontal_alignment = 1
 
 [node name="endless" type="MarginContainer" parent="." unique_id=1228119678]
+custom_minimum_size = Vector2(200, 200)
+custom_maximum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -162,7 +167,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="score_label" type="Label" parent="endless" unique_id=159348046]
+[node name="VBoxContainer" type="VBoxContainer" parent="endless" unique_id=1346942328]
+layout_mode = 2
+
+[node name="score_label" type="Label" parent="endless/VBoxContainer" unique_id=159348046]
 layout_mode = 2
 theme = ExtResource("1_7ctsh")
 theme_override_colors/font_color = Color(0.22745098, 0.4117647, 1, 1)
@@ -171,3 +179,8 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 28
 text = "Depth: -2"
 horizontal_alignment = 1
+
+[node name="map" type="TextureRect" parent="endless/VBoxContainer" unique_id=1064548499]
+layout_mode = 2
+texture = SubResource("NoiseTexture2D_xums0")
+stretch_mode = 5

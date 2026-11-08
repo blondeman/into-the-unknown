@@ -1,6 +1,9 @@
 class_name Health
 extends Node
 
+var spawn_invulnerability_timer: float = 0.5
+var invulnerable: bool = true
+
 @export var on_death_scene: PackedScene
 @export var max_health: int = 100
 var current_health: int
@@ -15,8 +18,14 @@ func _ready() -> void:
 	current_health = max_health
 	await get_tree().process_frame
 	on_health_changed.emit(current_health, current_health, max_health)
+	
+	await get_tree().create_timer(spawn_invulnerability_timer).timeout
+	invulnerable = false
 
 func take_damage(amount: int):
+	if amount > 0 and invulnerable:
+		return
+	
 	if current_health - amount > max_health:
 		amount = current_health - max_health
 	

@@ -1,6 +1,7 @@
 class_name EndlessGenerator
 extends Node3D
 
+@export_group("Settings")
 @export var global_scale: float = 1.0
 @export var max_depth: int = 10
 
@@ -10,14 +11,28 @@ var rng: RandomNumberGenerator
 @export var room_scene: PackedScene
 var rooms: Array[Room]
 
+@export_group("Enemies")
 @export var enemies: Array[PackedScene]
-@export var enemy_count: int = 20
+@export var enemy_count_min: int = 20
+@export var enemy_count_max: int = 25
+
+@export_group("Structures")
+@export var structures: Array[PackedScene]
+@export var structure_count_min: int = 10
+@export var structure_count_max: int = 15
+
+@export_group("Items")
+@export var items: Array[PackedScene]
+@export var item_count_min: int = 4
+@export var item_count_max: int = 6
 
 func _ready():
 	generate_maze()
-	generate_enemies()
 	
-	await get_tree().create_timer(1).timeout
+	generate_enemies()
+	generate_structures()
+	
+	await get_tree().create_timer(0.5).timeout
 	GameManager.on_rebake.emit()
 
 
@@ -29,12 +44,20 @@ func random_seed():
 
 
 func generate_enemies():
-	for i in enemy_count:
-		var enemy_id = randi_range(0,len(enemies) - 1)
-		var room_id = randi_range(0,len(rooms) - 1)
-		var enemy_scene = enemies[enemy_id]
-		rooms[room_id].spawn_scene(enemy_scene)
+	generate_objects(enemy_count_min, enemy_count_max, enemies)
 
+
+func generate_structures():
+	generate_objects(structure_count_min, structure_count_max, structures)
+
+
+func generate_objects(count_min: int, count_max: int, object_list: Array):
+	var count = randi_range(count_min, count_max)
+	for i in count:
+		var id = randi_range(0,len(object_list) - 1)
+		var room_id = randi_range(1,len(rooms) - 1)
+		var scene = object_list[id]
+		rooms[room_id].spawn_scene(scene)
 
 ## Generates the whole maze up front. No meshes are built here - GenerationTracker loads and
 ## unloads them later based on where the target is.

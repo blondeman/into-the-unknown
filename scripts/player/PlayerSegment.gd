@@ -53,13 +53,12 @@ func _depenetrate() -> void:
 
 
 func _safe_look_at(target_position: Vector3) -> void:
-	var direction = (target_position - global_position).normalized()
-
-	if direction.length() < 0.001:
+	var direction = (target_position - global_position)
+	if direction.length() < 0.01:
 		return  # target is too close or identical position
 
 	var up = Vector3.UP
-	if abs(direction.dot(up)) > 0.999:
+	if abs(direction.normalized().dot(up)) > 0.999:
 		up = Vector3.FORWARD
 
 	look_at(target_position, up)

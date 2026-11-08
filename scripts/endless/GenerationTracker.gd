@@ -37,6 +37,9 @@ func find_safe_mesh(body: Node3D) -> void:
 			body.global_position = result.position + Vector3.UP * 2.0
 			if body is CharacterBody3D:
 				(body as CharacterBody3D).velocity = Vector3.ZERO
+			if body is PlayerController:
+				for segment in body.segments:
+					segment.global_position = result.position + Vector3.UP * 2.0
 			body.set_physics_process(true)
 			return
  

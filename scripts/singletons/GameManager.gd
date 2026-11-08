@@ -4,22 +4,21 @@ const LEVEL_ID_INTRO: int = -2
 const LEVEL_ID_OUTRO: int = -3
 const LEVEL_ID_ENDLESS: int = -4
 
+const LEVEL_PATHS: Dictionary = {
+	LEVEL_ID_MENU: "res://scenes/levels/menu.tscn",
+	LEVEL_ID_INTRO: "res://scenes/levels/intro.tscn",
+	LEVEL_ID_OUTRO: "res://scenes/levels/outro.tscn",
+	LEVEL_ID_ENDLESS: "res://scenes/levels/endless.tscn",
+	0: "res://scenes/levels/level_1.tscn",
+	1: "res://scenes/levels/level_2.tscn",
+	2: "res://scenes/levels/level_3.tscn",
+}
+
 var global_scene_paths: Array[String] = [
 	#"res://scenes/performance_monitor.tscn",
 	"res://scenes/music_manager.tscn",
 ]
 var transition_path: String = "res://scenes/levels/transition.tscn"
-var menu_path: String = "res://scenes/levels/menu.tscn"
-var intro_path: String = "res://scenes/levels/intro.tscn"
-var outro_path: String = "res://scenes/levels/outro.tscn"
-
-var levels: Array[String] = [
-	"res://scenes/levels/level_1.tscn",
-	"res://scenes/levels/level_2.tscn",
-	"res://scenes/levels/level_3.tscn",
-]
-
-var endless_path: String = "res://scenes/levels/endless.tscn"
 
 @warning_ignore("unused_signal")
 signal on_rebake()
@@ -40,7 +39,13 @@ func _ready() -> void:
 	for path in global_scene_paths:
 		var new_scene = (load(path) as PackedScene).instantiate()
 		get_tree().root.add_child.call_deferred(new_scene)
+
 	current_scene = get_tree().current_scene
+	if current_scene:
+		var id = LEVEL_PATHS.find_key(current_scene.scene_file_path)
+		if id != null:
+			current_level_id = id
+
 	_level_loaded()
 
 func load_intro():
@@ -54,7 +59,7 @@ func load_endless():
 
 
 func load_next_level():
-	if current_level_id + 1 < levels.size():
+	if LEVEL_PATHS.has(current_level_id + 1):
 		load_level(current_level_id + 1)
 	else:
 		load_outro()
@@ -62,32 +67,17 @@ func load_next_level():
 func load_level(level: int) -> void:
 	if is_loading:
 		return
+	if not LEVEL_PATHS.has(level):
+		push_warning("No level registered for id %d" % level)
+		return
 
 	if current_level_id == LEVEL_ID_ENDLESS and level == LEVEL_ID_ENDLESS:
 		add_endless_score()
 
 	is_loading = true
 	current_level_id = level
-	var level_path: String
-
-	if current_level_id == LEVEL_ID_MENU:
-		print("Loading menu")
-		level_path = menu_path
-	elif current_level_id == LEVEL_ID_INTRO:
-		print("Loading intro")
-		level_path = intro_path
-	elif current_level_id == LEVEL_ID_OUTRO:
-		print("Loading outro")
-		level_path = outro_path
-	elif current_level_id == LEVEL_ID_ENDLESS:
-		print("Loading endless")
-		level_path = endless_path
-	elif current_level_id >= 0 and current_level_id < levels.size():
-		print("Loading level " + str(level))
-		level_path = levels[current_level_id]
-	else:
-		is_loading = false
-		return
+	var level_path: String = LEVEL_PATHS[level]
+	print("Loading " + level_path)
 
 	_abort_transition()
 	_transition_instance = (load(transition_path) as PackedScene).instantiate()

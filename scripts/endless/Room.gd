@@ -322,7 +322,32 @@ func spawn_scene(scene: PackedScene):
 	var random_cell: Vector3i = _random_cell_in(random_chamber)
 	var new_scene = scene.instantiate() as Node3D
 	add_child(new_scene)
-	new_scene.position = cell_to_local(random_cell) + Vector3(0,2,0)
+
+	# Place it at the cell first so the transforms are final before measuring
+	var floor_pos: Vector3 = to_global(cell_to_local(random_cell))
+	new_scene.global_position = floor_pos
+
+	var bounds: AABB = _get_global_aabb(new_scene)
+	if bounds.has_surface():
+		# Move up/down so the bottom of the box sits exactly at floor height
+		new_scene.global_position.y += floor_pos.y - bounds.position.y
+
+
+func _get_global_aabb(root: Node3D) -> AABB:
+	var result := AABB()
+	var found := false
+	var stack: Array[Node] = [root]
+	while not stack.is_empty():
+		var node: Node = stack.pop_back()
+		stack.append_array(node.get_children())
+		if node is VisualInstance3D:
+			var box: AABB = node.global_transform * node.get_aabb()
+			if found:
+				result = result.merge(box)
+			else:
+				result = box
+				found = true
+	return result
 
 
 func _to_string() -> String:

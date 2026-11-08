@@ -2,35 +2,41 @@
 
 [ext_resource type="PackedScene" uid="uid://dvwk81wmkd482" path="res://scenes/levels/level_parent.tscn" id="1_ywrxy"]
 [ext_resource type="PackedScene" uid="uid://ddmsyog03eynx" path="res://scenes/environment/endless/endless_generator.tscn" id="2_0kge5"]
+[ext_resource type="PackedScene" uid="uid://du1myhychiku" path="res://scenes/environment/buildings/destructible/house.tscn" id="3_jebdc"]
 [ext_resource type="Script" uid="uid://bjy1wyh4x6e5w" path="res://scripts/endless/GenerationTracker.gd" id="3_uergm"]
+[ext_resource type="PackedScene" uid="uid://c5pxqmewnd6xq" path="res://scenes/environment/buildings/destructible/mansion.tscn" id="4_c52pb"]
+[ext_resource type="PackedScene" uid="uid://cf1ybf1nj32j" path="res://scenes/environment/buildings/destructible/mill.tscn" id="5_ojtbl"]
+[ext_resource type="PackedScene" uid="uid://br1eosyim750j" path="res://scenes/environment/buildings/destructible/tower.tscn" id="6_hl7h5"]
+[ext_resource type="PackedScene" uid="uid://b70i3d84m8lny" path="res://scenes/environment/buildings/destructible/wall_tower.tscn" id="7_nofk8"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_uergm"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_jebdc"]
 resource_local_to_scene = true
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 4294901761
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qyjdh"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c52pb"]
 resource_local_to_scene = true
 
-[sub_resource type="Sky" id="Sky_vuxau"]
+[sub_resource type="Sky" id="Sky_ojtbl"]
 resource_local_to_scene = true
-sky_material = SubResource("ProceduralSkyMaterial_qyjdh")
+sky_material = SubResource("ProceduralSkyMaterial_c52pb")
 
-[sub_resource type="Environment" id="Environment_ku55h"]
+[sub_resource type="Environment" id="Environment_hl7h5"]
 resource_local_to_scene = true
 background_mode = 1
 background_color = Color(0.11415807, 0.11415809, 0.11415807, 1)
-sky = SubResource("Sky_vuxau")
+sky = SubResource("Sky_ojtbl")
 ambient_light_source = 2
 ambient_light_color = Color(0.39620692, 0.14151856, 4.813075e-08, 1)
 
 [node name="level" unique_id=221896957 instance=ExtResource("1_ywrxy")]
 
 [node name="navmesh" parent="." index="0" unique_id=1103308116]
-navigation_mesh = SubResource("NavigationMesh_uergm")
+navigation_mesh = SubResource("NavigationMesh_jebdc")
 
 [node name="endless_generator" parent="navmesh/static" parent_id_path=PackedInt32Array(940021769) index="0" unique_id=859133285 instance=ExtResource("2_0kge5")]
 max_depth = 3
+structures = Array[PackedScene]([ExtResource("3_jebdc"), ExtResource("4_c52pb"), ExtResource("5_ojtbl"), ExtResource("6_hl7h5"), ExtResource("7_nofk8")])
 
 [node name="generation_tracker" type="Node3D" parent="player" parent_id_path=PackedInt32Array(1262716053) index="11" unique_id=704269330 node_paths=PackedStringArray("generator", "target")]
 script = ExtResource("3_uergm")
@@ -39,4 +45,4 @@ target = NodePath("..")
 load_radius = 0.0
 
 [node name="WorldEnvironment" parent="." index="5" unique_id=2081714253]
-environment = SubResource("Environment_ku55h")
+environment = SubResource("Environment_hl7h5")

@@ -26,12 +26,16 @@ func create_body():
 	if segments.is_empty():
 		return
 
+	var head_pos := head.global_position
+	segments.sort_custom(func(a, b):
+		return a.global_position.distance_squared_to(head_pos) \
+			< b.global_position.distance_squared_to(head_pos)
+	)
+
 	_link_segment(segments[0], head)
 	for i in range(1, segments.size()):
 		_link_segment(segments[i], segments[i - 1])
 
-	# Guarantee follow order within a frame: head must update before
-	# segment 0 reads it, segment 0 before segment 1, etc.
 	head.process_priority = 0
 	for i in range(segments.size()):
 		segments[i].process_priority = i + 1
