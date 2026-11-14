@@ -45,25 +45,15 @@ func die():
 	
 	var parent = get_parent()
 	if parent is PlayerController:
-		var played_sound: bool = false
-		for segment in parent.get_head_and_segments():
-			var new_on_death_scene = on_death_scene.instantiate()
-			parent.get_parent().add_child(new_on_death_scene)
-			new_on_death_scene.global_transform = segment.global_transform
-			if new_on_death_scene.has_method("start"):
-				if !played_sound:
-					new_on_death_scene.start()
-					played_sound = true
-				else:
-					new_on_death_scene.start_no_audio()
+		parent.create_player_particles(PlayerController.PLAYER_PARTICLES_DEATH)
 	else:
 		var new_on_death_scene = on_death_scene.instantiate()
 		parent.get_parent().add_child(new_on_death_scene)
 		new_on_death_scene.transform = parent.transform
 		if new_on_death_scene.has_method("start"):
 			new_on_death_scene.start()
-	
-	parent.queue_free()
+		parent.queue_free()
+
 
 func _play_sound():
 	if hit_sounds.size() == 0:

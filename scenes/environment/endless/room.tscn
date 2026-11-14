@@ -4,26 +4,12 @@
 [ext_resource type="Material" uid="uid://youjgt8kd7q2" path="res://textures/sand.tres" id="2_1x6ku"]
 [ext_resource type="Script" uid="uid://dafxd7okhcqiq" path="res://scripts/endless/RoomMesh.gd" id="2_bllhc"]
 [ext_resource type="PackedScene" uid="uid://lei6v2tjk1yh" path="res://scenes/environment/endless/wall.tscn" id="4_bllhc"]
+[ext_resource type="PackedScene" uid="uid://bykmvbovspso1" path="res://scenes/environment/firepit.tscn" id="5_31kp2"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_lhl2v"]
-top_radius = 2.2
-bottom_radius = 2.2
-height = 0.1
-radial_segments = 32
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gc2p8"]
-shading_mode = 0
-albedo_color = Color(0.07, 0.07, 0.07, 1)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_8p7xe"]
-height = 0.1
-radius = 1.8
-
-[node name="room" type="Node3D" unique_id=299536210 node_paths=PackedStringArray("exit_hole", "room_mesh")]
+[node name="room" type="Node3D" unique_id=299536210 node_paths=PackedStringArray("room_mesh")]
 script = ExtResource("1_78ah4")
 max_room_height = 4
-exit_hole = NodePath("MeshInstance3D")
+exit_scene = ExtResource("5_31kp2")
 room_mesh = NodePath("mesh")
 
 [node name="mesh" type="Node3D" parent="." unique_id=1177396423]
@@ -31,14 +17,3 @@ script = ExtResource("2_bllhc")
 floor_material = ExtResource("2_1x6ku")
 wall = ExtResource("4_bllhc")
 wall_rotation_offset = 90.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2105483640]
-mesh = SubResource("CylinderMesh_lhl2v")
-surface_material_override/0 = SubResource("StandardMaterial3D_gc2p8")
-
-[node name="Area3D" type="Area3D" parent="MeshInstance3D" unique_id=821724576]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D" unique_id=1058292381]
-shape = SubResource("CylinderShape3D_8p7xe")

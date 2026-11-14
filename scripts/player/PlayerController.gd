@@ -1,6 +1,9 @@
 class_name PlayerController
 extends Node3D
 
+const PLAYER_PARTICLES_DEATH = "death"
+const PLAYER_PARTICLES_FIRE = "fire"
+
 @export var speed = 5.0
 @export var rotation_speed = 10.0
 @export var step_up_height: float = 0.2
@@ -13,6 +16,11 @@ extends Node3D
 @export var head: CharacterBody3D
 
 var segments: Array[PlayerSegment]
+
+@export var player_particles: Dictionary = {
+	PLAYER_PARTICLES_DEATH: "res://scenes/player/player_death_particles.tscn",
+	PLAYER_PARTICLES_FIRE: "res://scenes/player/player_burn_particles.tscn"
+}
 
 func _ready() -> void:
 	create_body()
@@ -51,3 +59,24 @@ func get_head_and_segments() -> Array[Node3D]:
 	list.append(head)
 	list.append_array(segments)
 	return list
+
+
+func create_player_particles(particles: String):
+	if !player_particles.has(particles):
+		return
+	
+	var scene: PackedScene = load(player_particles[particles])
+	var played_sound: bool = false
+	
+	for segment in get_head_and_segments():
+		var instance = scene.instantiate()
+		get_parent().add_child(instance)
+		instance.global_transform = segment.global_transform
+		if instance.has_method("start"):
+			if !played_sound:
+				instance.start()
+				played_sound = true
+			else:
+				instance.start_no_audio()
+	
+	queue_free()

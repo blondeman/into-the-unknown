@@ -32,6 +32,8 @@ import/blender/enabled=false
 
 destructible=""
 enemy=""
+player=""
+endless_generator=""
 
 [input]
 

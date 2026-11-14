@@ -26,6 +26,8 @@ var rooms: Array[Room]
 @export var item_count_min: int = 4
 @export var item_count_max: int = 6
 
+signal maze_generated(rooms: Array[Room])
+
 func _ready():
 	generate_maze()
 	
@@ -76,6 +78,7 @@ func generate_maze():
 		queue.append_array(branch_room(queue.pop_front()))
 	
 	rooms.get(len(rooms) - 1).generate_hole()
+	maze_generated.emit(rooms)
 
 
 func generate_room(entrance: Doorway = null, depth: int = 0, previous_room: Room = null) -> Room:

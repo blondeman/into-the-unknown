@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://c2adtrlaxepkx"]
+
+[ext_resource type="Shader" uid="uid://ytyrpb05faya" path="res://shaders/outline.gdshader" id="1_dsy05"]
+[ext_resource type="Script" uid="uid://b1mqf0tqk55h8" path="res://scripts/OneShot.gd" id="2_mkosw"]
+[ext_resource type="AudioStream" uid="uid://b3kopmorwlkal" path="res://audio/player/player_death.wav" id="3_eqgim"]
+[ext_resource type="AudioStream" uid="uid://cbij6mgjj7a1j" path="res://audio/effects/fire_break_1.wav" id="3_refvw"]
+[ext_resource type="AudioStream" uid="uid://levd25o02akp" path="res://audio/effects/fire_break_2.wav" id="4_fd4uq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aahmp"]
+render_priority = 0
+shader = ExtResource("1_dsy05")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p20e6"]
+next_pass = SubResource("ShaderMaterial_aahmp")
+shading_mode = 0
+vertex_color_use_as_albedo = true
+point_size = 32.5
+z_clip_scale = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_58gai"]
+material = SubResource("StandardMaterial3D_p20e6")
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="Curve" id="Curve_53nsa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7525774, 0.49224186), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_wx8ur"]
+offsets = PackedFloat32Array(0, 0.09883721, 0.2771318, 0.56782943, 0.746124, 0.87015504, 0.98255813)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.04485609, 0, 1, 1, 0.08627451, 0, 1, 1, 0.5176471, 0, 1, 0.31735232, 0.18212608, 0.020455305, 1, 1, 1, 1, 1, 0.17785347, 0.17785347, 0.17785347, 1)
+
+[node name="CPUParticles3D" type="CPUParticles3D" unique_id=983033333 node_paths=PackedStringArray("audio_stream_player")]
+emitting = false
+amount = 40
+lifetime = 1.5
+one_shot = true
+mesh = SubResource("BoxMesh_58gai")
+emission_shape = 1
+emission_sphere_radius = 0.6
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+spread = 10.0
+gravity = Vector3(0, 5, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+linear_accel_min = -3.0
+linear_accel_max = -2.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_max = 1.8
+scale_amount_curve = SubResource("Curve_53nsa")
+color_ramp = SubResource("Gradient_wx8ur")
+script = ExtResource("2_mkosw")
+sounds = Array[AudioStream]([ExtResource("3_refvw"), ExtResource("4_fd4uq")])
+audio_stream_player = NodePath("AudioStreamPlayer3D")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=836718245]
+stream = ExtResource("3_eqgim")
+volume_db = 5.0
+autoplay = true

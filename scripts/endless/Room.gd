@@ -20,7 +20,7 @@ var previous_room: Node3D
 var max_depth: int = 10
 var mesh_loaded: bool = false
 
-@export var exit_hole: Node3D
+@export var exit_scene: PackedScene
 @export var debug_room_bound: bool = false
 var _debug_bound_mesh: MeshInstance3D
 
@@ -51,8 +51,6 @@ var path_tiles: Array[Dictionary] = []
 
 
 func _ready() -> void:
-	if exit_hole:
-		exit_hole.visible = false
 	_clear_mesh()
 
 
@@ -297,24 +295,22 @@ func shrink_to_fit(other, entrance_direction: Vector3i) -> bool:
 
 
 func generate_hole() -> void:
-	if exit_hole and not chambers.is_empty():
+	if not chambers.is_empty():
 		var random_chamber: Chamber = chambers[rng.randi_range(0, chambers.size() - 1)]
 		var random_cell: Vector3i = _random_cell_in(random_chamber)
-		exit_hole.position = cell_to_local(random_cell)
-		exit_hole.visible = true
 		
-		var area: Area3D = exit_hole.find_child("Area3D") as Area3D
-		if area and not area.body_entered.is_connected(hole_entered):
-			area.body_entered.connect(hole_entered)
-			
-		if room_mesh:
-			room_mesh.carve_exit_hole(Vector2i(random_cell.x, random_cell.z))
+		var new_exit_scene = exit_scene.instantiate() as Destructible
+		add_child(new_exit_scene)
+		new_exit_scene.position = cell_to_local(random_cell)
+		new_exit_scene.on_destroyed.connect(hole_entered)
 
 
-func hole_entered(body: Node3D) -> void:
-	if body.get_parent() is PlayerController:
-		await get_tree().create_timer(0.5).timeout
-		GameManager.load_endless()
+func hole_entered() -> void:
+	var player_controller = GameManager.find_player()
+	if player_controller:
+		player_controller.create_player_particles(PlayerController.PLAYER_PARTICLES_FIRE)
+	await get_tree().create_timer(0.5).timeout
+	GameManager.load_endless()
 
 
 func spawn_scene(scene: PackedScene):

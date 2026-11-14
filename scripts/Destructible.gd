@@ -4,6 +4,8 @@ extends StaticBody3D
 @export var destroyed_object: PackedScene
 @export var particle_system: CPUParticles3D
 
+signal on_destroyed()
+
 func destroy():
 	CameraEffects.on_shake.emit(0.2, 0.6)
 	
@@ -15,6 +17,7 @@ func destroy():
 	if particle_system:
 		_cleanup_particles()
 	
+	on_destroyed.emit()
 	queue_free()
 	await tree_exited
 	GameManager.on_rebake.emit()

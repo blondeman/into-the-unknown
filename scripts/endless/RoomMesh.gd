@@ -6,13 +6,11 @@ var sides: Array[Vector2i] = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), V
 
 @export var wall: PackedScene
 @export var wall_rotation_offset: float = 0.0 # Rotation offset in degrees around the Y-axis
-@export var manual_exit_holes: Array[Vector2i] = [] # Optional manual drop-hole coordinates
 
 @export_flags_3d_physics var collision_layer: int = 1
 @export_flags_3d_physics var collision_mask: int = 1
 
 var _current_maze: Room = null
-var _active_hole_cell: Vector2i = Vector2i(-999, -999)
 
 
 class Tile extends RefCounted:
@@ -48,21 +46,7 @@ func load_mesh(room: Room) -> void:
 
 func unload_mesh() -> void:
 	_current_maze = null
-	_active_hole_cell = Vector2i(-999, -999)
 	_clear_geometry()
-
-
-# --- Exit Hole Interface ---
-
-func carve_exit_hole(cell: Vector2i) -> void:
-	_active_hole_cell = cell
-	print("RoomMesh: Carving exit hole at cell: ", cell)
-	
-	# If geometry is already built, rebuild it immediately to strip the floor mesh and collision
-	if _current_maze:
-		_build_geometry(_current_maze)
-		GameManager.on_rebake.emit()
-
 
 # --- Tiles ---
 
@@ -155,20 +139,6 @@ func _get_open_sides(maze: Room) -> Dictionary:
 	return open
 
 
-func _get_exit_hole_cells() -> Dictionary:
-	var holes: Dictionary = {}
-	
-	# Add any manually configured exit holes from the inspector
-	for cell in manual_exit_holes:
-		holes[cell] = true
-
-	# Add the dynamically generated hole cell if set by generate_hole()
-	if _active_hole_cell != Vector2i(-999, -999):
-		holes[_active_hole_cell] = true
-
-	return holes
-
-
 func _is_connected(tile: Tile, side: Vector2i, columns: Dictionary, open_sides: Dictionary) -> bool:
 	var edge: Vector2i = tile.edge(side)
 
@@ -205,7 +175,6 @@ func _build_geometry(maze: Room) -> void:
 
 	var columns: Dictionary = _collect_tiles(maze)
 	var open_sides: Dictionary = _get_open_sides(maze)
-	var exit_holes: Dictionary = _get_exit_hole_cells()
 
 	var floor_st := SurfaceTool.new()
 	floor_st.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -213,12 +182,8 @@ func _build_geometry(maze: Room) -> void:
 
 	for column in columns.values():
 		for tile in column:
-			var is_hole: bool = exit_holes.has(tile.cell)
-
-			# Only add floor mesh if this tile is NOT a hole
-			if not is_hole:
-				_add_floor(floor_st, maze, tile, wall_size.z)
-				floor_count += 1
+			_add_floor(floor_st, maze, tile, wall_size.z)
+			floor_count += 1
 
 			# Always build walls normally around the cell (framing the hole)
 			for side in sides:

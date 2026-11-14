@@ -156,3 +156,7 @@ func _max_score() -> int:
 func add_endless_score():
 	endless_score += 1
 	on_endless_score_changed.emit(endless_score)
+
+
+func find_player() -> PlayerController:
+	return get_tree().get_first_node_in_group("player") as PlayerController

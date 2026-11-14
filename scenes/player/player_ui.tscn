@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://hj54m774iobk" path="res://ui/health_fill_left.png" id="5_g4s8q"]
 [ext_resource type="Texture2D" uid="uid://dfe4w4ehoto40" path="res://ui/score_fill_right.png" id="7_d61dg"]
 [ext_resource type="Texture2D" uid="uid://cgb76is0evp52" path="res://ui/score_fill_left.png" id="8_g18nd"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xums0"]
+[ext_resource type="Script" uid="uid://d08us5cohn1a0" path="res://scripts/player/Map.gd" id="9_g18nd"]
 
 [node name="ui" type="Control" unique_id=546971784 node_paths=PackedStringArray("health_fill_right", "health_fill_left", "death_screen", "stats_parent", "score_fill_right", "score_fill_left", "endless_parent", "endless_score_text")]
 layout_mode = 3
@@ -153,8 +152,8 @@ text = "DESTROY"
 horizontal_alignment = 1
 
 [node name="endless" type="MarginContainer" parent="." unique_id=1228119678]
-custom_minimum_size = Vector2(200, 200)
-custom_maximum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(400, 300)
+custom_maximum_size = Vector2(400, 300)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -181,6 +180,11 @@ text = "Depth: -2"
 horizontal_alignment = 1
 
 [node name="map" type="TextureRect" parent="endless/VBoxContainer" unique_id=1064548499]
+texture_filter = 1
 layout_mode = 2
-texture = SubResource("NoiseTexture2D_xums0")
+size_flags_vertical = 3
 stretch_mode = 5
+script = ExtResource("9_g18nd")
+wall_color = Color(0.9498536, 0.89256823, 0.8805905, 1)
+player_color = Color(1, 0, 0, 1)
+player_pixel_size = 2.0
