@@ -20,6 +20,12 @@ Use this to track issues and ideas
 
 ## IDEAS
 
+### Endless Story
+
+* The snake has found a new way to regain its tail through eating ancient creatures
+* The creatures will scurry around and when the snake eats them it grows longer
+* The player can combine creatures into upgrades to the snake
+
 ### Difficulty
 
 * Snake length - Increases chance to get hit

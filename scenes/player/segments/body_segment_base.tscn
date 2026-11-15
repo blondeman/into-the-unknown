@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://0hyor8nvqpid"]
+
+[ext_resource type="Script" uid="uid://cr0urxtlsv4iy" path="res://scripts/player/PlayerSegment.gd" id="1_vfa88"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
+
+[node name="body_segment_base" type="AnimatableBody3D" unique_id=1465570297]
+collision_layer = 2
+sync_to_physics = false
+script = ExtResource("1_vfa88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=371154319]
+shape = SubResource("SphereShape3D_g2els")

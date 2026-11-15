@@ -63,7 +63,6 @@ func _draw() -> void:
 		pts.append(b + d)
 	draw_multiline(pts, wall_color, wall_pixel_size / k, true)
 
-	print("player:"+str(_player_cell))
 	if _player:
 		draw_circle(_player_cell, player_pixel_size / k, player_color)
 

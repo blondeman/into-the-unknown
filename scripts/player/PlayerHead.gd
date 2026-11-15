@@ -98,6 +98,8 @@ func _process(delta: float) -> void:
 
 
 func _process_keyboard_controls() -> Variant:
+	if !player_controller.camera:
+		return null
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var cam_y_rotation = player_controller.camera.global_rotation.y
 	var direction = Vector3(
