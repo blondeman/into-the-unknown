@@ -8,6 +8,12 @@ extends TextureRect
 @export var wall_pixel_size: float = 2.0    # on-screen wall thickness in pixels
 @export var player_pixel_size: float = 4.0  # on-screen player dot radius in pixels
 
+@export var reveal_radius_cells: float = 6  # reveal radius, in map cells
+
+var _h_edges: PackedByteArray = PackedByteArray() # w * (h + 1), wall between row y-1 and y
+var _v_edges: PackedByteArray = PackedByteArray() # (w + 1) * h, wall between column x-1 and x
+var _revealed: PackedByteArray = PackedByteArray() # w * h, explored cells
+
 var _origin: Vector2
 var _cell_size: float = 1.0
 var _map_cells: Vector2 = Vector2.ZERO
@@ -68,23 +74,24 @@ func _map_transform() -> Transform2D:
 
 
 func _draw() -> void:
-	if _walls.is_empty():
+	if _map_cells == Vector2.ZERO:
 		return
 	var xf := _map_transform()
-	var k: float = xf.get_scale().x / iso_squash if false else _fit_scale()
+	var k: float = _fit_scale()
 	var half: float = (wall_pixel_size / k) * 0.5
 
 	draw_set_transform_matrix(xf)
 
-	# Extend each segment by half the thickness so corners join without gaps
-	var pts := PackedVector2Array()
-	for i in range(0, _walls.size(), 2):
-		var a: Vector2 = _walls[i]
-		var b: Vector2 = _walls[i + 1]
-		var d: Vector2 = (b - a).normalized() * half
-		pts.append(a - d)
-		pts.append(b + d)
-	draw_multiline(pts, wall_color, wall_pixel_size / k, true)
+	if not _walls.is_empty():
+		# Extend each segment by half the thickness so corners join without gaps
+		var pts := PackedVector2Array()
+		for i in range(0, _walls.size(), 2):
+			var a: Vector2 = _walls[i]
+			var b: Vector2 = _walls[i + 1]
+			var d: Vector2 = (b - a).normalized() * half
+			pts.append(a - d)
+			pts.append(b + d)
+		draw_multiline(pts, wall_color, wall_pixel_size / k, true)
 
 	if _player:
 		draw_circle(_player_cell, player_pixel_size / k, player_color)
@@ -132,13 +139,67 @@ func generate_map(rooms: Array) -> void:
 			for cell: Vector3i in path:
 				_mark(walkable, w, h, off.x + cell.x, off.y + cell.z)
 
+		# Precompute every wall edge, but draw none until revealed
+	_h_edges = PackedByteArray()
+	_h_edges.resize(w * (h + 1))
+	for y in range(0, h + 1):
+		for x in range(0, w):
+			_h_edges[y * w + x] = 1 if _is_walkable(walkable, w, h, x, y) != _is_walkable(walkable, w, h, x, y - 1) else 0
+
+	_v_edges = PackedByteArray()
+	_v_edges.resize((w + 1) * h)
+	for x in range(0, w + 1):
+		for y in range(0, h):
+			_v_edges[x * h + y] = 1 if _is_walkable(walkable, w, h, x, y) != _is_walkable(walkable, w, h, x - 1, y) else 0
+
+	_revealed = PackedByteArray()
+	_revealed.resize(w * h)  # zero-filled: nothing revealed
 	_walls = PackedVector2Array()
 
-	# Horizontal wall runs: boundary between row y-1 and row y
+	queue_redraw()
+
+
+func update_player_marker() -> void:
+	_player_cell = (Vector2(_player.head.global_position.x, _player.head.global_position.z) - _origin) / _cell_size
+	_reveal_around(_player_cell)
+	queue_redraw()
+
+
+func _reveal_around(center: Vector2) -> void:
+	var w: int = int(_map_cells.x)
+	var h: int = int(_map_cells.y)
+	if w == 0 or h == 0 or _revealed.size() != w * h:
+		return
+
+	var r: float = reveal_radius_cells
+	var r2: float = r * r
+	var changed := false
+	for y in range(int(floor(center.y - r)), int(ceil(center.y + r)) + 1):
+		for x in range(int(floor(center.x - r)), int(ceil(center.x + r)) + 1):
+			if x < 0 or y < 0 or x >= w or y >= h:
+				continue
+			if _revealed[y * w + x] == 1:
+				continue
+			# Compare against the cell's center
+			if Vector2(x + 0.5, y + 0.5).distance_squared_to(center) <= r2:
+				_revealed[y * w + x] = 1
+				changed = true
+
+	if changed:
+		_rebuild_visible_walls()
+
+
+# Merge revealed wall edges into runs. An edge shows if either neighboring cell is revealed.
+func _rebuild_visible_walls() -> void:
+	var w: int = int(_map_cells.x)
+	var h: int = int(_map_cells.y)
+	_walls = PackedVector2Array()
+
 	for y in range(0, h + 1):
 		var run_start: int = -1
 		for x in range(0, w + 1):
-			var edge: bool = x < w and (_is_walkable(walkable, w, h, x, y) != _is_walkable(walkable, w, h, x, y - 1))
+			var edge: bool = x < w and _h_edges[y * w + x] == 1 \
+				and (_is_walkable(_revealed, w, h, x, y) or _is_walkable(_revealed, w, h, x, y - 1))
 			if edge and run_start == -1:
 				run_start = x
 			elif not edge and run_start != -1:
@@ -146,24 +207,17 @@ func generate_map(rooms: Array) -> void:
 				_walls.append(Vector2(x, y))
 				run_start = -1
 
-	# Vertical wall runs: boundary between column x-1 and column x
 	for x in range(0, w + 1):
 		var run_start: int = -1
 		for y in range(0, h + 1):
-			var edge: bool = y < h and (_is_walkable(walkable, w, h, x, y) != _is_walkable(walkable, w, h, x - 1, y))
+			var edge: bool = y < h and _v_edges[x * h + y] == 1 \
+				and (_is_walkable(_revealed, w, h, x, y) or _is_walkable(_revealed, w, h, x - 1, y))
 			if edge and run_start == -1:
 				run_start = y
 			elif not edge and run_start != -1:
 				_walls.append(Vector2(x, run_start))
 				_walls.append(Vector2(x, y))
 				run_start = -1
-
-	queue_redraw()
-
-
-func update_player_marker() -> void:
-	_player_cell = (Vector2(_player.head.global_position.x, _player.head.global_position.z) - _origin) / _cell_size
-	queue_redraw()
 
 
 func _mark(grid: PackedByteArray, w: int, h: int, x: int, y: int) -> void:
