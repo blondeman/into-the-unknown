@@ -54,6 +54,9 @@ func load_intro():
 func load_outro():
 	load_level(LEVEL_ID_OUTRO)
 
+func load_menu():
+	load_level(LEVEL_ID_MENU)
+
 func load_endless():
 	load_level(LEVEL_ID_ENDLESS)
 

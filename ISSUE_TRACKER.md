@@ -4,19 +4,19 @@ Use this to track issues and ideas
 
 ## ISSUES
 
-| Issue | Status |
-| - | - |
-| Enemies get stuck on corners | - |
-| Level height variation | - |
-| Level theme variation | - |
-| - | - |
-| - | - |
-| - | - |
-| - | - |
-| - | - |
-| - | - |
-| - | - |
-| - | - |
+|Issue|Status|
+|-|-|
+|Enemies get stuck on corners|-|
+|Level height variation|-|
+|Level theme variation|-|
+|Small levels can be generated with bad seeds|-|
+|-|-|
+|-|-|
+|-|-|
+|-|-|
+|-|-|
+|-|-|
+|-|-|
 
 ## IDEAS
 
@@ -43,3 +43,4 @@ Use this to track issues and ideas
 * Flame breath - Turn your dash into a flame spit attack which deals damage over time. Eating a burning enemy heals you slightly
 * Handling - Increase your turn speed so moving and eating enemies is easier
 * Blood thristy - Fire damages you but eating heals you
+

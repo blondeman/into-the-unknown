@@ -36,9 +36,17 @@ navigation_mesh = SubResource("NavigationMesh_jebdc")
 
 [node name="endless_generator" parent="navmesh/static" parent_id_path=PackedInt32Array(940021769) index="0" unique_id=859133285 instance=ExtResource("2_0kge5")]
 max_depth = 3
+seed = null
+enemy_count_min = null
+enemy_count_max = null
 structures = Array[PackedScene]([ExtResource("3_jebdc"), ExtResource("4_c52pb"), ExtResource("5_ojtbl"), ExtResource("6_hl7h5"), ExtResource("7_nofk8")])
+structure_count_min = null
+structure_count_max = null
+items = null
+item_count_min = null
+item_count_max = null
 
-[node name="generation_tracker" type="Node3D" parent="player" parent_id_path=PackedInt32Array(1262716053) index="11" unique_id=704269330 node_paths=PackedStringArray("generator", "target")]
+[node name="generation_tracker" type="Node3D" parent="player" parent_id_path=PackedInt32Array(1262716053) index="3" unique_id=704269330 node_paths=PackedStringArray("generator", "target")]
 script = ExtResource("3_uergm")
 generator = NodePath("../../navmesh/static/endless_generator")
 target = NodePath("..")

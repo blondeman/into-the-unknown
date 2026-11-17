@@ -82,12 +82,14 @@ func generate_maze():
 
 
 func generate_room(entrance: Doorway = null, depth: int = 0, previous_room: Room = null) -> Room:
+	var room_settings: RoomSettings = RoomSettings.new().load_setting(GameManager.endless_score)
+	
 	var new_room: Room = room_scene.instantiate()
 	new_room.set_rng(rng)
 	new_room.set_scale_factor(global_scale)
 	new_room.set_max_depth(max_depth)
 	add_child(new_room)
-	new_room.generate(entrance, depth, previous_room)
+	new_room.generate(entrance, depth, previous_room, room_settings)
 
 	for room in rooms:
 		var pct: float = new_room.get_overlap_percent(room)

@@ -179,11 +179,42 @@ theme_override_font_sizes/font_size = 28
 text = "Depth: -2"
 horizontal_alignment = 1
 
-[node name="map" type="TextureRect" parent="endless/VBoxContainer" unique_id=1064548499]
+[node name="map" type="TextureRect" parent="endless/VBoxContainer" unique_id=1064548499 node_paths=PackedStringArray("fullscreen_map_container", "fullscreen_map")]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 stretch_mode = 5
+script = ExtResource("9_g18nd")
+wall_color = Color(0.9498536, 0.89256823, 0.8805905, 1)
+player_color = Color(1, 0, 0, 1)
+player_pixel_size = 2.0
+fullscreen_map_container = NodePath("../../../ColorRect2")
+fullscreen_map = NodePath("../../../ColorRect2/MarginContainer/fullscreen_map")
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1568708090]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.20392157)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect2" unique_id=1050674827]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="fullscreen_map" type="TextureRect" parent="ColorRect2/MarginContainer" unique_id=1740181954]
+layout_mode = 2
 script = ExtResource("9_g18nd")
 wall_color = Color(0.9498536, 0.89256823, 0.8805905, 1)
 player_color = Color(1, 0, 0, 1)

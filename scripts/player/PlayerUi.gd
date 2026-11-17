@@ -68,7 +68,10 @@ func _on_die():
 	
 	await get_tree().create_timer(restart_timer).timeout
 	
-	GameManager.reload_level()
+	if GameManager.current_level_id == GameManager.LEVEL_ID_ENDLESS:
+		GameManager.load_menu()
+	else:
+		GameManager.reload_level()
 
 
 func _set_score(amount: int, score: int, total: int):

@@ -15,14 +15,37 @@ var _walls: PackedVector2Array = PackedVector2Array() # pairs of points, in cell
 var _player_cell: Vector2 = Vector2(-1, -1)
 var _player: PlayerController = null
 
+@export var fullscreen_map_container: Control
+@export var fullscreen_map: TextureRect
+
 func _ready() -> void:
+	resized.connect(queue_redraw)
+
 	var endless_generator = get_tree().get_first_node_in_group("endless_generator")
 	if endless_generator:
 		endless_generator.maze_generated.connect(generate_map)
 		if not endless_generator.rooms.is_empty():
 			generate_map(endless_generator.rooms)
-	
+
+	if fullscreen_map_container:
+		fullscreen_map_container.hide()
+
 	update_map_loop()
+
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	# Only the minimap instance has a container assigned; the fullscreen instance ignores input
+	if fullscreen_map_container == null:
+		return
+
+	if event.is_action_pressed("fullscreen_map") and not event.is_echo():
+		hide()
+		fullscreen_map_container.show()
+		get_viewport().set_input_as_handled()
+	elif event.is_action_released("fullscreen_map"):
+		show()
+		fullscreen_map_container.hide()
+		get_viewport().set_input_as_handled()
 
 
 func update_map_loop() -> void:

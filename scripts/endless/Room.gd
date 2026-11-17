@@ -1,7 +1,7 @@
 class_name Room
 extends Node3D
 
-
+@export var theme: RoomSettings.RoomTheme = RoomSettings.RoomTheme.Desert
 var exit_padding: int = 1
 @export var min_room_size: int = 5
 var shrink_epsilon: float = 0.05
@@ -72,9 +72,10 @@ func is_max_depth() -> bool:
 
 # --- Generation ---
 
-func generate(_entrance: Doorway, _depth: int, _previous_room: Node3D = null) -> void:
+func generate(_entrance: Doorway, _depth: int, _previous_room: Node3D = null, _room_settings: RoomSettings = RoomSettings.new()) -> void:
 	depth = _depth
 	previous_room = _previous_room
+	_apply_settings(_room_settings)
 	_generate(_entrance)
 
 
@@ -84,6 +85,27 @@ func _generate(_entrance: Doorway) -> void:
 		rng.randi_range(min_room_size, max_room_height),
 		_make_odd(rng.randi_range(min_room_size, max_room_size))) * scale_factor)
 	_generate_layout()
+
+
+func _apply_settings(settings: RoomSettings) -> void:
+	theme = settings.theme
+	min_room_size = settings.min_room_size
+	max_room_size = settings.max_room_size
+	max_room_height = settings.max_room_height
+	chamber_placement_attempts = settings.chamber_placement_attempts
+
+	min_chamber_count = settings.min_chamber_count
+	max_chamber_count = settings.max_chamber_count
+	min_chamber_size = settings.min_chamber_size
+	max_chamber_size = settings.max_chamber_size
+
+	min_exit_count = settings.min_exit_count
+	max_exit_count = settings.max_exit_count
+
+	max_room_size = max(max_room_size, min_room_size)
+	max_chamber_count = max(max_chamber_count, min_chamber_count)
+	max_chamber_size = max(max_chamber_size, min_chamber_size)
+	max_exit_count = max(max_exit_count, min_exit_count)
 
 
 func place_at_entrance(_entrance: Doorway, _size: Vector3) -> void:
