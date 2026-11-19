@@ -27,10 +27,13 @@ script = ExtResource("2_5uy6h")
 on_death_scene = ExtResource("4_nenq2")
 
 [node name="navigation" type="NavigationAgent3D" parent="." unique_id=565755091]
+path_desired_distance = 0.4
 avoidance_enabled = true
+radius = 0.8
 use_3d_avoidance = true
 avoidance_layers = 8
 avoidance_mask = 8
 avoidance_priority = 0.5
+debug_path_custom_color = Color(1, 0, 0, 1)
 script = ExtResource("4_xwavj")
 probability_curve = SubResource("Curve_c4w8v")

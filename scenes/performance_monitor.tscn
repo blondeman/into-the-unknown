@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://eln8k524s0xn"]
 
 [ext_resource type="Script" path="res://tools/PerformanceMonitor.gd" id="1_n8am2"]
+[ext_resource type="Script" uid="uid://b8xqdw8rdhnup" path="res://tools/EndlessSeed.gd" id="2_8x7mf"]
 
 [node name="performance_monitor" type="Control" unique_id=108062019]
 layout_mode = 3
@@ -11,14 +12,26 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="." unique_id=2089317612]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=190224828]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
-grow_horizontal = 0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 359.0
+grow_vertical = 0
+
+[node name="performance" type="Label" parent="VBoxContainer" unique_id=2089317612]
+layout_mode = 2
 text = "FPS: 10 | Memory Usage: 10 | Object Count: 10"
 script = ExtResource("1_n8am2")
 monitors = Array[int]([0, 4, 11])
+
+[node name="endless_seed" type="Label" parent="VBoxContainer" unique_id=1849159458]
+layout_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+text = "kjhckursvjlkcd"
+script = ExtResource("2_8x7mf")
+
+[connection signal="gui_input" from="VBoxContainer/endless_seed" to="VBoxContainer/endless_seed" method="_on_gui_input"]

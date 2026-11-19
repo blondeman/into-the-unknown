@@ -36,7 +36,6 @@ navigation_mesh = SubResource("NavigationMesh_jebdc")
 
 [node name="endless_generator" parent="navmesh/static" parent_id_path=PackedInt32Array(940021769) index="0" unique_id=859133285 instance=ExtResource("2_0kge5")]
 max_depth = 3
-seed = null
 enemy_count_min = null
 enemy_count_max = null
 structures = Array[PackedScene]([ExtResource("3_jebdc"), ExtResource("4_c52pb"), ExtResource("5_ojtbl"), ExtResource("6_hl7h5"), ExtResource("7_nofk8")])

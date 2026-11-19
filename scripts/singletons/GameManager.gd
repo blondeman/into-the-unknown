@@ -15,7 +15,7 @@ const LEVEL_PATHS: Dictionary = {
 }
 
 var global_scene_paths: Array[String] = [
-	#"res://scenes/performance_monitor.tscn",
+	"res://scenes/performance_monitor.tscn",
 	"res://scenes/music_manager.tscn",
 ]
 var transition_path: String = "res://scenes/levels/transition.tscn"
@@ -25,6 +25,7 @@ signal on_rebake()
 signal on_score_changed(amount: int, score: int, total: int)
 signal on_max_score()
 signal on_endless_score_changed(score: int)
+signal on_level_loaded(level_id: int)
 
 var current_scene: Node = null
 var current_level_id: int = LEVEL_ID_MENU
@@ -90,8 +91,10 @@ func load_level(level: int) -> void:
 	)
 	_transition_instance.fade_in()
 
+
 func reload_level():
 	load_level(current_level_id)
+
 
 func _abort_transition() -> void:
 	if not _transition_instance:
@@ -102,6 +105,7 @@ func _abort_transition() -> void:
 		_transition_instance.on_fade_out_finished.disconnect(_on_fade_out_finished)
 	_transition_instance.queue_free()
 	_transition_instance = null
+
 
 func _on_fade_in_finished(level_path: String) -> void:
 	if current_scene:
@@ -115,9 +119,11 @@ func _on_fade_in_finished(level_path: String) -> void:
 	_transition_instance.fade_out()
 	_level_loaded()
 
+
 func _on_fade_out_finished() -> void:
 	_transition_instance.queue_free()
 	_transition_instance = null
+
 
 func _level_loaded():
 	if current_level_id != LEVEL_ID_ENDLESS:
@@ -128,6 +134,7 @@ func _level_loaded():
 	
 	is_loading = false
 	await get_tree().process_frame
+	on_level_loaded.emit(current_level_id)
 	_set_score_total()
 
 func _set_score_total():

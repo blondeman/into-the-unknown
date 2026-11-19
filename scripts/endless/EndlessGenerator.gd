@@ -27,6 +27,7 @@ var rooms: Array[Room]
 @export var item_count_max: int = 6
 
 signal maze_generated(rooms: Array[Room])
+signal on_seed_changed(seed: String)
 
 func _ready():
 	generate_maze()
@@ -71,6 +72,7 @@ func generate_maze():
 	else:
 		rng = RandomNumberGenerator.new()
 		rng.seed = hash(seed)
+	on_seed_changed.emit(seed)
 
 	# breadth-first, so sibling branches get space before any one branch runs deep
 	var queue: Array[Room] = [generate_room()]
