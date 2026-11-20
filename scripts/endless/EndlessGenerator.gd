@@ -23,8 +23,6 @@ var rooms: Array[Room]
 
 @export_group("Items")
 @export var items: Array[PackedScene]
-@export var item_count_min: int = 4
-@export var item_count_max: int = 6
 
 signal maze_generated(rooms: Array[Room])
 signal on_seed_changed(seed: String)
@@ -51,16 +49,21 @@ func generate_enemies():
 
 
 func generate_structures():
-	generate_objects(structure_count_min, structure_count_max, structures)
+	var generated_structures: Array = generate_objects(structure_count_min, structure_count_max, structures)
+	for structure in generated_structures:
+		if structure is Destructible:
+			structure.dropped_item = items[randi_range(0, len(items)-1)]
 
 
-func generate_objects(count_min: int, count_max: int, object_list: Array):
+func generate_objects(count_min: int, count_max: int, object_list: Array) -> Array[Node3D]:
 	var count = randi_range(count_min, count_max)
+	var objects: Array = []
 	for i in count:
 		var id = randi_range(0,len(object_list) - 1)
 		var room_id = randi_range(1,len(rooms) - 1)
 		var scene = object_list[id]
-		rooms[room_id].spawn_scene(scene)
+		objects.append(rooms[room_id].spawn_scene(scene))
+	return objects
 
 ## Generates the whole maze up front. No meshes are built here - GenerationTracker loads and
 ## unloads them later based on where the target is.

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bc0s1645rls46" path="res://scenes/environment/endless/room.tscn" id="2_72jur"]
 [ext_resource type="PackedScene" uid="uid://bh1vdbfys1pv3" path="res://scenes/enemy/enemy_melee.tscn" id="3_888cg"]
 [ext_resource type="PackedScene" uid="uid://cnfai0wsm7aqt" path="res://scenes/enemy/enemy_ranged.tscn" id="4_06ais"]
+[ext_resource type="PackedScene" uid="uid://cdx410jmo8av0" path="res://scenes/environment/items/item.tscn" id="5_06ais"]
 
 [node name="endless_generator" type="Node3D" unique_id=859133285 groups=["endless_generator"]]
 script = ExtResource("1_2qu65")
@@ -11,3 +12,4 @@ global_scale = 3.0
 max_depth = 1
 room_scene = ExtResource("2_72jur")
 enemies = Array[PackedScene]([ExtResource("3_888cg"), ExtResource("4_06ais")])
+items = Array[PackedScene]([ExtResource("5_06ais")])

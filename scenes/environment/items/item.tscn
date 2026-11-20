@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cdx410jmo8av0"]
+
+[ext_resource type="Script" uid="uid://fa1uqhjb1yva" path="res://scenes/environment/items/Item.gd" id="1_eqltd"]
+[ext_resource type="Material" uid="uid://b2ginmgn8p1r6" path="res://textures/grass.tres" id="2_w7rit"]
+[ext_resource type="Script" uid="uid://dg5jpmio41wa6" path="res://scenes/environment/items/BobAnimation.gd" id="3_2u1m8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xums0"]
+radius = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_77rhs"]
+radius = 0.3
+height = 0.6
+
+[node name="item" type="RigidBody3D" unique_id=1990444971 groups=["item"]]
+collision_layer = 16
+script = ExtResource("1_eqltd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1215575228]
+shape = SubResource("SphereShape3D_xums0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=522319026]
+mesh = SubResource("SphereMesh_77rhs")
+surface_material_override/0 = ExtResource("2_w7rit")
+script = ExtResource("3_2u1m8")

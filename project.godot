@@ -34,6 +34,7 @@ destructible=""
 enemy=""
 player=""
 endless_generator=""
+item=""
 
 [input]
 
@@ -79,6 +80,7 @@ fullscreen_map={
 3d_physics/layer_2="player"
 3d_physics/layer_3="destructible"
 3d_physics/layer_4="enemy"
+3d_physics/layer_5="item"
 avoidance/layer_4="avoidance"
 
 [physics]

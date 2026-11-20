@@ -232,12 +232,14 @@ transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 
 camera = NodePath("../camera")
 
 [node name="camera" parent="." unique_id=608748979 node_paths=PackedStringArray("target") instance=ExtResource("11_ip6g7")]
-transform = Transform3D(0.7071067, -0.49999997, 0.4999999, 0, 0.70710665, 0.70710677, -0.7071067, -0.49999997, 0.4999999, 12.5, 20, 12.5)
+transform = Transform3D(0.7071068, -0.50000006, 0.49999997, 0, 0.70710677, 0.7071069, -0.7071068, -0.50000006, 0.49999997, 12.5, 20, 12.5)
 target = NodePath("../player")
 
 [node name="light" type="DirectionalLight3D" parent="." unique_id=1599767343]
 transform = Transform3D(0.69234467, 0.45621732, -0.55903894, 0, 0.7747569, 0.6322592, 0.7215669, -0.43774128, 0.5363988, 0, 0, 0)
 shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_fade_start = 1.0
 
 [node name="enemies" type="Node3D" parent="." unique_id=1621181414]
 

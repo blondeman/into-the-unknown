@@ -97,7 +97,7 @@ shape = SubResource("SphereShape3D_g2els")
 
 [node name="mouth" type="Area3D" parent="head" unique_id=861753068 node_paths=PackedStringArray("health")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
-collision_mask = 12
+collision_mask = 28
 script = ExtResource("4_dqkch")
 health = NodePath("../../Health")
 

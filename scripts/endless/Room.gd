@@ -335,7 +335,7 @@ func hole_entered() -> void:
 	GameManager.load_endless()
 
 
-func spawn_scene(scene: PackedScene):
+func spawn_scene(scene: PackedScene) -> Node:
 	var random_chamber: Chamber = chambers[rng.randi_range(0, chambers.size() - 1)]
 	var random_cell: Vector3i = _random_cell_in(random_chamber)
 	var new_scene = scene.instantiate() as Node3D
@@ -349,6 +349,8 @@ func spawn_scene(scene: PackedScene):
 	if bounds.has_surface():
 		# Move up/down so the bottom of the box sits exactly at floor height
 		new_scene.global_position.y += floor_pos.y - bounds.position.y
+	
+	return new_scene
 
 
 func _get_global_aabb(root: Node3D) -> AABB:

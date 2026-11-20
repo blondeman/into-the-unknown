@@ -6,10 +6,10 @@ Use this to track issues and ideas
 
 |Issue|Status|
 |-|-|
-|Enemies get stuck on corners|FIXED|
+|Enemies get stuck on corners|Fixed for endless, but level enemies now dont move at all. Setting path desired to 1m fixes this for level, 0.4m for endless|
 |Level height variation|-|
 |Level theme variation|-|
-|Small levels can be generated with bad seeds|MONITORING|
+|Small levels can be generated with bad seeds|MONITORING, see seed (5430327964172021819)|
 |-|-|
 |-|-|
 |-|-|
