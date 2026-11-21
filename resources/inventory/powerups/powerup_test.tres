@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PowerupData" format=3 uid="uid://bfinaki64h2mj"]
+
+[ext_resource type="Script" uid="uid://43qddjv3s7y3" path="res://scripts/inventory/ItemData.gd" id="1_cn1td"]
+[ext_resource type="Resource" uid="uid://bsatsuegigbcv" path="res://resources/inventory/items/item_test.tres" id="2_vufr7"]
+[ext_resource type="Script" uid="uid://5upgcv4j45yi" path="res://scripts/inventory/PowerupData.gd" id="3_fcxxy"]
+
+[resource]
+script = ExtResource("3_fcxxy")
+name = "Power Up"
+components = Array[ExtResource("1_cn1td")]([ExtResource("2_vufr7"), ExtResource("2_vufr7"), ExtResource("2_vufr7")])
+metadata/_custom_type_script = "uid://5upgcv4j45yi"

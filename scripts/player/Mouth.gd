@@ -1,6 +1,7 @@
 extends Area3D
 
 @export var health: Health
+@export var inventory: Inventory
 
 func _ready() -> void:
 	body_entered.connect(_on_area_entered)
@@ -20,4 +21,4 @@ func _on_area_entered(body: Node3D):
 	
 	if body is Item:
 		body.destroy()
-		health.take_healing(20)
+		inventory.add_item(body.data)

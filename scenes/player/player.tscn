@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://bepo3igugslpc" path="res://audio/player/player_hit_1.wav" id="9_je7p5"]
 [ext_resource type="PackedScene" uid="uid://ccwg31v8swgfd" path="res://scenes/player/player_ui.tscn" id="9_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://bqsoofh078m3r" path="res://audio/player/player_hit_2.wav" id="10_fm80t"]
+[ext_resource type="Script" uid="uid://di8sp6grd5mdm" path="res://scripts/inventory/Inventory.gd" id="21_3j4b4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
@@ -95,11 +96,12 @@ particles = NodePath("CPUParticles3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head" unique_id=183396357]
 shape = SubResource("SphereShape3D_g2els")
 
-[node name="mouth" type="Area3D" parent="head" unique_id=861753068 node_paths=PackedStringArray("health")]
+[node name="mouth" type="Area3D" parent="head" unique_id=861753068 node_paths=PackedStringArray("health", "inventory")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 collision_mask = 28
 script = ExtResource("4_dqkch")
 health = NodePath("../../Health")
+inventory = NodePath("../../inventory")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head/mouth" unique_id=1090413210]
 shape = SubResource("SphereShape3D_qhqgy")
@@ -142,6 +144,9 @@ metadata/_custom_type_script = "uid://chc3odh7c2i86"
 death_timer = 0.5
 fade_duration = 2.0
 restart_timer = 4.0
+
+[node name="inventory" type="Node" parent="." unique_id=455965978]
+script = ExtResource("21_3j4b4")
 
 [connection signal="on_die" from="Health" to="ui" method="_on_die"]
 [connection signal="on_health_changed" from="Health" to="ui" method="_set_health"]
