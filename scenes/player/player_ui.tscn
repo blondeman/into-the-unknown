@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="1_7ctsh"]
 [ext_resource type="Script" uid="uid://dr8vru2vqrtsw" path="res://scripts/player/PlayerUi.gd" id="1_bkx2g"]
+[ext_resource type="PackedScene" uid="uid://fifxepxsj0ea" path="res://scenes/player/item_ui.tscn" id="2_4qoov"]
 [ext_resource type="Texture2D" uid="uid://djt6vxmx0rbyh" path="res://ui/health_background.png" id="2_bkx2g"]
 [ext_resource type="Texture2D" uid="uid://4pbngtc1egn1" path="res://ui/health_fill_right.png" id="3_n31oh"]
 [ext_resource type="Texture2D" uid="uid://ofgdpnkk2l7v" path="res://ui/health_overlay.png" id="4_wsb5h"]
@@ -10,11 +11,26 @@
 [ext_resource type="Texture2D" uid="uid://cgb76is0evp52" path="res://ui/score_fill_left.png" id="8_g18nd"]
 [ext_resource type="Script" uid="uid://d08us5cohn1a0" path="res://scripts/player/Map.gd" id="9_g18nd"]
 
-[node name="ui" type="Control" unique_id=546971784 node_paths=PackedStringArray("health_fill_right", "health_fill_left", "death_screen", "stats_parent", "score_fill_right", "score_fill_left", "endless_parent", "endless_score_text")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qoov"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xums0"]
+color = Color(0.8, 0.8, 0.8, 1)
+grow_begin = 4.0
+grow_end = 4.0
+thickness = 2
+
+[node name="ui" type="Control" unique_id=546971784 node_paths=PackedStringArray("health_fill_right", "health_fill_left", "death_screen", "stats_parent", "score_fill_right", "score_fill_left", "endless_parent", "endless_score_text", "inventory_parent", "item_box", "powerup_box")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -27,6 +43,10 @@ score_fill_right = NodePath("destruction/score_right")
 score_fill_left = NodePath("destruction/score_left")
 endless_parent = NodePath("endless")
 endless_score_text = NodePath("endless/VBoxContainer/score_label")
+inventory_parent = NodePath("inventory")
+item_box = NodePath("inventory/margin/VBoxContainer/items")
+powerup_box = NodePath("inventory/margin/VBoxContainer/powerups")
+item_ui = ExtResource("2_4qoov")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=62778449]
 visible = false
@@ -189,10 +209,10 @@ script = ExtResource("9_g18nd")
 wall_color = Color(0.9498536, 0.89256823, 0.8805905, 1)
 player_color = Color(1, 0, 0, 1)
 player_pixel_size = 2.0
-fullscreen_map_container = NodePath("../../../ColorRect2")
-fullscreen_map = NodePath("../../../ColorRect2/MarginContainer/fullscreen_map")
+fullscreen_map_container = NodePath("../../../fullscreen_map")
+fullscreen_map = NodePath("../../../fullscreen_map/MarginContainer/fullscreen_map")
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=1568708090]
+[node name="fullscreen_map" type="ColorRect" parent="." unique_id=1568708090]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -202,7 +222,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.20392157)
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect2" unique_id=1050674827]
+[node name="MarginContainer" type="MarginContainer" parent="fullscreen_map" unique_id=1050674827]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,9 +234,69 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="fullscreen_map" type="TextureRect" parent="ColorRect2/MarginContainer" unique_id=1740181954]
+[node name="fullscreen_map" type="TextureRect" parent="fullscreen_map/MarginContainer" unique_id=1740181954]
 layout_mode = 2
 script = ExtResource("9_g18nd")
 wall_color = Color(0.9498536, 0.89256823, 0.8805905, 1)
 player_color = Color(1, 0, 0, 1)
 player_pixel_size = 2.0
+
+[node name="inventory" type="MarginContainer" parent="." unique_id=2087924728]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="panel" type="Panel" parent="inventory" unique_id=4423759]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4qoov")
+
+[node name="margin" type="MarginContainer" parent="inventory" unique_id=61326417]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory/margin" unique_id=843708134]
+layout_mode = 2
+
+[node name="items" type="HBoxContainer" parent="inventory/margin/VBoxContainer" unique_id=943403992]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="icon" parent="inventory/margin/VBoxContainer/items" unique_id=83328418 instance=ExtResource("2_4qoov")]
+layout_mode = 2
+
+[node name="icon2" parent="inventory/margin/VBoxContainer/items" unique_id=1301075369 instance=ExtResource("2_4qoov")]
+layout_mode = 2
+
+[node name="icon3" parent="inventory/margin/VBoxContainer/items" unique_id=1569659119 instance=ExtResource("2_4qoov")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="inventory/margin/VBoxContainer" unique_id=1002855341]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_xums0")
+
+[node name="powerups" type="HBoxContainer" parent="inventory/margin/VBoxContainer" unique_id=1347494942]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="icon4" parent="inventory/margin/VBoxContainer/powerups" unique_id=1687567435 instance=ExtResource("2_4qoov")]
+layout_mode = 2
+
+[node name="icon5" parent="inventory/margin/VBoxContainer/powerups" unique_id=1282784972 instance=ExtResource("2_4qoov")]
+layout_mode = 2

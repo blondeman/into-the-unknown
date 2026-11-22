@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://fifxepxsj0ea"]
+
+[ext_resource type="Texture2D" uid="uid://ct0l6c42ng5fc" path="res://icon.svg" id="1_87ftv"]
+[ext_resource type="Theme" uid="uid://bixddxke4q20w" path="res://resources/new_theme.tres" id="2_tbtlq"]
+
+[node name="icon" type="TextureRect" unique_id=83328418]
+custom_minimum_size = Vector2(0, 50)
+texture = ExtResource("1_87ftv")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="count" type="Label" parent="." unique_id=1053579565]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -17.000008
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_enabled = true
+theme = ExtResource("2_tbtlq")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "5x"
+horizontal_alignment = 1

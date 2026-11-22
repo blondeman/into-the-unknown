@@ -22,9 +22,16 @@ var _score_tween: Tween
 const endless_score_label: String = "Depth: "
 @export var endless_score_text: Label
 
+@export_group("Inventory")
+@export var inventory_parent: Control
+@export var item_box: Control
+@export var powerup_box: Control
+@export var item_ui: PackedScene
+
 func _ready() -> void:
 	stats_parent.visible = false
 	endless_parent.visible = false
+	inventory_parent.visible = false
 	
 	health_fill_right.value = 0
 	health_fill_left.value = 0
@@ -101,3 +108,29 @@ func _set_endless_score(score: int):
 		endless_score_text.text = endless_score_label + str(score)
 	else:
 		endless_score_text.text = endless_score_label + "-" + str(score)
+
+
+func _on_inventory_on_inventory_changed(inventory: Inventory) -> void:
+	inventory_parent.visible = true
+	
+	for child in item_box.get_children():
+		child.queue_free()
+	
+	for child in powerup_box.get_children():
+		child.queue_free()
+	
+	var inventory_items = inventory.get_item_counts()
+	for item in inventory_items.keys():
+		var item_texture: TextureRect = item_ui.instantiate()
+		item_texture.texture = load("res://icon.svg")
+		var item_label = item_texture.get_child(0) as Label
+		item_label.text = str(inventory_items[item]) + "x"
+		item_box.add_child(item_texture)
+	
+	var inventory_powerups = inventory.get_powerup_counts()
+	for powerup in inventory_powerups.keys():
+		var powerup_texture: TextureRect = item_ui.instantiate()
+		powerup_texture.texture = load("res://icon.svg")
+		var powerup_label = powerup_texture.get_child(0) as Label
+		powerup_label.text = str(inventory_powerups[powerup]) + "x"
+		powerup_box.add_child(powerup_texture)
